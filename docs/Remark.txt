@@ -1,0 +1,6 @@
+The 'want' specifications from the project problem description (https://eclass.srv.ualberta.ca/mod/page/view.php?id=488442) haven't been added to the Use Cases Diagram or the UML.
+
+namely
+As a user I want to be able to record/edit/view/modify the ingredients I already have.
+
+As a user I want to be able to query for recipes that have the ingredients I already have.

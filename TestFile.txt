@@ -1,9 +1,0 @@
-Oh look! Some Text. ~Mike
----------------------------------
-test123 by paul
----------------------------------
-testing command line by paul
----------------------------------
-hello,world by frank
----------------------------------
-test,by Mark
