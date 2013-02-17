@@ -1,0 +1,22 @@
+1.Press adding button
+2.Type title 
+3.Type ingredients
+4.Write description
+5.Add photos
+	5.1 take a photo/choose a existed photo
+	5.2 retake a photo
+6.Press Reset button if user wants to start over
+7.When sheet is done, press save button
+8.Back to main activity 
+==================================
+Exceptions
+==================================
+5.User doesn't have to add any photos
+7.notify user to fill title , ingredients and description textbox if one of them is missing
+8.refers to case 7
+
+
+
+
+
+
