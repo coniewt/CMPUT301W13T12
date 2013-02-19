@@ -30,6 +30,10 @@
             android:name="com.example.cmp301android.View_localActivity"
             android:label="@string/title_activity_view_local" >
         </activity>
+        <activity
+            android:name="com.example.cmp301android.SearchActivity"
+            android:label="@string/title_activity_search" >
+        </activity>
     </application>
 
 </manifest>
