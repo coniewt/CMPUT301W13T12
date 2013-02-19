@@ -22,6 +22,15 @@ public class MainActivity extends Activity {
 				startActivity(intent);
 			}
 		});
+		Button viewB = (Button) findViewById(R.id.view_button);
+		viewB.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View arg0) {
+				// TODO Auto-generated method stub
+				Intent intent = new Intent(MainActivity.this, View_localActivity.class);
+				startActivity(intent);
+			}
+		});
 	}
 
 	@Override

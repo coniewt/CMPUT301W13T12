@@ -26,6 +26,10 @@
             android:name="com.example.cmp301android.AddActivity"
             android:label="@string/title_activity_add" >
         </activity>
+        <activity
+            android:name="com.example.cmp301android.View_localActivity"
+            android:label="@string/title_activity_view_local" >
+        </activity>
     </application>
 
 </manifest>
