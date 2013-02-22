@@ -5,26 +5,26 @@ date, and a button to show a edit menu
 4. menu include publish/email/edit/add photo/delete photo
 5. for publish recipe we push the recipe onto web
 6. for email recipe we request a email address from user and send recipe
-through centern format
+through certain format
 7. for edit we open an interface similar to add but with all fields filled with
-informatiom from the current recipe
+information from the current recipe
 8. edit interface with two buttons, confirm and reset. confirm will store all
 the information back to local. reset will reset all fields back to original
 states
-9. add photo will open a popup window asking if the user want to take a picture
+9. add photo will open a pop-up window asking if the user want to take a picture
 or upload a photo from local gallery
 10. if user choose to take a picture open camera and capture picture
 11. if user choose to upload from local gallery browse local gallery and let
-user pick photoes.
-12. add picture to coressponding recipe
-13. delete interface will allow user to browse photoes coressponding to the
-recipe and delete selected photoes
+user pick photos.
+12. add picture to corresponding recipe
+13. delete interface will allow user to browse photos corresponding to the
+recipe and delete selected photos
 
 exceptions
 ---------------------------------------
 1. no internet connection
-    --notify user no internet connection, stop publishing or emailing
+    --notify user no internet connection
 2. corrupted data
-    --download again from internet
-3. camera doesnt work
+    --prompt user for re-download the data or hide warning
+3. camera doesn't work or memory call
     --notify user, return
