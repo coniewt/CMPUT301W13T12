@@ -1,7 +1,6 @@
 1.Press adding button
 2.Type title 
 3.Type ingredients
-4.Write description
 5.Add photos
 	5.1 take a photo/choose a existed photo
 	5.2 retake a photo
