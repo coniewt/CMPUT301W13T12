@@ -4,10 +4,18 @@
     android:layout_height="match_parent"
     tools:context=".View_localActivity" >
 
+    <Button
+        android:id="@+id/view_local_goBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/back" />
+
     <LinearLayout
         android:id="@+id/linearLayout1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="45dp"
         android:orientation="vertical" >
 
         <LinearLayout
@@ -64,6 +72,13 @@
             android:layout_marginLeft="40dp"
             android:ems="10"
             android:inputType="date" />
+
+        <ImageView
+            android:id="@+id/imageView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:src="@drawable/ic_launcher" />
 
     </LinearLayout>
 

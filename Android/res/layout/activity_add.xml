@@ -90,7 +90,6 @@
 
             </LinearLayout>
         </LinearLayout>
-
         <LinearLayout
             android:id="@+id/linearLayout4"
             android:layout_width="wrap_content"
@@ -98,9 +97,12 @@
             android:orientation="vertical" >
 
             <ListView
-                android:id="@+id/listView1"
+                android:id="@+id/search_outcome_viewlist"
                 android:layout_width="match_parent"
-                android:layout_height="90dp" >
+                android:layout_height="90dp"
+                android:footerDividersEnabled="true"
+                android:headerDividersEnabled="true" >
+
             </ListView>
 
             <EditText

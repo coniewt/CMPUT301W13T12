@@ -34,6 +34,10 @@
             android:name="com.example.cmp301android.SearchActivity"
             android:label="@string/title_activity_search" >
         </activity>
+        <activity
+            android:name="com.example.cmp301android.View_SearchActivity"
+            android:label="@string/title_activity_view__search" >
+        </activity>
     </application>
 
 </manifest>

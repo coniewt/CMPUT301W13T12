@@ -4,46 +4,52 @@
     android:layout_height="match_parent"
     tools:context=".SearchActivity" >
 
-    <TextView
-        android:id="@+id/search_text"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginLeft="28dp"
-        android:layout_marginTop="48dp"
-        android:text="Search"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        android:orientation="vertical" >
 
-    <EditText
-        android:id="@+id/editText1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/search_text"
-        android:layout_below="@+id/search_text"
-        android:layout_marginTop="26dp"
-        android:ems="10"
-        android:inputType="textPersonName" >
+        <TextView
+            android:id="@+id/search_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="28dp"
+            android:layout_marginTop="48dp"
+            android:text="Search"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
 
-        <requestFocus />
-    </EditText>
+        <EditText
+            android:id="@+id/editText1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="28dp"
+            android:layout_marginTop="26dp"
+            android:ems="10"
+            android:inputType="textPersonName" />
 
-    <Button
-        android:id="@+id/search_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/editText1"
-        android:layout_below="@+id/editText1"
-        android:layout_marginTop="52dp"
-        android:text="Search" />
+        <LinearLayout
+            android:id="@+id/linearLayout1"
+            android:layout_width="wrap_content"
+            android:layout_height="200dp"
+            android:layout_marginTop="25dp"
+            android:orientation="vertical" >
 
-    <Button
-        android:id="@+id/search_reset"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/search_button"
-        android:layout_alignBottom="@+id/search_button"
-        android:layout_alignRight="@+id/editText1"
-        android:text="Reset" />
+            <ListView
+                android:id="@+id/search_outcome_viewlist"
+                android:layout_width="wrap_content"
+                android:layout_height="259dp"
+                android:layout_marginLeft="28dp" >
+
+            </ListView>
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/search_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="28dp"
+            android:text="@string/button_search" />
+
+    </LinearLayout>
 
 </RelativeLayout>

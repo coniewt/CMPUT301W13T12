@@ -31,6 +31,15 @@ public class MainActivity extends Activity {
 				startActivity(intent);
 			}
 		});
+		Button viewc = (Button) findViewById(R.id.search);
+		viewc.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View arg0) {
+				// TODO Auto-generated method stub
+				Intent intent = new Intent(MainActivity.this, SearchActivity.class);
+				startActivity(intent);
+			}
+		});
 	}
 
 	@Override

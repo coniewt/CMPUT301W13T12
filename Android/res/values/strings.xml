@@ -15,5 +15,8 @@
     <string name="title_activity_view_local">View_localActivity</string>
     <string name="last_modified">Last Modified:</string>
     <string name="title_activity_search">SearchActivity</string>
+    <string name="title_activity_view__search">View_SearchActivity</string>
+    <string name="action_settings">Settings</string>
+    <string name="back">Back</string>
 
 </resources>
