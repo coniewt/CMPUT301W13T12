@@ -1,5 +1,8 @@
-package ca.ualberta.c301w13t12recipes;
+package ca.ualberta.c301w13t12recipes.view;
 
+import ca.ualberta.c301w13t12recipes.R;
+import ca.ualberta.c301w13t12recipes.R.layout;
+import ca.ualberta.c301w13t12recipes.R.menu;
 import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
