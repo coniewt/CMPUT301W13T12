@@ -29,8 +29,10 @@ import com.google.gson.reflect.TypeToken;
 public class ElasticSearch {
 	// Http Connector
 	private HttpClient httpclient = new DefaultHttpClient();
+
 	// JSON Utilities
 	private Gson gson = new Gson();
+
 	/**
 	 * create a simple recipe
 	 * @return
@@ -48,6 +50,7 @@ public class ElasticSearch {
 		r.setDirections("mix and bake");
 		return r;
 	}
+
 	/**
 	 * Consumes the POST/Insert operation of the service
 	 * @throws IOException 
@@ -58,12 +61,12 @@ public class ElasticSearch {
 		StringEntity stringentity = null;
 		try {
 			stringentity = new StringEntity(gson.toJson(recipe));
-		} catch (UnsupportedEncodingException e) {
+		} 
+		catch (UnsupportedEncodingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		httpPost.setHeader("Accept","application/json");
-
 		httpPost.setEntity(stringentity);
 		HttpResponse response = null;
 		try {
@@ -91,7 +94,7 @@ public class ElasticSearch {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		httpPost.releaseConnection();
+		 httpPost.releaseConnection();
 	}
 
 	/**
@@ -128,7 +131,6 @@ public class ElasticSearch {
 			e.printStackTrace();
 		}
 	}
-
 	/**
 	 * search by keywords
 	 */
@@ -219,6 +221,7 @@ public class ElasticSearch {
 			System.err.println(output);
 		}
 		EntityUtils.consume(entity);
+
 		httpDelete.releaseConnection();
 	}
 
@@ -299,5 +302,3 @@ public class ElasticSearch {
 		}
 	}
 }
-
-
