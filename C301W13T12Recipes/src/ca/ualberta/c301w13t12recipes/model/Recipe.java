@@ -68,6 +68,11 @@ public class Recipe {
 		return "Recipe [id=" + id + ", user=" + user + ", name=" + name + ", ingredients="
 				+ ingredients + ", directions=" + directions + "]";
 	}
+
+	public static Object toJson() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 }
 
