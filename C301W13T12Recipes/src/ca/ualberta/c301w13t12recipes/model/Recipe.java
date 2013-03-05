@@ -1,6 +1,13 @@
 package ca.ualberta.c301w13t12recipes.model;
 
 import java.util.ArrayList;
+import java.util.List;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+
 
 public class Recipe {
 	private String id;
@@ -69,9 +76,29 @@ public class Recipe {
 				+ ingredients + ", directions=" + directions + "]";
 	}
 
-	public static Object toJson() {
-		// TODO Auto-generated method stub
-		return null;
+	public Object toJson() {
+		JSONObject jsonObject = new JSONObject();
+		/*jsonObject.put("name", getName());
+		jsonObject.put("user", getUser());
+		//jsonObject.put("description", getDescription());
+		jsonObject.put("id", getId());*/
+		//List<imagin> responses = getResponses();
+		JSONArray arr = new JSONArray();
+		/*for (Response response : responses)
+		{
+			JSONObject jo = new JSONObject();
+			jo.put("annotation", response.getAnnotation());
+			jo.put("content", response.getSaveable());
+			jo.put("timestamp", response.getTimestamp());
+			arr.put(jo);
+		}*/
+		try {
+			jsonObject.put("responses", arr);
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return jsonObject;
 	}
 	
 }
