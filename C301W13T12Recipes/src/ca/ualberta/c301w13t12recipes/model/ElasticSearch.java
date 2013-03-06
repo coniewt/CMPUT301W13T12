@@ -14,7 +14,7 @@ import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
-import org.apache.http.client.fluent.Content;
+//import org.apache.http.client.fluent.Content;
 import org.apache.http.client.methods.HttpDelete;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
@@ -22,10 +22,11 @@ import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.util.EntityUtils;
 
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
+//import com.google.gson.Gson;
+//import com.google.gson.reflect.TypeToken;
 
 public class ElasticSearch {
+	
 		// Http Connector
 		private HttpClient httpclient = new DefaultHttpClient();
 
@@ -36,6 +37,7 @@ public class ElasticSearch {
 		 * create a simple recipe
 		 * @return
 		 */
+		
 		private Recipe initializeRecipe() {
 			Recipe r = new Recipe();
 			r.setId("999");
@@ -300,4 +302,7 @@ public class ElasticSearch {
 				e.printStackTrace();
 			}
 		}
+	
 	}
+	
+
