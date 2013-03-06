@@ -1,4 +1,4 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<AbsoluteLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -9,4 +9,31 @@
     tools:context=".MainActivity"
     android:background="@drawable/bg" >
 
-</RelativeLayout>
+    <ImageButton
+        android:id="@+id/main_view_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="4dp"
+        android:layout_y="234dp"
+        android:background="#00000000"
+        android:src="@drawable/view_button_release" />
+
+    <ImageButton
+        android:id="@+id/main_fridge_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="150dp"
+        android:layout_y="234dp"
+        android:background="#00000000"
+        android:src="@drawable/fridge_button_release" />
+
+    <ImageButton
+        android:id="@+id/imageButton1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="4dp"
+        android:layout_y="90dp"
+        android:background="#00000000"
+        android:src="@drawable/search_button_release" />
+
+</AbsoluteLayout>
