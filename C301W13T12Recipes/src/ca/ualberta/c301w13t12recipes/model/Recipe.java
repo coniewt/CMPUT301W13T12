@@ -13,14 +13,14 @@ public class Recipe {
 	private String id;
 	private String user;
 	private String name;
-	private ArrayList<String> ingredients;
+	private ArrayList<Ingredient> ingredients;
 	private String directions;
 
 	public Recipe(){
 		
 	}
 
-	public Recipe(String id, String user, String name, ArrayList<String> ingredients,
+	public Recipe(String id, String user, String name, ArrayList<Ingredient> ingredients,
 			String directions) {
 		super();
 		this.id = id;
@@ -54,11 +54,11 @@ public class Recipe {
 		this.name = name;
 	}
 
-	public ArrayList<String> getIngredients() {
+	public ArrayList<Ingredient> getIngredients() {
 		return ingredients;
 	}
 
-	public void setIngredients(ArrayList<String> ingredients) {
+	public void setIngredients(ArrayList<Ingredient> ingredients) {
 		this.ingredients = ingredients;
 	}
 
