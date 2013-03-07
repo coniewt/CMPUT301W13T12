@@ -36,7 +36,7 @@ public class DatabaseOpenHelper extends SQLiteOpenHelper
 			final String DROP_RECIPE_TABLE =
 					"DROP TABLE recipe;";
 			final String DROP_INGREDIENT_TABLE =
-					"DROP TABLE recipe;";
+					"DROP TABLE ingre;";
 			db.execSQL(DROP_RECIPE_TABLE);
 			db.execSQL(DROP_INGREDIENT_TABLE);
 			//db.execSQL(LOCAL_TASK_TABLE_CREATE);
