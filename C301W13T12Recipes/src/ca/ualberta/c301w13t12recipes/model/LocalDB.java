@@ -114,7 +114,6 @@ public class LocalDB {
 
 	/**
 	 * Gets a task (if exists) from the "local" table of the database.
-	 *
 	 * @param id ID of task to search for
 	 * @return Task found, if nothing found returns null.
 	 * @throws JSONException 
@@ -163,7 +162,7 @@ public class LocalDB {
 	 * @return Task
 	 * @throws JSONException
 	 */
-	private static Recipe toTask(JSONObject jsonTask) throws JSONException
+	private static Recipe toRecipe(JSONObject jsonTask) throws JSONException
 	{
 		if(jsonTask==null)
 		{
@@ -217,9 +216,9 @@ public class LocalDB {
 		}
 	}*/
 
-	private JSONObject toJsonRecipe(String taskContent) throws JSONException
+	private JSONObject toJsonRecipe(String recipeContent) throws JSONException
 	{
-		JSONObject jsonRecipe = new JSONObject(taskContent);
+		JSONObject jsonRecipe = new JSONObject(recipeContent);
 		return jsonRecipe;
 	}
 
@@ -229,7 +228,7 @@ public class LocalDB {
 	 * @return A list of tasks in the local table of the database
 	 * @throws JSONException 
 	 */
-	public ArrayList<Recipe> getLocalTaskList()  {
+	public ArrayList<Recipe> getLocalRecipeList()  {
 		try
 		{
 			ArrayList<Recipe> out = new ArrayList<Recipe>();
@@ -241,7 +240,7 @@ public class LocalDB {
 				{
 					JSONObject obj = null;
 					//toJsonTask(c.getString(c.getColumnIndex(StrResource.COL_CONTENT)));
-					out.add(toTask(obj));
+					out.add(toRecipe(obj));
 					c.moveToNext();
 				}
 				return out;
@@ -261,7 +260,7 @@ public class LocalDB {
 	 * @return Task found, if nothing found returns null.
 	 * @throws JSONException 
 	 */
-	public Recipe getRemoteRecipe(String id)  {
+	/*public Recipe getRemoteRecipe(String id)  {
 		try
 		{
 			Cursor c = db.rawQuery("SELECT * FROM " + StrResource.REMOTE_TASK_TABLE_NAME + " WHERE "  + "=?", new String[]{id,});
@@ -274,7 +273,7 @@ public class LocalDB {
 			{
 				String taskContent = "";//c.getString(c.getColumnIndex(StrResource.COL_CONTENT));
 				JSONObject jsonRecipe = toJsonRecipe(taskContent);
-				return toTask(jsonRecipe);
+				return toRecipe(jsonRecipe);
 			}
 		}
 		catch(JSONException e)
@@ -282,7 +281,7 @@ public class LocalDB {
 			e.printStackTrace();
 		}
 		return null;
-	}
+	}*/
 
 	/**
 	 * Get the remote task list.
@@ -291,7 +290,7 @@ public class LocalDB {
 	 * @throws JSONException 
 	 */
 	//fixed
-	public ArrayList<Recipe> getRemoteRecipeList()  {
+	/*public ArrayList<Recipe> getRemoteRecipeList()  {
 		try
 		{
 			Log.d("refresh","STARTING REMOTE TASK LIST");
@@ -301,9 +300,9 @@ public class LocalDB {
 			{
 				while(c.isAfterLast()==false)
 				{
-					/*JSONObject obj = toJsonTask(c.getString(c.getColumnIndex(StrResource.COL_CONTENT)));
+					JSONObject obj = toJsonTask(c.getString(c.getColumnIndex(StrResource.COL_CONTENT)));
 					out.add(toTask(obj));
-					c.moveToNext();*/
+					c.moveToNext();
 				}
 			}
 			Log.d("refresh","sizeof remotetasklist = "+out.size());
@@ -315,7 +314,7 @@ public class LocalDB {
 			e.printStackTrace();
 		}
 		return null;
-	}
+	}*/
 
 	/**
 	 * Updates the database with the passed in task based on the id.
