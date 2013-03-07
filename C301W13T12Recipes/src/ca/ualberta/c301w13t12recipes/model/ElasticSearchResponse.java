@@ -15,9 +15,9 @@ public class ElasticSearchResponse<T> {
     }
     public Collection<T> getSources() {
         Collection<T> out = new ArrayList<T>();
-        for (ElasticSearchResponse<T> essrt : getHits()) {
+      /*  for (ElasticSearchResponse<T> essrt : getHits()) {
             out.add( essrt.getSource() );
-        }
+        }*/
         return out;
     }
     public String toString() {

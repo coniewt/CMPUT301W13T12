@@ -36,7 +36,7 @@ public class ElasticSearch {
 		 * create a simple recipe
 		 * @return
 		 */
-		private Recipe initializeRecipe() {
+	/*	private Recipe initializeRecipe() {
 			Recipe r = new Recipe();
 			r.setId("999");
 			r.setUser("Emily");
@@ -48,7 +48,7 @@ public class ElasticSearch {
 			r.setIngredients(ingredients);
 			r.setDirections("mix and bake");
 			return r;
-		}
+		}*/
 
 		/**
 		 * Consumes the POST/Insert operation of the service
@@ -117,10 +117,10 @@ public class ElasticSearch {
 				// Now we expect to get a Recipe response
 				ElasticSearchResponse<Recipe> esResponse = gson.fromJson(json, elasticSearchResponseType);
 				// We get the recipe from it!
-				Recipe recipe = esResponse.getSource();
+		/*		Recipe recipe = esResponse.getSource();
 				System.out.println(recipe.toString());
 				//getRequest.releaseConnection();
-
+*/
 			} catch (ClientProtocolException e) {
 
 				e.printStackTrace();
@@ -133,7 +133,7 @@ public class ElasticSearch {
 		/**
 		 * search by keywords
 		 */
-		public void searchRecipes(String str) throws ClientProtocolException, IOException {
+		/*public void searchRecipes(String str) throws ClientProtocolException, IOException {
 			HttpGet searchRequest = new HttpGet("http://cmput301.softwareprocess.es:8080/testing/lab02/_search?pretty=1&q=" +
 					java.net.URLEncoder.encode(str,"UTF-8"));
 			searchRequest.setHeader("Accept","application/json");
@@ -151,7 +151,7 @@ public class ElasticSearch {
 				System.err.println(recipe);
 			}
 			//searchRequest.releaseConnection();
-		}	
+		}	*/
 
 		/**
 		 * advanced search (logical operators)
@@ -170,14 +170,14 @@ public class ElasticSearch {
 
 			String json = getEntityContent(response);
 
-			Type elasticSearchSearchResponseType = new TypeToken<ElasticSearchSearchResponse<Recipe>>(){}.getType();
+			/*Type elasticSearchSearchResponseType = new TypeToken<ElasticSearchSearchResponse<Recipe>>(){}.getType();
 			ElasticSearchSearchResponse<Recipe> esResponse = gson.fromJson(json, elasticSearchSearchResponseType);
 			System.err.println(esResponse);
 			for (ElasticSearchResponse<Recipe> r : esResponse.getHits()) {
 				Recipe recipe = r.getSource();
 				System.err.println(recipe);
-			}
-			searchRequest.releaseConnection();
+			}*/
+			//searchRequest.releaseConnection();
 		}	
 
 
@@ -197,21 +197,17 @@ public class ElasticSearch {
 			System.out.println(status);
 
 			String json = getEntityContent(response);
-			updateRequest.releaseConnection();
+			//updateRequest.releaseConnection();
 		}	
-
 		/**
 		 * delete an entry specified by the id
 		 */
 		public void deleteRecipe() throws IOException {
 			HttpDelete httpDelete = new HttpDelete("http://cmput301.softwareprocess.es:8080/testing/lab02/1");
 			httpDelete.addHeader("Accept","application/json");
-
 			HttpResponse response = httpclient.execute(httpDelete);
-
 			String status = response.getStatusLine().toString();
 			System.out.println(status);
-
 			HttpEntity entity = response.getEntity();
 			BufferedReader br = new BufferedReader(new InputStreamReader(entity.getContent()));
 			String output;
@@ -219,9 +215,8 @@ public class ElasticSearch {
 			while ((output = br.readLine()) != null) {
 				System.err.println(output);
 			}
-			EntityUtils.consume(entity);
-
-			httpDelete.releaseConnection();
+			//EntityUtils.consume(entity);
+			//httpDelete.releaseConnection();
 		}
 
 		/**
@@ -244,7 +239,7 @@ public class ElasticSearch {
 		// Main Test
 		public static void main(String [] args){
 
-			ESClient client = new ESClient();
+			ElasticSearch client = new ElasticSearch();
 			/*		Recipe recipe = client.initializeRecipe();
 			System.out.println("Recipe is -> "+ recipe.toString());
 
@@ -280,7 +275,6 @@ public class ElasticSearch {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}*/
-
 			//update a new field
 	/*				try {
 				client.updateRecipes("directions = \\\"chop and fry\\\"\"");
