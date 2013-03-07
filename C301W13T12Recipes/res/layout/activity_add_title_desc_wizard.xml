@@ -20,6 +20,7 @@
 
     <EditText
         android:id="@+id/editText_recipe_name"
+        android:hint="Add a name "
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="30px"
@@ -39,6 +40,7 @@
 
     <EditText
         android:id="@+id/editText_description"
+        android:hint="Tap to edit here"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10" 
