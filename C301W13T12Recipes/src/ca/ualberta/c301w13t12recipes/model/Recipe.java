@@ -14,6 +14,7 @@ public class Recipe {
 	private String user;
 	private String name;
 	private ArrayList<Ingredient> ingredients;
+	private ArrayList<Image> ImageCollection;
 	private String directions;
 
 	public Recipe(){
@@ -26,6 +27,7 @@ public class Recipe {
 		this.id = id;
 		this.user = user;
 		this.name = name;
+		this.ImageCollection = new ArrayList<Image>();
 		this.ingredients = ingredients;
 		this.directions = directions;
 	}
@@ -78,10 +80,16 @@ public class Recipe {
 
 	public Object toJson() {
 		JSONObject jsonObject = new JSONObject();
-		/*jsonObject.put("name", getName());
-		jsonObject.put("user", getUser());
-		//jsonObject.put("description", getDescription());
-		jsonObject.put("id", getId());*/
+		try {
+			jsonObject.put("name", getName());
+			jsonObject.put("user", getUser());
+			jsonObject.put("directions", getDirections());
+			jsonObject.put("id", getId());
+		} catch (JSONException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
 		//List<imagin> responses = getResponses();
 		JSONArray arr = new JSONArray();
 		/*for (Response response : responses)

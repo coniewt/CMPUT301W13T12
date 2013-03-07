@@ -49,7 +49,7 @@ public class LocalDB {
 	private void addRecipe_LocaleTable(Recipe re)
 	{
 		ContentValues cv = new ContentValues();
-		//cv.put(StrResource.COL_ID, re.getId());
+		//cv.put( re.getId());
 		try
 		{
 			//cv.put(StrResource.COL_CONTENT, Recipe.toJson().toString() );
@@ -58,11 +58,11 @@ public class LocalDB {
 		{
 			e.printStackTrace();
 		}
-		db.insert(StrResource.LOCAL_TASK_TABLE_NAME, "id", cv);
+		db.insert(StrResource.LOCAL_RECIPE_TABLE_NAME, "id", cv);
 	}
 
 	private boolean localIdExists(String id) {
-		Cursor c = db.rawQuery("SELECT * FROM "+ StrResource.LOCAL_TASK_TABLE_NAME+" WHERE id"+"=?", new String[]{id,});
+		Cursor c = db.rawQuery("SELECT * FROM "+ StrResource.LOCAL_RECIPE_TABLE_NAME+" WHERE id"+"=?", new String[]{id,});
 		if(c==null||c.getCount()==0)
 		{
 			return false;
@@ -348,18 +348,18 @@ public class LocalDB {
 	}
 
 	public void clear_Remote() {
-		db.delete(StrResource.REMOTE_TASK_TABLE_NAME, null, null);
+		db.delete(StrResource.REMOTE_RECIPE_TABLE_NAME, null, null);
 	}
 
 	//fixed
 	public void clear_All() {
-		db.delete(StrResource.LOCAL_TASK_TABLE_NAME, null, null);
-		db.delete(StrResource.REMOTE_TASK_TABLE_NAME, null, null);
+		db.delete(StrResource.LOCAL_RECIPE_TABLE_NAME, null, null);
+		db.delete(StrResource.REMOTE_RECIPE_TABLE_NAME, null, null);
 	}
 
 	//fixed
 	public void clear_Local() {
-		db.delete(StrResource.LOCAL_TASK_TABLE_NAME, null, null);
+		db.delete(StrResource.LOCAL_RECIPE_TABLE_NAME, null, null);
 	}
 
 	public void close()

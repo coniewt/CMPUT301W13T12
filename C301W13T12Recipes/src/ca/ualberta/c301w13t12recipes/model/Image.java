@@ -12,11 +12,10 @@ public class Image {
 	String name;
 	/**
 	 * @param path
-	 * @param id
 	 */
-	public Image(String path,String id){
+	public Image(String path){
 		this.path=path;
-		this.name=id+"_"+getTime();
+		this.name=getTime();
 	}
 	/**
 	 *@return the String containing the year hour  
@@ -44,14 +43,18 @@ public class Image {
 	/**
 	 * @param name
 	 */
-	public void setName(String name){
+/*	public void setName(String name){
 		this.name=name;
-	}
+	}*/
 	
 	/**
 	 * @param path
 	 */
 	public void setPath(String path){
 		this.path=path;
+	}
+	public String toString(){
+		return name+" "+path;
+		
 	}
 }

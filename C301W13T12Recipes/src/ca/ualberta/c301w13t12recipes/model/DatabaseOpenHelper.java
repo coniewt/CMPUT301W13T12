@@ -12,7 +12,7 @@ public class DatabaseOpenHelper extends SQLiteOpenHelper
 	private static final String DATABASE_NAME = "Ingredients_DB";
 	private static final int DATABASE_VERSION = 4;
 	private static final String LOCAL_RECIPE_TABLE_CREATE =
-			"CREATE TABLE IF NOT EXISTS recipe (id TEXT PRIMARY KEY, name TEXT,user TEXT,directions TEXT)" ;
+			"CREATE TABLE IF NOT EXISTS "+StrResource.LOCAL_RECIPE_TABLE_NAME+" (id TEXT PRIMARY KEY, name TEXT,user TEXT,directions TEXT)" ;
 	private static final String LOCAL_INGREDIENTS_TABLE_CREATE =
 			"CREATE TABLE IF NOT EXISTS ingredients(id TEXT,I_name TEXT,amount TEXT)" ;
 	//private static final String REMOTE_TASK_TABLE_CREATE ="CREATE TABLE " ;
