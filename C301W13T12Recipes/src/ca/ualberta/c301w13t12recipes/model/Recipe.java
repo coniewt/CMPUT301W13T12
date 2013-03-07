@@ -7,8 +7,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-
-
 public class Recipe {
 	private String id;
 	private String user;
@@ -17,12 +15,22 @@ public class Recipe {
 	private ArrayList<Image> ImageCollection;
 	private String directions;
 
-	public Recipe(){
-		
+	/**
+	 * 
+	 */
+	public Recipe() {
+
 	}
 
-	public Recipe(String id, String user, String name, ArrayList<Ingredient> ingredients,
-			String directions) {
+	/**
+	 * @param id
+	 * @param user
+	 * @param name
+	 * @param ingredients
+	 * @param directions
+	 */
+	public Recipe(String id, String user, String name,
+			ArrayList<Ingredient> ingredients, String directions) {
 		super();
 		this.id = id;
 		this.user = user;
@@ -31,11 +39,17 @@ public class Recipe {
 		this.ingredients = ingredients;
 		this.directions = directions;
 	}
-	
+	/**
+	 * @param path
+	 */
+	public void addImage(String path){
+		this.ImageCollection.add(new Image(path));
+	}
+
 	public String getId() {
 		return id;
 	}
-	
+
 	public void setId(String id) {
 		this.id = id;
 	}
@@ -60,10 +74,16 @@ public class Recipe {
 		return ingredients;
 	}
 
+	/**
+	 * @param ingredients
+	 */
 	public void setIngredients(ArrayList<Ingredient> ingredients) {
 		this.ingredients = ingredients;
 	}
 
+	/**
+	 * @return directions
+	 */
 	public String getDirections() {
 		return directions;
 	}
@@ -74,10 +94,14 @@ public class Recipe {
 
 	@Override
 	public String toString() {
-		return "Recipe [id=" + id + ", user=" + user + ", name=" + name + ", ingredients="
-				+ ingredients + ", directions=" + directions + "]";
+		return "Recipe [id=" + id + ", user=" + user + ", name=" + name
+				+ ", ingredients=" + ingredients + ", directions=" + directions
+				+ "]";
 	}
 
+	/**
+	 * @return Json object
+	 */
 	public Object toJson() {
 		JSONObject jsonObject = new JSONObject();
 		try {
@@ -85,29 +109,18 @@ public class Recipe {
 			jsonObject.put("user", getUser());
 			jsonObject.put("directions", getDirections());
 			jsonObject.put("id", getId());
-		} catch (JSONException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		
-		//List<imagin> responses = getResponses();
-		JSONArray arr = new JSONArray();
-		/*for (Response response : responses)
-		{
-			JSONObject jo = new JSONObject();
-			jo.put("annotation", response.getAnnotation());
-			jo.put("content", response.getSaveable());
-			jo.put("timestamp", response.getTimestamp());
-			arr.put(jo);
-		}*/
-		try {
-			jsonObject.put("responses", arr);
+			JSONArray arr = new JSONArray();
+			for (Ingredient in : getIngredients()) {
+				JSONObject jo = new JSONObject();
+				jo.put("name", in.getNmae());
+				jo.put("amount", in.getAcount());
+				arr.put(jo);
+			}
+			jsonObject.put("Ingredients", arr);
 		} catch (JSONException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return jsonObject;
 	}
-	
-}
 
+}
