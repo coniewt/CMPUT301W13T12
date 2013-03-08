@@ -6,9 +6,51 @@
     android:background="@drawable/wizard_step2_bg" >
 
     <ImageView
-        android:id="@+id/imageView1"
+        android:id="@+id/imageView_navi_step2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/navi_step2" />
+
+    <ImageButton
+        android:id="@+id/imgBtn_add_ingredient_button"
+        android:layout_width="59dp"
+        android:layout_height="53dp"
+        android:layout_marginLeft="350px"
+        android:background="#00000000"
+        android:src="@drawable/step2_add_button_release" />
+
+    <ListView
+        android:id="@+id/listView_ingredients_list"
+        android:layout_width="289dp"
+        android:layout_height="288dp"
+        android:layout_marginLeft="25px"
+        android:layout_marginRight="25px" >
+    </ListView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="17dp"
+        android:orientation="vertical"
+        >
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/button1"
+            android:layout_width="158dp"
+            android:layout_height="wrap_content"
+            android:text="Delete" />
+
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Next" />
+
+    </LinearLayout>
 
 </LinearLayout>
