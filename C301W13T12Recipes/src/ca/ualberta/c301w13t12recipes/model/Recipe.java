@@ -7,6 +7,10 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+/**
+ * @author YUWEI DUAN
+ *
+ */
 public class Recipe {
 	private String id;
 	private String user;
@@ -46,30 +50,51 @@ public class Recipe {
 		this.ImageCollection.add(new Image(path));
 	}
 
+	/**
+	 * @return
+	 */
 	public String getId() {
 		return id;
 	}
 
+	/**
+	 * @param id
+	 */
 	public void setId(String id) {
 		this.id = id;
 	}
 
+	/**
+	 * @return
+	 */
 	public String getUser() {
 		return user;
 	}
 
+	/**
+	 * @param user
+	 */
 	public void setUser(String user) {
 		this.user = user;
 	}
 
+	/**
+	 * @return
+	 */
 	public String getName() {
 		return name;
 	}
 
+	/**
+	 * @param name
+	 */
 	public void setName(String name) {
 		this.name = name;
 	}
 
+	/**
+	 * @return a list of ingredients
+	 */
 	public ArrayList<Ingredient> getIngredients() {
 		return ingredients;
 	}
@@ -88,6 +113,9 @@ public class Recipe {
 		return directions;
 	}
 
+	/**
+	 * @param directions
+	 */
 	public void setDirections(String directions) {
 		this.directions = directions;
 	}
