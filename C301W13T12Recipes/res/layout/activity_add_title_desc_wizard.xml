@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/navi_step1" />
+
+    <TextView
+        android:id="@+id/textView_recipe_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30px"
+        android:text="Recipe name:"
+        android:textSize="8pt" />
+
+    <EditText
+        android:id="@+id/editText_recipe_name"
+        android:hint="Add a name "
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30px"
+        android:layout_marginRight="30px"
+        android:ems="10" >
+
+        
+    </EditText>
+
+    <TextView
+        android:id="@+id/textView_description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30px"
+        android:text="Description:"
+        android:textSize="8pt" />
+
+    <EditText
+        android:id="@+id/editText_description"
+        android:hint="Tap to edit here"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10" 
+        android:inputType="textMultiLine"
+        android:maxHeight="80dp"
+        android:minHeight="80dp"
+        android:scrollbars="vertical"
+        android:layout_marginLeft="30px"
+        android:layout_marginRight="30px"/>
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/add_step1_checklist" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <Button
+            android:id="@+id/button1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.68"
+            android:text="Cancel" />
+
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="142dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.14"
+            android:text="Next" />
+
+    </LinearLayout>
+
+</LinearLayout>

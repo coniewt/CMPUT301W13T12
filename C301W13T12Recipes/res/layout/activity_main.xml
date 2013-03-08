@@ -7,7 +7,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".MainActivity"
-    android:background="@drawable/bg" >
+    android:background="@drawable/main_bg" >
 
     <ImageButton
         android:id="@+id/main_view_button"
@@ -28,7 +28,7 @@
         android:src="@drawable/fridge_button_release" />
 
     <ImageButton
-        android:id="@+id/imageButton1"
+        android:id="@+id/main_add_search"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_x="4dp"
@@ -37,7 +37,7 @@
         android:src="@drawable/search_button_release" />
 
     <ImageButton
-        android:id="@+id/imageButton2"
+        android:id="@+id/main_add_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_x="150dp"
