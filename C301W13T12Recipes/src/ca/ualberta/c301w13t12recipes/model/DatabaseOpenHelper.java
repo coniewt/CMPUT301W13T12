@@ -12,9 +12,10 @@ public class DatabaseOpenHelper extends SQLiteOpenHelper
 	private static final String DATABASE_NAME = "Ingredients_DB";
 	private static final int DATABASE_VERSION = 4;
 	private static final String LOCAL_RECIPE_TABLE_CREATE =
-			"CREATE TABLE IF NOT EXISTS "+StrResource.LOCAL_RECIPE_TABLE_NAME+" (id TEXT PRIMARY KEY, name TEXT,user TEXT,directions TEXT)" ;
-	private static final String LOCAL_INGREDIENTS_TABLE_CREATE =
-			"CREATE TABLE IF NOT EXISTS ingredients(id TEXT,I_name TEXT,amount TEXT)" ;
+			"CREATE TABLE IF NOT EXISTS "+
+	StrResource.LOCAL_RECIPE_TABLE_NAME+" (id TEXT PRIMARY KEY, Content TEXT)" ;
+	//private static final String LOCAL_INGREDIENTS_TABLE_CREATE =
+			//"CREATE TABLE IF NOT EXISTS ingredients(id TEXT,I_name TEXT,amount TEXT)" ;
 	//private static final String REMOTE_TASK_TABLE_CREATE ="CREATE TABLE " ;
 
 	public DatabaseOpenHelper(Context context)
@@ -24,7 +25,7 @@ public class DatabaseOpenHelper extends SQLiteOpenHelper
 	@Override
 	public void onCreate(SQLiteDatabase db)
 	{
-		db.execSQL(LOCAL_INGREDIENTS_TABLE_CREATE);
+		//db.execSQL(LOCAL_INGREDIENTS_TABLE_CREATE);
 		db.execSQL(LOCAL_RECIPE_TABLE_CREATE);
 		//db.execSQL(REMOTE_TASK_TABLE_CREATE);
 	}
@@ -35,12 +36,10 @@ public class DatabaseOpenHelper extends SQLiteOpenHelper
 		{
 			final String DROP_RECIPE_TABLE =
 					"DROP TABLE recipe;";
-			final String DROP_INGREDIENT_TABLE =
-					"DROP TABLE ingre;";
+/*			final String DROP_INGREDIENT_TABLE =
+					"DROP TABLE ingre;";*/
 			db.execSQL(DROP_RECIPE_TABLE);
-			db.execSQL(DROP_INGREDIENT_TABLE);
-			//db.execSQL(LOCAL_TASK_TABLE_CREATE);
-			//db.execSQL(REMOTE_TASK_TABLE_CREATE);		
+			//db.execSQL(DROP_INGREDIENT_TABLE);
 		}
 	}
 

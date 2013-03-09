@@ -15,8 +15,8 @@ public class Recipe {
 	private String id;
 	private String user;
 	private String name;
-	private ArrayList<Ingredient> ingredients;
-	private ArrayList<Image> ImageCollection;
+	private List<Ingredient> ingredients;
+	private List<Image> ImageCollection;
 	private String directions;
 
 	/**
@@ -30,17 +30,17 @@ public class Recipe {
 	 * @param id
 	 * @param user
 	 * @param name
-	 * @param ingredients
+	 * @param list
 	 * @param directions
 	 */
 	public Recipe(String id, String user, String name,
-			ArrayList<Ingredient> ingredients, String directions) {
+			List<Ingredient> list, String directions) {
 		super();
 		this.id = id;
 		this.user = user;
 		this.name = name;
 		this.ImageCollection = new ArrayList<Image>();
-		this.ingredients = ingredients;
+		this.ingredients = list;
 		this.directions = directions;
 	}
 	/**
@@ -79,10 +79,16 @@ public class Recipe {
 	}
 
 	/**
-	 * @return
+	 * @return name
 	 */
 	public String getName() {
 		return name;
+	}
+	/**
+	 * @return list of image
+	 */
+	public List<Image> getImage() {
+		return this.ImageCollection;
 	}
 
 	/**
@@ -95,7 +101,7 @@ public class Recipe {
 	/**
 	 * @return a list of ingredients
 	 */
-	public ArrayList<Ingredient> getIngredients() {
+	public List<Ingredient> getIngredients() {
 		return ingredients;
 	}
 
@@ -137,7 +143,15 @@ public class Recipe {
 			jsonObject.put("user", getUser());
 			jsonObject.put("directions", getDirections());
 			jsonObject.put("id", getId());
+			
 			JSONArray arr = new JSONArray();
+			JSONArray image_arr = new JSONArray();
+			if (getImage().size()>1){
+				for(Image im:getImage()){
+					image_arr.put(im.toJson());
+				}
+			}
+			jsonObject.put("image",image_arr );
 			for (Ingredient in : getIngredients()) {
 				JSONObject jo = new JSONObject();
 				jo.put("name", in.getNmae());

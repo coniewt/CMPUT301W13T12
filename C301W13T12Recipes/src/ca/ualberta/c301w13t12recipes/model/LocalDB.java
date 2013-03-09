@@ -14,14 +14,18 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.net.ParseException;
 import android.util.Log;
 
+/**
+ * @author dw
+ *
+ */
 public class LocalDB {
 	private SQLiteDatabase db;
 
 	/**
 	 * Create a new database manager with the "database" being saved to a file.
-	 * 
 	 * @param filename
 	 */
 	public LocalDB(Context context) {
@@ -44,15 +48,46 @@ public class LocalDB {
 		return id;
 	}
 
-	private void addRecipe_LocaleTable(Recipe re) {
+	public void addRecipe_LocaleTable(Recipe re) {
 		ContentValues cv = new ContentValues();
+		//String INSERT_NEW_RECIPE = "INSERT INTO "+StrResource.LOCAL_RECIPE_TABLE_NAME+" values";
+		//db.execSQL(INSERT_NEW_RECIPE+"("+re.getId()+","+re.getName()+","+re.getUser()+
+				//","+re.getUser()+","+re.getDirections());
 		try {
-			cv.put(getUniqueId(), re.toJson().toString());
+			cv.put(re.getId(), re.toJson().toString());
 			// cv.put(StrResource.COL_CONTENT, Recipe.toJson().toString() );
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		db.insert(StrResource.LOCAL_RECIPE_TABLE_NAME, "id", cv);
+		db.insert(StrResource.LOCAL_RECIPE_TABLE_NAME, null, cv);
+	}
+	/**
+	 * Get the local task list.
+	 * 
+	 * @return A list of tasks in the local table of the database
+	 * @throws JSONException
+	 */
+	public ArrayList<Recipe> getLocalRecipeList() {
+		try
+		{
+			ArrayList<Recipe> out = new ArrayList<Recipe>();
+			Cursor c = db.rawQuery("SELECT * FROM "+StrResource.LOCAL_RECIPE_TABLE_NAME, new String[]{});
+			if(c.moveToFirst())
+			{
+				while(c.isAfterLast()==false)
+				{
+					JSONObject obj = toJsonRecipe(c.getString(1));
+					out.add(toRecipe(obj));
+					c.moveToNext();
+				}
+				return out;
+			}
+		}
+		catch(JSONException e)
+		{
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 	private boolean localIdExists(String id) {
@@ -72,7 +107,7 @@ public class LocalDB {
 	 *            The task to be added.
 	 * @return The task that was added along with it's id.
 	 */
-	public Recipe postRemote(Recipe re) {
+	/*public Recipe postRemote(Recipe re) {
 		ContentValues cv = new ContentValues();
 		// cv.put(StrResource.COL_ID, task.getId());
 		try {
@@ -84,7 +119,7 @@ public class LocalDB {
 		// db.insert(StrResource.REMOTE_TASK_TABLE_NAME, StrResource.COL_ID,
 		// cv);
 		return null;
-	}
+	}*/
 
 	/**
 	 * Deletes a task from the "local" table of the database.
@@ -93,8 +128,8 @@ public class LocalDB {
 	 *            The id of the task to be deleted.
 	 */
 	public void delete_Local_Recipe(String id) {
-		 //db.delete(StrResource.LOCAL_RECIPE_TABLE_NAME, StrResource.COL_ID +
-		 //" =?", new String[]{id,});
+		 db.delete(StrResource.LOCAL_RECIPE_TABLE_NAME, "id" +
+		 " =?", new String[]{id,});
 	}
 
 	/**
@@ -117,17 +152,18 @@ public class LocalDB {
 	 *            ID of task to search for
 	 * @return Task found, if nothing found returns null.
 	 * @throws JSONException
-	 */
+	 *//*
 	public Recipe get_Local_Recipe(String id) {
 		try {
-			Cursor c = db.rawQuery("SELECT * FROM ", null);
-			if (c == null || c.getCount() == 0) {
+			Cursor c = db.rawQuery("SELECT * FROM "+StrResource.LOCAL_RECIPE_TABLE_NAME, null);
+			if (c == null || c.getCount() == 0) 
+			{
 				return null;
 			} else {
 				c.moveToFirst();
-				// String string =
-				// c.getString(c.getColumnIndex(StrResource.COL_CONTENT));
-
+				String string =
+				 c.getString(1);
+				JSONObject jsonObject = new JSONObject();
 				return new Recipe();
 			}
 		} catch (Exception e) {
@@ -155,46 +191,44 @@ public class LocalDB {
 	 * @return Task
 	 * @throws JSONException
 	 */
-	private static Recipe toRecipe(JSONObject jsonTask) throws JSONException {
-		if (jsonTask == null) {
+	private static Recipe toRecipe(JSONObject j) throws JSONException {
+		if (j == null) {
 			return null;
 		} else {
-			return new Recipe();
+			return new Recipe(j.getString("id"),j.getString("user"),j.getString("name"),toIngredients(j), j.getString("directions"));
 		}
 	}
-
-	/**
-	 * Gets list of responses from jsonObject and returns
-	 * 
-	 * @param jsonTask
-	 *            , task object in json format.
-	 * @return List<Response>
-	 * @throws JSONException
-	 */
-	private static List<Ingredient> toResponses(JSONObject jsonTask)
-			throws JSONException {
-		try {
-			JSONArray jsonArray = jsonTask.getJSONArray("responses");
-			List<Ingredient> responses = new ArrayList<Ingredient>();
-
-			// ResponseFactory respFactory =
-			// getRespFactory(jsonTask.getString("type"));
-
-			for (int i = 0; i < jsonArray.length(); i++) {
-				// Response resp =
-				// respFactory.createResponse(jsonArray.getJSONObject(i).getString("annotation"),
-				// jsonArray.getJSONObject(i).getString("content"));
-				// resp.setTimestamp(new
-				// SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy").parse(jsonArray.getJSONObject(i).getString("timestamp")));
-				// responses.add(resp);
-			}
-			return responses;
-		} catch (Exception e) {
+/**
+ * Gets list of ingredients from jsonObject and returns
+ * 
+ * @param jsonRecipe , task object in json format.
+ * @return List<Recipe>
+ * @throws JSONException
+ */
+	private static List<Ingredient> toIngredients(JSONObject jsonTask) throws JSONException
+	{try
+		{
+			JSONArray jsonArray = jsonTask.getJSONArray("Ingredients");
+			ArrayList<Ingredient> ingredients = new ArrayList<Ingredient>();
+			//ResponseFactory respFactory = getRespFactory(jsonTask.getString("Ingredients"));
+			for(int i = 0; i < jsonArray.length(); i++)
+			{
+				//Response resp = respFactory.createResponse(jsonArray.getJSONObject(i).getString("annotation"), jsonArray.getJSONObject(i).getString("content"));
+				//resp.setTimestamp(new SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy").parse(jsonArray.getJSONObject(i).getString("timestamp")));
+				Ingredient in = new Ingredient(jsonArray.getJSONObject(i).getString("name"),
+						jsonArray.getJSONObject(i).getString("amount"));
+				ingredients.add(in);			
+			}	
+			return ingredients;
+		}
+		catch(ParseException e)
+		{
 			System.err.println("Could not parse date");
 			e.printStackTrace();
 		}
 		return null;
 	}
+
 
 	/*
 	 * private static ResponseFactory getRespFactory(String type) {
@@ -210,31 +244,7 @@ public class LocalDB {
 		return jsonRecipe;
 	}
 
-	/**
-	 * Get the local task list.
-	 * 
-	 * @return A list of tasks in the local table of the database
-	 * @throws JSONException
-	 */
-	public ArrayList<Recipe> getLocalRecipeList() {
-		try {
-			ArrayList<Recipe> out = new ArrayList<Recipe>();
-
-			Cursor c = db.rawQuery("SELECT * FROM ", new String[] {});
-			if (c.moveToFirst()) {
-				while (c.isAfterLast() == false) {
-					JSONObject obj = null;
-					// toJsonTask(c.getString(c.getColumnIndex(StrResource.COL_CONTENT)));
-					out.add(toRecipe(obj));
-					c.moveToNext();
-				}
-				return out;
-			}
-		} catch (JSONException e) {
-			e.printStackTrace();
-		}
-		return null;
-	}
+	
 
 	/**
 	 * Gets a task (if exists) from the "remote" table of the database.

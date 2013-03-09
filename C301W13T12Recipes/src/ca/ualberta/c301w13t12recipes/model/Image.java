@@ -3,6 +3,11 @@ package ca.ualberta.c301w13t12recipes.model;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import com.google.gson.JsonObject;
+
 /**
  * @author YUWEI DUAN
  *
@@ -16,6 +21,17 @@ public class Image {
 	public Image(String path){
 		this.path=path;
 		this.name=getTime();
+	}
+	public JSONObject toJson(){
+		JSONObject js = new JSONObject();
+		try{
+			js.put("path", getPath());
+			js.put("name", getName());
+		}
+		catch(JSONException jse){
+			jse.printStackTrace();
+		}
+		return js;
 	}
 	/**
 	 *@return the String containing the year hour  

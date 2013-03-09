@@ -32,11 +32,13 @@ public class DatabaseSingleton
 		}
 		return instance;
 	}
+	/**
+	 * @param context
+	 */
 	public DatabaseSingleton(Context context)
 	{
 		db = new DatabaseOpenHelper(context).getWritableDatabase();
 	}
-	
 	/**
 	 * @return SQLiteDatabase
 	 */

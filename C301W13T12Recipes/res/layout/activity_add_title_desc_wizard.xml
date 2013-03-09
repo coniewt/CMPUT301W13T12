@@ -37,7 +37,6 @@
         android:layout_marginLeft="30px"
         android:text="Description:"
         android:textSize="8pt" />
-
     <EditText
         android:id="@+id/editText_description"
         android:hint="Tap to edit here"
