@@ -23,7 +23,6 @@ import android.util.Log;
  */
 public class LocalDB {
 	private SQLiteDatabase db;
-
 	/**
 	 * Create a new database manager with the "database" being saved to a file.
 	 * @param filename
@@ -72,6 +71,27 @@ public class LocalDB {
 		{
 			ArrayList<Recipe> out = new ArrayList<Recipe>();
 			Cursor c = db.rawQuery("SELECT * FROM "+StrResource.LOCAL_RECIPE_TABLE_NAME, new String[]{});
+			if(c.moveToFirst())
+			{
+				while(c.isAfterLast()==false)
+				{
+					JSONObject obj = toJsonRecipe(c.getString(1));
+					out.add(toRecipe(obj));
+					c.moveToNext();
+				}
+				return out;
+			}
+		}
+		catch(JSONException e)
+		{
+			e.printStackTrace();
+		}
+		return null;
+	}public ArrayList<Recipe> searchRecipebyKeyword(String keyword) {
+		try
+		{
+			ArrayList<Recipe> out = new ArrayList<Recipe>();
+			Cursor c = db.rawQuery("SELECT * FROM "+StrResource.LOCAL_RECIPE_TABLE_NAME +"WHERE Content LIKE %?%", new String[]{keyword,});
 			if(c.moveToFirst())
 			{
 				while(c.isAfterLast()==false)
