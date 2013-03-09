@@ -134,9 +134,10 @@ public class Recipe {
 	}
 
 	/**
+	 * convert recipe object to jsonobject
 	 * @return Json object
 	 */
-	public Object toJson() {
+	public JSONObject toJson() {
 		JSONObject jsonObject = new JSONObject();
 		try {
 			jsonObject.put("name", getName());

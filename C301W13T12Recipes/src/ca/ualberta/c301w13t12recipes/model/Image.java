@@ -22,6 +22,9 @@ public class Image {
 		this.path=path;
 		this.name=getTime();
 	}
+	/**
+	 * @return jsonobject a
+	 */
 	public JSONObject toJson(){
 		JSONObject js = new JSONObject();
 		try{

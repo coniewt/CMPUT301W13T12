@@ -49,7 +49,10 @@ public class LocalDB {
 		return id;
 	}
 
-	public void addRecipe_LocaleTable(Recipe re) {
+	/**
+	 * @param re
+	 */
+	public void addLocal_Recipe_Table(Recipe re) {
 		ContentValues cv = new ContentValues();
 		// String INSERT_NEW_RECIPE =
 		// "INSERT INTO "+StrResource.LOCAL_RECIPE_TABLE_NAME+" values";
@@ -70,7 +73,7 @@ public class LocalDB {
 	 * @return A list of tasks in the local table of the database
 	 * @throws JSONException
 	 */
-	public ArrayList<Recipe> getLocalRecipeList() {
+	public ArrayList<Recipe> getLocal_Recipe_List() {
 		try {
 			ArrayList<Recipe> out = new ArrayList<Recipe>();
 			Cursor c = db.rawQuery("SELECT * FROM "
@@ -187,7 +190,7 @@ public class LocalDB {
 	 * 
 	 * @throws JSONException
 	 */
-	private static Recipe toRecipe(JSONObject j) throws JSONException {
+	private Recipe toRecipe(JSONObject j) throws JSONException {
 		if (j == null) {
 			return null;
 		} else {
@@ -231,15 +234,13 @@ public class LocalDB {
 		return null;
 	}
 
-	/*
-	 * private static ResponseFactory getRespFactory(String type) {
-	 * if(type.equals(TextResponse.class.toString())){ return new
-	 * TextResponseFactory(); } else if
-	 * (type.equals(PictureResponse.class.toString())) { return new
-	 * PictureResponseFactory(); } else { throw new
-	 * UnsupportedOperationException("Not implemented"); } }
-	 */
 
+
+	/**
+	 * Convert String to json object
+	 * @param String
+	 * @return JSONObject
+	 */
 	private JSONObject toJsonRecipe(String recipeContent) throws JSONException {
 		JSONObject jsonRecipe = new JSONObject(recipeContent);
 		return jsonRecipe;
