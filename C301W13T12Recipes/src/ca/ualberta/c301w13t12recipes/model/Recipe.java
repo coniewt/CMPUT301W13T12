@@ -18,6 +18,7 @@ public class Recipe {
 	private List<Ingredient> ingredients;
 	private List<Image> ImageCollection;
 	private String directions;
+	private boolean status;// shows whether the recipe is complete or not 
 
 	/**
 	 * 
@@ -63,14 +64,23 @@ public class Recipe {
 	public void setId(String id) {
 		this.id = id;
 	}
-
+	/**
+	 * @param status
+	 */
+	public void setStatus(boolean status){
+		this.status = status;
+	}
+	
+	
 	/**
 	 * @return
 	 */
 	public String getUser() {
-		return user;
+		return this.user;
 	}
-
+	public boolean getStatus(){
+		return this.status;
+	}
 	/**
 	 * @param user
 	 */

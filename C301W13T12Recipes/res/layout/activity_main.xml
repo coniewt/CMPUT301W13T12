@@ -28,7 +28,7 @@
         android:src="@drawable/fridge_button_release" />
 
     <ImageButton
-        android:id="@+id/main_add_search"
+        android:id="@+id/main_search_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_x="4dp"
