@@ -73,11 +73,14 @@ public class Recipe {
 	
 	
 	/**
-	 * @return
+	 * @return user
 	 */
 	public String getUser() {
 		return this.user;
 	}
+	/**
+	 * @return the status of recipe
+	 */
 	public boolean getStatus(){
 		return this.status;
 	}

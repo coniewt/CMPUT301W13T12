@@ -54,10 +54,6 @@ public class LocalDB {
 	 */
 	public void addLocal_Recipe_Table(Recipe re) {
 		ContentValues cv = new ContentValues();
-		// String INSERT_NEW_RECIPE =
-		// "INSERT INTO "+StrResource.LOCAL_RECIPE_TABLE_NAME+" values";
-		// db.execSQL(INSERT_NEW_RECIPE+"("+re.getId()+","+re.getName()+","+re.getUser()+
-		// ","+re.getUser()+","+re.getDirections());
 		try {
 			cv.put("id", re.getId());
 			cv.put("content", re.toJson().toString());
