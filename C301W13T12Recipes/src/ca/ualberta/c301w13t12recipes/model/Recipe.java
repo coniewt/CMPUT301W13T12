@@ -7,25 +7,21 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 /**
  * @author YUWEI DUAN
  *
  */
-public class Recipe {
+public class Recipe implements Parcelable{
 	private String id;
 	private String user;
 	private String name;
 	private List<Ingredient> ingredients;
 	private List<Image> ImageCollection;
 	private String directions;
-	private boolean status;// shows whether the recipe is complete or not 
-
-	/**
-	 * 
-	 */
-	public Recipe() {
-
-	}
+	private int status;// shows whether the recipe is complete or not 
 
 	/**
 	 * @param id
@@ -36,13 +32,13 @@ public class Recipe {
 	 */
 	public Recipe(String id, String user, String name,
 			List<Ingredient> list, String directions) {
-		super();
 		this.id = id;
 		this.user = user;
 		this.name = name;
 		this.ImageCollection = new ArrayList<Image>();
 		this.ingredients = list;
 		this.directions = directions;
+		this.status = 0;
 	}
 	/**
 	 * @param path
@@ -64,12 +60,7 @@ public class Recipe {
 	public void setId(String id) {
 		this.id = id;
 	}
-	/**
-	 * @param status
-	 */
-	public void setStatus(boolean status){
-		this.status = status;
-	}
+	
 	
 	
 	/**
@@ -81,8 +72,18 @@ public class Recipe {
 	/**
 	 * @return the status of recipe
 	 */
-	public boolean getStatus(){
-		return this.status;
+	public boolean isComplete(){
+		if(this.status == 0){
+			return false;
+		}else{
+			return true;
+		}
+	}
+	/**
+	 * @param none
+	 */
+	public void setStatus(){
+		this.status = 1;
 	}
 	/**
 	 * @param user
@@ -178,5 +179,46 @@ public class Recipe {
 		}
 		return jsonObject;
 	}
+	@Override
+	public int describeContents() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public void writeToParcel(Parcel dest, int arg1) {
+		// TODO write each field of recipe object 
+		// into parcel
+		dest.writeString(id);
+		dest.writeString(name);
+		dest.writeString(user);
+		dest.writeList(ingredients);
+		dest.writeList(ImageCollection);
+		dest.writeString(directions);
+		dest.writeInt(status);
+		
+	}
+	public static final Parcelable.Creator<Recipe> CREATOR = new Creator<Recipe>() {  
+        public Recipe createFromParcel(Parcel source) {
+        	// TODO create a new Recipe object and then change 
+        	//its attributes to one that just passed in
+            Recipe recipe = new Recipe(null,null,null,null,null);
+            recipe.id = source.readString();
+            recipe.name = source.readString();
+            recipe.user = source.readString();
+            source.readList(recipe.ingredients, Ingredient.class.getClassLoader());
+            source.readList(recipe.ImageCollection, Ingredient.class.getClassLoader());
+            recipe.directions = source.readString();
+            recipe.status = source.readInt();
+            return recipe;
+        }
+
+		@Override
+		public Recipe[] newArray(int size) {
+			// TODO create an array of Recipe objects
+			return new Recipe[size];
+		}  
+        
+    };  
 
 }
