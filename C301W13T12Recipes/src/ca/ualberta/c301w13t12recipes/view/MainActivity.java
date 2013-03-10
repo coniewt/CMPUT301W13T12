@@ -5,7 +5,9 @@ import ca.ualberta.c301w13t12recipes.R.layout;
 import ca.ualberta.c301w13t12recipes.R.menu;
 import android.os.Bundle;
 import android.app.Activity;
+import android.content.Intent;
 import android.view.Menu;
+import android.view.View;
 import android.widget.ImageButton;
 
 public class MainActivity extends Activity {
@@ -25,6 +27,17 @@ public class MainActivity extends Activity {
 		main_searchButton= (ImageButton)findViewById(R.id.main_search_button);
 		main_myFridgeButton =(ImageButton)findViewById(R.id.main_fridge_button);
 		//initialize all the buttons via R.id
+		
+		main_addButton.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Jump to AddIngredActivity 
+				Intent intent = new Intent();
+				intent.setClass(MainActivity.this, AddTitleDescWizardActivity.class);
+				startActivity(intent);
+			}
+		});
 		
 	}
 
