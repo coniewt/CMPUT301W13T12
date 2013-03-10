@@ -59,7 +59,8 @@ public class LocalDB {
 		// db.execSQL(INSERT_NEW_RECIPE+"("+re.getId()+","+re.getName()+","+re.getUser()+
 		// ","+re.getUser()+","+re.getDirections());
 		try {
-			cv.put(re.getId(), re.toJson().toString());
+			cv.put("id", re.getId());
+			cv.put("content", re.toJson().toString());
 			// cv.put(StrResource.COL_CONTENT, Recipe.toJson().toString() );
 		} catch (Exception e) {
 			e.printStackTrace();
