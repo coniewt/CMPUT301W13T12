@@ -25,6 +25,9 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="30px"
         android:layout_marginRight="30px"
+        android:maxHeight="30dp"
+        android:minHeight="30dp"
+        android:singleLine="true"
         android:ems="10" >
 
         

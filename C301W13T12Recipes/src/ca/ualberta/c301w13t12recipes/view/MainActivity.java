@@ -3,6 +3,7 @@ package ca.ualberta.c301w13t12recipes.view;
 import ca.ualberta.c301w13t12recipes.R;
 import ca.ualberta.c301w13t12recipes.R.layout;
 import ca.ualberta.c301w13t12recipes.R.menu;
+import ca.ualberta.c301w13t12recipes.controller.DatabaseController;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
@@ -10,11 +11,19 @@ import android.view.Menu;
 import android.view.View;
 import android.widget.ImageButton;
 
+/**
+ * 
+ * @author GUANQI HUANG
+ *
+ */
+
+
+
 public class MainActivity extends Activity {
 
-	ImageButton main_addButton;// Declare add button
-	ImageButton main_viewButton;// Declare view button
-	ImageButton main_searchButton;// Declare search button
+	private ImageButton main_addButton;// Declare add button
+	private ImageButton main_viewButton;// Declare view button
+	private ImageButton main_searchButton;// Declare search button
 	ImageButton main_myFridgeButton;// Declare my fridge button
 
 	@Override
@@ -22,11 +31,9 @@ public class MainActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		
-		main_addButton = (ImageButton)findViewById(R.id.main_add_button);
-		main_viewButton = (ImageButton)findViewById(R.id.main_view_button);
-		main_searchButton= (ImageButton)findViewById(R.id.main_search_button);
-		main_myFridgeButton =(ImageButton)findViewById(R.id.main_fridge_button);
-		//initialize all the buttons via R.id
+		setupButtons();// initialize buttons
+		
+		DatabaseController database = new DatabaseController(MainActivity.this);// create a Database controller 
 		
 		main_addButton.setOnClickListener(new View.OnClickListener() {
 			
@@ -38,6 +45,31 @@ public class MainActivity extends Activity {
 				startActivity(intent);
 			}
 		});
+		main_viewButton.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View arg0) {
+				// TODO Jump to ViewListActivity
+				
+			}
+		});
+		
+		main_searchButton.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Jump to searchActivity
+				
+			}
+		});
+		main_myFridgeButton.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
 		
 	}
 
@@ -47,5 +79,14 @@ public class MainActivity extends Activity {
 		getMenuInflater().inflate(R.menu.main, menu);
 		return true;
 	}
-
+	
+	public void setupButtons(){
+		//TODO initialize all the buttons via R.id
+		main_addButton = (ImageButton)findViewById(R.id.main_add_button);
+		main_viewButton = (ImageButton)findViewById(R.id.main_view_button);
+		main_searchButton= (ImageButton)findViewById(R.id.main_search_button);
+		main_myFridgeButton =(ImageButton)findViewById(R.id.main_fridge_button);
+		
+		
+	}
 }
