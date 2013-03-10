@@ -40,13 +40,13 @@
         android:orientation="horizontal" >
 
         <Button
-            android:id="@+id/button1"
+            android:id="@+id/add_step1_cancel_button"
             android:layout_width="158dp"
             android:layout_height="wrap_content"
             android:text="Delete" />
 
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/add_step1_next_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Next" />

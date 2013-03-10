@@ -5,13 +5,13 @@
     android:orientation="vertical" >
 
     <ImageView
-        android:id="@+id/imageView1"
+        android:id="@+id/add_imageView_navi_bar1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/navi_step1" />
 
     <TextView
-        android:id="@+id/textView_recipe_name"
+        android:id="@+id/add_textView_recipe_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="30px"
@@ -19,7 +19,7 @@
         android:textSize="8pt" />
 
     <EditText
-        android:id="@+id/editText_recipe_name"
+        android:id="@+id/add_editText_recipe_name"
         android:hint="Add a name "
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -34,14 +34,14 @@
     </EditText>
 
     <TextView
-        android:id="@+id/textView_description"
+        android:id="@+id/add_textView_description"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="30px"
         android:text="Description:"
         android:textSize="8pt" />
     <EditText
-        android:id="@+id/editText_description"
+        android:id="@+id/add_editText_description"
         android:hint="Tap to edit here"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -64,14 +64,14 @@
         android:layout_height="match_parent" >
 
         <Button
-            android:id="@+id/button1"
+            android:id="@+id/add_step1_cancel_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="0.68"
             android:text="Cancel" />
 
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/add_step1_next_button"
             android:layout_width="142dp"
             android:layout_height="wrap_content"
             android:layout_weight="0.14"
