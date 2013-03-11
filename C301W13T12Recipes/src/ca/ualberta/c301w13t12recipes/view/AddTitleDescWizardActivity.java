@@ -59,14 +59,14 @@ public class AddTitleDescWizardActivity extends Activity {
 		Toast.makeText(AddTitleDescWizardActivity.this, "Name and directions are saved !", 3).show();
 		Intent intent = new Intent(AddTitleDescWizardActivity.this,AddIngredWizardActivity.class);
 		Bundle bundle = new Bundle();
-		recipe.addIngredient("frank", "1");
-		recipe.addIngredient("frank", "2");
-		recipe.addIngredient("frank", "2");
-		recipe.addIngredient("frank", "2");
-		recipe.addIngredient("frank", "2");
-		recipe.addIngredient("frank", "2");
-		recipe.addIngredient("frank", "2");
-		recipe.addIngredient("frank", "2");
+		recipe.addIngredient("frank1", "1");
+		recipe.addIngredient("frank3", "2");
+		recipe.addIngredient("frank4", "2");
+		recipe.addIngredient("frank5", "2");
+		recipe.addIngredient("frank6", "2");
+		recipe.addIngredient("frank7", "2");
+		recipe.addIngredient("frank8", "2");
+		recipe.addIngredient("frank9", "2");
 		bundle.putSerializable("NEW_RECIPE",recipe);
 	    intent.putExtras(bundle);
 	    

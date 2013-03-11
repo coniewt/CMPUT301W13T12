@@ -12,7 +12,7 @@ import ca.ualberta.c301w13t12recipes.model.Recipe;
  *
  */
 
-public class DatabaseController implements Parcelable{
+public class DatabaseController {
 	private LocalDB database;
 	public DatabaseController(Context context){
 		this.database = new LocalDB(context);	
@@ -35,22 +35,19 @@ public class DatabaseController implements Parcelable{
 	/*public String getUUID(){
 		return this.database.getUniqueId();
 	}*/
-
+	/*
 	@Override
 	public int describeContents() {
 		// TODO Auto-generated method stub
 		return 0;
 	}
-
+	
 	@Override
 	public void writeToParcel(Parcel dest, int flags) {
 		// TODO Auto-generated method stub
 		dest.writeValue(database);
 	}
 	
-	/**
-	 * 不知道这是干嘛的
-	 */
 	public static final Parcelable.Creator<DatabaseController> CREATOR = new Creator<DatabaseController>(){
 		//TODO create a new DatabaseController object and then change 
 		//its attributes to one that just passed in
@@ -66,5 +63,6 @@ public class DatabaseController implements Parcelable{
 		
 		
 	};
+	*/
 
 }
