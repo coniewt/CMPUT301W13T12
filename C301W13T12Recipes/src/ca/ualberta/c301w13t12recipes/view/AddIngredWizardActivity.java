@@ -13,15 +13,14 @@ import android.widget.SimpleCursorAdapter;
 
 public class AddIngredWizardActivity extends Activity {
 	
-	private IngredientsAdapter adpater;
-	private Map<Integer,Boolean> isCheckedMap;
+
 	
 	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 	    super.onCreate(savedInstanceState);
 	    setContentView(R.layout.activity_add_ingred_wizard);
-	    adapter = new IngredientsAdapter(this,)
+	    
 	    // TODO Auto-generated method stub
 	}
 
