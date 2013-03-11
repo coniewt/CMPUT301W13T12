@@ -276,5 +276,12 @@ public class Recipe implements Serializable{
 			//while (this.localIdExists(id));
 		return id;
 	} 
-
+	/**
+	 * remove item from ingredients list
+	 * @return
+	 */
+	public void removeIngredient(int pos){
+		
+		this.ingredients.remove(pos);
+	}
 }
