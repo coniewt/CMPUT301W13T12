@@ -19,7 +19,7 @@ public class Ingredient {
 	 * @author YWUEI DUAN
 	 * @return name of ingredient
 	 */
-	public String getNmae(){
+	public String getName(){
 		return this.name;
 	}
 	/**

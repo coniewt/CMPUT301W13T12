@@ -9,5 +9,6 @@ import android.widget.TextView;
  */
 public final class IngredientItemViewHolder {
 	public TextView ingredientName;
+	public TextView amount;
 	public CheckBox cBox;
 }
