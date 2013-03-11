@@ -169,8 +169,8 @@ public class Recipe implements Parcelable{
 			jsonObject.put("image",image_arr );
 			for (Ingredient in : getIngredients()) {
 				JSONObject jo = new JSONObject();
-				jo.put("name", in.getNmae());
-				jo.put("amount", in.getAcount());
+				jo.put("name", in.getName());
+				jo.put("amount", in.getAmount());
 				arr.put(jo);
 			}
 			jsonObject.put("Ingredients", arr);

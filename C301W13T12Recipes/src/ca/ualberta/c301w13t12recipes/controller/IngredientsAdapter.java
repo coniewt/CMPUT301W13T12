@@ -11,9 +11,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import ca.ualberta.c301w13t12recipes.R;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.CheckBox;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 public class IngredientsAdapter extends BaseAdapter{
@@ -60,7 +62,7 @@ public class IngredientsAdapter extends BaseAdapter{
 			
 			holder.ingredientName = (TextView)convertView.findViewById(R.id.textView_item_name);
 			holder.amount = (TextView)convertView.findViewById(R.id.textView_item_amount);
-			holder.cBox =(CheckBox)convertView.findViewById(R.id.checkBox_item_ingredient);
+			holder.removeButton =(ImageButton)convertView.findViewById(R.id.imageButton_remove);
 			
 			convertView.setTag(holder);
 					
@@ -69,10 +71,10 @@ public class IngredientsAdapter extends BaseAdapter{
 		}
 		// for debug
 		Log.d("AddIngredWizardActivity","id="+id);
-		holder.cBox.setChecked(isCheckedMap.get(id));
-		holder.ingredientName.setText(ingredient.g);
+		holder.amount.setText(ingredient.getAmount());
+		holder.ingredientName.setText(ingredient.getName());
 		
-		return null;
+		return convertView;
 	}
 
 }

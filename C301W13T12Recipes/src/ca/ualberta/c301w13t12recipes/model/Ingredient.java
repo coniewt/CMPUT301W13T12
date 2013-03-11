@@ -38,7 +38,7 @@ public class Ingredient {
 	 * @return amount of ingredient
 	 */
 	
-	public String getAcount(){
+	public String getAmount(){
 		return this.amount;
 	}
 	/**
