@@ -284,4 +284,7 @@ public class Recipe implements Serializable{
 		
 		this.ingredients.remove(pos);
 	}
+	public String getIngredientName(int pos){
+		return this.ingredients.get(pos).getName();
+	}
 }

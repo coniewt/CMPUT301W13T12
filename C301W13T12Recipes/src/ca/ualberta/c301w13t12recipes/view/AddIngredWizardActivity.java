@@ -21,6 +21,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
+import android.widget.Toast;
 
 public class AddIngredWizardActivity extends Activity {
 	private ImageButton addIngredButton;
@@ -45,6 +46,7 @@ public class AddIngredWizardActivity extends Activity {
 					int pos, long id) {
 				// TODO long click to delete selected item and then remove
 				recipe.removeIngredient(pos);
+				Toast.makeText(AddIngredWizardActivity.this,recipe.getIngredientName(pos), 1).show();
 				refreshList();
 				return false;
 			}
