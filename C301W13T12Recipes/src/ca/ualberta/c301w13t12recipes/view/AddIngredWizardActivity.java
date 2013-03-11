@@ -22,6 +22,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemLongClickListener;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -36,6 +37,10 @@ public class AddIngredWizardActivity extends Activity {
 	private ImageButton addIngredButton;
 	private Recipe recipe;
 	private IngredientsAdapter adapter;
+	
+	private EditText nameEditText;
+	private EditText amountEditText;
+	
 	private ListView lv;
 	/** Called when the activity is first created. */
 	@Override
@@ -44,7 +49,7 @@ public class AddIngredWizardActivity extends Activity {
 	    setContentView(R.layout.activity_add_ingred_wizard);
 	    
 	    this.setupListView();
-	    this.setupButtons();
+	    this.setupWidgets();
 	    this.getRecipeFromIntent();
 	    this.refreshList();
 	  
@@ -76,8 +81,11 @@ public class AddIngredWizardActivity extends Activity {
 	    
 	    // TODO Auto-generated method stub
 	}
-	private void setupButtons(){
+	private void setupWidgets(){
 		addIngredButton = (ImageButton)findViewById(R.id.imgBtn_add_ingredient_button);
+		nameEditText = (EditText)findViewById(R.id.dialog_add_editText_name);
+		amountEditText = (EditText)findViewById(R.id.dialog_editText_add_amount);
+		
 		
 	}
 	private void setupListView(){
@@ -105,6 +113,9 @@ public class AddIngredWizardActivity extends Activity {
 			@Override
 			public void onClick(DialogInterface dialog, int id) {
 				
+				
+			recipe.addIngredient(nameEditText.getText().toString(), amountEditText.getText().toString());
+			refreshList();
 				
 			}
 		}).setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
