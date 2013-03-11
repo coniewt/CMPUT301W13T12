@@ -20,6 +20,9 @@ public class DatabaseController implements Parcelable{
 	public void addRecipe(Recipe re){
 		this.database.addLocal_Recipe_Table(re);	
 	}
+	public String getUUID(){
+		return this.database.getUniqueId();
+	}
 
 	@Override
 	public int describeContents() {

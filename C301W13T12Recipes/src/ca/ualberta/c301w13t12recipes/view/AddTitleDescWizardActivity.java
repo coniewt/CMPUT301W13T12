@@ -1,11 +1,15 @@
 package ca.ualberta.c301w13t12recipes.view;
 
 import ca.ualberta.c301w13t12recipes.R;
+import ca.ualberta.c301w13t12recipes.controller.DatabaseController;
 import ca.ualberta.c301w13t12recipes.model.Recipe;
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class AddTitleDescWizardActivity extends Activity {
 	
@@ -13,7 +17,7 @@ public class AddTitleDescWizardActivity extends Activity {
 	private EditText nameEditText; //name widget
 	
 	private Button cancelButton; // cancel button
-	private Button nextButton;// next button
+	private Button nextButton;// next button	
 	
 	
 	/** Called when the activity is first created. */
@@ -26,6 +30,12 @@ public class AddTitleDescWizardActivity extends Activity {
 	    setupEditText();//Initialize all the EditText widgets
 	    
 	    
+	    
+	    nextButton.setOnClickListener(new View.OnClickListener(){
+	    	public void onClick(View v){
+	    		saveAndJumpToAddIngredWizard();
+	    	}
+	    });
 	    
 	    
 	    // TODO Auto-generated method stub
@@ -40,8 +50,18 @@ public class AddTitleDescWizardActivity extends Activity {
 		nameEditText =(EditText)findViewById(R.id.add_editText_recipe_name);
 		
 	}
-	private Recipe createRecipe(){
-		return new Recipe(null,null,null,null,null);
-	}
 	
+	private void saveAndJumpToAddIngredWizard(){
+		
+		Recipe recipe = new Recipe(null,null,null,null,null);
+		recipe.setDirections(descEditText.getText().toString());//get description from descEditText Widget
+		recipe.setName(nameEditText.getText().toString());// get nameEditText from nameEditText Widget
+		Toast.makeText(AddTitleDescWizardActivity.this, "Name and directions are saved !", 3).show();
+		Intent intent = new Intent(AddTitleDescWizardActivity.this,AddIngredWizardActivity.class);
+		Bundle bundle = new Bundle();
+		bundle.putParcelable("NEW_RECIPE", recipe);
+	    intent.putExtras(bundle);
+	    startActivity(intent);
+		
+	}
 }
