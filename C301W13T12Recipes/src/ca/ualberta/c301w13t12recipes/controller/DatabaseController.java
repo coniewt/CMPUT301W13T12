@@ -16,7 +16,12 @@ public class DatabaseController implements Parcelable{
 	public DatabaseController(Context context){
 		this.database = new LocalDB(context);	
 	}
-	
+	/**
+	 * @return localDB object 
+	 */
+	public LocalDB getDB(){
+		return this.database;
+	}
 	public void addRecipe(Recipe re){
 		this.database.addLocal_Recipe_Table(re);	
 	}
