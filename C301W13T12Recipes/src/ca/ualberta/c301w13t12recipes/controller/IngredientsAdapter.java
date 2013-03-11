@@ -11,7 +11,7 @@ import ca.ualberta.c301w13t12recipes.R;
 import ca.ualberta.c301w13t12recipes.model.Ingredient;
 
 /**
- * 不知道这是干嘛的
+ *
  * @author 
  *
  */
