@@ -50,7 +50,9 @@ public class MainActivity extends Activity {
 			@Override
 			public void onClick(View arg0) {
 				// TODO Jump to ViewListActivity
-				
+				Intent intent = new Intent();
+				intent.setClass(MainActivity.this, ViewListActivity.class);
+				startActivity(intent);
 			}
 		});
 		
