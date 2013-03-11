@@ -41,13 +41,7 @@ public class LocalDB {
 	 *            The task to be added.
 	 * @return The task that was added along with it's id.
 	 */
-	public String getUniqueId() {
-		String id = "";
-		do {
-			id = "local@" + UUID.randomUUID().toString();
-		} while (this.localIdExists(id));
-		return id;
-	}
+
 
 	/**
 	 * @param re

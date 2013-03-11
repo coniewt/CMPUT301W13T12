@@ -2,6 +2,7 @@ package ca.ualberta.c301w13t12recipes.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -34,7 +35,7 @@ public class Recipe implements Parcelable{
 	 * @param list
 	 * @param directions
 	 */
-	public Recipe(String id, String user, String name) {
+	public Recipe(String id, String user, String name,String directions) {
 		this.id = id;
 		this.user = user;
 		this.name = name;
@@ -239,7 +240,12 @@ public class Recipe implements Parcelable{
 			// TODO create an array of Recipe objects
 			return new Recipe[size];
 		}  
-        
+		public String getUniqueId() {
+			String id = "";
+			id = "local@" + UUID.randomUUID().toString();
+				//while (this.localIdExists(id));
+			return id;
+		} 
     };  
 
 }
