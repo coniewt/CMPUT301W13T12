@@ -6,6 +6,7 @@ import ca.ualberta.c301w13t12recipes.model.Recipe;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -64,13 +65,7 @@ public class AddTitleDescWizardActivity extends Activity {
 		Intent intent = new Intent(AddTitleDescWizardActivity.this,AddIngredWizardActivity.class);
 		Bundle bundle = new Bundle();
 		recipe.addIngredient("frank1", "1");
-		recipe.addIngredient("frank3", "2");
-		recipe.addIngredient("frank4", "2");
-		recipe.addIngredient("frank5", "2");
-		recipe.addIngredient("frank6", "2");
-		recipe.addIngredient("frank7", "2");
-		recipe.addIngredient("frank8", "2");
-		recipe.addIngredient("frank9", "2");
+		Log.v("ArrayList Test:", recipe.getIngredientName(0));
 		bundle.putSerializable("NEW_RECIPE",recipe);
 	    intent.putExtras(bundle);
 	    

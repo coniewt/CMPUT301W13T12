@@ -58,6 +58,7 @@ public class AddIngredWizardActivity extends Activity {
 			public boolean onItemLongClick(AdapterView<?> listView, View view,
 					int pos, long id) {
 				// TODO long click to delete selected item and then remove
+				refreshList();
 				recipe.removeIngredient(pos);
 				Toast.makeText(AddIngredWizardActivity.this,recipe.getIngredientName(pos) + " is removed", 1).show();
 				refreshList();
@@ -108,10 +109,11 @@ public class AddIngredWizardActivity extends Activity {
 		AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 		LayoutInflater inflater = getActivity().getLayoutInflater();
 		final View v = inflater.inflate(R.layout.dialog_add_ingredient, null);
+		builder.setView(v);
 		nameEditText = (EditText)v.findViewById(R.id.dialog_add_editText_name);
 		amountEditText = (EditText)v.findViewById(R.id.dialog_editText_add_amount);
 		builder.setTitle("New Ingredient");
-		builder.setView(v);
+		
 		builder.setView(inflater.inflate(R.layout.dialog_add_ingredient,null)).setPositiveButton("Done", new DialogInterface.OnClickListener() {
 
 			@Override
@@ -120,8 +122,8 @@ public class AddIngredWizardActivity extends Activity {
 			String name =nameEditText.getText().toString();
 			String amount=amountEditText.getText().toString();
 			recipe.addIngredient(name,amount );
+			Toast.makeText(AddIngredWizardActivity.this,name + " is added", 1).show();
 			refreshList();
-				
 			}
 		}).setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
 			
