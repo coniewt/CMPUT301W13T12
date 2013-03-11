@@ -51,7 +51,7 @@ public class ViewListActivity extends Activity {
 		lv.setAdapter(new SimpleAdapter(this,list,R.layout.item_recipe,from,to));
 		}
 		catch (Exception e){
-			e.printStackTrace()
+			e.printStackTrace();
 		}
 	}
 }
