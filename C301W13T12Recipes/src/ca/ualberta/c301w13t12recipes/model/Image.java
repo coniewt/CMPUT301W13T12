@@ -10,16 +10,16 @@ import org.json.JSONObject;
 import com.google.gson.JsonObject;
 
 /**
+ * Converting images to json object in order to publish it online
  * @author YUWEI DUAN
  *
  */
 public class Image implements Serializable{
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1L;
 	String path;
 	String name;
+	
 	/**
 	 * @param path
 	 */
@@ -27,8 +27,10 @@ public class Image implements Serializable{
 		this.path=path;
 		this.name=getTime();
 	}
+	
 	/**
-	 * @return jsonobject a
+	 * Create json object from designated image file
+	 * @return json object a
 	 */
 	public JSONObject toJson(){
 		JSONObject js = new JSONObject();
@@ -41,29 +43,34 @@ public class Image implements Serializable{
 		}
 		return js;
 	}
+	
 	/**
-	 *@return the String containing the year hour  
+	 * Get current date from system
+	 * @return date
 	 */
-	
-	
 	public String getTime(){
 		Calendar cal = Calendar.getInstance();
 		cal.getTime();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyMMddHHmmss");
     	return sdf.format(cal.getTime());
 	}
-	/**
-	 * @return the path of image
-	 */
 	
+	/**
+	 * Get the path of the image
+	 * @return path
+	 */
 	public String getPath(){
 		return path;
-	}/**
-	 * @return	the name of image
+	}
+	
+	/**
+	 * Get the name of the image
+	 * @return	name
 	 */
 	public String getName(){
 		return name;
 	}
+	
 	/**
 	 * @param name
 	 */
@@ -77,6 +84,7 @@ public class Image implements Serializable{
 	public void setPath(String path){
 		this.path=path;
 	}
+
 	public String toString(){
 		return name+" "+path;
 		

@@ -6,6 +6,7 @@ import android.os.Parcelable;
 import ca.ualberta.c301w13t12recipes.model.LocalDB;
 import ca.ualberta.c301w13t12recipes.model.Recipe;
 /**
+ * Database controller class, used for various background handling purpose.
  * 
  * @author GUANQI HUANG 
  *
@@ -17,11 +18,17 @@ public class DatabaseController implements Parcelable{
 		this.database = new LocalDB(context);	
 	}
 	/**
+	 * Get local database
 	 * @return localDB object 
 	 */
 	public LocalDB getDB(){
 		return this.database;
 	}
+	
+	/**
+	 * Add recipe into local database
+	 * @param recipe object
+	 */
 	public void addRecipe(Recipe re){
 		this.database.addLocal_Recipe_Table(re);	
 	}
@@ -40,6 +47,10 @@ public class DatabaseController implements Parcelable{
 		// TODO Auto-generated method stub
 		dest.writeValue(database);
 	}
+	
+	/**
+	 * 不知道这是干嘛的
+	 */
 	public static final Parcelable.Creator<DatabaseController> CREATOR = new Creator<DatabaseController>(){
 		//TODO create a new DatabaseController object and then change 
 		//its attributes to one that just passed in

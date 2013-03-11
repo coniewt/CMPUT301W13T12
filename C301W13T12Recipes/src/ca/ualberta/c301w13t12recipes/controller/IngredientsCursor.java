@@ -8,6 +8,12 @@ import android.widget.SimpleCursorAdapter;
 
 import ca.ualberta.c301w13t12recipes.model.Ingredient;
 
+/**
+ * 不知道这是干嘛的
+ * @author 
+ *
+ */
+
 public class IngredientsCursor {
 	
 	private SimpleCursorAdapter cursorAdapter;

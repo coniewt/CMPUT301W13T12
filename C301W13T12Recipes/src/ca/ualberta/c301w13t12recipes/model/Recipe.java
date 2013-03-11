@@ -12,16 +12,11 @@ import org.json.JSONObject;
 
 /**
  * @author YUWEI DUAN
- *
- */
-/**
  * @author frank
  *
  */
 public class Recipe implements Serializable{
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1L;
 	private String id;
 	private String user;
@@ -32,13 +27,14 @@ public class Recipe implements Serializable{
 	private int status;// shows whether the recipe is complete or not 
 
 	/**
+	 * Structure of recipe
 	 * @param id
 	 * @param user
 	 * @param name
 	 * @param list
 	 * @param directions
 	 */
-	public Recipe(String id, String user, String name,String directions) {
+	public Recipe(String id, String user, String name, String directions) {
 		this.id = id;
 		this.user = user;
 		this.name = name;
@@ -47,6 +43,7 @@ public class Recipe implements Serializable{
 		this.directions = directions;
 		this.status = 0;
 	}
+	
 	public Recipe(String id, String user, String name,
 			List<Ingredient> list, String directions) {
 		this.id = id;
@@ -57,15 +54,18 @@ public class Recipe implements Serializable{
 		this.directions = directions;
 		this.status = 0;
 	}
+	
 	/**
-	 * TODO add an ingredient to the recipe
+	 * Add an ingredient to the recipe
 	 * @param name
 	 * @param amount
 	 */
 	public void addIngredient(String name,String amount){
 		this.ingredients.add(new Ingredient(name,amount));
 	}
+	
 	/**
+	 * Add Images to associated recipes
 	 * @param path
 	 */
 	public void addImage(String path){
@@ -73,29 +73,32 @@ public class Recipe implements Serializable{
 	}
 
 	/**
-	 * @return
+	 * Get ID
+	 * @return id
 	 */
 	public String getId() {
 		return id;
 	}
 
 	/**
+	 * Set ID
 	 * @param id
 	 */
 	public void setId(String id) {
 		this.id = id;
 	}
 	
-	
-	
 	/**
+	 * Get username of this recipe
 	 * @return user
 	 */
 	public String getUser() {
 		return this.user;
 	}
+	
 	/**
-	 * @return the status of recipe
+	 * Get the status of current recipe
+	 * @return true/false
 	 */
 	public boolean isComplete(){
 		if(this.status == 0){
@@ -104,26 +107,31 @@ public class Recipe implements Serializable{
 			return true;
 		}
 	}
+	
 	/**
-	 * @param none
+	 * Set status of current recipe
 	 */
 	public void setStatus(){
 		this.status = 1;
 	}
+	
 	/**
-	 * @param user
+	 * Set user of current recipe
 	 */
 	public void setUser(String user) {
 		this.user = user;
 	}
 
 	/**
+	 * Retrieve the name of current recipe
 	 * @return name
 	 */
 	public String getName() {
 		return name;
 	}
+	
 	/**
+	 * Get the list of images associated with curent recipe
 	 * @return list of image
 	 */
 	public List<Image> getImage() {
@@ -131,6 +139,7 @@ public class Recipe implements Serializable{
 	}
 
 	/**
+	 * Set the name of current recipe
 	 * @param name
 	 */
 	public void setName(String name) {
@@ -138,13 +147,15 @@ public class Recipe implements Serializable{
 	}
 
 	/**
-	 * @return a list of ingredients
+	 * Retrieve the list of ingredients from current recipe
+	 * @return list of ingredients
 	 */
 	public List<Ingredient> getIngredients() {
 		return ingredients;
 	}
 
 	/**
+	 * Set the ingredients to current recipe
 	 * @param ingredients
 	 */
 	public void setIngredients(ArrayList<Ingredient> ingredients) {
@@ -152,6 +163,7 @@ public class Recipe implements Serializable{
 	}
 
 	/**
+	 * Get direction
 	 * @return directions
 	 */
 	public String getDirections() {
@@ -159,6 +171,7 @@ public class Recipe implements Serializable{
 	}
 
 	/**
+	 * Set direction
 	 * @param directions
 	 */
 	public void setDirections(String directions) {
@@ -242,10 +255,21 @@ public class Recipe implements Serializable{
 		
     }; 
     */ 
+	
+	/**
+	 * Create an array of Recipe objects
+	 * @param size
+	 * @return array of Recipe objects
+	 */
     public Recipe[] newArray(int size) {
 		// TODO create an array of Recipe objects
 		return new Recipe[size];
 	}  
+    
+    /**
+     * set unique UUID
+     * @return UUID
+     */
 	public String getUniqueId() {
 		String id = "";
 		id = "local@" + UUID.randomUUID().toString();

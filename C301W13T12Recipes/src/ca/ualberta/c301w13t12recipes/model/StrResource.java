@@ -1,5 +1,10 @@
 package ca.ualberta.c301w13t12recipes.model;
 
+/**
+ * 那尼？
+ * @author shihao1
+ *
+ */
 public class StrResource
 {
 	//constant strings outside of android scope

@@ -5,8 +5,8 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 
 /**
- *  Singleton so we only have one instance of our SQLiteDatabase open
- *  during the life of our application
+ *  Singleton class to make sure only one instance of SQLiteDatabase is opened
+ *  during the life of the application
  */
 public class DatabaseSingleton
 {
@@ -16,7 +16,7 @@ public class DatabaseSingleton
 	/**
 	 * Returns instance of DatabaseSingleton class
 	 * @param context
-	 * @return
+	 * @return instance
 	 */
 	public static DatabaseSingleton getInstance(Context context)
 	{

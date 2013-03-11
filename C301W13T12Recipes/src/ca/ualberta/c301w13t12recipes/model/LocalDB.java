@@ -44,7 +44,9 @@ public class LocalDB {
 
 
 	/**
-	 * @param re
+	 * Add recipe to local database
+	 * @param recipe
+	 * @throws Exception
 	 */
 	public void addLocal_Recipe_Table(Recipe re) {
 		ContentValues cv = new ContentValues();
@@ -82,7 +84,13 @@ public class LocalDB {
 		}
 		return null;
 	}
-
+	
+	/**
+	 * Search local recipes by keywords
+	 * @param keyword
+	 * @return search result
+	 * @throws JSONException
+	 */
 	public ArrayList<Recipe> searchRecipebyKeyword(String keyword) {
 		try {
 			ArrayList<Recipe> out = new ArrayList<Recipe>();
@@ -102,7 +110,12 @@ public class LocalDB {
 		}
 		return null;
 	}
-
+	
+	/**
+	 * Check if local recipes exist
+	 * @param id
+	 * @return true/false
+	 */
 	private boolean localIdExists(String id) {
 		Cursor c = db.rawQuery("SELECT * FROM "
 				+ StrResource.LOCAL_RECIPE_TABLE_NAME + " WHERE id" + "=?",
@@ -141,7 +154,8 @@ public class LocalDB {
 	}
 
 	/**
-	 * Deletes a task from the "local" table of the database.
+	 * Deletes a task from the remote server
+	 * 什么情况
 	 * 
 	 * @param id
 	 *            The id of the task to be deleted.
@@ -181,6 +195,13 @@ public class LocalDB {
 	 * 
 	 * @throws JSONException
 	 */
+	
+	/**
+	 * 看不懂
+	 * @param j
+	 * @return
+	 * @throws JSONException
+	 */
 	private Recipe toRecipe(JSONObject j) throws JSONException {
 		if (j == null) {
 			return null;
@@ -192,7 +213,7 @@ public class LocalDB {
 	}
 
 	/**
-	 * Gets list of ingredients from jsonObject and returns
+	 * Get the list of ingredients from jsonObject and return them
 	 * 
 	 * @param jsonRecipe
 	 *            , task object in json format.
@@ -307,21 +328,33 @@ public class LocalDB {
 		}
 	}
 
+	/**
+	 * Delete all recipes from remote server
+	 */
 	public void clear_Remote() {
 		db.delete(StrResource.REMOTE_RECIPE_TABLE_NAME, null, null);
 	}
 
+	/**
+	 * Delete all recipes from both local storage and remote server
+	 */
 	// fixed
 	public void clear_All() {
 		db.delete(StrResource.LOCAL_RECIPE_TABLE_NAME, null, null);
 		db.delete(StrResource.REMOTE_RECIPE_TABLE_NAME, null, null);
 	}
 
+	/**
+	 * Delete all recipes from local storage
+	 */
 	// fixed
 	public void clear_Local() {
 		db.delete(StrResource.LOCAL_RECIPE_TABLE_NAME, null, null);
 	}
 
+	/**
+	 * Close database
+	 */
 	public void close() {
 		db.close();
 	}

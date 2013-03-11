@@ -7,8 +7,9 @@ import android.os.Environment;
 import android.provider.MediaStore;
 
 /**
+ * Handling taking pictures from camera
  * @author YUWEI DUAN
- *
+ * 
  */
 public class ImageManager {
 	public void takePhoto(){

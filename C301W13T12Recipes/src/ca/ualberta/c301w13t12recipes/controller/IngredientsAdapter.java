@@ -9,6 +9,12 @@ import android.widget.ListAdapter;
 import android.widget.SimpleAdapter;
 import ca.ualberta.c301w13t12recipes.R;
 import ca.ualberta.c301w13t12recipes.model.Ingredient;
+
+/**
+ * 不知道这是干嘛的
+ * @author 
+ *
+ */
 public class IngredientsAdapter {
 	String[] from = new String[]{"name","amount"};
 	int[] to = new int[] { R.id.textView_item_name,R.id.textView_item_amount };
