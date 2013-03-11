@@ -1,27 +1,20 @@
 package ca.ualberta.c301w13t12testproject;
 
+import static org.junit.Assert.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import junit.framework.TestCase;
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-
 import ca.ualberta.c301w13t12recipes.controller.DatabaseController;
 import ca.ualberta.c301w13t12recipes.model.Image;
 import ca.ualberta.c301w13t12recipes.model.Ingredient;
 import ca.ualberta.c301w13t12recipes.model.Recipe;
-import static org.junit.Assert.*;
 
-/**
- * @author dw
- * 
- */
-public class TestLocalDB extends TestCase {
-
+public class TestLocal {
 	DatabaseController dbc = new DatabaseController(null);
 	Recipe re ;
+
 	@Before
 	public void setUp() throws Exception {
 		List<Ingredient> ingredients = new ArrayList<Ingredient>();
@@ -31,19 +24,25 @@ public class TestLocalDB extends TestCase {
 		re.addIngredient("Second test name", "Second test amount");
 		re.addImage("/photoPath");
 		re.addImage("/phtotPath");
-		
+
 	}
 
-/*	@Test
-	public void testWriteLocalRecipe() {
-		
-	}*/
+	@Test
+	public void testAddLocal_Recipe_Table() {
+		dbc.addRecipe(re);
+	}
 
 	@Test
-	public void testReadLocalRecipe() {
-		dbc.addRecipe(re);
+	public void testGetLocal_Recipe_List() {
 		Recipe recipe_return = dbc.getDB().getLocal_Recipe_List().get(0);
 		String name = recipe_return.getName();
 		assertEquals(name, re.getName());
+
 	}
+
+	@Test
+	public void testDelete_Local_Recipe() {
+		fail("Not yet implemented");
+	}
+
 }
