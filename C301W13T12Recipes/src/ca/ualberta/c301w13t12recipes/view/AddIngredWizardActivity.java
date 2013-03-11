@@ -132,7 +132,7 @@ public class AddIngredWizardActivity extends Activity {
 			}
 		});
 		return builder.create();
-		}
+		} 
 	}
 
 
