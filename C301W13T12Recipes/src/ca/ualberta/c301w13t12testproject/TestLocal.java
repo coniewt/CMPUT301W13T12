@@ -1,16 +1,10 @@
 package ca.ualberta.c301w13t12testproject;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.junit.Before;
 import org.junit.Test;
 
-import ca.ualberta.c301w13t12recipes.controller.DatabaseController;
-import ca.ualberta.c301w13t12recipes.model.Image;
-import ca.ualberta.c301w13t12recipes.model.Ingredient;
 import ca.ualberta.c301w13t12recipes.model.Recipe;
 
 public class TestLocal {
