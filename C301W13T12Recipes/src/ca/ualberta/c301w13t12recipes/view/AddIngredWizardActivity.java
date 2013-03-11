@@ -10,9 +10,14 @@ import ca.ualberta.c301w13t12recipes.controller.DatabaseController;
 import ca.ualberta.c301w13t12recipes.controller.IngredientsAdapter;
 import ca.ualberta.c301w13t12recipes.model.Recipe;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.app.DialogFragment;
+import android.content.DialogInterface;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
@@ -57,6 +62,17 @@ public class AddIngredWizardActivity extends Activity {
 	    	
 	    });
 	    
+	    addIngredButton.setOnClickListener(new OnClickListener(){
+
+			@Override
+			public void onClick(View arg0) {
+				DialogFragment newFragment = new AddIngredDiaglogFragment();
+			    newFragment.show(getFragmentManager(), "NEW_INGREDIENT");
+			    
+				
+			}
+	    	
+	    });
 	    
 	    // TODO Auto-generated method stub
 	}
@@ -77,5 +93,31 @@ public class AddIngredWizardActivity extends Activity {
 		recipe = (Recipe)getIntent().getSerializableExtra("NEW_RECIPE");
 		
 	}
+	
 
 }
+class AddIngredDiaglogFragment extends DialogFragment {
+
+	public Dialog onCreateDialog(Bundle savedInstanceState) {
+	AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+	LayoutInflater inflater = getActivity().getLayoutInflater();
+	builder.setTitle("New Ingredient");
+	builder.setView(inflater.inflate(R.layout.dialog_add_ingredient,null)).setPositiveButton("Done", new DialogInterface.OnClickListener() {
+
+		@Override
+		public void onClick(DialogInterface dialog, int id) {
+			// TODO Auto-generated method stub
+			
+		}
+	}).setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+		
+		@Override
+		public void onClick(DialogInterface dialog, int which) {
+			AddIngredDiaglogFragment.this.getDialog().cancel();
+			
+		}
+	});
+	return builder.create();
+	}
+}
+
