@@ -229,7 +229,7 @@ public class Recipe implements Parcelable{
             recipe.name = source.readString();
             recipe.user = source.readString();
             source.readList(recipe.ingredients, Ingredient.class.getClassLoader());
-            source.readList(recipe.ImageCollection, Ingredient.class.getClassLoader());
+            source.readList(recipe.ImageCollection, Image.class.getClassLoader());
             recipe.directions = source.readString();
             recipe.status = source.readInt();
             return recipe;
