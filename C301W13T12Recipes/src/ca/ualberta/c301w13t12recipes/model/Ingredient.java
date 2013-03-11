@@ -8,6 +8,7 @@ package ca.ualberta.c301w13t12recipes.model;
  */
 public class Ingredient {
 	private String name,amount;
+	private int id;
 	
 	public Ingredient(String name,String amount){
 		this.name=name;
@@ -20,6 +21,18 @@ public class Ingredient {
 	 */
 	public String getNmae(){
 		return this.name;
+	}
+	/**
+	 * @param i
+	 */
+	public void setId(int i){
+		id=i;
+	}
+	/**
+	 * @return
+	 */
+	public int getId(){
+		return id;
 	}
 	/**
 	 * @return amount of ingredient
