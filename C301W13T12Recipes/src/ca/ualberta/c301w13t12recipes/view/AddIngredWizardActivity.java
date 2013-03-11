@@ -11,6 +11,7 @@ import ca.ualberta.c301w13t12recipes.controller.IngredientsAdapter;
 import ca.ualberta.c301w13t12recipes.model.Recipe;
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 
@@ -24,9 +25,10 @@ public class AddIngredWizardActivity extends Activity {
 	    super.onCreate(savedInstanceState);
 	    setContentView(R.layout.activity_add_ingred_wizard);
 	    ListView lv = (ListView)findViewById(R.id.listView_ingredients_list);
-	    Recipe recipe =(Recipe)getIntent().getParcelableExtra("NEW_RECIPE");
+	    Recipe recipe =(Recipe)getIntent().getSerializableExtra("NEW_RECIPE");
 	    IngredientsAdapter adapter = new IngredientsAdapter();
 	    lv.setAdapter(adapter.getAdapter(this,recipe.getIngredients()));
+	    
 	    // TODO Auto-generated method stub
 	}
 

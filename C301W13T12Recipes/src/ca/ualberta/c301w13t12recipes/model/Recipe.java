@@ -1,5 +1,6 @@
 package ca.ualberta.c301w13t12recipes.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -8,8 +9,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import android.os.Parcel;
-import android.os.Parcelable;
 
 /**
  * @author YUWEI DUAN
@@ -19,7 +18,11 @@ import android.os.Parcelable;
  * @author frank
  *
  */
-public class Recipe implements Parcelable{
+public class Recipe implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String id;
 	private String user;
 	private String name;
@@ -201,6 +204,7 @@ public class Recipe implements Parcelable{
 		}
 		return jsonObject;
 	}
+	/*
 	@Override
 	public int describeContents() {
 		// TODO Auto-generated method stub
@@ -224,7 +228,7 @@ public class Recipe implements Parcelable{
         public Recipe createFromParcel(Parcel source) {
         	// TODO create a new Recipe object and then change 
         	//its attributes to one that just passed in
-            Recipe recipe = new Recipe(null,null,null,null,null);
+            Recipe recipe = new Recipe("","","","");
             recipe.id = source.readString();
             recipe.name = source.readString();
             recipe.user = source.readString();
@@ -234,18 +238,19 @@ public class Recipe implements Parcelable{
             recipe.status = source.readInt();
             return recipe;
         }
-
 		@Override
-		public Recipe[] newArray(int size) {
-			// TODO create an array of Recipe objects
-			return new Recipe[size];
-		}  
-		public String getUniqueId() {
-			String id = "";
-			id = "local@" + UUID.randomUUID().toString();
-				//while (this.localIdExists(id));
-			return id;
-		} 
-    };  
+		
+    }; 
+    */ 
+    public Recipe[] newArray(int size) {
+		// TODO create an array of Recipe objects
+		return new Recipe[size];
+	}  
+	public String getUniqueId() {
+		String id = "";
+		id = "local@" + UUID.randomUUID().toString();
+			//while (this.localIdExists(id));
+		return id;
+	} 
 
 }

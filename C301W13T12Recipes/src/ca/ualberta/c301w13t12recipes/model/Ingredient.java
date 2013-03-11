@@ -1,12 +1,18 @@
 package ca.ualberta.c301w13t12recipes.model;
 
+import java.io.Serializable;
+
 /**
  * Ingredient is one part of recipe, which stores the name of ingredient 
  * and the amount.
  * @author YUWEI DUAN
  *
  */
-public class Ingredient {
+public class Ingredient implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String name,amount;
 	private int id;
 	

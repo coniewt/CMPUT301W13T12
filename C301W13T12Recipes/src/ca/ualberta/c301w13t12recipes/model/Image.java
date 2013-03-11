@@ -1,5 +1,6 @@
 package ca.ualberta.c301w13t12recipes.model;
 
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
@@ -12,7 +13,11 @@ import com.google.gson.JsonObject;
  * @author YUWEI DUAN
  *
  */
-public class Image {
+public class Image implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	String path;
 	String name;
 	/**
