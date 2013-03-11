@@ -38,8 +38,7 @@ public class AddIngredWizardActivity extends Activity {
 	private Recipe recipe;
 	private IngredientsAdapter adapter;
 	
-	private EditText nameEditText;
-	private EditText amountEditText;
+	
 	
 	private ListView lv;
 	/** Called when the activity is first created. */
@@ -83,8 +82,7 @@ public class AddIngredWizardActivity extends Activity {
 	}
 	private void setupWidgets(){
 		addIngredButton = (ImageButton)findViewById(R.id.imgBtn_add_ingredient_button);
-		nameEditText = (EditText)findViewById(R.id.dialog_add_editText_name);
-		amountEditText = (EditText)findViewById(R.id.dialog_editText_add_amount);
+		
 		
 		
 	}
@@ -103,18 +101,25 @@ public class AddIngredWizardActivity extends Activity {
 	}
 	
 	class AddIngredDiaglogFragment extends DialogFragment {
-
+		private EditText nameEditText;
+		private EditText amountEditText;
+		
 		public Dialog onCreateDialog(Bundle savedInstanceState) {
 		AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 		LayoutInflater inflater = getActivity().getLayoutInflater();
+		final View v = inflater.inflate(R.layout.dialog_add_ingredient, null);
+		nameEditText = (EditText)v.findViewById(R.id.dialog_add_editText_name);
+		amountEditText = (EditText)v.findViewById(R.id.dialog_editText_add_amount);
 		builder.setTitle("New Ingredient");
+		builder.setView(v);
 		builder.setView(inflater.inflate(R.layout.dialog_add_ingredient,null)).setPositiveButton("Done", new DialogInterface.OnClickListener() {
 
 			@Override
 			public void onClick(DialogInterface dialog, int id) {
-				
-				
-			recipe.addIngredient(nameEditText.getText().toString(), amountEditText.getText().toString());
+			
+			String name =nameEditText.getText().toString();
+			String amount=amountEditText.getText().toString();
+			recipe.addIngredient(name,amount );
 			refreshList();
 				
 			}
