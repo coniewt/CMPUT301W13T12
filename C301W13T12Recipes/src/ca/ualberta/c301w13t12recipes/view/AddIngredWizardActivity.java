@@ -94,30 +94,31 @@ public class AddIngredWizardActivity extends Activity {
 		
 	}
 	
+	class AddIngredDiaglogFragment extends DialogFragment {
 
-}
-class AddIngredDiaglogFragment extends DialogFragment {
+		public Dialog onCreateDialog(Bundle savedInstanceState) {
+		AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+		LayoutInflater inflater = getActivity().getLayoutInflater();
+		builder.setTitle("New Ingredient");
+		builder.setView(inflater.inflate(R.layout.dialog_add_ingredient,null)).setPositiveButton("Done", new DialogInterface.OnClickListener() {
 
-	public Dialog onCreateDialog(Bundle savedInstanceState) {
-	AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-	LayoutInflater inflater = getActivity().getLayoutInflater();
-	builder.setTitle("New Ingredient");
-	builder.setView(inflater.inflate(R.layout.dialog_add_ingredient,null)).setPositiveButton("Done", new DialogInterface.OnClickListener() {
-
-		@Override
-		public void onClick(DialogInterface dialog, int id) {
-			// TODO Auto-generated method stub
+			@Override
+			public void onClick(DialogInterface dialog, int id) {
+				
+				
+			}
+		}).setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
 			
+			@Override
+			public void onClick(DialogInterface dialog, int which) {
+				AddIngredDiaglogFragment.this.getDialog().cancel();
+				
+			}
+		});
+		return builder.create();
 		}
-	}).setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-		
-		@Override
-		public void onClick(DialogInterface dialog, int which) {
-			AddIngredDiaglogFragment.this.getDialog().cancel();
-			
-		}
-	});
-	return builder.create();
 	}
+
+
 }
 
