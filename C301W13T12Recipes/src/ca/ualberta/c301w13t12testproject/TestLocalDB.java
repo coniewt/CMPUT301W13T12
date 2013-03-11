@@ -18,7 +18,7 @@ import static org.junit.Assert.*;
  * @author dw
  * 
  */
-public class TestLocalDB extends TestCase {
+public class TestLocalDB{
 
 	DatabaseController dbc = new DatabaseController(null);
 	Recipe re ;
