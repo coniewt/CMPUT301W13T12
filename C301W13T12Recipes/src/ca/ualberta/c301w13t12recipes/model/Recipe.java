@@ -14,6 +14,10 @@ import android.os.Parcelable;
  * @author YUWEI DUAN
  *
  */
+/**
+ * @author frank
+ *
+ */
 public class Recipe implements Parcelable{
 	private String id;
 	private String user;
@@ -39,6 +43,14 @@ public class Recipe implements Parcelable{
 		this.ingredients = list;
 		this.directions = directions;
 		this.status = 0;
+	}
+	/**
+	 * TODO add an ingredient to the recipe
+	 * @param name
+	 * @param amount
+	 */
+	public void addIngredient(String name,String amount){
+		this.ingredients.add(new Ingredient(name,amount));
 	}
 	/**
 	 * @param path
