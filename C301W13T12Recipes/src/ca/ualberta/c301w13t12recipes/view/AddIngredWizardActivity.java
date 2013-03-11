@@ -60,7 +60,7 @@ public class AddIngredWizardActivity extends Activity {
 				// TODO long click to delete selected item and then remove
 				refreshList();
 				recipe.removeIngredient(pos);
-				Toast.makeText(AddIngredWizardActivity.this,recipe.getIngredientName(pos) + " is removed", 1).show();
+				Toast.makeText(AddIngredWizardActivity.this,recipe.getIngredientName(pos) +"POS:"+ pos +" is removed", 3).show();
 				refreshList();
 				return false;
 			}
