@@ -23,32 +23,29 @@ import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 
 public class AddIngredWizardActivity extends Activity {
-	ImageButton addIngredButton;
-	Recipe recipe;
+	private ImageButton addIngredButton;
+	private Recipe recipe;
+	private IngredientsAdapter adapter;
+	private ListView lv;
 	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 	    super.onCreate(savedInstanceState);
 	    setContentView(R.layout.activity_add_ingred_wizard);
 	    
-	    ImageButton addIngredButton = (ImageButton)findViewById(R.id.imgBtn_add_ingredient_button);
-	    ListView lv = (ListView)findViewById(R.id.listView_ingredients_list);
-	    
-	     recipe = (Recipe)getIntent().getSerializableExtra("NEW_RECIPE");
-	    IngredientsAdapter adapter = new IngredientsAdapter();
-	    lv.setAdapter(adapter.getAdapter(this,recipe.getIngredients()));
+	    this.setupListView();
+	    this.setupButtons();
+	    this.getRecipeFromIntent();
+	    this.refreshList();
+	  
 	    lv.setOnItemLongClickListener(new OnItemLongClickListener(){
 
 			@Override
 			public boolean onItemLongClick(AdapterView<?> listView, View view,
 					int pos, long id) {
 				// TODO long click to delete selected item and then remove
-				recipe.
-				
-				
-				
-				
-				
+				recipe.removeIngredient(pos);
+				refreshList();
 				return false;
 			}
 	    	
@@ -58,11 +55,20 @@ public class AddIngredWizardActivity extends Activity {
 	    // TODO Auto-generated method stub
 	}
 	private void setupButtons(){
-		
+		addIngredButton = (ImageButton)findViewById(R.id.imgBtn_add_ingredient_button);
 		
 	}
 	private void setupListView(){
 		
+		 lv = (ListView)findViewById(R.id.listView_ingredients_list);
+	}
+	private void refreshList(){
+		adapter = new IngredientsAdapter();
+		lv.setAdapter(adapter.getAdapter(this,recipe.getIngredients()));
+		
+	}
+	private void getRecipeFromIntent(){
+		recipe = (Recipe)getIntent().getSerializableExtra("NEW_RECIPE");
 		
 	}
 
