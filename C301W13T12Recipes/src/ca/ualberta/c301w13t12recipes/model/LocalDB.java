@@ -34,7 +34,7 @@ public class LocalDB {
 		db = ds.getDB();
 	}
 
-	/**
+	/*
 	 * Post a task to the "local" table of the database.
 	 * 
 	 * @param task
@@ -45,7 +45,7 @@ public class LocalDB {
 
 	/**
 	 * Add recipe to local database
-	 * @param recipe
+	 * @param Recipe object
 	 * @throws Exception
 	 */
 	public void addLocal_Recipe_Table(Recipe re) {
@@ -87,8 +87,8 @@ public class LocalDB {
 	
 	/**
 	 * Search local recipes by keywords
-	 * @param keyword
-	 * @return search result
+	 * @param Search keywords
+	 * @return An array of Recipe object
 	 * @throws JSONException
 	 */
 	public ArrayList<Recipe> searchRecipebyKeyword(String keyword) {
@@ -114,7 +114,7 @@ public class LocalDB {
 	/**
 	 * Check if local recipes exist
 	 * @param id
-	 * @return true/false
+	 * @return True if exist, false if not exist
 	 */
 	private boolean localIdExists(String id) {
 		Cursor c = db.rawQuery("SELECT * FROM "
@@ -126,7 +126,7 @@ public class LocalDB {
 		return true;
 	}
 
-	/**
+	/*
 	 * Post a task to the "remote" table of the database.
 	 * 
 	 * @param task
@@ -155,14 +155,13 @@ public class LocalDB {
 
 	/**
 	 * Deletes a task from the remote server
-	 * 什么情况
-	 * 
 	 * @param id
 	 *            The id of the task to be deleted.
 	 */
 	private void delete_Remote_Recipe(String id) {
 		// db.delete(StrResource.REMOTE_TASK_TABLE_NAME, StrResource.COL_ID +
 		// " =?", new String[]{id,});
+		//incomplete
 	}
 
 	/**
@@ -197,9 +196,9 @@ public class LocalDB {
 	 */
 	
 	/**
-	 * 看不懂
-	 * @param j
-	 * @return
+	 * Convert JSON object to Recipe object
+	 * @param JSON object
+	 * @return Null if object contains nothing, otherwise return a Recipeobject containing the information from that JSON object
 	 * @throws JSONException
 	 */
 	private Recipe toRecipe(JSONObject j) throws JSONException {
@@ -215,9 +214,8 @@ public class LocalDB {
 	/**
 	 * Get the list of ingredients from jsonObject and return them
 	 * 
-	 * @param jsonRecipe
-	 *            , task object in json format.
-	 * @return List<Recipe>
+	 * @param JSON object
+	 * @return An array of ingredient
 	 * @throws JSONException
 	 */
 	private static List<Ingredient> toIngredients(JSONObject jsonTask)
@@ -249,7 +247,7 @@ public class LocalDB {
 
 
 	/**
-	 * Convert String to json object
+	 * Convert String to JSON object
 	 * @param String
 	 * @return JSONObject
 	 */
@@ -302,9 +300,7 @@ public class LocalDB {
 	 * 
 	 * Looks through both local and remote tables for a matching task.
 	 * 
-	 * @param task
-	 *            The task that you want changed
-	 * @return
+	 * @param Recipe object user wishes to change
 	 */
 	public void updateRecipe(Recipe re) {
 		try {

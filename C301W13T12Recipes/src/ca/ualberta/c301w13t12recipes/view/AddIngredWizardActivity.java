@@ -23,6 +23,10 @@ import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.Toast;
 
+/**
+ * Activity class for adding ingredient wizard
+ *
+ */
 public class AddIngredWizardActivity extends Activity {
 	private ImageButton addIngredButton;
 	private Recipe recipe;

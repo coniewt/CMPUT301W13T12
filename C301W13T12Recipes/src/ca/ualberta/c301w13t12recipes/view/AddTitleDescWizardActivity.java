@@ -11,6 +11,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+/**
+ * Activity class for adding details of the recipe
+ *
+ */
 public class AddTitleDescWizardActivity extends Activity {
 	
 	private EditText descEditText; //description widget

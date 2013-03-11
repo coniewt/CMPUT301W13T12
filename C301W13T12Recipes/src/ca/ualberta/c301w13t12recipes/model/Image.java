@@ -29,8 +29,8 @@ public class Image implements Serializable{
 	}
 	
 	/**
-	 * Create json object from designated image file
-	 * @return json object a
+	 * Create JSON object from designated image file
+	 * @return JSON object a
 	 */
 	public JSONObject toJson(){
 		JSONObject js = new JSONObject();
@@ -46,7 +46,7 @@ public class Image implements Serializable{
 	
 	/**
 	 * Get current date from system
-	 * @return date
+	 * @return Current data
 	 */
 	public String getTime(){
 		Calendar cal = Calendar.getInstance();
@@ -57,7 +57,7 @@ public class Image implements Serializable{
 	
 	/**
 	 * Get the path of the image
-	 * @return path
+	 * @return Path of image
 	 */
 	public String getPath(){
 		return path;
@@ -65,7 +65,7 @@ public class Image implements Serializable{
 	
 	/**
 	 * Get the name of the image
-	 * @return	name
+	 * @return	Name of image
 	 */
 	public String getName(){
 		return name;
@@ -79,12 +79,17 @@ public class Image implements Serializable{
 	}*/
 	
 	/**
-	 * @param path
+	 * Set image path
+	 * @param path of image
 	 */
 	public void setPath(String path){
 		this.path=path;
 	}
 
+	/**
+	 * Converting name and path into single string
+	 * @return Single string containing image name and path
+	 */
 	public String toString(){
 		return name+" "+path;
 		

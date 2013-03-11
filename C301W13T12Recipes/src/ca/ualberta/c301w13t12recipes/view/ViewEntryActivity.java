@@ -6,6 +6,10 @@ import ca.ualberta.c301w13t12recipes.R.menu;
 import android.app.Activity;
 import android.os.Bundle;
 
+/**
+ * Activity class for view local entries
+ *
+ */
 public class ViewEntryActivity extends Activity {
 
 	/** Called when the activity is first created. */

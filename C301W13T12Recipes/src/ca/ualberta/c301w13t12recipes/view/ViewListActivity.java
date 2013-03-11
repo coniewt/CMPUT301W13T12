@@ -11,6 +11,11 @@ import android.widget.SimpleAdapter;
 import ca.ualberta.c301w13t12recipes.R;
 import ca.ualberta.c301w13t12recipes.controller.DatabaseController;
 import ca.ualberta.c301w13t12recipes.model.Recipe;
+
+/**
+ * Activity class for listview
+ *
+ */
 public class ViewListActivity extends Activity {
 
 	/** Called when the activity is first created. */

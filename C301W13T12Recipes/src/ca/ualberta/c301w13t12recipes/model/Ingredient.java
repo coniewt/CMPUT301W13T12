@@ -20,7 +20,7 @@ public class Ingredient implements Serializable {
 	
 	/** 
 	 * Get name of the ingredient
-	 * @return name
+	 * @return Name of ingredient
 	 */
 	public String getName(){
 		return this.name;
@@ -44,7 +44,7 @@ public class Ingredient implements Serializable {
 	
 	/**
 	 * Get amount of the ingredient
-	 * @return amount
+	 * @return Amount of ingredient
 	 */
 	public String getAmount(){
 		return this.amount;
@@ -52,7 +52,7 @@ public class Ingredient implements Serializable {
 	
 	/**
 	 * Convert ingredient plus associated amount into one string
-	 * @return ingredient + amount
+	 * @return Single string of ingredient + amount
 	 */
 	public String toString(){
 		return this.name+","+this.amount;
@@ -60,7 +60,7 @@ public class Ingredient implements Serializable {
 	
 	/**
 	 * Set the name of the ingredient
-	 * @param name
+	 * @param Name of ingredient
 	 */
 	public void setName(String name){
 		this.name=name;
@@ -68,7 +68,7 @@ public class Ingredient implements Serializable {
 	
 	/**
 	 * Set the amount of the ingredient
-	 * @param amount
+	 * @param Amount of ingredient
 	 */
 	public void setamount(String amount){
 		this.amount=amount;

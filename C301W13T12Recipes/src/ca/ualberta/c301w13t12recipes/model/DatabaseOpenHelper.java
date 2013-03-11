@@ -23,6 +23,9 @@ public class DatabaseOpenHelper extends SQLiteOpenHelper
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);
 	}
 	
+	/**
+	 * Override onCreate method
+	 */
 	@Override
 	public void onCreate(SQLiteDatabase db)
 	{
@@ -31,6 +34,9 @@ public class DatabaseOpenHelper extends SQLiteOpenHelper
 		//db.execSQL(REMOTE_TASK_TABLE_CREATE);
 	}
 	
+	/**
+	 * Override onUpgrade method
+	 */
 	@Override
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion)
 	{

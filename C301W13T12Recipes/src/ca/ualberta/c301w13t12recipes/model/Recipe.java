@@ -31,7 +31,6 @@ public class Recipe implements Serializable{
 	 * @param id
 	 * @param user
 	 * @param name
-	 * @param list
 	 * @param directions
 	 */
 	public Recipe(String id, String user, String name, String directions) {
@@ -44,6 +43,14 @@ public class Recipe implements Serializable{
 		this.status = 0;
 	}
 	
+	/**
+	 * Structure of recipe
+	 * @param id
+	 * @param user
+	 * @param name
+	 * @param list
+	 * @param directions
+	 */
 	public Recipe(String id, String user, String name,
 			List<Ingredient> list, String directions) {
 		this.id = id;
@@ -57,16 +64,16 @@ public class Recipe implements Serializable{
 	
 	/**
 	 * Add an ingredient to the recipe
-	 * @param name
-	 * @param amount
+	 * @param Name of ingredient
+	 * @param Amount of ingredient
 	 */
 	public void addIngredient(String name,String amount){
 		this.ingredients.add(new Ingredient(name,amount));
 	}
 	
 	/**
-	 * Add Images to associated recipes
-	 * @param path
+	 * Add Image to associated recipes
+	 * @param Path of image
 	 */
 	public void addImage(String path){
 		this.ImageCollection.add(new Image(path));
@@ -90,7 +97,7 @@ public class Recipe implements Serializable{
 	
 	/**
 	 * Get username of this recipe
-	 * @return user
+	 * @return Username
 	 */
 	public String getUser() {
 		return this.user;
@@ -98,7 +105,7 @@ public class Recipe implements Serializable{
 	
 	/**
 	 * Get the status of current recipe
-	 * @return true/false
+	 * @return True if recipe is complete, false if recipe is incomplete
 	 */
 	public boolean isComplete(){
 		if(this.status == 0){
@@ -116,7 +123,7 @@ public class Recipe implements Serializable{
 	}
 	
 	/**
-	 * Set user of current recipe
+	 * Set username of current recipe
 	 */
 	public void setUser(String user) {
 		this.user = user;
@@ -124,15 +131,15 @@ public class Recipe implements Serializable{
 
 	/**
 	 * Retrieve the name of current recipe
-	 * @return name
+	 * @return Name of recipe
 	 */
 	public String getName() {
 		return name;
 	}
 	
 	/**
-	 * Get the list of images associated with curent recipe
-	 * @return list of image
+	 * Get the list of images associated with current recipe
+	 * @return List of image
 	 */
 	public List<Image> getImage() {
 		return this.ImageCollection;
@@ -140,7 +147,7 @@ public class Recipe implements Serializable{
 
 	/**
 	 * Set the name of current recipe
-	 * @param name
+	 * @param Name
 	 */
 	public void setName(String name) {
 		this.name = name;
@@ -148,7 +155,7 @@ public class Recipe implements Serializable{
 
 	/**
 	 * Retrieve the list of ingredients from current recipe
-	 * @return list of ingredients
+	 * @return List of ingredients
 	 */
 	public List<Ingredient> getIngredients() {
 		return ingredients;
@@ -156,28 +163,32 @@ public class Recipe implements Serializable{
 
 	/**
 	 * Set the ingredients to current recipe
-	 * @param ingredients
+	 * @param Ingredients
 	 */
 	public void setIngredients(ArrayList<Ingredient> ingredients) {
 		this.ingredients = ingredients;
 	}
 
 	/**
-	 * Get direction
-	 * @return directions
+	 * Get direction of current recipe
+	 * @return Directions
 	 */
 	public String getDirections() {
 		return directions;
 	}
 
 	/**
-	 * Set direction
-	 * @param directions
+	 * Set direction of current recipe
+	 * @param Directions
 	 */
 	public void setDirections(String directions) {
 		this.directions = directions;
 	}
 
+	/**
+	 * Convert recipe to a readable string
+	 * @return A string of recipe containing all the information
+	 */
 	@Override
 	public String toString() {
 		return "Recipe [id=" + id + ", user=" + user + ", name=" + name
@@ -186,8 +197,8 @@ public class Recipe implements Serializable{
 	}
 
 	/**
-	 * convert recipe object to jsonobject
-	 * @return Json object
+	 * Convert recipe object to JSON object
+	 * @return JSON object
 	 */
 	public JSONObject toJson() {
 		JSONObject jsonObject = new JSONObject();
@@ -217,6 +228,7 @@ public class Recipe implements Serializable{
 		}
 		return jsonObject;
 	}
+	
 	/*
 	@Override
 	public int describeContents() {
@@ -258,8 +270,8 @@ public class Recipe implements Serializable{
 	
 	/**
 	 * Create an array of Recipe objects
-	 * @param size
-	 * @return array of Recipe objects
+	 * @param Size of the array
+	 * @return Array of Recipe objects
 	 */
     public Recipe[] newArray(int size) {
 		// TODO create an array of Recipe objects
@@ -276,14 +288,20 @@ public class Recipe implements Serializable{
 			//while (this.localIdExists(id));
 		return id;
 	} 
+	
 	/**
-	 * remove item from ingredients list
-	 * @return
+	 * Remove item from ingredients list
 	 */
 	public void removeIngredient(int pos){
 		
 		this.ingredients.remove(pos);
 	}
+	
+	/**
+	 * Get ingredient name from specific position
+	 * @param Position user wishes to retrieve
+	 * @return Name of that ingredient
+	 */
 	public String getIngredientName(int pos){
 		return this.ingredients.get(pos).getName();
 	}

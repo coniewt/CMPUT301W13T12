@@ -12,7 +12,7 @@ import android.view.View;
 import android.widget.ImageButton;
 
 /**
- * 
+ * Main activity class for main menu
  * @author GUANQI HUANG
  *
  */

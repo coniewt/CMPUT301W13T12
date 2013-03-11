@@ -15,8 +15,8 @@ public class DatabaseSingleton
 	
 	/**
 	 * Returns instance of DatabaseSingleton class
-	 * @param context
-	 * @return instance
+	 * @param Context
+	 * @return Instance of the DatabaseSingleton
 	 */
 	public static DatabaseSingleton getInstance(Context context)
 	{
@@ -32,6 +32,7 @@ public class DatabaseSingleton
 		}
 		return instance;
 	}
+	
 	/**
 	 * @param context
 	 */
@@ -39,7 +40,9 @@ public class DatabaseSingleton
 	{
 		db = new DatabaseOpenHelper(context).getWritableDatabase();
 	}
+	
 	/**
+	 * Get SQLiteDatabase
 	 * @return SQLiteDatabase
 	 */
 	public SQLiteDatabase getDB(){

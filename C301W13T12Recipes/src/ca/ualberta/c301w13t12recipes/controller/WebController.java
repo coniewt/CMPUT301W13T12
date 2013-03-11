@@ -1,8 +1,7 @@
 package ca.ualberta.c301w13t12recipes.controller;
 
 /**
- * 
- * @author 
+ * Class for handling web access (place holder)
  *
  */
 

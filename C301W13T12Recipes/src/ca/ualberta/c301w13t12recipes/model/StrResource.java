@@ -1,8 +1,7 @@
 package ca.ualberta.c301w13t12recipes.model;
 
 /**
- *
- * @author shihao1
+ * Class of useful string resources for various purposes
  *
  */
 public class StrResource
