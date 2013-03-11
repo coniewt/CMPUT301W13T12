@@ -1,6 +1,6 @@
 package ca.ualberta.c301w13t12recipes.view;
 
-import android.widget.CheckBox;
+import android.widget.ImageButton;
 import android.widget.TextView;
 /**
  * 
@@ -9,5 +9,6 @@ import android.widget.TextView;
  */
 public final class IngredientItemViewHolder {
 	public TextView ingredientName;
-	public CheckBox cBox;
+	public TextView amount;
+	public ImageButton removeButton;
 }

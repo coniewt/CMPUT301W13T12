@@ -1,34 +1,44 @@
 package ca.ualberta.c301w13t12recipes.controller;
 
+
 import java.util.ArrayList;
+import java.util.Map;
 
 import ca.ualberta.c301w13t12recipes.model.Ingredient;
 import ca.ualberta.c301w13t12recipes.view.IngredientItemViewHolder;
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
+import ca.ualberta.c301w13t12recipes.R;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.CheckBox;
+import android.widget.ImageButton;
+import android.widget.TextView;
 
 public class IngredientsAdapter extends BaseAdapter{
-	private ArrayList<Ingredient> ingredientsCollection;
+	
+	private ArrayList<Ingredient> ingredientsList;
+	private Map<Integer,Boolean> isCheckedMap;
 	private Context context;
 	LayoutInflater inflater;
 	public IngredientsAdapter(Context context, ArrayList<Ingredient> ingredientsCollection){
 		super();
-		this.ingredientsCollection = ingredientsCollection;
+		this.ingredientsList = ingredientsCollection;
 		this.context = context;
 		inflater = LayoutInflater.from(this.context);
 	}
 	@Override
 	public int getCount() {
-		return this.ingredientsCollection ==  null? 0: this.ingredientsCollection.size();
+		return this.ingredientsList ==  null? 0: this.ingredientsList.size();
 	}
 
 	@Override
 	public Object getItem(int location) {
 		// TODO get ingredient at position
-		return this.ingredientsCollection.get(location);
+		return this.ingredientsList.get(location);
 	}
 
 	@Override
@@ -41,9 +51,30 @@ public class IngredientsAdapter extends BaseAdapter{
 	public View getView(int position, View convertView, ViewGroup parent) {
 		// TODO Auto-generated method stub
 		IngredientItemViewHolder holder = null;
+		Ingredient ingredient = ingredientsList.get(position);
 		
+		final int ingredientsListPos = position;
+		final int id = ingredient.getId();
 		
-		return null;
+		if(convertView == null){
+			holder = new IngredientItemViewHolder();
+			convertView = inflater.inflate(R.layout.item_ingredient,null);
+			
+			holder.ingredientName = (TextView)convertView.findViewById(R.id.textView_item_name);
+			holder.amount = (TextView)convertView.findViewById(R.id.textView_item_amount);
+			holder.removeButton =(ImageButton)convertView.findViewById(R.id.imageButton_remove);
+			
+			convertView.setTag(holder);
+					
+		}else{
+			holder = (IngredientItemViewHolder)convertView.getTag();
+		}
+		// for debug
+		Log.d("AddIngredWizardActivity","id="+id);
+		holder.amount.setText(ingredient.getAmount());
+		holder.ingredientName.setText(ingredient.getName());
+		
+		return convertView;
 	}
 
 }

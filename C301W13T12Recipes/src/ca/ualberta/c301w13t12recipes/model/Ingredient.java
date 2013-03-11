@@ -19,7 +19,7 @@ public class Ingredient {
 	 * @author YWUEI DUAN
 	 * @return name of ingredient
 	 */
-	public String getNmae(){
+	public String getName(){
 		return this.name;
 	}
 	/**
@@ -38,7 +38,7 @@ public class Ingredient {
 	 * @return amount of ingredient
 	 */
 	
-	public String getAcount(){
+	public String getAmount(){
 		return this.amount;
 	}
 	/**
