@@ -5,14 +5,13 @@
 
     <EditText
         android:id="@+id/dialog_add_editText_name"
-        android:layout_width="200dp"
+        android:layout_width="274dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="4dp"
         android:layout_marginLeft="4dp"
         android:layout_marginRight="4dp"
         android:layout_marginTop="16dp"
-        android:hint="Ingredient name"
-         />
+        android:hint="Ingredient name" />
 
     <EditText
         android:id="@+id/dialog_editText_add_amount"
