@@ -26,7 +26,7 @@ public class TestLocalDB{
 	public void setUp() throws Exception {
 		List<Ingredient> ingredients = new ArrayList<Ingredient>();
 		List<Image> ImageCollection = new ArrayList<Image>();
-		re = new Recipe("123", "dw", "test recipe", "Direction");
+		re = new Recipe("dw", "test recipe", "Direction");
 		re.addIngredient("First test name", "First test amount");
 		re.addIngredient("Second test name", "Second test amount");
 		re.addImage("/photoPath");

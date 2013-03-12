@@ -33,8 +33,8 @@ public class Recipe implements Serializable{
 	 * @param name
 	 * @param directions
 	 */
-	public Recipe(String id, String user, String name, String directions) {
-		this.id = id;
+	public Recipe(String user, String name, String directions) {
+		this.id = getUniqueId();
 		this.user = user;
 		this.name = name;
 		this.ImageCollection = new ArrayList<Image>();

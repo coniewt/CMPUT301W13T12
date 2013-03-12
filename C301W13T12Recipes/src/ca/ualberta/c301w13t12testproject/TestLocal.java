@@ -11,9 +11,9 @@ public class TestLocal {
 	@Test
 	public void testEquals() {
 		/* Fixture */
-		Recipe book1 = new Recipe("12345", "Title1", "Desc 1","123");
-		Recipe book1m = new Recipe("12345", "Title1a", "Desc 1a","dsdf");
-		Recipe book2 = new Recipe("98765", "Title2", "Desc 2","sdasd");
+		Recipe book1 = new Recipe( "Title1", "Desc 1","123");
+		Recipe book1m = new Recipe( "Title1a", "Desc 1a","dsdf");
+		Recipe book2 = new Recipe( "Title2", "Desc 2","sdasd");
 		
 		
 		/* Assertions */

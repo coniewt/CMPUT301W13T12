@@ -28,7 +28,7 @@ public class ViewListActivity extends Activity {
 	private ArrayList<HashMap<String, Object>> list = new ArrayList<HashMap<String,Object>>();
 	public void onCreate(Bundle savedInstanceState) {
 	    super.onCreate(savedInstanceState);
-	    this.setContentView(R.layout.activity_view_listview);
+	    this.setContentView(R.layout.activity_view_list);
 	    lv= (ListView) findViewById(R.id.view_listview);
 	    refreshList();
 	    // TODO Auto-generated method stub

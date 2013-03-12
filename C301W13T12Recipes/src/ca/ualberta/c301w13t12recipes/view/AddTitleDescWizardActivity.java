@@ -58,7 +58,7 @@ public class AddTitleDescWizardActivity extends Activity {
 	
 	private void saveAndJumpToAddIngredWizard(){
 		
-		Recipe recipe = new Recipe("","","","");
+		Recipe recipe = new Recipe("","","");
 		recipe.setDirections(descEditText.getText().toString());//get description from descEditText Widget
 		recipe.setName(nameEditText.getText().toString());// get nameEditText from nameEditText Widget
 		Toast.makeText(AddTitleDescWizardActivity.this, "Name and directions are saved !", 3).show();
@@ -72,7 +72,6 @@ public class AddTitleDescWizardActivity extends Activity {
 		Log.v("ArrayList Test:", recipe.getIngredientName(0));
 		bundle.putSerializable("NEW_RECIPE",recipe);
 	    intent.putExtras(bundle);
-	    
 	    startActivity(intent);
 	    
 		
