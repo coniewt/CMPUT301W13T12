@@ -58,10 +58,13 @@ public class AddIngredWizardActivity extends Activity {
 			public boolean onItemLongClick(AdapterView<?> listView, View view,
 					int pos, long id) {
 				// TODO long click to delete selected item and then remove
-				refreshList();
-				recipe.removeIngredient(pos);
-				Toast.makeText(AddIngredWizardActivity.this,recipe.getIngredientName(pos) +"POS:"+ pos +" is removed", 3).show();
-				refreshList();
+				//refreshList();
+				if(recipe.getIngredients().size()>=1){
+					refreshList();
+					recipe.removeIngredient(pos);
+					Toast.makeText(AddIngredWizardActivity.this,recipe.getIngredientName(pos) +"POS:"+ pos +" is removed", 3).show();
+					}
+				
 				return false;
 			}
 	    	

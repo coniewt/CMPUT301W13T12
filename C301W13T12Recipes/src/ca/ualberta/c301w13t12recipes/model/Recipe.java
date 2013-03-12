@@ -296,6 +296,12 @@ public class Recipe implements Serializable{
 		
 		this.ingredients.remove(pos);
 	}
+	/**
+	 * 
+	 */
+	public void removeAllIngredient(){
+		this.ingredients.removeAll(this.getIngredients());
+	}
 	
 	/**
 	 * Get ingredient name from specific position
