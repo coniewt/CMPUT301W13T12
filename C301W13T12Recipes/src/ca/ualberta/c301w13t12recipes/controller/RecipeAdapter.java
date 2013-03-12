@@ -25,8 +25,8 @@ public class RecipeAdapter {
 	{
 		List<HashMap<String, String>> fillMaps = new ArrayList<HashMap<String, String>>();		
 		List<Recipe> li =(new DatabaseController(ct)).getDB().getLocal_Recipe_List();
-		HashMap<String, String> map = new HashMap<String, String>();;
 		for(Recipe re:li){
+			HashMap<String, String> map = new HashMap<String, String>();
 			//Recipe re=li.get(0);
 			Log.v("getTest",re.getName());
 			map.put("name",re.getName());
