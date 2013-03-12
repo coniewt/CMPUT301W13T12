@@ -29,7 +29,7 @@
         android:layout_height="wrap_content" >
 
         <Button
-            android:id="@+id/add_photo_button_add_photo"
+            android:id="@+id/add_button_complete"
             android:layout_width="164dp"
             android:layout_height="wrap_content"
             android:text="Add" />
