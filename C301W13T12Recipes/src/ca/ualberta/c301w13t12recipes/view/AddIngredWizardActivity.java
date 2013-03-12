@@ -1,19 +1,11 @@
 package ca.ualberta.c301w13t12recipes.view;
 
-import java.util.Map;
-
-import ca.ualberta.c301w13t12recipes.R;
-import ca.ualberta.c301w13t12recipes.R.layout;
-import ca.ualberta.c301w13t12recipes.R.menu;
-import ca.ualberta.c301w13t12recipes.controller.DatabaseController;
-import ca.ualberta.c301w13t12recipes.controller.IngredientsAdapter;
-import ca.ualberta.c301w13t12recipes.model.Recipe;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.content.DialogInterface;
-import android.database.Cursor;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -23,10 +15,11 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.SimpleCursorAdapter;
 import android.widget.Toast;
+import ca.ualberta.c301w13t12recipes.R;
+import ca.ualberta.c301w13t12recipes.controller.IngredientsAdapter;
+import ca.ualberta.c301w13t12recipes.model.Recipe;
 
 /**
  * Activity class for adding ingredient wizard
@@ -117,23 +110,23 @@ public class AddIngredWizardActivity extends Activity {
 					.findViewById(R.id.dialog_add_editText_name);
 			amountEditText = (EditText) v
 					.findViewById(R.id.dialog_editText_add_amount);
+			restore();
 			builder.setTitle("New Ingredient");
-
-			builder.setView(
-					inflater.inflate(R.layout.dialog_add_ingredient, null))
-					.setPositiveButton("Done",
+			inflater.inflate(R.layout.dialog_add_ingredient, null);
+			builder.setPositiveButton("Done",
 							new DialogInterface.OnClickListener() {
 
 								@Override
 								public void onClick(DialogInterface dialog,
 										int id) {
 									name = nameEditText.getText().toString();
-									amount = amountEditText.getText()
-											.toString();
+									amount = amountEditText.getText().toString();
 									recipe.addIngredient(name, amount);
+									saveOnDialog();
 									Toast.makeText(
 											AddIngredWizardActivity.this,
 											name + " is added", 1).show();
+									refreshList();
 								}
 							})
 					.setNegativeButton("Cancel",
@@ -149,6 +142,36 @@ public class AddIngredWizardActivity extends Activity {
 							});
 			return builder.create();
 		}
+		 public void onPause(){
+		    	Log.v("AddingActivity", "onpause!!!");
+		    	saveOnDialog();
+		    	super.onPause();
+		    }
+		    public void onStop(){
+		    	Log.v("AddingAcitivityActivity", "onStop!!!");
+		    	saveOnDialog();
+		    	super.onStop();
+		    }
+		public void saveOnDialog(){
+	    	SharedPreferences settings = getSharedPreferences("Setting", 0);
+	        SharedPreferences.Editor editor = settings.edit();
+	        editor.putString("edt", nameEditText.getText().toString());
+	        editor.putString("ctc", amountEditText.getText().toString());
+	        editor.commit();
+	    }
+		
+		 public void restore(){
+		    	SharedPreferences settings = getSharedPreferences("Setting", 0);
+		        String edtS = settings.getString("edt","null");
+		        String ctcS = settings.getString("ctc","null");
+		        if(edtS.compareTo("null")!=0){
+		        	nameEditText.setText(edtS);
+		    	}
+		    	if(ctcS.compareTo("null")!=0){
+		    		amountEditText.setText(ctcS);
+		    	}
+		    	}
 	}
+	
 
 }
