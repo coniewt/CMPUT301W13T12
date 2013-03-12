@@ -51,6 +51,7 @@ public class LocalDB {
 	public void addLocal_Recipe_Table(Recipe re) {
 		ContentValues cv = new ContentValues();
 		try {
+			Log.v("Add to Table---------------",re.getName());
 			cv.put("id", re.getId());
 			cv.put("content", re.toJson().toString());
 			// cv.put(StrResource.COL_CONTENT, Recipe.toJson().toString() );

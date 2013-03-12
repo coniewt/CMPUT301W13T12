@@ -23,6 +23,7 @@ public class AddPicWizardActivity extends Activity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		getRecipe();
 		setContentView(R.layout.activity_add_img_wizard);
 		setupWidgets();
 		
