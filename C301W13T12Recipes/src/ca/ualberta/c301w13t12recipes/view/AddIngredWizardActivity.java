@@ -2,6 +2,7 @@ package ca.ualberta.c301w13t12recipes.view;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.AlertDialog.Builder;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.content.DialogInterface;
@@ -30,7 +31,7 @@ public class AddIngredWizardActivity extends Activity {
 	private ImageButton addIngredButton;
 	private Recipe recipe;
 	private IngredientsAdapter adapter;
-	private Button clearButton,nextButton;
+	private Button clearButton, nextButton;
 	private ListView lv;
 
 	/** Called when the activity is first created. */
@@ -71,19 +72,29 @@ public class AddIngredWizardActivity extends Activity {
 			}
 
 		});
-		clearButton.setOnClickListener(new OnClickListener(){
+		clearButton.setOnClickListener(new OnClickListener() {
 			public void onClick(View arg0) {
 				recipe.removeAllIngredient();
 				refreshList();
 			}
 		});
 		// TODO Auto-generated method stub
+		nextButton.setOnClickListener(new OnClickListener() {
+			public void onClick(View arg0) {
+				Log.v("Hello",""+recipe.getIngredients().size());
+				if(recipe.getIngredients().size()==0)
+					displayEmptyIngredientDialog();
+				else
+					saveAndJumpToAddImageWizard();
+					
+			}
+		});
 	}
 
 	private void setupWidgets() {
 		addIngredButton = (ImageButton) findViewById(R.id.imgBtn_add_ingredient_button);
-		nextButton = (Button)findViewById(R.id.add_step1_next_button);
-		clearButton = (Button)findViewById(R.id.add_step1_Clear_button);
+		nextButton = (Button) findViewById(R.id.add_step1_next_button);
+		clearButton = (Button) findViewById(R.id.add_step1_Clear_button);
 	}
 
 	private void setupListView() {
@@ -120,63 +131,66 @@ public class AddIngredWizardActivity extends Activity {
 			builder.setTitle("New Ingredient");
 			inflater.inflate(R.layout.dialog_add_ingredient, null);
 			builder.setPositiveButton("Done",
-							new DialogInterface.OnClickListener() {
+					new DialogInterface.OnClickListener() {
+						@Override
+						public void onClick(DialogInterface dialog, int id) {
+							name = nameEditText.getText().toString();
+							amount = amountEditText.getText().toString();
+							recipe.addIngredient(name, amount);
+							Toast.makeText(AddIngredWizardActivity.this,
+									name + " is added", 1).show();
+							refreshList();
+						}
+					}).setNegativeButton("Cancel",
+					new DialogInterface.OnClickListener() {
 
-								@Override
-								public void onClick(DialogInterface dialog,
-										int id) {
-									name = nameEditText.getText().toString();
-									amount = amountEditText.getText().toString();
-									recipe.addIngredient(name, amount);
-									Toast.makeText(
-											AddIngredWizardActivity.this,
-											name + " is added", 1).show();
-									refreshList();
-								}
-							})
-					.setNegativeButton("Cancel",
-							new DialogInterface.OnClickListener() {
+						@Override
+						public void onClick(DialogInterface dialog, int which) {
+							AddIngredDiaglogFragment.this.getDialog().cancel();
 
-								@Override
-								public void onClick(DialogInterface dialog,
-										int which) {
-									AddIngredDiaglogFragment.this.getDialog()
-											.cancel();
-
-								}
-							});
+						}
+					});
 			return builder.create();
 		}
-		 public void onPause(){
-		    	Log.v("AddingActivity", "onpause!!!");
-		    	super.onPause();
-		    }
-		    public void onStop(){
-		    	Log.v("AddingAcitivityActivity", "onStop!!!");
-		    	super.onStop();
-		    }
-	}
-	}
-/*private void saveAndJumpToAddImageWizard(){
-		
-		//Recipe recipe = new Recipe("","","","");
-		//recipe.setDirections(descEditText.getText().toString());//get description from descEditText Widget
-		//recipe.setName(nameEditText.getText().toString());// get nameEditText from nameEditText Widget
-		Toast.makeText(AddTitleDescWizardActivity.this, "Name and directions are saved !", 3).show();
-		Intent intent = new Intent(AddTitleDescWizardActivity.this,AddIngredWizardActivity.class);
-		Bundle bundle = new Bundle();
-		recipe.addIngredient("frank1", "array:0");
-		recipe.addIngredient("frank2", "array:1");
-		recipe.addIngredient("frank3", "array:2");
-		recipe.addIngredient("frank4", "array:3");
-		recipe.addIngredient("frank5", "array:4");
-		Log.v("ArrayList Test:", recipe.getIngredientName(0));
-		bundle.putSerializable("NEW_RECIPE",recipe);
-	    intent.putExtras(bundle);
-	    
-	    startActivity(intent);
-	    
-		
-	
 
-}*/
+		public void onPause() {
+			Log.v("AddingActivity", "onpause!!!");
+			super.onPause();
+		}
+
+		public void onStop() {
+			Log.v("AddingAcitivityActivity", "onStop!!!");
+			super.onStop();
+		}
+	}
+
+	private void saveAndJumpToAddImageWizard() {
+		Toast.makeText(AddIngredWizardActivity.this, "Ingredients are saved !",
+				3).show();
+		Intent intent = new Intent(AddIngredWizardActivity.this,
+				AddPicWizardActivity.class);
+		Bundle bundle = new Bundle();
+		bundle.putSerializable("NEW_RECIPE", recipe);
+		intent.putExtras(bundle);
+		startActivity(intent);
+	}
+	/**
+	 * TODO display a dialog to notify user the empty ingredient list
+	 */
+	public void displayEmptyIngredientDialog(){
+		AlertDialog.Builder builder = new Builder(AddIngredWizardActivity.this); 
+		builder.setTitle("Warning"); 
+		builder.setNegativeButton("Continue",new android.content.DialogInterface.OnClickListener(){
+		public void onClick(DialogInterface arg0, int arg1) {
+			saveAndJumpToAddImageWizard();
+		}}); 
+		builder.setPositiveButton("Back",new android.content.DialogInterface.OnClickListener(){
+		public void onClick(DialogInterface arg0, int arg1) {
+			
+		}
+		}); 
+		builder.setIcon(android.R.drawable.ic_dialog_info); 
+		builder.setMessage("No Ingredient ? "); 
+	builder.show(); 
+	}
+}
