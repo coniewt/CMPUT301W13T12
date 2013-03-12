@@ -6,6 +6,8 @@ import java.util.List;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import ca.ualberta.c301w13t12recipes.R;
@@ -61,9 +63,12 @@ public class ViewListActivity extends Activity {
 		}
 	}*/
 	private void refreshList() {
-		List<Recipe> li = new ArrayList<Recipe>();//(new DatabaseController(this)).getDB().getLocal_Recipe_List();
+		// new ArrayList<Recipe>();
+		/*for(Recipe re:li){
+			Log.v("Test_read_from LocalDB",re.getName() );
+		}*/
 		adapter = new RecipeAdapter();
-		lv.setAdapter(adapter.getAdapter(this, li));
-
+		ListAdapter la= adapter.getAdapter(this);
+		lv.setAdapter(la);
 	}
 }
