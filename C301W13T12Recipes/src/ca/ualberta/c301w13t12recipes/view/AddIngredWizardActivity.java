@@ -63,7 +63,6 @@ public class AddIngredWizardActivity extends Activity {
 		});
 
 		addIngredButton.setOnClickListener(new OnClickListener() {
-
 			@Override
 			public void onClick(View arg0) {
 				DialogFragment newFragment = new AddIngredDiaglogFragment();
