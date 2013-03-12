@@ -5,7 +5,7 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.content.DialogInterface;
-import android.content.SharedPreferences;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemLongClickListener;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
@@ -29,7 +30,7 @@ public class AddIngredWizardActivity extends Activity {
 	private ImageButton addIngredButton;
 	private Recipe recipe;
 	private IngredientsAdapter adapter;
-
+	private Button clearButton,nextButton;
 	private ListView lv;
 
 	/** Called when the activity is first created. */
@@ -70,13 +71,19 @@ public class AddIngredWizardActivity extends Activity {
 			}
 
 		});
-
+		clearButton.setOnClickListener(new OnClickListener(){
+			public void onClick(View arg0) {
+				recipe.removeAllIngredient();
+				refreshList();
+			}
+		});
 		// TODO Auto-generated method stub
 	}
 
 	private void setupWidgets() {
 		addIngredButton = (ImageButton) findViewById(R.id.imgBtn_add_ingredient_button);
-
+		nextButton = (Button)findViewById(R.id.add_step1_next_button);
+		clearButton = (Button)findViewById(R.id.add_step1_Clear_button);
 	}
 
 	private void setupListView() {
@@ -149,6 +156,27 @@ public class AddIngredWizardActivity extends Activity {
 		    	super.onStop();
 		    }
 	}
+	}
+/*private void saveAndJumpToAddImageWizard(){
+		
+		//Recipe recipe = new Recipe("","","","");
+		//recipe.setDirections(descEditText.getText().toString());//get description from descEditText Widget
+		//recipe.setName(nameEditText.getText().toString());// get nameEditText from nameEditText Widget
+		Toast.makeText(AddTitleDescWizardActivity.this, "Name and directions are saved !", 3).show();
+		Intent intent = new Intent(AddTitleDescWizardActivity.this,AddIngredWizardActivity.class);
+		Bundle bundle = new Bundle();
+		recipe.addIngredient("frank1", "array:0");
+		recipe.addIngredient("frank2", "array:1");
+		recipe.addIngredient("frank3", "array:2");
+		recipe.addIngredient("frank4", "array:3");
+		recipe.addIngredient("frank5", "array:4");
+		Log.v("ArrayList Test:", recipe.getIngredientName(0));
+		bundle.putSerializable("NEW_RECIPE",recipe);
+	    intent.putExtras(bundle);
+	    
+	    startActivity(intent);
+	    
+		
 	
 
-}
+}*/

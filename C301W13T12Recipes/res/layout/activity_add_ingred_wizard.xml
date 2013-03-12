@@ -40,10 +40,10 @@
         android:orientation="horizontal" >
 
         <Button
-            android:id="@+id/add_step1_cancel_button"
+            android:id="@+id/add_step1_Clear_button"
             android:layout_width="158dp"
             android:layout_height="wrap_content"
-            android:text="Delete" />
+            android:text="Clear" />
 
         <Button
             android:id="@+id/add_step1_next_button"

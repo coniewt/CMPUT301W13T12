@@ -46,7 +46,7 @@ public class AddTitleDescWizardActivity extends Activity {
 	    // TODO Auto-generated method stub
 	}
 	private void setupButton(){
-		cancelButton = (Button)findViewById(R.id.add_step1_cancel_button);
+		cancelButton = (Button)findViewById(R.id.add_step1_Clear_button);
 		nextButton = (Button)findViewById(R.id.add_step1_next_button);
 		
 	}
