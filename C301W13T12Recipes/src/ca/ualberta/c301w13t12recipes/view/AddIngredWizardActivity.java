@@ -110,7 +110,6 @@ public class AddIngredWizardActivity extends Activity {
 					.findViewById(R.id.dialog_add_editText_name);
 			amountEditText = (EditText) v
 					.findViewById(R.id.dialog_editText_add_amount);
-			restore();
 			builder.setTitle("New Ingredient");
 			inflater.inflate(R.layout.dialog_add_ingredient, null);
 			builder.setPositiveButton("Done",
@@ -122,7 +121,6 @@ public class AddIngredWizardActivity extends Activity {
 									name = nameEditText.getText().toString();
 									amount = amountEditText.getText().toString();
 									recipe.addIngredient(name, amount);
-									saveOnDialog();
 									Toast.makeText(
 											AddIngredWizardActivity.this,
 											name + " is added", 1).show();
@@ -144,33 +142,12 @@ public class AddIngredWizardActivity extends Activity {
 		}
 		 public void onPause(){
 		    	Log.v("AddingActivity", "onpause!!!");
-		    	saveOnDialog();
 		    	super.onPause();
 		    }
 		    public void onStop(){
 		    	Log.v("AddingAcitivityActivity", "onStop!!!");
-		    	saveOnDialog();
 		    	super.onStop();
 		    }
-		public void saveOnDialog(){
-	    	SharedPreferences settings = getSharedPreferences("Setting", 0);
-	        SharedPreferences.Editor editor = settings.edit();
-	        editor.putString("edt", nameEditText.getText().toString());
-	        editor.putString("ctc", amountEditText.getText().toString());
-	        editor.commit();
-	    }
-		
-		 public void restore(){
-		    	SharedPreferences settings = getSharedPreferences("Setting", 0);
-		        String edtS = settings.getString("edt","null");
-		        String ctcS = settings.getString("ctc","null");
-		        if(edtS.compareTo("null")!=0){
-		        	nameEditText.setText(edtS);
-		    	}
-		    	if(ctcS.compareTo("null")!=0){
-		    		amountEditText.setText(ctcS);
-		    	}
-		    	}
 	}
 	
 
