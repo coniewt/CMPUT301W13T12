@@ -229,44 +229,6 @@ public class Recipe implements Serializable{
 		return jsonObject;
 	}
 	
-	/*
-	@Override
-	public int describeContents() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public void writeToParcel(Parcel dest, int arg1) {
-		// TODO write each field of recipe object 
-		// into parcel
-		dest.writeString(id);
-		dest.writeString(name);
-		dest.writeString(user);
-		dest.writeList(ingredients);
-		dest.writeList(ImageCollection);
-		dest.writeString(directions);
-		dest.writeInt(status);
-		
-	}
-	public static final Parcelable.Creator<Recipe> CREATOR = new Creator<Recipe>() {  
-        public Recipe createFromParcel(Parcel source) {
-        	// TODO create a new Recipe object and then change 
-        	//its attributes to one that just passed in
-            Recipe recipe = new Recipe("","","","");
-            recipe.id = source.readString();
-            recipe.name = source.readString();
-            recipe.user = source.readString();
-            source.readList(recipe.ingredients, Ingredient.class.getClassLoader());
-            source.readList(recipe.ImageCollection, Image.class.getClassLoader());
-            recipe.directions = source.readString();
-            recipe.status = source.readInt();
-            return recipe;
-        }
-		@Override
-		
-    }; 
-    */ 
 	
 	/**
 	 * Create an array of Recipe objects
