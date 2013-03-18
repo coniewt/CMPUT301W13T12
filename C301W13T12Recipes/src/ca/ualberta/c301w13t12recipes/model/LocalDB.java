@@ -37,21 +37,22 @@ public class LocalDB {
 	/*
 	 * Post a task to the "local" table of the database.
 	 * 
-	 * @param task
-	 *            The task to be added.
+	 * @param task The task to be added.
+	 * 
 	 * @return The task that was added along with it's id.
 	 */
 
-
 	/**
 	 * Add recipe to local database
-	 * @param Recipe object
+	 * 
+	 * @param Recipe
+	 *            object
 	 * @throws Exception
 	 */
 	public void addLocal_Recipe_Table(Recipe re) {
 		ContentValues cv = new ContentValues();
 		try {
-			Log.v("Add to Table---------------",re.getName());
+			Log.v("Add to Table---------------", re.getName());
 			cv.put("id", re.getId());
 			cv.put("content", re.toJson().toString());
 			// cv.put(StrResource.COL_CONTENT, Recipe.toJson().toString() );
@@ -85,10 +86,12 @@ public class LocalDB {
 		}
 		return null;
 	}
-	
+
 	/**
 	 * Search local recipes by keywords
-	 * @param Search keywords
+	 * 
+	 * @param Search
+	 *            keywords
 	 * @return An array of Recipe object
 	 * @throws JSONException
 	 */
@@ -111,9 +114,10 @@ public class LocalDB {
 		}
 		return null;
 	}
-	
+
 	/**
 	 * Check if local recipes exist
+	 * 
 	 * @param id
 	 * @return True if exist, false if not exist
 	 */
@@ -130,8 +134,8 @@ public class LocalDB {
 	/*
 	 * Post a task to the "remote" table of the database.
 	 * 
-	 * @param task
-	 *            The task to be added.
+	 * @param task The task to be added.
+	 * 
 	 * @return The task that was added along with it's id.
 	 */
 	/*
@@ -156,13 +160,14 @@ public class LocalDB {
 
 	/**
 	 * Deletes a task from the remote server
+	 * 
 	 * @param id
 	 *            The id of the task to be deleted.
 	 */
 	private void delete_Remote_Recipe(String id) {
 		// db.delete(StrResource.REMOTE_TASK_TABLE_NAME, StrResource.COL_ID +
 		// " =?", new String[]{id,});
-		//incomplete
+		// incomplete
 	}
 
 	/**
@@ -173,33 +178,33 @@ public class LocalDB {
 	 * @return Task found, if nothing found returns null.
 	 * @throws JSONException
 	 */
-	/*
-	 * public Recipe get_Local_Recipe(String id) { try { Cursor c =
-	 * db.rawQuery("SELECT * FROM "+StrResource.LOCAL_RECIPE_TABLE_NAME, null);
-	 * if (c == null || c.getCount() == 0) { return null; } else {
-	 * c.moveToFirst(); String string = c.getString(1); JSONObject jsonObject =
-	 * new JSONObject(); return new Recipe(); } } catch (Exception e) {
-	 * e.printStackTrace(); } return null;
-	 * 
-	 * }
-	 * 
-	 * private JSONObject getJsonRecipe(String string) { try { return
-	 * toJsonRecipe(string); } catch (JSONException e) { // TODO Auto-generated
-	 * catch block e.printStackTrace(); } return null; }
-	 * 
-	 * /** Converts json string into a task object and returns.
-	 * 
-	 * @param jsonTask , task object in json format.
-	 * 
-	 * @return Task
-	 * 
-	 * @throws JSONException
-	 */
-	
+
+	public Recipe get_Local_Recipe(String id) {
+		try {
+			Cursor c = db.rawQuery("SELECT * FROM "
+					+ StrResource.LOCAL_RECIPE_TABLE_NAME, null);
+			if (c == null || c.getCount() == 0) {
+				return null;
+			} else {
+				c.moveToFirst();
+				String string = c.getString(0);
+				JSONObject jsonObject = new JSONObject(string);
+				return toRecipe(jsonObject);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+
+	}
+
 	/**
 	 * Convert JSON object to Recipe object
-	 * @param JSON object
-	 * @return Null if object contains nothing, otherwise return a Recipeobject containing the information from that JSON object
+	 * 
+	 * @param JSON
+	 *            object
+	 * @return Null if object contains nothing, otherwise return a Recipeobject
+	 *         containing the information from that JSON object
 	 * @throws JSONException
 	 */
 	private Recipe toRecipe(JSONObject j) throws JSONException {
@@ -215,7 +220,8 @@ public class LocalDB {
 	/**
 	 * Get the list of ingredients from jsonObject and return them
 	 * 
-	 * @param JSON object
+	 * @param JSON
+	 *            object
 	 * @return An array of ingredient
 	 * @throws JSONException
 	 */
@@ -245,10 +251,9 @@ public class LocalDB {
 		return null;
 	}
 
-
-
 	/**
 	 * Convert String to JSON object
+	 * 
 	 * @param String
 	 * @return JSONObject
 	 */
@@ -301,7 +306,8 @@ public class LocalDB {
 	 * 
 	 * Looks through both local and remote tables for a matching task.
 	 * 
-	 * @param Recipe object user wishes to change
+	 * @param Recipe
+	 *            object user wishes to change
 	 */
 	public void updateRecipe(Recipe re) {
 		try {
