@@ -11,7 +11,7 @@ import ca.ualberta.c301w13t12recipes.R;
 import ca.ualberta.c301w13t12recipes.model.Ingredient;
 
 /**
- * Return an Adapter for listview
+ * Return an Adapter of ingredients for listview
  * @author 
  *
  */

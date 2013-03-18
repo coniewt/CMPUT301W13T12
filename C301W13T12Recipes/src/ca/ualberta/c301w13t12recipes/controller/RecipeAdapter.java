@@ -11,6 +11,7 @@ import android.widget.SimpleAdapter;
 import ca.ualberta.c301w13t12recipes.R;
 import ca.ualberta.c301w13t12recipes.model.Recipe;
 /**
+ * TODO return the adapter of recipe
  * @author YUWEI DUAN
  *
  */
