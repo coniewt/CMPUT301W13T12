@@ -25,7 +25,7 @@ public class DatabaseSingleton
 			synchronized(DatabaseSingleton.class)
 			{
 				if(instance==null)
-				{
+				{					
 					instance = new DatabaseSingleton(context.getApplicationContext());
 				}
 			}
