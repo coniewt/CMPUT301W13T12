@@ -28,7 +28,6 @@
         <activity android:name=".view.AddIngredWizardActivity" android:theme="@style/AppBaseTheme"></activity>
         <activity android:name=".view.AddPicWizardActivity" android:theme="@style/AppBaseTheme"></activity>
         <activity android:name=".view.ViewListActivity"></activity>
-        <activity android:name=".view.ViewEntryActivity"></activity>
         <activity android:name=".view.AddCompleteWizardActivity"></activity>
         <activity android:name=".view.ViewDetailedRecipeActivity"></activity>
     </application>
