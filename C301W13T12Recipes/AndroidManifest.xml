@@ -3,7 +3,8 @@
     package="ca.ualberta.c301w13t12recipes"
     android:versionCode="1"
     android:versionName="1.0" >
-
+	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+	<uses-permission android:name="android.permission.CAMERA" />
     <uses-sdk
         android:minSdkVersion="8"
         android:targetSdkVersion="15" />
