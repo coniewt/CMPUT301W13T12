@@ -1,10 +1,15 @@
 package ca.ualberta.c301w13t12recipes.view;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -14,12 +19,12 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 import ca.ualberta.c301w13t12recipes.R;
 import ca.ualberta.c301w13t12recipes.controller.ImageManager;
 import ca.ualberta.c301w13t12recipes.model.Recipe;
 import ca.ualberta.c301w13t12recipes.model.StrResource;
-import es.softwareprocess.bogopicgen.BogoPicGen;
 
 /**
  * Activity class for adding picture wizard
@@ -28,7 +33,7 @@ import es.softwareprocess.bogopicgen.BogoPicGen;
 public class AddPicWizardActivity extends Activity {
 	private Button addButton;
 	private Button nextButton;
-	private ImageView view_phtot;
+	private ImageView view_photo;
 	private Recipe recipe;
 	private ImageManager im;
 
@@ -39,7 +44,7 @@ public class AddPicWizardActivity extends Activity {
 		getRecipe();
 		setContentView(R.layout.activity_add_img_wizard);
 		setupWidgets();
-		
+
 		addButton.setOnClickListener(new OnClickListener() {
 
 			@Override
@@ -65,7 +70,7 @@ public class AddPicWizardActivity extends Activity {
 	private void setupWidgets() {
 		addButton = (Button) findViewById(R.id.add_button_complete);
 		nextButton = (Button) findViewById(R.id.add_photo_button_next);
-		view_phtot = (ImageView) findViewById(R.id.add_image_view_camera_sign);
+		view_photo = (ImageView) findViewById(R.id.add_image_view_camera_sign);
 		im = new ImageManager();
 	}
 
@@ -100,26 +105,97 @@ public class AddPicWizardActivity extends Activity {
 		intent.putExtras(bundle);
 		startActivity(intent);
 	}
-	public void takePhoto(){
+
+	/**
+	 * This is method, which is mainly responsible for taking photo
+	 * 
+	 */
+	public void takePhoto() {
 		Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-	    String folder = Environment.getExternalStorageDirectory().getAbsolutePath() + "/tmp";
-	    File folderF = new File(folder);
-	    if (!folderF.exists()) {
-	    	folderF.mkdir();
-	    }
-	    String imageFilePath = folder + "/" + String.valueOf(System.currentTimeMillis()) + "jpg";
-	    File imageFile = new File(imageFilePath);
-	    Uri imageFileUri = Uri.fromFile(imageFile);
-	    
-	    intent.putExtra(MediaStore.EXTRA_OUTPUT, imageFileUri);
-	    startActivityForResult(intent, StrResource.CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
+		String folder = Environment.getExternalStorageDirectory()
+				.getAbsolutePath() + "/tmp";
+		File folderF = new File(folder);
+		if (!folderF.exists()) {
+			folderF.mkdir();
+		}
+		String imageFilePath = folder + "/"
+				+ String.valueOf(System.currentTimeMillis()) + "jpg";
+		File imageFile = new File(imageFilePath);
+		Uri imageFileUri = Uri.fromFile(imageFile);
+
+		intent.putExtra(MediaStore.EXTRA_OUTPUT, imageFileUri);
+		startActivityForResult(intent,
+				StrResource.CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
 	}
+
 	private Bitmap ourBMP;
 
 	private void setBogoPic() {
 		Toast.makeText(this, "Generating Photo", Toast.LENGTH_LONG).show();
-		//ourBMP = BogoPicGen.generateBitmap(400, 400);
-		view_phtot.setImageBitmap(ourBMP);
+		// ourBMP = BogoPicGen.generateBitmap(400, 400);
+		view_photo.setImageBitmap(ourBMP);
 	}
-	
+
+	private void processIntent(boolean cancel) {
+		Intent intent = getIntent();
+		if (intent == null) {
+			return;
+		}
+		try {
+			if (intent.getExtras() != null) {
+				if (cancel) {
+					Toast.makeText(this, "Photo Cancelled!", Toast.LENGTH_LONG)
+							.show();
+					setResult(RESULT_CANCELED);
+					finish();
+					return;
+				}
+				File intentPicture = getPicturePath(intent);
+				im.saveBMP(intentPicture, ourBMP);
+				setResult(RESULT_OK);
+			} else {
+				Toast.makeText(this, "Photo Cancelled: No Reciever?",
+						Toast.LENGTH_LONG).show();
+				setResult(RESULT_CANCELED);
+			}
+		} catch (FileNotFoundException e) {
+			Toast.makeText(this, "Couldn't Find File to Write to?",
+					Toast.LENGTH_LONG).show();
+			setResult(RESULT_CANCELED);
+		} catch (IOException e) {
+			Toast.makeText(this, "Couldn't Write File!", Toast.LENGTH_LONG)
+					.show();
+			setResult(RESULT_CANCELED);
+		}
+		finish();
+	}
+
+	private File getPicturePath(Intent intent) {
+		Uri uri = (Uri) intent.getExtras().get(MediaStore.EXTRA_OUTPUT);
+		return new File(uri.getPath());
+	}
+
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		if (requestCode == StrResource.CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE) {
+			Toast.makeText(this, "Couldn't Find File to Write to?",
+					Toast.LENGTH_LONG).show();
+			if (resultCode == RESULT_OK) {
+				Toast.makeText(this, "photo is ready", Toast.LENGTH_LONG)
+						.show();
+				// ImageButton button = (ImageButton)
+				// findViewById(R.id.TakeAPhoto);
+				view_photo.setImageDrawable(Drawable.createFromPath(getPicturePath(data)
+						.getPath()));
+			} else if (resultCode == RESULT_CANCELED) {
+				Toast.makeText(this, "Photo canceled", Toast.LENGTH_LONG)
+						.show();
+				// tv.setText("Photo canceled");
+			} else {
+				Toast.makeText(this, "Not sure what happened!" + resultCode,
+						Toast.LENGTH_LONG).show();
+				// tv.setText("Not sure what happened!" + resultCode);
+			}
+		}
+	}
+
 }

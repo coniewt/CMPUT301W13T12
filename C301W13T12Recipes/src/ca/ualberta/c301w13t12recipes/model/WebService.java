@@ -1,6 +1,6 @@
-package ca.ualberta.c301w13t12recipes.model;
+/*package ca.ualberta.c301w13t12recipes.model;
 
-/*******************************************************************************
+*//*******************************************************************************
  * Copyright (c) 2012 Jason Reddekopp, Andrew McCann, Daniel Sopel, David Yu.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the GNU Public License v3.0
@@ -10,7 +10,7 @@ package ca.ualberta.c301w13t12recipes.model;
  * Contributors:
  *     Jason Reddekopp, Andrew McCann, Daniel Sopel, David Yu - initial API and                              
  *     implementation
- ******************************************************************************/
+ ******************************************************************************//*
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -32,16 +32,16 @@ import org.json.JSONObject;
 
 
 
-/**
+*//**
  * This class is mainly responsive webservice, which provide the access to web
  * server and fetch the data from the server
  * @author YUWEI DUAN
  * @version 1.0
- */
+ *//*
 public class WebService
 {
 	
-	/**
+	*//**
 	 * Used for interacting with the crowdsourcer web service.  Allows for storing/updating/listing Recipes and 
 	 * adding responses.
 	 * 
@@ -50,18 +50,18 @@ public class WebService
 	 * from the web service into Recipes.  
 	 *   
 	 * TODO: pictures, audio, and add a better place for uri string literal
-	 */
+	 *//*
 	
 	// need to add a resource for this
 	private static String uri = StrResource.uri;
 
-	/* public methods */
+	 public methods 
 	
-	/**
+	*//**
 	 * Adds a Recipe to the web server.  
 	 * @param Recipe to be added
 	 * @return The Recipe received from web server with id included
-	 */
+	 *//*
 	public static Recipe put(Recipe Recipe)
 	{
 		try
@@ -95,11 +95,11 @@ public class WebService
 		return null;
 	}
 
-	/**
+	*//**
 	 * Deletes a Recipe from the web server.
 	 * @param Recipe to be deleted.
 	 * @return true if deleted, false if not
-	 */
+	 *//*
 	public static boolean delete(String id)
 	{
 		try
@@ -134,11 +134,11 @@ public class WebService
 		return false;
 	}
 
-	/**
+	*//**
 	 * Gets a Recipe (if exists) from the web server.
 	 * @param id to search for
 	 * @return Recipe found, if nothing found returns null.
-	 */
+	 *//*
 	public static Recipe get(String id)
 	{
 		try
@@ -170,12 +170,12 @@ public class WebService
 	}
 
 
-	/**
+	*//**
 	 * Posts a Recipe on the web server, used when response needs to be added.  
 	 * @param Recipe to be updated
 	 * @param response response to be added
 	 * @return updated Recipe.
-	 */
+	 *//*
 	public static Recipe post(Recipe Recipe, Response response)
 	{
 		try
@@ -219,11 +219,11 @@ public class WebService
 		return null;
 	}
 
-	/**
+	*//**
 	 * Erases everything form web service.
 	 * @param key Password
 	 * @return String response
-	 */
+	 *//*
 	public static String nuke(String key)
 	{	
 		try
@@ -252,10 +252,10 @@ public class WebService
 
 	}
 
-	/**
+	*//**
 	 * Gets all Recipes from web server.
 	 * @return List<Recipe> of all Recipes on web server.
-	 */
+	 *//*
 	public static List<Recipe> list()
 	{
 		try
@@ -296,14 +296,14 @@ public class WebService
 		return null;
 	}
 
-	/* private methods */
+	 private methods 
 
-	/**
+	*//**
 	 * returns a list of Recipes from a jsonArray
 	 * @param jsonArray of Recipe objects
 	 * @return List<Recipe>
 	 * @throws JSONException
-	 */
+	 *//*
 	private static List<Recipe> fromJsonArray(JSONArray jsonArray) throws JSONException
 	{
 
@@ -316,11 +316,11 @@ public class WebService
 		return Recipes;
 	}
 
-	/**
+	*//**
 	 * Sets up http connection to the web server and returns the connection.
 	 * @return HttpURLConnection
 	 * @throws IOException
-	 */
+	 *//*
 	private static HttpURLConnection setupConnections() throws IOException
 	{
 		// Send data
@@ -331,13 +331,13 @@ public class WebService
 		return conn;
 	}
 
-	/**
+	*//**
 	 * Sets up http connection to the web server and returns the connection.
 	 * @param conn URLConnection
 	 * @param data string to send to web service.
 	 * @return String response from web service.
 	 * @throws IOException
-	 */
+	 *//*
 	private static String getHttpResponse(URLConnection conn, String data) throws IOException
 	{
 		OutputStreamWriter wr = new OutputStreamWriter(conn.getOutputStream());
@@ -355,12 +355,12 @@ public class WebService
 		return httpResponse;
 	}
 	
-	/**
+	*//**
 	 * Converts json string into a Recipe object and returns.
 	 * @param jsonRecipe , Recipe object in json format.
 	 * @return Recipe
 	 * @throws JSONException
-	 */
+	 *//*
 	private static Recipe toRecipe(JSONObject jsonRecipe) throws JSONException
 	{
 		if(jsonRecipe==null)
@@ -374,12 +374,12 @@ public class WebService
 		}
 	}
 
-	/**
+	*//**
 	 * Gets list of responses from jsonObject and returns
 	 * @param jsonRecipe , Recipe object in json format.
 	 * @return List<Response>
 	 * @throws JSONException
-	 */
+	 *//*
 	private static List<Response> toResponses(JSONObject jsonRecipe) throws JSONException
 	{
 		try
@@ -417,7 +417,7 @@ public class WebService
 		return null;
 	}
 
-	/** 
+	*//** 
 	 * Constructs a data string to send to the web server.
 	 * @param jsonRecipe , Recipe object in json format.
 	 * @param action , http request method
@@ -425,7 +425,7 @@ public class WebService
 	 * @throws UnsupportedEncodingException
 	 * @throws JSONException
 	 * @throws UnsupportedOperationException
-	 */
+	 *//*
 	private static String getDataString(JSONObject jsonRecipe, String action) throws UnsupportedEncodingException, JSONException, UnsupportedOperationException
 	{
 		String data =  URLEncoder.encode("action","UTF8")  + "=" + URLEncoder.encode(action,"UTF8");
@@ -454,13 +454,13 @@ public class WebService
 		}
 	}
 
-	/**
+	*//**
 	 * Overload, for remove and get
 	 * @param id of Recipe
 	 * @param action http request method
 	 * @return String http request string
 	 * @throws UnsupportedEncodingException
-	 */
+	 *//*
 	private static String getDataString(String id, String action) throws UnsupportedEncodingException
 	{
 		String data =  URLEncoder.encode("action","UTF8")  + "=" + URLEncoder.encode(action,"UTF8");
@@ -468,12 +468,12 @@ public class WebService
 		return data;
 	}
 
-	/**
+	*//**
 	 * Parse Recipe into json object
 	 * @param Recipe to be converted to json object
 	 * @return JSONObject
 	 * @throws JSONException
-	 */
+	 *//*
 	private static JSONObject toJson(Recipe Recipe) throws JSONException
 	{
 		JSONObject jsonObject = new JSONObject();
@@ -502,12 +502,12 @@ public class WebService
 		return jsonObject;
 	}
 
-	/**
+	*//**
 	 * converts Http response from crowdsourcer into a json Recipe object 
 	 * @param httpResponse
 	 * @return JSONObject
 	 * @throws JSONException
-	 */
+	 *//*
 	private static JSONObject toJsonRecipe(String httpResponse) throws JSONException
 	{
 		JSONObject jsonResponse = new JSONObject(httpResponse);
@@ -517,3 +517,4 @@ public class WebService
 	}
 	
 }
+*/
