@@ -37,6 +37,7 @@ public class AddPicWizardActivity extends Activity {
 	private Recipe recipe;
 	private ImageManager im;
 	private Uri imageFileUri;
+	private Bitmap ourBMP;
 
 	/** Called when the activity is first created. */
 	@Override
@@ -129,11 +130,10 @@ public class AddPicWizardActivity extends Activity {
 				StrResource.CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
 	}
 
-	private Bitmap ourBMP;
+	
 
 	private void setBogoPic() {
 		Toast.makeText(this, "Generating Photo", Toast.LENGTH_LONG).show();
-		// ourBMP = BogoPicGen.generateBitmap(400, 400);
 		view_photo.setImageBitmap(ourBMP);
 	}
 
@@ -160,7 +160,7 @@ public class AddPicWizardActivity extends Activity {
 				setResult(RESULT_CANCELED);
 			}
 		} catch (FileNotFoundException e) {
-			Toast.makeText(this, "Couldn't Find File to Write to?",
+			Toast.makeText(this, "Couldn't Find File to Write to ?",
 					Toast.LENGTH_LONG).show();
 			setResult(RESULT_CANCELED);
 		} catch (IOException e) {
