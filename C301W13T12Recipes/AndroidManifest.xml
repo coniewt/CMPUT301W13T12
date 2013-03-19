@@ -30,6 +30,7 @@
         <activity android:name=".view.ViewListActivity"></activity>
         <activity android:name=".view.ViewEntryActivity"></activity>
         <activity android:name=".view.AddCompleteWizardActivity"></activity>
+        <activity android:name=".view.ViewDetailedRecipeActivity"></activity>
     </application>
 
 </manifest>
