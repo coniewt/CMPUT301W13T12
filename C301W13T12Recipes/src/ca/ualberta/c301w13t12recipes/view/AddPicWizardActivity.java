@@ -37,6 +37,7 @@ public class AddPicWizardActivity extends Activity {
 	private Recipe recipe;
 	private ImageManager im;
 	private Uri imageFileUri;
+
 	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -121,7 +122,7 @@ public class AddPicWizardActivity extends Activity {
 		String imageFilePath = folder + "/"
 				+ String.valueOf(System.currentTimeMillis()) + "jpg";
 		File imageFile = new File(imageFilePath);
-		 imageFileUri= Uri.fromFile(imageFile);
+		imageFileUri = Uri.fromFile(imageFile);
 
 		intent.putExtra(MediaStore.EXTRA_OUTPUT, imageFileUri);
 		startActivityForResult(intent,
@@ -175,18 +176,18 @@ public class AddPicWizardActivity extends Activity {
 		return new File(uri.getPath());
 	}
 
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == StrResource.CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE) {
-            //TextView tv = (TextView) findViewById(R.id.status);
-            if (resultCode == RESULT_OK) {
-                //tv.setText("Photo OK!");
-                //ImageButton button = (ImageButton) findViewById(R.id.add_image_view_camera_sign);
-                view_photo.setImageDrawable(Drawable.createFromPath(imageFileUri.getPath()));
-            } else if (resultCode == RESULT_CANCELED) {
-                //tv.setText("Photo canceled");
-            } else {
-                //tv.setText("Not sure what happened!" + resultCode);
-            }
-        }
-    }
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		if (requestCode == StrResource.CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE) {
+			if (resultCode == RESULT_OK) {
+				view_photo.setImageDrawable(Drawable
+						.createFromPath(imageFileUri.getPath()));
+				recipe.addImage(imageFileUri.getPath());
+			} else if (resultCode == RESULT_CANCELED) {
+				Toast.makeText(this, "Photo Cancelled",
+						Toast.LENGTH_LONG).show();
+			} else {
+				
+			}
+		}
+	}
 }
