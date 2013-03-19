@@ -1,11 +1,18 @@
 package ca.ualberta.c301w13t12recipes.model;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import android.graphics.Bitmap;
 
 import com.google.gson.JsonObject;
 
@@ -94,4 +101,9 @@ public class Image implements Serializable{
 		return name+" "+path;
 		
 	}
+	private void saveBMP( File intentPicture, Bitmap ourBMP) throws IOException, FileNotFoundException {
+		OutputStream out = new FileOutputStream(intentPicture);
+		ourBMP.compress(Bitmap.CompressFormat.JPEG, 75, out);
+		out.close();
+}
 }
