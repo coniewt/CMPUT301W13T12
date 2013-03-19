@@ -85,4 +85,5 @@ public class AddPicWizardActivity extends Activity {
 		intent.putExtras(bundle);
 		startActivity(intent);
 	}
+	
 }

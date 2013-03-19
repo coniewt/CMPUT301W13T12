@@ -68,16 +68,12 @@ public class WebService
 		{	
 			//get data string
 			String dataString = getDataString(toJson(Recipe), "post");
-
 			//setup connection
 			HttpURLConnection conn = setupConnections();
-		
 			// Send data and get response
 			String httpResponse = getHttpResponse(conn, dataString);
-			
 			// convert string response to json object
 			JSONObject jsonObject = toJsonRecipe(httpResponse);
-			
 			// convert json object to Recipe and return
 			return toRecipe(jsonObject);
 		}
@@ -482,7 +478,7 @@ public class WebService
 	{
 		JSONObject jsonObject = new JSONObject();
 		jsonObject.put("name", Recipe.getName());
-		jsonObject.put("description", Recipe.getDescription());
+		jsonObject.put("description", Recipe.getDirections());
 		
 		if(Recipe.getId()!=null&&!Recipe.getId().contains("local"))
 		{
