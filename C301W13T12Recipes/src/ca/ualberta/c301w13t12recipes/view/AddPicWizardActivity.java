@@ -120,7 +120,7 @@ public class AddPicWizardActivity extends Activity {
 			folderF.mkdir();
 		}
 		String imageFilePath = folder + "/"
-				+ String.valueOf(System.currentTimeMillis()) + "jpg";
+				+ String.valueOf(System.currentTimeMillis()) + ".jpg";
 		File imageFile = new File(imageFilePath);
 		imageFileUri = Uri.fromFile(imageFile);
 
