@@ -9,18 +9,21 @@
         android:id="@+id/imageView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_weight="1.85"
         android:src="@drawable/navi_step3" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_weight="1.14"
         android:orientation="vertical" >
 
-        <ImageView
-            android:id="@+id/add_image_view_camera_sign"
+        <GridView
+            android:id="@+id/add_photo_gridView"
             android:layout_width="match_parent"
-            android:layout_height="362dp"
-            android:src="@drawable/add_no_image_view" />
+            android:layout_height="412dp"
+            android:numColumns="3" >
+        </GridView>
 
     </LinearLayout>
 
@@ -30,7 +33,7 @@
 
         <Button
             android:id="@+id/add_button_complete"
-            android:layout_width="164dp"
+            android:layout_width="181dp"
             android:layout_height="wrap_content"
             android:text="Add" />
 

@@ -17,6 +17,7 @@ import android.provider.MediaStore;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.GridView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -33,7 +34,7 @@ import ca.ualberta.c301w13t12recipes.model.StrResource;
 public class AddPicWizardActivity extends Activity {
 	private Button addButton;
 	private Button nextButton;
-	private ImageView view_photo;
+	private GridView gridView;
 	private Recipe recipe;
 	private ImageManager im;
 	private Uri imageFileUri;
@@ -72,7 +73,7 @@ public class AddPicWizardActivity extends Activity {
 	private void setupWidgets() {
 		addButton = (Button) findViewById(R.id.add_button_complete);
 		nextButton = (Button) findViewById(R.id.add_photo_button_next);
-		view_photo = (ImageView) findViewById(R.id.add_image_view_camera_sign);
+		gridView = (GridView) findViewById(R.id.add_photo_gridView);
 		im = new ImageManager();
 	}
 
