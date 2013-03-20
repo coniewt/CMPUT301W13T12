@@ -54,7 +54,7 @@ public class ImageAdapter extends BaseAdapter{
 		ImageView imageView = new ImageView(context);
 		File image = new File(gallery.get(position).getPath());
 		imageView.setImageURI(Uri.fromFile(image));
-		return null;
+		return imageView;
 	}
 
 }

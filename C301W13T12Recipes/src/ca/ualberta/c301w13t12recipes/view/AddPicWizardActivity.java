@@ -133,10 +133,10 @@ public class AddPicWizardActivity extends Activity {
 
 	
 
-	private void setBogoPic() {
+/*	private void setBogoPic() {
 		Toast.makeText(this, "Generating Photo", Toast.LENGTH_LONG).show();
 		view_photo.setImageBitmap(ourBMP);
-	}
+	}*/
 
 	private void processIntent(boolean cancel) {
 		Intent intent = getIntent();
@@ -180,8 +180,8 @@ public class AddPicWizardActivity extends Activity {
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		if (requestCode == StrResource.CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE) {
 			if (resultCode == RESULT_OK) {
-				view_photo.setImageDrawable(Drawable
-						.createFromPath(imageFileUri.getPath()));
+				//view_photo.setImageDrawable(Drawable
+						//.createFromPath(imageFileUri.getPath()));
 				recipe.addImage(imageFileUri.getPath());
 			} else if (resultCode == RESULT_CANCELED) {
 				Toast.makeText(this, "Photo Cancelled",
