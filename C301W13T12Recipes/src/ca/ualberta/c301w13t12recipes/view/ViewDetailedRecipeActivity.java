@@ -1,18 +1,24 @@
 package ca.ualberta.c301w13t12recipes.view;
 
-import ca.ualberta.c301w13t12recipes.R;
+import java.util.List;
+
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Gallery;
+import ca.ualberta.c301w13t12recipes.R;
+import ca.ualberta.c301w13t12recipes.model.Image;
+import ca.ualberta.c301w13t12recipes.model.Recipe;
 
 /**
+ * This is the activity, which is provided a view of each entry
+ * includes the image , name of user , description
  * @author YUWEI DUAN
- * 
  */
 public class ViewDetailedRecipeActivity extends Activity {
 	private Gallery gallery;
+	private List<Image> lim;
 	// private Gallery gallery1;
 	private Integer[] mps = { R.drawable.a, R.drawable.b, R.drawable.c,
 			R.drawable.d, R.drawable.e, R.drawable.f };
@@ -24,8 +30,10 @@ public class ViewDetailedRecipeActivity extends Activity {
 		setContentView(R.layout.activity_view_entry);
 		registerForContextMenu(gallery);
 		// TODO Auto-generated method stub
+		//gallery.setAdapter(new ImageAdapter(this,(new DatabaseController(this)).getDB().get));
 		gallery.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 			public void onNothingSelected(AdapterView<?> arg0) {
+			
 			}
 
 			@Override
@@ -34,6 +42,15 @@ public class ViewDetailedRecipeActivity extends Activity {
 				// TODO Auto-generated method stub
 			}
 		});
+	}
+	@SuppressWarnings("unchecked")
+	/**
+	 * To get the list of image from intend 
+	 * from addpicwizardact
+	 */
+	private void getImageList() {
+		lim = (List<Image>) getIntent().getSerializableExtra("IMAGE");
+
 	}
 
 }

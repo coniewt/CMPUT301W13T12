@@ -15,7 +15,7 @@ import ca.ualberta.c301w13t12recipes.model.Recipe;
  * @author YUWEI DUAN
  *
  */
-public class RecipeAdapter {
+public class RecipeAdapter{
 	String[] from = new String[]{"name"};
 	int[] to = new int[] { R.id.item_recipe_name};
 	/**

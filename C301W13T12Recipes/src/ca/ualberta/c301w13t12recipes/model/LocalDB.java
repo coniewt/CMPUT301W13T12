@@ -86,7 +86,7 @@ public class LocalDB {
 		}
 		return null;
 	}
-
+	
 	/**
 	 * Search local recipes by keywords
 	 * 

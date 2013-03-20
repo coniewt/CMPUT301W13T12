@@ -92,12 +92,11 @@ public class AddPicWizardActivity extends Activity {
 	}
 
 	/**
+	 * Get the recipe from intent, which is sent by other activity
 	 * TODO create a new intent that allow
 	 */
-
 	private void getRecipe() {
 		recipe = (Recipe) getIntent().getSerializableExtra("NEW_RECIPE");
-
 	}
 
 	private void jumpToAddCompleteActivity() {
