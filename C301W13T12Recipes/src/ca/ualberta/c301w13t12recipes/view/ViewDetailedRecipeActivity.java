@@ -12,8 +12,9 @@ import ca.ualberta.c301w13t12recipes.model.Image;
 import ca.ualberta.c301w13t12recipes.model.Recipe;
 
 /**
- * This is the activity, which is provided a view of each entry
- * includes the image , name of user , description
+ * This is the activity, which is provided a view of each entry includes the
+ * image , name of user , description
+ * 
  * @author YUWEI DUAN
  */
 public class ViewDetailedRecipeActivity extends Activity {
@@ -28,12 +29,15 @@ public class ViewDetailedRecipeActivity extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_view_entry);
+		getImageList();
+		setUp();
 		registerForContextMenu(gallery);
 		// TODO Auto-generated method stub
-		//gallery.setAdapter(new ImageAdapter(this,(new DatabaseController(this)).getDB().get));
+		// gallery.setAdapter(new ImageAdapter(this,(new
+		// DatabaseController(this)).getDB().get));
 		gallery.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 			public void onNothingSelected(AdapterView<?> arg0) {
-			
+
 			}
 
 			@Override
@@ -42,6 +46,12 @@ public class ViewDetailedRecipeActivity extends Activity {
 				// TODO Auto-generated method stub
 			}
 		});
+	}
+	/**
+	 * Set up the new component
+	 */
+	private void setUp(){
+		gallery= new Gallery(this);
 	}
 	@SuppressWarnings("unchecked")
 	/**
