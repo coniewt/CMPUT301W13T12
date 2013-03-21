@@ -23,8 +23,8 @@ public class Image implements Serializable {
 	/**
 	 * @param path
 	 */
-	public Image(String path,String hd_path) {
-		this.tn_path = path;
+	public Image(String hd_path,String tnpath) {
+		this.tn_path = tnpath;
 		this.hd_path = hd_path;
 		this.name = getTime();
 	}
