@@ -21,6 +21,9 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.View.OnLongClickListener;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageButton;
@@ -72,6 +75,18 @@ public class AddPicWizardActivity extends Activity {
 				// TODO jump to next activity
 				jumpToAddCompleteActivity();
 			}
+		});
+		
+		gridView.setOnItemClickListener(new OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> gridView, View view, int pos,
+					long id) {
+				// TODO long click to remove selected item
+				recipe
+				
+			}
+
 		});
 	}
 
@@ -134,15 +149,15 @@ public class AddPicWizardActivity extends Activity {
 				} catch (FileNotFoundException e) {
 					// TODO file not found
 					Toast.makeText(this, "Image not found", Toast.LENGTH_LONG)
-					.show();
+							.show();
 					e.printStackTrace();
 				} catch (IOException e) {
 					// TODO FATAL ERROR : EXCEPITON
-					Toast.makeText(this, "IOExceptions cannot be resolved", Toast.LENGTH_LONG)
-					.show();
+					Toast.makeText(this, "IOExceptions cannot be resolved",
+							Toast.LENGTH_LONG).show();
 					e.printStackTrace();
 				}
-				
+
 				recipe.addImage(uriImgTN.getPath());
 				refreshView();
 			} else if (resultCode == RESULT_CANCELED) {
