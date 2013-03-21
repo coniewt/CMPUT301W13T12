@@ -35,7 +35,7 @@ public class ViewDetailedRecipeActivity extends Activity {
 		setUp();
 		registerForContextMenu(gallery);
 		// TODO Auto-generated method stub
-		 gallery.setAdapter(new ImageAdapter(this, lim));
+		 gallery.setAdapter(new ImageAdapter(this, imageList));
 		// DatabaseController(this)).getDB().get));
 		gallery.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 			public void onNothingSelected(AdapterView<?> arg0) {
