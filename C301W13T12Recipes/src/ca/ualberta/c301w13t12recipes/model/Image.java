@@ -1,21 +1,11 @@
 package ca.ualberta.c301w13t12recipes.model;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStream;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import android.graphics.Bitmap;
-import android.net.Uri;
-
-import com.google.gson.JsonObject;
 
 /**
  * Converting images to json object in order to publish it online
@@ -26,14 +16,16 @@ import com.google.gson.JsonObject;
 public class Image implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	String path;
+	String tn_path;
+	String hd_path;
 	String name;
 
 	/**
 	 * @param path
 	 */
-	public Image(String path) {
-		this.path = path;
+	public Image(String path,String hd_path) {
+		this.tn_path = path;
+		this.hd_path = hd_path;
 		this.name = getTime();
 	}
 
@@ -45,7 +37,8 @@ public class Image implements Serializable {
 	public JSONObject toJson() {
 		JSONObject js = new JSONObject();
 		try {
-			js.put("path", getPath());
+			js.put("HD_path", getHD_Path());
+			js.put("TN_path", getTN_Path());
 			js.put("name", getName());
 		} catch (JSONException jse) {
 			jse.printStackTrace();
@@ -66,12 +59,19 @@ public class Image implements Serializable {
 	}
 
 	/**
-	 * Get the path of the image
+	 * Get the path of the hd image
 	 * 
 	 * @return Path of image
 	 */
-	public String getPath() {
-		return path;
+	public String getHD_Path() {
+		return hd_path;
+	}
+	/**
+	 * Get the path of the TN image
+	 * @return
+	 */
+	public String getTN_Path() {
+		return tn_path;
 	}
 
 	/**
@@ -91,13 +91,18 @@ public class Image implements Serializable {
 	 */
 
 	/**
-	 * Set image path
-	 * 
+	 * Set image path 
 	 * @param path
 	 *            of image
 	 */
-	public void setPath(String path) {
-		this.path = path;
+	public void setHDPath(String path) {
+		this.hd_path = path;
+	}
+	/**
+	 * @param path
+	 */
+	public void setTNPath(String path) {
+		this.tn_path = path;
 	}
 
 	/**
@@ -105,8 +110,4 @@ public class Image implements Serializable {
 	 * 
 	 * @return Single string containing image name and path
 	 */
-	public String toString() {
-		return name + " " + path;
-
-	}
 }

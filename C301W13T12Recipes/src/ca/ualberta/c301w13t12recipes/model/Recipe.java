@@ -75,8 +75,8 @@ public class Recipe implements Serializable{
 	 * Add Image to associated recipes
 	 * @param Path of image
 	 */
-	public void addImage(String path){
-		this.ImageCollection.add(new Image(path));
+	public void addImage(String hd_path,String TN_path){
+		this.ImageCollection.add(new Image(hd_path,TN_path));
 	}
 
 	/**
@@ -143,6 +143,9 @@ public class Recipe implements Serializable{
 	 */
 	public List<Image> getImage() {
 		return this.ImageCollection;
+	}
+	public Image getImage(int index) {
+		return this.ImageCollection.get(index);
 	}
 
 	/**
@@ -257,6 +260,14 @@ public class Recipe implements Serializable{
 	public void removeIngredient(int pos){
 		
 		this.ingredients.remove(pos);
+	}
+	/**
+	 * Remove the image from the list according to index
+	 * @param index base on 0
+	 */
+	public void removeImage(int pos){
+		
+		this.ImageCollection.remove(pos);
 	}
 	/**
 	 * 
