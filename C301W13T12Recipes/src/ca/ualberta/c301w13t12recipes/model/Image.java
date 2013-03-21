@@ -26,8 +26,6 @@ import com.google.gson.JsonObject;
 public class Image implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	Uri uriImgHD;
-	Uri uriImgTN;
 	String path;
 	String name;
 
@@ -37,8 +35,6 @@ public class Image implements Serializable {
 	public Image(String path) {
 		this.path = path;
 		this.name = getTime();
-		this.uriImgHD = null;
-		this.uriImgTN = null;
 	}
 
 	/**
@@ -113,20 +109,4 @@ public class Image implements Serializable {
 		return name + " " + path;
 
 	}
-
-	private void saveBMP(File intentPicture, Bitmap ourBMP) throws IOException,
-			FileNotFoundException {
-		OutputStream out = new FileOutputStream(intentPicture);
-		ourBMP.compress(Bitmap.CompressFormat.JPEG, 75, out);
-		out.close();
-	}
-
-	public void saveImgHD(Uri newImageHD) {
-		this.uriImgHD = newImageHD;
-	}
-
-	public void saveImgTN(Uri newImageTN) {
-		this.uriImgTN = newImageTN;
-	}
-
 }
