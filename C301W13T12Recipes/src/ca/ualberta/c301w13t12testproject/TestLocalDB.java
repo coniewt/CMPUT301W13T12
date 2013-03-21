@@ -29,8 +29,8 @@ public class TestLocalDB{
 		re = new Recipe("dw", "test recipe", "Direction");
 		re.addIngredient("First test name", "First test amount");
 		re.addIngredient("Second test name", "Second test amount");
-		re.addImage("/photoPath");
-		re.addImage("/phtotPath");
+	//	re.addImage("/photoPath");
+	//	re.addImage("/phtotPath");
 		
 	}
 
