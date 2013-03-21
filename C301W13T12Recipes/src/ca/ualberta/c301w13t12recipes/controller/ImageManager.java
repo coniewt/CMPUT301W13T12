@@ -23,10 +23,11 @@ public class ImageManager {
 
 	// call this to accept
 
-	public void saveBMP(File intentPicture, Bitmap bitmap) throws IOException,
+	public void saveBMP(String path, Bitmap bitmap) throws IOException,
 			FileNotFoundException {
-		OutputStream out = new FileOutputStream(intentPicture);
-		bitmap.compress(Bitmap.CompressFormat.JPEG, 50, out);
+		File thumbnailFile = new File(path);
+		OutputStream out = new FileOutputStream(thumbnailFile);
+		bitmap.compress(Bitmap.CompressFormat.JPEG, 20, out);
 		out.close();
 	}
 

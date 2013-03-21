@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
@@ -42,7 +43,7 @@ public class AddPicWizardActivity extends Activity {
 	private ImageManager imageManager;
 	private Uri uriImgHD;
 	private Uri uriImgTN;
-	private Bitmap ourBMP;
+	private Bitmap bitmap;
 	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -121,8 +122,8 @@ public class AddPicWizardActivity extends Activity {
 	public void takePhoto() {
 		Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 		
-		String folderPath = imageManager.createFolder("tmp");// hd image folder
-		String subFolderPath = imageManager.createSubfolder("tmp", "thumbnail");// thumbnail folder
+		String folderPath = imageManager.createFolder("/tmp");// hd image folder
+		String subFolderPath = imageManager.createSubfolder("/tmp", "/thumbnail");// thumbnail folder
 				
 		String imgPathHD = imageManager.genImgPath(folderPath);
 		String imgPathTN = imageManager.genImgPath(subFolderPath);
@@ -178,9 +179,18 @@ public class AddPicWizardActivity extends Activity {
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		if (requestCode == StrResource.CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE) {
 			if (resultCode == RESULT_OK) {
-				// view_photo.setImageDrawable(Drawable
-				// .createFromPath(imageFileUri.getPath()));
-				recipe.addImage(uriImgHD.getPath());
+				bitmap = BitmapFactory.decodeFile(uriImgHD.getPath());
+				
+				try {
+					imageManager.saveBMP(uriImgTN.getPath(), bitmap);
+				} catch (FileNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				recipe.addImage(uriImgTN.getPath());
 
 			} else if (resultCode == RESULT_CANCELED) {
 				Toast.makeText(this, "Camera cancelled", Toast.LENGTH_LONG)

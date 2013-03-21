@@ -13,97 +13,120 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.graphics.Bitmap;
+import android.net.Uri;
 
 import com.google.gson.JsonObject;
 
 /**
  * Converting images to json object in order to publish it online
+ * 
  * @author YUWEI DUAN
- *
+ * 
  */
-public class Image implements Serializable{
+public class Image implements Serializable {
 
 	private static final long serialVersionUID = 1L;
+	Uri uriImgHD;
+	Uri uriImgTN;
 	String path;
 	String name;
-	
+
 	/**
 	 * @param path
 	 */
-	public Image(String path){
-		this.path=path;
-		this.name=getTime();
+	public Image(String path) {
+		this.path = path;
+		this.name = getTime();
+		this.uriImgHD = null;
+		this.uriImgTN = null;
 	}
-	
+
 	/**
 	 * Create JSON object from designated image file
+	 * 
 	 * @return JSON object a
 	 */
-	public JSONObject toJson(){
+	public JSONObject toJson() {
 		JSONObject js = new JSONObject();
-		try{
+		try {
 			js.put("path", getPath());
 			js.put("name", getName());
-		}
-		catch(JSONException jse){
+		} catch (JSONException jse) {
 			jse.printStackTrace();
 		}
 		return js;
 	}
-	
+
 	/**
 	 * Get current date from system
+	 * 
 	 * @return Current data
 	 */
-	public String getTime(){
+	public String getTime() {
 		Calendar cal = Calendar.getInstance();
 		cal.getTime();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyMMddHHmmss");
-    	return sdf.format(cal.getTime());
+		return sdf.format(cal.getTime());
 	}
-	
+
 	/**
 	 * Get the path of the image
+	 * 
 	 * @return Path of image
 	 */
-	public String getPath(){
+	public String getPath() {
 		return path;
 	}
-	
+
 	/**
 	 * Get the name of the image
-	 * @return	Name of image
+	 * 
+	 * @return Name of image
 	 */
-	public String getName(){
+	public String getName() {
 		return name;
 	}
-	
+
 	/**
 	 * @param name
 	 */
-/*	public void setName(String name){
-		this.name=name;
-	}*/
-	
+	/*
+	 * public void setName(String name){ this.name=name; }
+	 */
+
 	/**
 	 * Set image path
-	 * @param path of image
+	 * 
+	 * @param path
+	 *            of image
 	 */
-	public void setPath(String path){
-		this.path=path;
+	public void setPath(String path) {
+		this.path = path;
 	}
 
 	/**
 	 * Converting name and path into single string
+	 * 
 	 * @return Single string containing image name and path
 	 */
-	public String toString(){
-		return name+" "+path;
-		
+	public String toString() {
+		return name + " " + path;
+
 	}
-	private void saveBMP( File intentPicture, Bitmap ourBMP) throws IOException, FileNotFoundException {
+
+	private void saveBMP(File intentPicture, Bitmap ourBMP) throws IOException,
+			FileNotFoundException {
 		OutputStream out = new FileOutputStream(intentPicture);
 		ourBMP.compress(Bitmap.CompressFormat.JPEG, 75, out);
 		out.close();
-}
+	}
+
+	public void saveImgHD(Uri newImageHD) {
+		this.uriImgHD = newImageHD;
+	}
+
+	public void saveImgTN(Uri newImageTN) {
+		this.uriImgTN = newImageTN;
+	}
+
 }
