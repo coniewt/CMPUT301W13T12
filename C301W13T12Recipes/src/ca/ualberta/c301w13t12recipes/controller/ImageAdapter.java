@@ -15,11 +15,19 @@ import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
 
+/**
+ * @author YWUEI DUAN
+ */
 public class ImageAdapter extends BaseAdapter{
 	private Context context;
 	private DatabaseController controller;
 	private ArrayList<Image> gallery;
 
+	/**
+	 * 
+	 * @param newContext
+	 * @param gallery a list of Image
+	 */
 	public ImageAdapter(Context newContext,ArrayList<Image> gallery){
 		// TODO constructor
 		this.context = newContext;	

@@ -1,5 +1,6 @@
 package ca.ualberta.c301w13t12recipes.view;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import android.app.Activity;
@@ -8,6 +9,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Gallery;
 import ca.ualberta.c301w13t12recipes.R;
+import ca.ualberta.c301w13t12recipes.controller.ImageAdapter;
 import ca.ualberta.c301w13t12recipes.model.Image;
 import ca.ualberta.c301w13t12recipes.model.Recipe;
 
@@ -19,7 +21,7 @@ import ca.ualberta.c301w13t12recipes.model.Recipe;
  */
 public class ViewDetailedRecipeActivity extends Activity {
 	private Gallery gallery;
-	private List<Image> lim;
+	private ArrayList<Image> lim;
 	// private Gallery gallery1;
 	private Integer[] mps = { R.drawable.a, R.drawable.b, R.drawable.c,
 			R.drawable.d, R.drawable.e, R.drawable.f };
@@ -33,7 +35,7 @@ public class ViewDetailedRecipeActivity extends Activity {
 		setUp();
 		registerForContextMenu(gallery);
 		// TODO Auto-generated method stub
-		// gallery.setAdapter(new ImageAdapter(this,(new
+		 gallery.setAdapter(new ImageAdapter(this, lim));
 		// DatabaseController(this)).getDB().get));
 		gallery.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 			public void onNothingSelected(AdapterView<?> arg0) {
@@ -59,8 +61,7 @@ public class ViewDetailedRecipeActivity extends Activity {
 	 * from addpicwizardact
 	 */
 	private void getImageList() {
-		lim = (List<Image>) getIntent().getSerializableExtra("IMAGE");
-
+		lim = (ArrayList<Image>) getIntent().getSerializableExtra("IMAGE");
 	}
 
 }
