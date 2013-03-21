@@ -144,6 +144,10 @@ public class Recipe implements Serializable{
 	public List<Image> getImage() {
 		return this.ImageCollection;
 	}
+	/**
+	 * @param index
+	 * @return Image object
+	 */
 	public Image getImage(int index) {
 		return this.ImageCollection.get(index);
 	}
