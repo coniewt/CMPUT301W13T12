@@ -83,8 +83,9 @@ public class AddPicWizardActivity extends Activity {
 			public void onItemClick(AdapterView<?> gridView, View view, int pos,
 					long id) {
 				// TODO long click to remove selected item
-				recipe
-				
+				imageManager.removeImageFilesFromLocal(recipe.getImage(pos));
+				recipe.removeImage(pos);
+				Toast.makeText(AddPicWizardActivity.this, "Image is removed successfully", Toast.LENGTH_SHORT);
 			}
 
 		});

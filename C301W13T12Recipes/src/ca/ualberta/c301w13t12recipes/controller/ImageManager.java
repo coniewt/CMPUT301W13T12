@@ -29,8 +29,6 @@ public class ImageManager {
 	 * Take Pictures from camera
 	 */
 
-	// call this to accept
-
 	public void compressBMP(Uri uriImageHD,Uri uriImageTN ) throws IOException,
 			FileNotFoundException {
 		File thumbnailFile = new File(uriImageTN.getPath());
@@ -86,9 +84,10 @@ public class ImageManager {
 		return Uri.fromFile(imageFile);
 	}
 
-	public static int calculateInSampleSize(BitmapFactory.Options options,
+	private int calculateInSampleSize(BitmapFactory.Options options,
 			int reqWidth, int reqHeight) {
-		// Raw height and width of image
+		
+		// TODO Calculate Raw height and width of image
 		final int height = options.outHeight;
 		final int width = options.outWidth;
 		int inSampleSize = 1;
@@ -111,7 +110,7 @@ public class ImageManager {
 		return inSampleSize;
 	}
 
-	public static Bitmap decodeBitmapFromFile(Uri imageUri,
+	private Bitmap decodeBitmapFromFile(Uri imageUri,
 			int reqWidth, int reqHeight) {
 		//TODO decode the bitmap from the file
 		// First decode with inJustDecodeBounds=true to check dimensions
@@ -126,5 +125,16 @@ public class ImageManager {
 		// Decode bitmap with inSampleSize set
 		options.inJustDecodeBounds = false;
 		return BitmapFactory.decodeFile( imageUri.getPath(), options);
+	}
+	
+	public void removeImageFilesFromLocal(Image image){
+		File imageHD = new File(image.getHD_Path());
+		if(imageHD.exists()){
+			imageHD.delete();
+		}
+		File imageTN = new File(image.getTN_Path());
+		if(imageTN.exists()){
+			imageTN.delete();
+		}
 	}
 }
