@@ -1,5 +1,8 @@
 package ca.ualberta.c301w13t12recipes.view;
 
+/**
+ *  @author GUANQI HUANG
+ */
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -43,7 +46,7 @@ public class AddPicWizardActivity extends Activity {
 	private ImageManager imageManager;
 	private Uri uriImgHD;
 	private Uri uriImgTN;
-	private Bitmap bitmap;
+
 	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -58,8 +61,7 @@ public class AddPicWizardActivity extends Activity {
 			public void onClick(View arg0) {
 				// TODO adding photos
 				takePhoto();
-				gridView.setAdapter(new ImageAdapter(AddPicWizardActivity.this,
-						(ArrayList<Image>) recipe.getImage()));
+
 			}
 		});
 
@@ -84,20 +86,6 @@ public class AddPicWizardActivity extends Activity {
 	}
 
 	/**
-	 * TODO display the sign when the album is empty
-	 */
-	private void showNoImageSign() {
-
-	}
-
-	/**
-	 * TODO hide no image sign when the album has at least one photo
-	 */
-	private void hideNoImageSign() {
-
-	}
-
-	/**
 	 * Get the recipe from intent, which is sent by other activity TODO create a
 	 * new intent that allow
 	 */
@@ -118,86 +106,56 @@ public class AddPicWizardActivity extends Activity {
 	 * This is method, which is mainly responsible for taking photo
 	 * 
 	 */
-	
+
 	public void takePhoto() {
 		Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-		
+
 		String folderPath = imageManager.createFolder("/tmp");// hd image folder
-		String subFolderPath = imageManager.createSubfolder("/tmp", "/thumbnail");// thumbnail folder
-				
+		String subFolderPath = imageManager.createSubfolder("/tmp",
+				"/thumbnail");// thumbnail folder
+
 		String imgPathHD = imageManager.genImgPath(folderPath);
 		String imgPathTN = imageManager.genImgPath(subFolderPath);
-		
+
 		uriImgHD = imageManager.createImage(imgPathHD);
 		uriImgTN = imageManager.createImage(imgPathTN);
-		
+
 		intent.putExtra(MediaStore.EXTRA_OUTPUT, uriImgHD);
 		startActivityForResult(intent,
 				StrResource.CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
 	}
-	
-	/*
-	 * private void setBogoPic() { Toast.makeText(this, "Generating Photo",
-	 * Toast.LENGTH_LONG).show(); view_photo.setImageBitmap(ourBMP); }
-	 */
-/*
-	private void processIntent(boolean cancel) {
-		Intent intent = getIntent();
-		if (intent == null) {
-			return;
-		}
-		try {
-			if (intent.getExtras() != null) {
-				if (cancel) {
-					Toast.makeText(this, "Photo Cancelled!", Toast.LENGTH_LONG)
-							.show();
-					setResult(RESULT_CANCELED);
-					finish();
-					return;
-				}
-				File intentPicture = getPicturePath(intent);
-				im.saveBMP(intentPicture, ourBMP);
-				setResult(RESULT_OK);
-			} else {
-				Toast.makeText(this, "Photo Cancelled: No Reciever?",
-						Toast.LENGTH_LONG).show();
-				setResult(RESULT_CANCELED);
-			}
-		} catch (FileNotFoundException e) {
-			Toast.makeText(this, "Couldn't Find File to Write to ?",
-					Toast.LENGTH_LONG).show();
-			setResult(RESULT_CANCELED);
-		} catch (IOException e) {
-			Toast.makeText(this, "Couldn't Write File!", Toast.LENGTH_LONG)
-					.show();
-			setResult(RESULT_CANCELED);
-		}
-		finish();
-	}
-*/
 
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		if (requestCode == StrResource.CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE) {
 			if (resultCode == RESULT_OK) {
-				bitmap = BitmapFactory.decodeFile(uriImgHD.getPath());
-				
+
 				try {
-					imageManager.saveBMP(uriImgTN.getPath(), bitmap);
+					imageManager.compressBMP(uriImgHD, uriImgTN);
 				} catch (FileNotFoundException e) {
-					// TODO Auto-generated catch block
+					// TODO file not found
+					Toast.makeText(this, "Image not found", Toast.LENGTH_LONG)
+					.show();
 					e.printStackTrace();
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
+					// TODO FATAL ERROR : EXCEPITON
+					Toast.makeText(this, "IOExceptions cannot be resolved", Toast.LENGTH_LONG)
+					.show();
 					e.printStackTrace();
 				}
+				
 				recipe.addImage(uriImgTN.getPath());
-
+				refreshView();
 			} else if (resultCode == RESULT_CANCELED) {
-				Toast.makeText(this, "Camera cancelled", Toast.LENGTH_LONG)
+				Toast.makeText(this, "Operation cancelled", Toast.LENGTH_LONG)
 						.show();
 			} else {
 
 			}
 		}
+	}
+
+	public void refreshView() {
+		gridView.setAdapter(new ImageAdapter(AddPicWizardActivity.this,
+				(ArrayList<Image>) recipe.getImage()));
 	}
 }
