@@ -16,7 +16,7 @@ import android.widget.GridView;
 import android.widget.ImageView;
 
 /**
- * @author YWUEI DUAN
+ * @author GUANQI HUANG
  */
 public class ImageAdapter extends BaseAdapter{
 	private Context context;
@@ -25,8 +25,8 @@ public class ImageAdapter extends BaseAdapter{
 
 	/**
 	 * 
-	 * @param newContext
-	 * @param gallery a list of Image
+	 * @param Context newContext,ArrayList<Image> 
+	 * @param ArrayList<Image> gallery
 	 */
 	public ImageAdapter(Context newContext,ArrayList<Image> gallery){
 		// TODO constructor

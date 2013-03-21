@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.ArrayList;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -23,7 +24,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import ca.ualberta.c301w13t12recipes.R;
+import ca.ualberta.c301w13t12recipes.controller.ImageAdapter;
 import ca.ualberta.c301w13t12recipes.controller.ImageManager;
+import ca.ualberta.c301w13t12recipes.model.Image;
 import ca.ualberta.c301w13t12recipes.model.Recipe;
 import ca.ualberta.c301w13t12recipes.model.StrResource;
 
@@ -36,10 +39,10 @@ public class AddPicWizardActivity extends Activity {
 	private Button nextButton;
 	private GridView gridView;
 	private Recipe recipe;
-	private ImageManager im;
-	private Uri imageFileUri;
+	private ImageManager imageManager;
+	private Uri uriImgHD;
+	private Uri uriImgTN;
 	private Bitmap ourBMP;
-
 	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -54,6 +57,8 @@ public class AddPicWizardActivity extends Activity {
 			public void onClick(View arg0) {
 				// TODO adding photos
 				takePhoto();
+				gridView.setAdapter(new ImageAdapter(AddPicWizardActivity.this,
+						(ArrayList<Image>) recipe.getImage()));
 			}
 		});
 
@@ -74,7 +79,7 @@ public class AddPicWizardActivity extends Activity {
 		addButton = (Button) findViewById(R.id.add_button_complete);
 		nextButton = (Button) findViewById(R.id.add_photo_button_next);
 		gridView = (GridView) findViewById(R.id.add_photo_gridView);
-		im = new ImageManager();
+		imageManager = new ImageManager();
 	}
 
 	/**
@@ -92,8 +97,8 @@ public class AddPicWizardActivity extends Activity {
 	}
 
 	/**
-	 * Get the recipe from intent, which is sent by other activity
-	 * TODO create a new intent that allow
+	 * Get the recipe from intent, which is sent by other activity TODO create a
+	 * new intent that allow
 	 */
 	private void getRecipe() {
 		recipe = (Recipe) getIntent().getSerializableExtra("NEW_RECIPE");
@@ -112,31 +117,29 @@ public class AddPicWizardActivity extends Activity {
 	 * This is method, which is mainly responsible for taking photo
 	 * 
 	 */
+	
 	public void takePhoto() {
 		Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-		String folder = Environment.getExternalStorageDirectory()
-				.getAbsolutePath() + "/tmp";
-		File folderF = new File(folder);
-		if (!folderF.exists()) {
-			folderF.mkdir();
-		}
-		String imageFilePath = folder + "/"
-				+ String.valueOf(System.currentTimeMillis()) + ".jpg";
-		File imageFile = new File(imageFilePath);
-		imageFileUri = Uri.fromFile(imageFile);
-
-		intent.putExtra(MediaStore.EXTRA_OUTPUT, imageFileUri);
+		
+		String folderPath = imageManager.createFolder("tmp");// hd image folder
+		String subFolderPath = imageManager.createSubfolder("tmp", "thumbnail");// thumbnail folder
+				
+		String imgPathHD = imageManager.genImgPath(folderPath);
+		String imgPathTN = imageManager.genImgPath(subFolderPath);
+		
+		uriImgHD = imageManager.createImage(imgPathHD);
+		uriImgTN = imageManager.createImage(imgPathTN);
+		
+		intent.putExtra(MediaStore.EXTRA_OUTPUT, uriImgHD);
 		startActivityForResult(intent,
 				StrResource.CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
 	}
-
 	
-
-/*	private void setBogoPic() {
-		Toast.makeText(this, "Generating Photo", Toast.LENGTH_LONG).show();
-		view_photo.setImageBitmap(ourBMP);
-	}*/
-
+	/*
+	 * private void setBogoPic() { Toast.makeText(this, "Generating Photo",
+	 * Toast.LENGTH_LONG).show(); view_photo.setImageBitmap(ourBMP); }
+	 */
+/*
 	private void processIntent(boolean cancel) {
 		Intent intent = getIntent();
 		if (intent == null) {
@@ -170,23 +173,20 @@ public class AddPicWizardActivity extends Activity {
 		}
 		finish();
 	}
-
-	private File getPicturePath(Intent intent) {
-		Uri uri = (Uri) intent.getExtras().get(MediaStore.EXTRA_OUTPUT);
-		return new File(uri.getPath());
-	}
+*/
 
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		if (requestCode == StrResource.CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE) {
 			if (resultCode == RESULT_OK) {
-				//view_photo.setImageDrawable(Drawable
-						//.createFromPath(imageFileUri.getPath()));
-				recipe.addImage(imageFileUri.getPath());
+				// view_photo.setImageDrawable(Drawable
+				// .createFromPath(imageFileUri.getPath()));
+				recipe.addImage(uriImgHD.getPath());
+
 			} else if (resultCode == RESULT_CANCELED) {
-				Toast.makeText(this, "Photo Cancelled",
-						Toast.LENGTH_LONG).show();
+				Toast.makeText(this, "Camera cancelled", Toast.LENGTH_LONG)
+						.show();
 			} else {
-				
+
 			}
 		}
 	}
