@@ -60,7 +60,7 @@ public class ImageAdapter extends BaseAdapter{
 	public View getView(int position, View convertView, ViewGroup parent) {
 		// TODO Auto-generated method stub
 		ImageView imageView = new ImageView(context);
-		File image = new File(gallery.get(position).getPath());
+		File image = new File(gallery.get(position).getTN_Path());
 		imageView.setImageURI(Uri.fromFile(image));
 		return imageView;
 	}

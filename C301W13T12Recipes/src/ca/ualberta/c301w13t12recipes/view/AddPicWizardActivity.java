@@ -158,7 +158,7 @@ public class AddPicWizardActivity extends Activity {
 					e.printStackTrace();
 				}
 
-				recipe.addImage(uriImgTN.getPath());
+				recipe.addImage(uriImgHD.getPath(),uriImgTN.getPath());
 				refreshView();
 			} else if (resultCode == RESULT_CANCELED) {
 				Toast.makeText(this, "Operation cancelled", Toast.LENGTH_LONG)
