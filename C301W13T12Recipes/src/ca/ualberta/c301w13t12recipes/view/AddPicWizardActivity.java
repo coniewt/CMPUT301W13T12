@@ -16,6 +16,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.Button;
 import android.widget.GridView;
 import android.widget.Toast;
@@ -66,17 +67,17 @@ public class AddPicWizardActivity extends Activity {
 			}
 		});
 		
-		gridView.setOnItemClickListener(new OnItemClickListener() {
+		gridView.setOnItemLongClickListener(new OnItemLongClickListener(){
 
 			@Override
-			public void onItemClick(AdapterView<?> gridView, View view, int pos,
-					long id) {
+			public boolean onItemLongClick(AdapterView<?> arg0, View arg1,
+					int pos, long arg3) {
 				// TODO long click to remove selected item
 				imageManager.removeImageFilesFromLocal(recipe.getImage(pos));
 				recipe.removeImage(pos);
 				Toast.makeText(AddPicWizardActivity.this, "Image is removed successfully", Toast.LENGTH_SHORT).show();
 				refreshView();
-				
+				return false;
 			}
 
 		});
