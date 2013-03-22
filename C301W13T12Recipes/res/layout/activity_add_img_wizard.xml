@@ -8,8 +8,8 @@
     <ImageView
         android:id="@+id/imageView1"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1.85"
+        android:layout_height="118dp"
+
         android:src="@drawable/navi_step3" />
 
     <LinearLayout
@@ -21,7 +21,7 @@
         <GridView
             android:id="@+id/add_photo_gridView"
             android:layout_width="match_parent"
-            android:layout_height="412dp"
+            android:layout_height="match_parent"
             android:columnWidth="90dp"
             android:gravity="center"
             android:horizontalSpacing="10dp"
@@ -37,7 +37,7 @@
 
         <Button
             android:id="@+id/add_button_complete"
-            android:layout_width="181dp"
+            android:layout_width="194dp"
             android:layout_height="wrap_content"
             android:text="Add" />
 
