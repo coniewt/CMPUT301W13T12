@@ -63,7 +63,7 @@ public class AddPicWizardActivity extends Activity {
 			@Override
 			public void onClick(View arg0) {
 				// TODO adding photos
-				takePhoto();
+				/*takePhoto();*/
 
 			}
 		});
