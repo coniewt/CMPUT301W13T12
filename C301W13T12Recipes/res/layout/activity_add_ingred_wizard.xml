@@ -14,7 +14,7 @@
     <ImageButton
         android:id="@+id/imgBtn_add_ingredient_button"
         android:layout_width="59dp"
-        android:layout_height="53dp"
+        android:layout_height="56dp"
         android:layout_marginLeft="600px"
         android:background="#00000000"
         android:src="@drawable/step2_add_button_release" />
@@ -22,9 +22,11 @@
     <ListView
         android:id="@+id/listView_ingredients_list"
         android:layout_width="345dp"
-        android:layout_height="315dp"
+        android:layout_height="307dp"
         android:layout_marginLeft="35px"
-        android:layout_marginRight="25px" >
+        android:layout_marginRight="25px"
+        android:layout_weight="0.50" >
+
     </ListView>
 
     <LinearLayout
