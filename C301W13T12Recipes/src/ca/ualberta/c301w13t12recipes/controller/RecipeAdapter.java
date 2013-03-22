@@ -29,10 +29,7 @@ public class RecipeAdapter{
 		for(Recipe re:li)
 		{
 			HashMap<String, String> map = new HashMap<String, String>();
-			//Recipe re=li.get(0);
-			//Log.v("getTest",re.getName());
 			map.put("name",re.getName());
-			Log.v("map:",map.get("name").toString());
 			fillMaps.add(map);
 		}
 		return new SimpleAdapter(ct,fillMaps,R.layout.item_recipe,from,to);

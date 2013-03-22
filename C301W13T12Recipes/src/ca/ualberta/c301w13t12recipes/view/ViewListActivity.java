@@ -29,9 +29,8 @@ public class ViewListActivity extends Activity {
 	/** Called when the activity is first created. */
 	private ListView lv;
 	private RecipeAdapter adapter;
-
-	private ArrayList<HashMap<String, Object>> list = new ArrayList<HashMap<String, Object>>();
-
+	private DatabaseController controller;
+	
 	public void onCreate(Bundle savedInstanceState) {
 	    super.onCreate(savedInstanceState);
 	    this.setContentView(R.layout.activity_view_list);
@@ -46,28 +45,7 @@ public class ViewListActivity extends Activity {
 	    refreshList();
 	    // TODO Auto-generated method stub
 	}
-
-	@Override
-	public void onRestart() {
-		super.onRestart();
-		// refresh();
-	}
-
-	@Override
-	public void onResume() {
-		super.onResume();
-		// refresh();
-	}
-
-	/*
-	 * public void refresh() { try{ HashMap<String, Object> map = new
-	 * HashMap<String, Object>(); for(Recipe re:re_list){ map.put("id",
-	 * re.getId()); map.put("name", re.getName()); } map.put("id", "123");
-	 * map.put("name", "adasdsa"); String[] from ={"id","name"}; int[] to
-	 * ={R.id.view_id,R.id.view_name}; list.add(map); lv.setAdapter(new
-	 * SimpleAdapter(this,list,R.layout.item_recipe,from,to)); } catch
-	 * (Exception e){ e.printStackTrace(); } }
-	 */
+	
 	private void refreshList() {
 		adapter = new RecipeAdapter();
 		ListAdapter la = adapter.getAdapter(this);
