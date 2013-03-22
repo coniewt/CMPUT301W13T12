@@ -159,18 +159,6 @@ public class LocalDB {
 	}
 
 	/**
-	 * Deletes a task from the remote server
-	 * 
-	 * @param id
-	 *            The id of the task to be deleted.
-	 */
-	private void delete_Remote_Recipe(String id) {
-		// db.delete(StrResource.REMOTE_TASK_TABLE_NAME, StrResource.COL_ID +
-		// " =?", new String[]{id,});
-		// incomplete
-	}
-
-	/**
 	 * Gets a task (if exists) from the "local" table of the database.
 	 * 
 	 * @param id
