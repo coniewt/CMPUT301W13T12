@@ -10,46 +10,68 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.Button;
+import android.widget.GridView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import ca.ualberta.c301w13t12recipes.R;
 import ca.ualberta.c301w13t12recipes.controller.DatabaseController;
+import ca.ualberta.c301w13t12recipes.controller.ImageManager;
 import ca.ualberta.c301w13t12recipes.controller.RecipeAdapter;
 import ca.ualberta.c301w13t12recipes.model.Image;
 import ca.ualberta.c301w13t12recipes.model.Recipe;
 
 /**
  * Activity class for listview
- * 
+ * @author GUANQI HUANG & YUWEI DUAN
  */
 public class ViewListActivity extends Activity {
 
 	/** Called when the activity is first created. */
-	private ListView lv;
+	private ListView listView;
 	private RecipeAdapter adapter;
 	private DatabaseController controller;
+	private Button deleteAllButton;
 	
 	public void onCreate(Bundle savedInstanceState) {
 	    super.onCreate(savedInstanceState);
 	    this.setContentView(R.layout.activity_view_list);
-	    lv= (ListView) findViewById(R.id.view_listview);
-	    lv.setOnItemClickListener( new OnItemClickListener() {
+	    controller = new DatabaseController(this);
+	    this.setupWidgets();
+	    
+	    listView.setOnItemClickListener( new OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
 					long arg3) {
 				jumpToAddViewDetailRecipeActivity(arg2);
 			}
 		});
-	    refreshList();
+	    this.refreshList();
+	    deleteAllButton.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO delete all the items from listView
+				controller.removeAll();
+				refreshList();
+			}
+		});
+	    
+	    
+	    
 	    // TODO Auto-generated method stub
 	}
-	
+	private void setupWidgets() {
+		listView= (ListView) findViewById(R.id.view_listview);
+		deleteAllButton = (Button)findViewById(R.id.view_button_delete_all);
+	}
 	private void refreshList() {
 		adapter = new RecipeAdapter();
-		ListAdapter la = adapter.getAdapter(this);
-		lv.setAdapter(la);
+		ListAdapter la = adapter.getAdapter(ViewListActivity.this);
+		listView.setAdapter(la);
 	}
 	/**
 	 * Jump to AddViewDetailRecipeActivity 

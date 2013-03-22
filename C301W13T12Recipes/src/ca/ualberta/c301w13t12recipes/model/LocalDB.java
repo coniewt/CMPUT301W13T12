@@ -332,7 +332,7 @@ public class LocalDB {
 	// fixed
 	public void clear_All() {
 		db.delete(StrResource.LOCAL_RECIPE_TABLE_NAME, null, null);
-		db.delete(StrResource.REMOTE_RECIPE_TABLE_NAME, null, null);
+		//db.delete(StrResource.REMOTE_RECIPE_TABLE_NAME, null, null);
 	}
 
 	/**
