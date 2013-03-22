@@ -22,10 +22,7 @@ import ca.ualberta.c301w13t12recipes.model.Recipe;
 public class ViewDetailedRecipeActivity extends Activity {
 	private Gallery gallery;
 	private ArrayList<Image> imageList;
-	// private Gallery gallery1;
-	private Integer[] mps = { R.drawable.a, R.drawable.b, R.drawable.c,
-			R.drawable.d, R.drawable.e, R.drawable.f };
-
+	
 	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {

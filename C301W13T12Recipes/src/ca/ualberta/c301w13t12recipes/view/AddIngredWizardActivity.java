@@ -25,7 +25,7 @@ import ca.ualberta.c301w13t12recipes.model.Recipe;
 
 /**
  * Activity class for adding ingredient wizard
- * 
+ * @author GUANQI HUANG
  */
 public class AddIngredWizardActivity extends Activity {
 	private ImageButton addIngredButton;

@@ -10,7 +10,11 @@ import ca.ualberta.c301w13t12recipes.R;
 import ca.ualberta.c301w13t12recipes.R.layout;
 import ca.ualberta.c301w13t12recipes.controller.DatabaseController;
 import ca.ualberta.c301w13t12recipes.model.Recipe;
-
+/**
+ * 
+ * @author GUANQI HUANG
+ *
+ */
 public class AddCompleteWizardActivity extends Activity {
 	Button doneButton;
 	DatabaseController controller;
