@@ -86,6 +86,8 @@ public class AddPicWizardActivity extends Activity {
 				imageManager.removeImageFilesFromLocal(recipe.getImage(pos));
 				recipe.removeImage(pos);
 				Toast.makeText(AddPicWizardActivity.this, "Image is removed successfully", Toast.LENGTH_SHORT);
+				refreshView();
+				
 			}
 
 		});
