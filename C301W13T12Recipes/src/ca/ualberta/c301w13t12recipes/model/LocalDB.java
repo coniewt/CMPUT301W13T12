@@ -1,11 +1,8 @@
 package ca.ualberta.c301w13t12recipes.model;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
-//import org.apache.http.client.fluent.Response;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -16,6 +13,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.ParseException;
 import android.util.Log;
+//import org.apache.http.client.fluent.Response;
 
 /**
  * @author dw
@@ -86,7 +84,7 @@ public class LocalDB {
 		}
 		return null;
 	}
-	
+
 	/**
 	 * Search local recipes by keywords
 	 * 
@@ -251,43 +249,62 @@ public class LocalDB {
 	}
 
 	/**
-	 * Gets a task (if exists) from the "remote" table of the database.
+	 * Gets a recipe (if exists) from the "remote" table of the database.
 	 * 
 	 * @param id
-	 *            ID of task to search for
-	 * @return Task found, if nothing found returns null.
+	 *            ID of recipe to search for
+	 * @return Recipe found, if nothing found returns null.
 	 * @throws JSONException
 	 */
-	/*
-	 * public Recipe getRemoteRecipe(String id) { try { Cursor c =
-	 * db.rawQuery("SELECT * FROM " + StrResource.REMOTE_TASK_TABLE_NAME +
-	 * " WHERE " + "=?", new String[]{id,}); c.moveToFirst();
-	 * if(c==null||c.getCount()==0) { return null; } else { String taskContent =
-	 * "";//c.getString(c.getColumnIndex(StrResource.COL_CONTENT)); JSONObject
-	 * jsonRecipe = toJsonRecipe(taskContent); return toRecipe(jsonRecipe); } }
-	 * catch(JSONException e) { e.printStackTrace(); } return null; }
-	 */
+	
+	public Recipe getRemoteRecipe(String id) {
+		try {
+			Cursor c = db.rawQuery("SELECT * FROM "
+					+ StrResource.REMOTE_RECIPE_TABLE_NAME + " WHERE " + "=?",
+					new String[] { id, });
+			c.moveToFirst();
+			if (c == null || c.getCount() == 0) {
+				return null;
+			} else {
+				String taskContent = c.getString(1);
+				JSONObject jsonRecipe = toJsonRecipe(taskContent);
+				return toRecipe(jsonRecipe);
+			}
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	 
 
 	/**
-	 * Get the remote task list.
+	 * Get the remote recipe list.
 	 * 
 	 * @return A list of tasks in the remote table of the database
 	 * @throws JSONException
 	 */
-	// fixed
-	/*
-	 * public ArrayList<Recipe> getRemoteRecipeList() { try {
-	 * Log.d("refresh","STARTING REMOTE TASK LIST"); ArrayList<Recipe> out = new
-	 * ArrayList<Recipe>(); Cursor c =
-	 * db.rawQuery("SELECT * FROM "+StrResource.REMOTE_TASK_TABLE_NAME, new
-	 * String[]{}); if(c.moveToFirst()) { while(c.isAfterLast()==false) {
-	 * JSONObject obj =
-	 * toJsonTask(c.getString(c.getColumnIndex(StrResource.COL_CONTENT)));
-	 * out.add(toTask(obj)); c.moveToNext(); } }
-	 * Log.d("refresh","sizeof remotetasklist = "+out.size()); return out;
-	 * 
-	 * } catch(Exception e) { e.printStackTrace(); } return null; }
-	 */
+
+	public ArrayList<Recipe> getRemoteRecipeList() {
+		try {
+			Log.d("refresh", "STARTING REMOTE TASK LIST");
+			ArrayList<Recipe> out = new ArrayList<Recipe>();
+			Cursor c = db.rawQuery("SELECT * FROM "
+					+ StrResource.REMOTE_RECIPE_TABLE_NAME, new String[] {});
+			if (c.moveToFirst()) {
+				while (c.isAfterLast() == false) {
+					JSONObject obj = toJsonRecipe(c.getString(1));
+					out.add(toRecipe(obj));
+					c.moveToNext();
+				}
+			}
+			Log.d("refresh", "sizeof remotetasklist = " + out.size());
+			return out;
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
 
 	/**
 	 * Updates the database with the passed in task based on the id.
@@ -332,7 +349,7 @@ public class LocalDB {
 	// fixed
 	public void clear_All() {
 		db.delete(StrResource.LOCAL_RECIPE_TABLE_NAME, null, null);
-		//db.delete(StrResource.REMOTE_RECIPE_TABLE_NAME, null, null);
+		// db.delete(StrResource.REMOTE_RECIPE_TABLE_NAME, null, null);
 	}
 
 	/**
