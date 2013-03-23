@@ -73,9 +73,20 @@ public class AddIngredWizardActivity extends Activity {
 		});
 		clearButton.setOnClickListener(new OnClickListener() {
 			public void onClick(View arg0) {
-				recipe.removeAllIngredient();
-				refreshList();
-			}
+				AlertDialog.Builder builder = new Builder(AddIngredWizardActivity.this); 
+				builder.setTitle("Notification");
+				builder.setPositiveButton("Continue",new android.content.DialogInterface.OnClickListener(){
+					@SuppressWarnings("deprecation")
+					public void onClick(DialogInterface arg0, int arg1) {
+						recipe.removeAllIngredient();
+						refreshList();
+						}
+				}); 
+				builder.setNegativeButton("Cancel", null);
+					builder.setIcon(android.R.drawable.ic_dialog_info); 
+					builder.setMessage("Are you sure to delete?"); 
+				builder.show(); 
+				}
 		});
 		// TODO Auto-generated method stub
 		nextButton.setOnClickListener(new OnClickListener() {
@@ -112,6 +123,10 @@ public class AddIngredWizardActivity extends Activity {
 
 	}
 
+	/**
+	 * @author dw
+	 *
+	 */
 	class AddIngredDiaglogFragment extends DialogFragment {
 		private EditText nameEditText;
 		private EditText amountEditText;

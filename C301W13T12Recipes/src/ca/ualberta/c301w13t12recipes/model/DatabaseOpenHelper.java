@@ -14,10 +14,14 @@ public class DatabaseOpenHelper extends SQLiteOpenHelper
 	private static final String LOCAL_RECIPE_TABLE_CREATE =
 			"CREATE TABLE IF NOT EXISTS "+
 	StrResource.LOCAL_RECIPE_TABLE_NAME+" (id TEXT PRIMARY KEY, Content TEXT)" ;
-	//private static final String LOCAL_INGREDIENTS_TABLE_CREATE =
-			//"CREATE TABLE IF NOT EXISTS ingredients(id TEXT,I_name TEXT,amount TEXT)" ;
-	//private static final String REMOTE_TASK_TABLE_CREATE ="CREATE TABLE " ;
+	private static final String REMOTE_TASK_TABLE_CREATE ="CREATE TABLE IF NOT EXISTS "+
+			StrResource.REMOTE_RECIPE_TABLE_NAME+" (id TEXT PRIMARY KEY, Content TEXT)";
 
+	/**
+	 * This is extended constructor from the super class
+	 * SQLiteOpenHelper
+	 * @param context
+	 */
 	public DatabaseOpenHelper(Context context)
 	{
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -31,7 +35,7 @@ public class DatabaseOpenHelper extends SQLiteOpenHelper
 	{
 		//db.execSQL(LOCAL_INGREDIENTS_TABLE_CREATE);
 		db.execSQL(LOCAL_RECIPE_TABLE_CREATE);
-		//db.execSQL(REMOTE_TASK_TABLE_CREATE);
+		db.execSQL(REMOTE_TASK_TABLE_CREATE);
 	}
 	
 	/**
@@ -42,12 +46,14 @@ public class DatabaseOpenHelper extends SQLiteOpenHelper
 	{
 		if(oldVersion < 4)
 		{
-			final String DROP_RECIPE_TABLE =
-					"DROP TABLE recipe;";
+			final String DROP_LOCAL_RECIPE_TABLE =
+					"DROP TABLE local_recipe_table;";
+			final String DROP_REMOTE_RECIPE_TABLE =
+					"DROP TABLE local_recipe_table;";
 /*			final String DROP_INGREDIENT_TABLE =
 					"DROP TABLE ingre;";*/
-			db.execSQL(DROP_RECIPE_TABLE);
-			//db.execSQL(DROP_INGREDIENT_TABLE);
+			db.execSQL(DROP_LOCAL_RECIPE_TABLE);
+			db.execSQL(DROP_REMOTE_RECIPE_TABLE);
 		}
 	}
 
