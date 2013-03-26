@@ -21,12 +21,13 @@ public class Image implements Serializable {
 	String name;
 
 	/**
-	 * @param path
+	 * The construct to build a new image by the parameters
+	 * @param hd_path,tn_path,time
 	 */
-	public Image(String hd_path,String tnpath) {
-		this.tn_path = tnpath;
+	public Image(String hd_path,String tn_path,String time) {
+		this.tn_path = tn_path;
 		this.hd_path = hd_path;
-		this.name = getTime();
+		this.name = time;
 	}
 
 	/**
@@ -51,7 +52,7 @@ public class Image implements Serializable {
 	 * 
 	 * @return Current data
 	 */
-	public String getTime() {
+	public static String getTime() {
 		Calendar cal = Calendar.getInstance();
 		cal.getTime();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyMMddHHmmss");

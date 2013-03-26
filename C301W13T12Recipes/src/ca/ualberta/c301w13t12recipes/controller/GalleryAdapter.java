@@ -21,7 +21,7 @@ public class GalleryAdapter extends ImageAdapter{
 	
 	public GalleryAdapter(Context context,ArrayList<Image> imageList){
 		super(context, imageList);
-		density = context.getResources().getDisplayMetrics().density;
+		//density = context.getResources().getDisplayMetrics().density;
 		
 	}
 	
@@ -33,9 +33,9 @@ public class GalleryAdapter extends ImageAdapter{
 		
 		
 		imageView.setScaleType(ImageView.ScaleType.FIT_XY);
-		imageView.setLayoutParams(new Gallery.LayoutParams(
+		/*imageView.setLayoutParams(new Gallery.LayoutParams(
 				(int) (ITEM_WIDTH * density + 0.5f),
-				(int) (ITEM_HEIGHT * density + 0.5f)));
+				(int) (ITEM_HEIGHT * density + 0.5f)));*/
 		File image = new File(gallery.get(position).getTN_Path());
 		imageView.setImageURI(Uri.fromFile(image));
 		return imageView;
