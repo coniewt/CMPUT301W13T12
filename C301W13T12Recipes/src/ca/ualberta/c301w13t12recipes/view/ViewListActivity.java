@@ -44,9 +44,10 @@ public class ViewListActivity extends Activity {
 	    
 	    listView.setOnItemClickListener( new OnItemClickListener() {
 			@Override
-			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
+			public void onItemClick(AdapterView<?> arg0, View arg1, int pos,
 					long arg3) {
-				jumpToAddViewDetailRecipeActivity(arg2);
+				jumpToAddViewDetailRecipeActivity(pos);
+				
 			}
 		});
 	    this.refreshList();
@@ -80,12 +81,9 @@ public class ViewListActivity extends Activity {
 	private void jumpToAddViewDetailRecipeActivity(int index) {
 		Intent intent = new Intent(ViewListActivity.this,
 		ViewDetailedRecipeActivity.class);
-		List<Recipe> li =(new DatabaseController(this)).getDB().getLocal_Recipe_List();
+		List<Recipe> recipeList =(new DatabaseController(this)).getDB().getLocal_Recipe_List();
 		Bundle bundle = new Bundle();
-		if(li.get(index).getImage().size()>0)
-			bundle.putSerializable("IMAGE", (Serializable) li.get(index).getImage());
-		else 
-			bundle.putSerializable("IMAGE", (Serializable) new ArrayList<Image>());
+		
 		intent.putExtras(bundle);
 		startActivity(intent);
 	}

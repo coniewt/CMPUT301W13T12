@@ -19,9 +19,9 @@ import android.widget.ImageView;
  * @author GUANQI HUANG
  */
 public class ImageAdapter extends BaseAdapter{
-	private Context context;
+	protected Context context;
 	private DatabaseController controller;
-	private ArrayList<Image> gallery;
+	protected ArrayList<Image> gallery;
 
 	/**
 	 * 
