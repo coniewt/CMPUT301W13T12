@@ -43,9 +43,16 @@ import com.google.gson.reflect.TypeToken;
 public class WebController {
 	
 	// HTTP Connector
-	protected HttpClient httpclient = new DefaultHttpClient();
+	protected HttpClient httpclient;
 
 	// JSON Utilities
-	protected Gson gson = new Gson();
+	protected Gson gson;
 	
+	public WebController(){
+		
+		httpclient = new DefaultHttpClient();
+		
+		gson = new Gson();
+		
+	}
 }
