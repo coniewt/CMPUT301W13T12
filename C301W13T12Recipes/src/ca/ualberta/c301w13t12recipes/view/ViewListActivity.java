@@ -41,17 +41,16 @@ public class ViewListActivity extends Activity {
 	    this.setContentView(R.layout.activity_view_list);
 	    controller = new DatabaseController(this);
 	    this.setupWidgets();
-	    
+	    this.refreshList();
 	    listView.setOnItemClickListener( new OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1, int pos,
 					long arg3) {
 				jumpToAddViewDetailRecipeActivity(pos);
 				
-				
 			}
 		});
-	    this.refreshList();
+	    
 	    deleteAllButton.setOnClickListener(new OnClickListener() {
 			
 			@Override
@@ -82,9 +81,12 @@ public class ViewListActivity extends Activity {
 	private void jumpToAddViewDetailRecipeActivity(int index) {
 		Intent intent = new Intent(ViewListActivity.this,
 		ViewDetailedRecipeActivity.class);
-		List<Recipe> recipeList =(new DatabaseController(this)).getDB().getLocal_Recipe_List();
-		Bundle bundle = new Bundle();
 		
+		List<Recipe> recipeList =(new DatabaseController(this)).getDB().getLocal_Recipe_List();
+		Recipe recipe = recipeList.get(index);
+		
+		Bundle bundle = new Bundle();
+		bundle.putSerializable("LOCAL_RECIPE",recipe);
 		intent.putExtras(bundle);
 		startActivity(intent);
 	}
