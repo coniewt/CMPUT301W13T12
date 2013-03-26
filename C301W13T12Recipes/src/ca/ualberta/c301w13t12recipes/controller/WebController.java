@@ -55,4 +55,19 @@ public class WebController {
 		gson = new Gson();
 		
 	}
+	
+	String getEntityContent(HttpResponse response) throws IOException {
+		BufferedReader br = new BufferedReader(
+				new InputStreamReader((response.getEntity().getContent())));
+		String output;
+		System.err.println("Output from Server -> ");
+		String json = "";
+		while ((output = br.readLine()) != null) {
+			System.err.println(output);
+			json += output;
+		}
+		System.err.println("JSON:"+json);
+		return json;
+	}
+	
 }
