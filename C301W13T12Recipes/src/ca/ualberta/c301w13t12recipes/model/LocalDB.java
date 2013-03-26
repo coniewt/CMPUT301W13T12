@@ -194,12 +194,15 @@ public class LocalDB {
 	 * @throws JSONException
 	 */
 	private Recipe toRecipe(JSONObject j) throws JSONException {
+		Recipe re;
 		if (j == null) {
 			return null;
 		} else {
-			return new Recipe(j.getString("id"), j.getString("user"),
+			re = new Recipe(j.getString("id"), j.getString("user"),
 					j.getString("name"), toIngredients(j),
 					j.getString("directions"));
+			re.setImageList(toImages(j));
+			return re; 
 		}
 	}
 
@@ -236,7 +239,26 @@ public class LocalDB {
 		}
 		return null;
 	}
-
+	private static ArrayList<Image> toImages(JSONObject jsonTask)
+			throws JSONException {
+		try {
+			JSONArray jsonArray = jsonTask.getJSONArray("image");
+			ArrayList<Image> ingredients = new ArrayList<Image>();
+			// ResponseFactory respFactory =
+			// getRespFactory(jsonTask.getString("Ingredients"));
+			for (int i = 0; i < jsonArray.length(); i++) {
+				Image in = new Image(jsonArray.getJSONObject(i)
+						.getString("HD_path"), jsonArray.getJSONObject(i)
+						.getString("TN_path"),Image.getTime());
+				ingredients.add(in);
+			}
+			return ingredients;
+		} catch (ParseException e) {
+			System.err.println("Could not parse date");
+			e.printStackTrace();
+		}
+		return null;
+	}
 	/**
 	 * Convert String to JSON object
 	 * 

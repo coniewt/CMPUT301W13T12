@@ -76,7 +76,14 @@ public class Recipe implements Serializable{
 	 * @param Path of image
 	 */
 	public void addImage(String hd_path,String TN_path){
-		this.ImageCollection.add(new Image(hd_path,TN_path));
+		this.ImageCollection.add(new Image(hd_path,TN_path,Image.getTime()));
+	}
+	/**
+	 * Set the Image list of the Recipe
+	 * @param ar arrayList,which contains the Images
+	 */
+	public void setImageList(ArrayList<Image> ar){
+		this.ImageCollection= ar;
 	}
 
 	/**
@@ -209,34 +216,33 @@ public class Recipe implements Serializable{
 	 */
 	public JSONObject toJson() {
 		JSONObject jsonObject = new JSONObject();
+		ArrayList<Image> image_list = (ArrayList<Image>) this.getImage();
+		ArrayList<Ingredient> ingre_list = (ArrayList<Ingredient>) this.getIngredients();
 		try {
 			jsonObject.put("name", getName());
 			jsonObject.put("user", getUser());
 			jsonObject.put("directions", getDirections());
 			jsonObject.put("id", getId());
-			
-			JSONArray arr = new JSONArray();
+			JSONArray ingre_arr = new JSONArray();
 			JSONArray image_arr = new JSONArray();
-			if (getImage().size()>1){
-				for(Image im:getImage()){
+			if (image_list.size()>1){
+				for(Image im:image_list){
 					image_arr.put(im.toJson());
 				}
 			}
 			jsonObject.put("image",image_arr );
-			for (Ingredient in : getIngredients()) {
+			for (Ingredient in : ingre_list) {
 				JSONObject jo = new JSONObject();
 				jo.put("name", in.getName());
 				jo.put("amount", in.getAmount());
-				arr.put(jo);
+				ingre_arr.put(jo);
 			}
-			jsonObject.put("Ingredients", arr);
+			jsonObject.put("Ingredients", ingre_arr);
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
 		return jsonObject;
 	}
-	
-	
 	/**
 	 * Create an array of Recipe objects
 	 * @param Size of the array
@@ -261,7 +267,7 @@ public class Recipe implements Serializable{
 	/**
 	 * Remove item from ingredients list
 	 */
-	public void removeIngredient(int pos){
+	public void removeIngredientByIndex(int pos){
 		
 		this.ingredients.remove(pos);
 	}
@@ -274,10 +280,14 @@ public class Recipe implements Serializable{
 		this.ImageCollection.remove(pos);
 	}
 	/**
-	 * 
+	 * Remove all ingredient of the recipe
 	 */
 	public void removeAllIngredient(){
-		this.ingredients.removeAll(this.getIngredients());
+		if(this.getIngredients().size()>1){
+			for(int i=0;i<this.getIngredients().size();i++){
+				this.removeIngredientByIndex(i);
+			}
+		}
 	}
 	
 	/**

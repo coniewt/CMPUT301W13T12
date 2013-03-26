@@ -54,7 +54,7 @@ public class AddIngredWizardActivity extends Activity {
 				Toast.makeText(AddIngredWizardActivity.this,
 						recipe.getIngredientName(pos) + " is removed", 3)
 						.show();
-				recipe.removeIngredient(pos);
+				recipe.removeIngredientByIndex(pos);
 				refreshList();
 
 				return false;
