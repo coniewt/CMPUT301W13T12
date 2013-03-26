@@ -109,9 +109,9 @@ public class WebController {
 			urlConnection.disconnect();}
 		}*/
 	
-	public void getRecipe(/*????*/){
+	public void getRecipe(String string){
 		try{
-			HttpGet getRequest = new HttpGet("http://cmput301.softwareprocess.es:8080/cmput301w13t12/?pretty=1");//S4bRPFsuSwKUDSJImbCE2g?pretty=1
+			HttpGet getRequest = new HttpGet("http://cmput301.softwareprocess.es:8080/cmput301w13t12/"+string+"?pretty=1");//S4bRPFsuSwKUDSJImbCE2g?pretty=1
 
 			getRequest.addHeader("Accept","application/json");
 
