@@ -225,7 +225,7 @@ public class Recipe implements Serializable{
 			jsonObject.put("id", getId());
 			JSONArray ingre_arr = new JSONArray();
 			JSONArray image_arr = new JSONArray();
-			if (image_list.size()>1){
+			if (image_list.size()>=1){
 				for(Image im:image_list){
 					image_arr.put(im.toJson());
 				}
