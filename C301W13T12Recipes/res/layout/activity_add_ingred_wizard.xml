@@ -3,7 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/wizard_step2_bg"
-    android:orientation="vertical" >
+    android:orientation="vertical" 
+    android:noHistory= "true">
 
     <ImageView
         android:id="@+id/imageView_navi_step2"
