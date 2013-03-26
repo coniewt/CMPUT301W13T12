@@ -35,6 +35,7 @@ public class AddCompleteWizardActivity extends Activity {
 				
 				saveRecipe();
 				jumpToMainActivity();
+				Intent intent = new Intent(AddCompleteWizardActivity.this,AddIngredWizardActivity.class);
 				finish();
 			}
 
