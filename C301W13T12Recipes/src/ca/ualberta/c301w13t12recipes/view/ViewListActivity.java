@@ -48,6 +48,7 @@ public class ViewListActivity extends Activity {
 					long arg3) {
 				jumpToAddViewDetailRecipeActivity(pos);
 				
+				
 			}
 		});
 	    this.refreshList();
