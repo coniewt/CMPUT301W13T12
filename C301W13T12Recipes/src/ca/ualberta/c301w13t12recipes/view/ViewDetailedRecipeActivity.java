@@ -37,7 +37,7 @@ public class ViewDetailedRecipeActivity extends Activity {
 		setContentView(R.layout.activity_view_entry);
 		setupWidgets();
 		getRecipe();
-		Log.v("test", "********"+recipe.getImage().size()+"**************");
+		Log.v("test", "********"+recipe.getImage(0).getTN_Path()+"**************");
 		gridview.setAdapter(new ImageAdapter(ViewDetailedRecipeActivity.this,(ArrayList<Image>)recipe.getImage()));
 		
 	}
