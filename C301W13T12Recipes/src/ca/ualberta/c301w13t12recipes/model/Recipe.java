@@ -25,7 +25,6 @@ public class Recipe implements Serializable{
 	private List<Ingredient> ingredients;
 	private List<Image> ImageCollection;
 	private String directions;
-	private int status;// shows whether the recipe is complete or not 
 
 	/**
 	 * Structure of recipe

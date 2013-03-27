@@ -3,20 +3,17 @@ package ca.ualberta.c301w13t12recipes.view;
 import java.util.ArrayList;
 
 import android.app.Activity;
-import android.content.Context;
-import android.content.res.TypedArray;
 import android.os.Bundle;
-import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.BaseAdapter;
+import android.view.View.OnClickListener;
 import android.widget.Gallery;
-import android.widget.GridView;
-import android.widget.ImageView;
+import android.widget.ImageButton;
+import android.widget.PopupMenu;
+import android.widget.Toast;
 import ca.ualberta.c301w13t12recipes.R;
 import ca.ualberta.c301w13t12recipes.controller.GalleryAdapter;
-import ca.ualberta.c301w13t12recipes.controller.ImageAdapter;
 import ca.ualberta.c301w13t12recipes.model.Image;
 import ca.ualberta.c301w13t12recipes.model.Recipe;
 
@@ -28,7 +25,9 @@ import ca.ualberta.c301w13t12recipes.model.Recipe;
  */
 public class ViewDetailedRecipeActivity extends Activity {
 	private Gallery gallery;
-	//private Gallery gallery;
+	;
+	private ImageButton ppm_im;
+	// private Gallery gallery;
 	private Recipe recipe;
 
 	/** Called when the activity is first created. */
@@ -38,19 +37,44 @@ public class ViewDetailedRecipeActivity extends Activity {
 		setContentView(R.layout.activity_view_entry);
 		setupWidgets();
 		getRecipe();
-		gallery.setAdapter(new GalleryAdapter(ViewDetailedRecipeActivity.this,(ArrayList<Image>)recipe.getImage()));
-		
+		gallery.setAdapter(new GalleryAdapter(ViewDetailedRecipeActivity.this,
+				(ArrayList<Image>) recipe.getImage()));
+		ppm_im.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				PopupMenu ppm = new PopupMenu(v.getContext(), ppm_im);
+				ppm.getMenuInflater().inflate(R.menu.view_detail_popup_menu, ppm.getMenu());
+
+				ppm.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+					public boolean onMenuItemClick(MenuItem item) {
+						Toast.makeText(ViewDetailedRecipeActivity.this,
+								"Clicked popup menu item " + item.getTitle(),
+								Toast.LENGTH_SHORT).show();
+						return true;
+					}
+				});
+
+				ppm.show();
+			}
+		});
 	}
 
 	/**
 	 * Set up the new component
 	 */
 	private void setupWidgets() {
-		gallery = (Gallery)findViewById(R.id.view_entry_gallery);
+		gallery = (Gallery) findViewById(R.id.view_entry_gallery);
+		ppm_im = (ImageButton) findViewById(R.id.popuo_viewButton);
 	}
 
-	private void getRecipe(){
+	private void getRecipe() {
 		recipe = (Recipe) getIntent().getSerializableExtra("LOCAL_RECIPE");
+	}
+
+	public boolean onCreateOptionsMenu(Menu menu) {
+		getMenuInflater().inflate(R.menu.view_detail_popup_menu, menu);
+		return true;
 	}
 
 }
