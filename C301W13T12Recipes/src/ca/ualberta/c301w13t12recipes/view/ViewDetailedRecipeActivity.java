@@ -11,7 +11,7 @@ import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 import ca.ualberta.c301w13t12recipes.R;
-import ca.ualberta.c301w13t12recipes.controller.EmailController;
+import ca.ualberta.c301w13t12recipes.controller.ShareController;
 import ca.ualberta.c301w13t12recipes.controller.GalleryAdapter;
 import ca.ualberta.c301w13t12recipes.controller.IngredientsAdapter;
 import ca.ualberta.c301w13t12recipes.model.Image;
@@ -60,7 +60,7 @@ public class ViewDetailedRecipeActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				startActivity(EmailController.SendEmail(recipe));
+				startActivity(ShareController.SendEmail(recipe));
 			}
 			
 		});

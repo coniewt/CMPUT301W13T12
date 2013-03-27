@@ -13,7 +13,7 @@ import ca.ualberta.c301w13t12recipes.model.Recipe;
 /** Basic email class with email addresses, subject and body filled in automatically.
  * 
  */
-public class EmailController {
+public class ShareController {
 	/** Fills in email fields (sender & recipient email addresses, subject, body).
 	 *  Puts them into an intent.
 	 * 
