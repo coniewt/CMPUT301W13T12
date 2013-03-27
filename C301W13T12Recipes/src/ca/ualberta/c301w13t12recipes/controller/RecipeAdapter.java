@@ -29,6 +29,7 @@ public class RecipeAdapter {
 		List<HashMap<String, String>> fillMaps = new ArrayList<HashMap<String, String>>();
 		List<Recipe> li = (new DatabaseController(ct)).getDB()
 				.getLocal_Recipe_List();
+		//Log.v("hello", li.get(0).getPassWord());
 		// if database does not contain any row, getDB() will return null to li
 		// we need if condition to check when li equals null or not
 		if (li != null) {

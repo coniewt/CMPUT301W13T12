@@ -36,13 +36,22 @@ public class Recipe implements Serializable{
 	 * @param user
 	 * @param passward
 	 */
-	public Recipe(String user, String name, String directions,String ur,String pw) {
+	public Recipe(String user, String name, String directions) {
 		this.id = getUniqueId();
 		this.user = user;
-		this.passward = pw;
+		this.passward = "admin";
 		this.name = name;
 		this.ImageCollection = new ArrayList<Image>();
 		this.ingredients = new ArrayList<Ingredient>();
+		this.directions = directions;
+	}
+	public Recipe(String id,String user,String name,List<Ingredient> ar, String directions) {
+		this.id = id;
+		this.user = user;
+		this.passward = "admin";
+		this.name = name;
+		this.ImageCollection = new ArrayList<Image>();
+		this.ingredients = ar;
 		this.directions = directions;
 	}
 	/**
@@ -68,6 +77,26 @@ public class Recipe implements Serializable{
 	public void setImageList(ArrayList<Image> ar){
 		this.ImageCollection= ar;
 	}
+	/**
+	 * @param pw
+	 */
+	public void setPassWord(String pw){
+		this.passward=pw;
+	}
+	/**
+	 * @return
+	 */
+	public String getPassWord(){
+		return this.passward;
+	}
+	/**
+	 * @param user
+	 * @param pw
+	 * @return whether the pair of user and pw is the same as the pair in recipe
+	 */
+	public boolean Authentication(String user,String pw){
+		return this.user.compareTo(user)==0&&this.passward.compareTo(pw)==0;
+	}
 
 	/**
 	 * Get ID
@@ -92,24 +121,6 @@ public class Recipe implements Serializable{
 		return this.user;
 	}
 	
-	/**
-	 * Get the status of current recipe
-	 * @return True if recipe is complete, false if recipe is incomplete
-	 */
-	public boolean isComplete(){
-		if(this.status == 0){
-			return false;
-		}else{
-			return true;
-		}
-	}
-	
-	/**
-	 * Set status of current recipe
-	 */
-	public void setStatus(){
-		this.status = 1;
-	}
 	
 	/**
 	 * Set username of current recipe
@@ -203,6 +214,7 @@ public class Recipe implements Serializable{
 		try {
 			jsonObject.put("name", getName());
 			jsonObject.put("user", getUser());
+			jsonObject.put("password", getPassWord());
 			jsonObject.put("directions", getDirections());
 			jsonObject.put("id", getId());
 			JSONArray ingre_arr = new JSONArray();
