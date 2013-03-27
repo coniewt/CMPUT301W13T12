@@ -29,28 +29,24 @@ public class WebService {
 			"http://cmput301.softwareprocess.es:8080/cmput301w13t13/recipe/";
 
 	// Singleton
-	transient private static ElasticSearchHelper elasticSearchHelper = null;
+	transient private static WebService elasticSearchHelper = null;
 
 	private HttpClient httpclient;
 	private Gson gson;
-
-	protected ElasticSearchHelper() {
-		// Exists only to defeat instantiation
-	}
 
 	/**
 	 * Retrieves the singleton ElasticSearchHelper. Initializes
 	 * it if first call.
 	 * @return elasticSearchHelper
 	 */
-	public static ElasticSearchHelper getElasticSearchHelper() {
+	/*public static ElasticSearchHelper getElasticSearchHelper() {
 		if (elasticSearchHelper == null) {
 			elasticSearchHelper = new ElasticSearchHelper();
 			elasticSearchHelper.httpclient = new DefaultHttpClient();
 			elasticSearchHelper.gson = new Gson();
 		}
 		return elasticSearchHelper;
-	}
+	}*/
 
 	/**
 	 * Inserts a recipe into ElasticSearch
