@@ -16,6 +16,7 @@ import org.apache.http.client.methods.HttpDelete;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
+import org.apache.http.impl.client.DefaultHttpClient;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -33,14 +34,14 @@ public class WebService {
 	 * it if first call.
 	 * @return elasticSearchHelper
 	 */
-	/*public static ElasticSearchHelper getElasticSearchHelper() {
+	public static WebService getElasticSearchHelper() {
 		if (elasticSearchHelper == null) {
-			elasticSearchHelper = new ElasticSearchHelper();
+			elasticSearchHelper = new WebService();
 			elasticSearchHelper.httpclient = new DefaultHttpClient();
 			elasticSearchHelper.gson = new Gson();
 		}
 		return elasticSearchHelper;
-	}*/
+	}
 
 	/**
 	 * Inserts a recipe into ElasticSearch
