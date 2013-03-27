@@ -39,12 +39,12 @@ public class EmailController {
 		if (re.getImage().size()>0){
 			
 			ArrayList<Image> arr = (ArrayList<Image>) re.getImage();
-			//ArrayList<Uri> uriList = new ArrayList<Uri>();
+			ArrayList<Uri> uriList = new ArrayList<Uri>();
 			for (int i = 0; i < arr.size(); i++){
 				String path = "file://"+arr.get(i).getTN_Path();
-				intent.putExtra(Intent.EXTRA_STREAM, Uri.parse(path));
-			   // uriList.add(uri);
+			    uriList.add(Uri.parse(path));
 			}
+			intent.putParcelableArrayListExtra(Intent.EXTRA_STREAM, uriList);
 		}
 		return intent;
 	}
