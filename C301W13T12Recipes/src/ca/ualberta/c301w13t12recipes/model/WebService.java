@@ -5,7 +5,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
-import java.lang.reflect.Array;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 
@@ -17,16 +16,11 @@ import org.apache.http.client.methods.HttpDelete;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
-import org.apache.http.impl.client.DefaultHttpClient;
-
-import android.util.Log;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 public class WebService {
-	private static final String BASEURL = 
-			"http://cmput301.softwareprocess.es:8080/cmput301w13t13/recipe/";
 
 	// Singleton
 	transient private static WebService elasticSearchHelper = null;
@@ -54,7 +48,7 @@ public class WebService {
 	 */
 	public void insertRecipe(Recipe recipe) {
 		final Recipe r = recipe;
-		HttpPost httpPost = new HttpPost(BASEURL + r.getId() + "?op_type=create");
+		HttpPost httpPost = new HttpPost(StrResource.uri + r.getId() + "?op_type=create");
 		StringEntity stringentity = null;
 		try {
 			stringentity = new StringEntity(gson.toJson(r));
@@ -92,7 +86,7 @@ public class WebService {
 	 * @throws IOException
 	 */
 	public void getRecipe(String uuid) throws ClientProtocolException, IOException {
-		HttpGet getRequest = new HttpGet(BASEURL + uuid);// S4bRPFsuSwKUDSJImbCE2g?pretty=1
+		HttpGet getRequest = new HttpGet(StrResource.uri + "_search?pretty=1");// S4bRPFsuSwKUDSJImbCE2g?pretty=1
 
 		getRequest.addHeader("Accept", "application/json");
 		HttpResponse response = httpclient.execute(getRequest);
@@ -118,7 +112,7 @@ public class WebService {
 	public ArrayList<Recipe> searchRecipes(String query) {
 		ArrayList<Recipe> recipies = new ArrayList<Recipe>();
 		try {
-			HttpGet searchRequest = new HttpGet(BASEURL + "_search?q=*"
+			HttpGet searchRequest = new HttpGet(StrResource.uri + "_search?q=*"
 					+ java.net.URLEncoder.encode(query, "UTF-8") + "*");
 			searchRequest.setHeader("Accept", "application/json");
 			HttpResponse response = httpclient.execute(searchRequest);
@@ -143,7 +137,7 @@ public class WebService {
 	 */
 	public void searchsearchRecipes(String str) throws ClientProtocolException,
 			IOException {
-		HttpPost searchRequest = new HttpPost(BASEURL);
+		HttpPost searchRequest = new HttpPost(StrResource.uri);
 		String query = "{\"query\" : {\"query_string\" : " +
 				"{\"default_field\" : \"ingredients\",\"query\" : \""
 				+ str + "\"}}}";
@@ -177,7 +171,7 @@ public class WebService {
 	 */
 	public void updateRecipes(String str) throws ClientProtocolException,
 			IOException {
-		HttpPost updateRequest = new HttpPost(BASEURL + "1/_update");
+		HttpPost updateRequest = new HttpPost(StrResource.uri + "1/_update");
 		String query = "{\"script\" : \"ctx._source." + str + "}";
 		StringEntity stringentity = new StringEntity(query);
 
@@ -194,7 +188,7 @@ public class WebService {
 	 * delete an entry specified by the id
 	 */
 	public void deleteRecipe() throws IOException {
-		HttpDelete httpDelete = new HttpDelete(BASEURL + "1");
+		HttpDelete httpDelete = new HttpDelete(StrResource.uri + "1");
 		httpDelete.addHeader("Accept", "application/json");
 
 		HttpResponse response = httpclient.execute(httpDelete);
