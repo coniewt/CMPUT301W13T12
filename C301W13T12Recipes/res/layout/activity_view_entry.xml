@@ -1,18 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.ViewDetailedRecipeActivity" >
+    tools:context=".view.ViewDetailedRecipeActivity"
+    android:orientation="vertical" 
+     >
 
-    <GridView
-        android:id="@+id/test_gridView"
+    <Gallery
+        android:id="@+id/view_entry_gallery"
+        android:layout_width="wrap_content"
+        android:layout_height="400px"
+        android:background="@drawable/gallery_banner"
+        android:fitsSystemWindows="true"
+        />
+
+    <TextView
+        android:id="@+id/textView1"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="180dp"
-        android:numColumns="3" >
-    </GridView>
+        android:layout_height="60px"
+        android:text="		Title:"
+        android:background="@drawable/view_title_banner"
+        android:textSize="10pt" 
+         />
 
-</RelativeLayout>
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="60px"
+        />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="60px"
+        android:text="		Ingredients:"
+        android:textSize="10pt"
+        android:background="@drawable/view_ingredients_banner"
+        />
+
+</LinearLayout>
