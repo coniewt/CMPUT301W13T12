@@ -3,36 +3,54 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.ViewDetailedRecipeActivity"
-    android:orientation="vertical" 
-     >
+    android:orientation="vertical"
+    tools:context=".view.ViewDetailedRecipeActivity" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="100px"
+        android:orientation="vertical" 
+        android:background="@drawable/view_edit_share_banner">
+
+        <ImageButton
+            android:id="@+id/view_edit_imageButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="13dp"
+            android:layout_toLeftOf="@+id/imageButton1"
+            android:background="@null"
+            android:src="@drawable/view_menu_compose_button" />
+
+        <ImageButton
+            android:id="@+id/view_share_imageButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:background="@null"
+            android:src="@drawable/view_menu_share_button_light" />
+
+    </RelativeLayout>
 
     <Gallery
         android:id="@+id/view_entry_gallery"
         android:layout_width="wrap_content"
         android:layout_height="400px"
         android:background="@drawable/gallery_banner"
-        android:fitsSystemWindows="true"
-        />
-
-    <ImageButton
-        android:id="@+id/popuo_viewButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="230dp"
-        android:src="@android:drawable/ic_menu_more" />
+        android:fitsSystemWindows="true" />
 
     <TextView
         android:id="@+id/textView1"
         android:layout_width="match_parent"
         android:layout_height="60px"
+        android:background="@drawable/view_ingredients_banner"
         android:text="		Title:"
-        android:background="@drawable/view_title_banner"
-        android:textSize="10pt" 
-         />
+        android:textColor="#FFFFFF"
+        android:textSize="10pt" />
 
     <TextView
-        android:id="@+id/view_detail_titletextView"
+        android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="60px" />
 
@@ -40,15 +58,21 @@
         android:id="@+id/textView2"
         android:layout_width="match_parent"
         android:layout_height="60px"
-        android:text="		Ingredients:"
-        android:textSize="10pt"
         android:background="@drawable/view_ingredients_banner"
-        />
+        android:text="		Ingredients:"
+        android:textColor="#FFFFFF"
+        android:textSize="10pt" />
 
-    <ListView
-        android:id="@+id/view_detail_ingre_listView"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
-    </ListView>
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+    </LinearLayout>
+
+    <ImageButton
+        android:id="@+id/imageButton2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@android:drawable/btn_star" />
 
 </LinearLayout>

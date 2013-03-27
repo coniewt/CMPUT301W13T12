@@ -28,7 +28,8 @@ import ca.ualberta.c301w13t12recipes.model.Recipe;
 public class ViewDetailedRecipeActivity extends Activity {
 	private Gallery gallery;
 	;
-	private ImageButton ppm_im;
+	private ImageButton editButton;
+	private ImageButton shareButton;
 	// private Gallery gallery;
 	private Recipe recipe;
 	private ListView lv_ingre;
@@ -43,7 +44,14 @@ public class ViewDetailedRecipeActivity extends Activity {
 		gallery.setAdapter(new GalleryAdapter(ViewDetailedRecipeActivity.this,
 				(ArrayList<Image>) recipe.getImage()));
 		lv_ingre.setAdapter(new IngredientsAdapter().getAdapter(this, recipe.getIngredients()));
-		ppm_im.setOnClickListener(new OnClickListener() {
+		editButton.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+			/*
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
@@ -59,6 +67,7 @@ public class ViewDetailedRecipeActivity extends Activity {
 				});
 				ppm.show();
 			}
+			*/
 		});
 	}
 
@@ -67,8 +76,8 @@ public class ViewDetailedRecipeActivity extends Activity {
 	 */
 	private void setupWidgets() {
 		gallery = (Gallery) findViewById(R.id.view_entry_gallery);
-		ppm_im = (ImageButton) findViewById(R.id.popuo_viewButton);
-		lv_ingre = (ListView) findViewById(R.id.view_detail_ingre_listView);
+		editButton= (ImageButton) findViewById(R.id.view_edit_imageButton);
+		shareButton = (ImageButton)findViewById(R.id.view_share_imageButton);
 	}
 
 	private void getRecipe() {

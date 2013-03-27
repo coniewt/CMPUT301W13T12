@@ -1,14 +1,14 @@
 package ca.ualberta.c301w13t12testproject;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+//import static org.junit.Assert.assertFalse;
+//import static org.junit.Assert.assertTrue;
 
-import org.junit.Test;
+//import org.junit.Test;
 
 import ca.ualberta.c301w13t12recipes.model.Recipe;
 
 public class TestLocal {
-	@Test
+	//@Test
 	public void testEquals() {
 		/* Fixture */
 		
