@@ -54,14 +54,15 @@
         android:layout_width="match_parent"
         android:layout_height="60px"
         android:background="@drawable/view_ingredients_banner"
-        android:text="		Title:"
+        android:text="		Title"
         android:textColor="#FFFFFF"
         android:textSize="10pt" />
 
     <TextView
         android:id="@+id/view_textView_title"
         android:layout_width="match_parent"
-        android:layout_height="60px" />
+        android:layout_height="60px"
+        android:textSize="10pt" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -74,7 +75,7 @@
         android:layout_width="match_parent"
         android:layout_height="60px"
         android:background="@drawable/view_ingredients_banner"
-        android:text="		Ingredients:"
+        android:text="		Ingredients"
         android:textColor="#FFFFFF"
         android:textSize="10pt" />
 
@@ -89,7 +90,7 @@
         android:layout_width="match_parent"
         android:layout_height="60px"
         android:background="@drawable/view_ingredients_banner"
-        android:text="		Description:"
+        android:text="		Description"
         android:textColor="#FFFFFF"
         android:textSize="10pt" />
 

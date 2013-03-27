@@ -16,7 +16,7 @@
 
     <EditText
         android:id="@+id/dialog_editText_add_amount"
-        android:layout_width="match_parent"
+        android:layout_width="274dp"
         android:layout_height="wrap_content"
         android:singleLine="true"
         android:layout_marginBottom="16dp"

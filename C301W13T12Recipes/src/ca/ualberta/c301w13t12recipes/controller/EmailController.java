@@ -2,14 +2,18 @@ package ca.ualberta.c301w13t12recipes.controller;
 
 import java.util.ArrayList;
 
+import android.content.ContentResolver;
+import android.content.ContentValues;
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.provider.MediaStore.Images;
 import ca.ualberta.c301w13t12recipes.model.Image;
 import ca.ualberta.c301w13t12recipes.model.Recipe;
 /** Basic email class with email addresses, subject and body filled in automatically.
  * 
  */
-public class Email {
+public class EmailController {
 	/** Fills in email fields (sender & recipient email addresses, subject, body).
 	 *  Puts them into an intent.
 	 * 
@@ -17,11 +21,12 @@ public class Email {
 	 * @return intent
 	 */
 	private static Intent FillEmailText(Intent intent, Recipe re){
+		
 		String[] emailReceipient = {re.getUser()};
 		String emailSubject;
-		String RecipeIdMsg = re.getDirections().toString();
-		String emailBody = re.toString();
-			emailSubject = "Recipe Done: " + RecipeIdMsg;
+		String name = re.getName().toString();
+		String emailBody = re.getDirections().toString();
+			emailSubject = "Recipe:" + name;
 		intent.putExtra(android.content.Intent.EXTRA_EMAIL, emailReceipient);  
 		intent.putExtra(android.content.Intent.EXTRA_SUBJECT, emailSubject);  
 		intent.putExtra(android.content.Intent.EXTRA_TEXT, emailBody);
@@ -30,16 +35,16 @@ public class Email {
 	}
 	
 	private static Intent AttachMedia(Intent intent, Recipe re){
+		
 		if (re.getImage().size()>0){
+			
 			ArrayList<Image> arr = (ArrayList<Image>) re.getImage();
-			ArrayList<Uri> uris = new ArrayList<Uri>();
-			Uri uri = null;
+			//ArrayList<Uri> uriList = new ArrayList<Uri>();
 			for (int i = 0; i < arr.size(); i++){
-			    String string = arr.get(i).getTN_Path();
-			    uri = Uri.parse(string);
-			    uris.add(uri);
+				String path = "file://"+arr.get(i).getTN_Path();
+				intent.putExtra(Intent.EXTRA_STREAM, Uri.parse(path));
+			   // uriList.add(uri);
 			}
-			intent.putParcelableArrayListExtra(Intent.EXTRA_STREAM, uris);
 		}
 		return intent;
 	}
@@ -52,7 +57,7 @@ public class Email {
 	 * @param  Recipe - Recipe to get text and/or media path from
 	 */
 	public static Intent SendEmail(Recipe Recipe){
-		Intent intent = new Intent(android.content.Intent.ACTION_SEND);
+		Intent intent = new Intent(android.content.Intent.ACTION_SEND_MULTIPLE);
 		intent.setType("plain/text");
 		
 		//Parse Recipe text
