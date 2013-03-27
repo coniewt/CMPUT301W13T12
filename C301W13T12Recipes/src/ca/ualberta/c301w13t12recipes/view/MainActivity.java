@@ -55,7 +55,6 @@ public class MainActivity extends Activity {
 				startActivity(intent);
 			}
 		});
-		
 		main_searchButton.setOnClickListener(new View.OnClickListener() {
 			
 			public void onClick(View v) {
@@ -66,7 +65,6 @@ public class MainActivity extends Activity {
 			}
 		});
 		main_myFridgeButton.setOnClickListener(new View.OnClickListener() {
-			
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
@@ -91,7 +89,5 @@ public class MainActivity extends Activity {
 		main_viewButton = (ImageButton)findViewById(R.id.main_view_button);
 		main_searchButton= (ImageButton)findViewById(R.id.main_search_button);
 		main_myFridgeButton =(ImageButton)findViewById(R.id.main_fridge_button);
-		
-		
 	}
 }
