@@ -24,6 +24,7 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.util.EntityUtils;
+import org.json.JSONArray;
 
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -48,11 +49,16 @@ public class WebController {
 	// JSON Utilities
 	protected Gson gson;
 	
+	protected JSONArray recipes;
+	
 	public WebController(){
 		
 		httpclient = new DefaultHttpClient();
 		
 		gson = new Gson();
+		
+		recipes = new JSONArray();
+		
 		
 	}
 	
