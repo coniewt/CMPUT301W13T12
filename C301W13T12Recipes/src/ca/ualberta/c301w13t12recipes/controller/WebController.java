@@ -49,7 +49,6 @@ public class WebController {
 	// JSON Utilities
 	protected Gson gson;
 	
-	protected JSONArray recipes;
 	
 	public WebController(){
 		
@@ -57,7 +56,9 @@ public class WebController {
 		
 		gson = new Gson();
 		
-		recipes = new JSONArray();
+		
+		
+		
 		
 		
 	}
