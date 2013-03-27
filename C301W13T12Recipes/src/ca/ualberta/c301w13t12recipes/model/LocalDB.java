@@ -79,6 +79,7 @@ public class LocalDB {
 				}
 				return out;
 			}
+			c.close();
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
@@ -94,23 +95,22 @@ public class LocalDB {
 	 * @throws JSONException
 	 */
 	public ArrayList<Recipe> searchRecipebyKeyword(String keyword) {
-		try {
+			ArrayList<Recipe> in = new ArrayList<Recipe>();
 			ArrayList<Recipe> out = new ArrayList<Recipe>();
+			in = getLocal_Recipe_List();
+			for(int i =0;i<in.size();i++){
+				Recipe re = in.get(i);
+				Log.v("recipe", re.toString());
+				if(re.toString().contains(keyword)){
+					out.add(re);
+				}
+			}
+			return out;
+			/*Log.v("test",keyword);
 			Cursor c = db.rawQuery("SELECT * FROM "
 					+ StrResource.LOCAL_RECIPE_TABLE_NAME
-					+ "WHERE Content LIKE %?%", new String[] { keyword, });
-			if (c.moveToFirst()) {
-				while (c.isAfterLast() == false) {
-					JSONObject obj = toJsonRecipe(c.getString(1));
-					out.add(toRecipe(obj));
-					c.moveToNext();
-				}
-				return out;
-			}
-		} catch (JSONException e) {
-			e.printStackTrace();
-		}
-		return null;
+					+ " WHERE Content LIKE '%?%'", new String[] { keyword, });
+			*/
 	}
 
 	/**
