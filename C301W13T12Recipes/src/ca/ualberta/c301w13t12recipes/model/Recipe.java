@@ -39,7 +39,7 @@ public class Recipe implements Serializable{
 	public Recipe(String user, String name, String directions) {
 		this.id = getUniqueId();
 		this.user = user;
-		this.passward = "admin";
+		this.passward = null;
 		this.name = name;
 		this.ImageCollection = new ArrayList<Image>();
 		this.ingredients = new ArrayList<Ingredient>();
@@ -48,7 +48,7 @@ public class Recipe implements Serializable{
 	public Recipe(String id,String user,String name,List<Ingredient> ar, String directions) {
 		this.id = id;
 		this.user = user;
-		this.passward = "admin";
+		this.passward = null;
 		this.name = name;
 		this.ImageCollection = new ArrayList<Image>();
 		this.ingredients = ar;
