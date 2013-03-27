@@ -29,9 +29,11 @@ import org.json.JSONArray;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+import ca.ualberta.c301w13t12recipes.model.LocalDB;
 import ca.ualberta.c301w13t12recipes.model.Recipe;
 import ca.ualberta.c301w13t12recipes.model.ElasticSearchResponse;
 import ca.ualberta.c301w13t12recipes.model.ElasticSearchSearchResponse;
+import ca.ualberta.c301w13t12recipes.model.WebService;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -45,36 +47,15 @@ public class WebController {
 	
 	// HTTP Connector
 	protected HttpClient httpclient;
-
+	private static WebService webservice;
+	private static LocalDB localdb;
 	// JSON Utilities
-	protected Gson gson;
-	
-	
 	public WebController(){
-		
-		httpclient = new DefaultHttpClient();
-		
-		gson = new Gson();
-		
-		
-		
-		
-		
+		webservice = new WebService();
+		localdb= new LocalDB(null);
+	}
+	public static void publishToWeb(Recipe re){
+		webservice.insertRecipe(re);
 		
 	}
-	
-	String getEntityContent(HttpResponse response) throws IOException {
-		BufferedReader br = new BufferedReader(
-				new InputStreamReader((response.getEntity().getContent())));
-		String output;
-		System.err.println("Output from Server -> ");
-		String json = "";
-		while ((output = br.readLine()) != null) {
-			System.err.println(output);
-			json += output;
-		}
-		System.err.println("JSON:"+json);
-		return json;
-	}
-	
 }
