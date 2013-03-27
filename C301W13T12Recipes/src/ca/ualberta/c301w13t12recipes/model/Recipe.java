@@ -20,6 +20,7 @@ public class Recipe implements Serializable{
 	private static final long serialVersionUID = 1L;
 	private String id;
 	private String user;
+	private String passward;
 	private String name;
 	private List<Ingredient> ingredients;
 	private List<Image> ImageCollection;
@@ -32,36 +33,18 @@ public class Recipe implements Serializable{
 	 * @param user
 	 * @param name
 	 * @param directions
+	 * @param user
+	 * @param passward
 	 */
-	public Recipe(String user, String name, String directions) {
+	public Recipe(String user, String name, String directions,String ur,String pw) {
 		this.id = getUniqueId();
 		this.user = user;
+		this.passward = pw;
 		this.name = name;
 		this.ImageCollection = new ArrayList<Image>();
 		this.ingredients = new ArrayList<Ingredient>();
 		this.directions = directions;
-		this.status = 0;
 	}
-	
-	/**
-	 * Structure of recipe
-	 * @param id
-	 * @param user
-	 * @param name
-	 * @param list
-	 * @param directions
-	 */
-	public Recipe(String id, String user, String name,
-			List<Ingredient> list, String directions) {
-		this.id = id;
-		this.user = user;
-		this.name = name;
-		this.ImageCollection = new ArrayList<Image>();
-		this.ingredients = list;
-		this.directions = directions;
-		this.status = 0;
-	}
-	
 	/**
 	 * Add an ingredient to the recipe
 	 * @param Name of ingredient
@@ -93,7 +76,6 @@ public class Recipe implements Serializable{
 	public String getId() {
 		return id;
 	}
-
 	/**
 	 * Set ID
 	 * @param id
