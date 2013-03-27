@@ -21,7 +21,7 @@
             android:src="@drawable/dialog_lock_icon" />
 
         <EditText
-            android:id="@+id/editText1"
+            android:id="@+id/view_authentication_textEdit"
             android:layout_width="600px"
             android:layout_height="match_parent"
             
