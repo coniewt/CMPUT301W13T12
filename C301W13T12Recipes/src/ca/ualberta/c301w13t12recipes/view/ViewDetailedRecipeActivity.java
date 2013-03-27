@@ -8,10 +8,14 @@ import android.app.Dialog;
 import android.app.DialogFragment;
 import android.app.AlertDialog.Builder;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.view.animation.LayoutAnimationController;
 import android.widget.EditText;
 import android.widget.Gallery;
 import android.widget.ImageButton;
@@ -130,7 +134,7 @@ public class ViewDetailedRecipeActivity extends Activity {
 					new DialogInterface.OnClickListener() {
 						@Override
 						public void onClick(DialogInterface dialog, int id) {
-
+							checkPassword(passwordEditText.getText().toString());
 						}
 					}).setNegativeButton("Cancel",
 					new DialogInterface.OnClickListener() {
@@ -145,5 +149,20 @@ public class ViewDetailedRecipeActivity extends Activity {
 			return builder.create();
 		}
 
+	}
+	private void checkPassword(String prompt){
+		if(recipe.getPassWord().equals(prompt)){
+			jumpToAddTitleDescWizardActivity();
+		}else{
+		    Toast warning = Toast.makeText(getApplicationContext(),"Your password is incorrect.Please try again", 2);
+		    warning.show();
+		}		
+	}
+	
+	private void jumpToAddTitleDescWizardActivity(){
+
+			Intent intent = new Intent();
+			intent.setClass(ViewDetailedRecipeActivity.this, AddTitleDescWizardActivity.class);
+			startActivity(intent);
 	}
 }

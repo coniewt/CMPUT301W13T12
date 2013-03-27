@@ -22,7 +22,7 @@
 
         <EditText
             android:id="@+id/view_authentication_textEdit"
-            android:layout_width="600px"
+            android:layout_width="550px"
             android:layout_height="match_parent"
             
             android:ems="10"
