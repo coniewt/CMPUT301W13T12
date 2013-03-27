@@ -197,8 +197,8 @@ public class Recipe implements Serializable{
 	 */
 	@Override
 	public String toString() {
-		return "Recipe [id=" + id + ", user=" + user + ", name=" + name
-				+ ", ingredients=" + ingredients.toString() + ", directions=" + directions
+		return "Recipe [ " + user + ", " + name
+				+ ", ingredients:" + ingredients.toString() + ", " + directions
 				+ "]";
 	}
 

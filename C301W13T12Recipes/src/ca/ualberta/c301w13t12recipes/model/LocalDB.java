@@ -106,13 +106,18 @@ public class LocalDB {
 				}
 			}
 			return out;
-			/*Log.v("test",keyword);
-			Cursor c = db.rawQuery("SELECT * FROM "
-					+ StrResource.LOCAL_RECIPE_TABLE_NAME
-					+ " WHERE Content LIKE '%?%'", new String[] { keyword, });
-			*/
 	}
-
+	public ArrayList<String> getAutoCompleteKeyword() {
+		ArrayList<Recipe> in = new ArrayList<Recipe>();
+		ArrayList<String> out = new ArrayList<String>();
+		in = getLocal_Recipe_List();
+		for(int i =0;i<in.size();i++){
+			Recipe re = in.get(i);
+			Log.v("recipe", re.toString());
+				out.add(re.getName());
+		}
+		return out;
+}
 	/**
 	 * Check if local recipes exist
 	 * 

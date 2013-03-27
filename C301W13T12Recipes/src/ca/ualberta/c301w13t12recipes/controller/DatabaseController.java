@@ -45,5 +45,11 @@ public class DatabaseController {
 	public List<Recipe> search(String key){
 		return this.database.searchRecipebyKeyword(key);
 	}
+	/**
+	 * @return the name list
+	 */
+	public List<String> getNameList(){
+		return this.database.getAutoCompleteKeyword();
+	}
 
 }
