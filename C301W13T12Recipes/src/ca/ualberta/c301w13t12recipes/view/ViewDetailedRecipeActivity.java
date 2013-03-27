@@ -12,6 +12,7 @@ import android.widget.Gallery;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.PopupMenu;
+import android.widget.TextView;
 import android.widget.Toast;
 import ca.ualberta.c301w13t12recipes.R;
 import ca.ualberta.c301w13t12recipes.controller.GalleryAdapter;
@@ -32,7 +33,9 @@ public class ViewDetailedRecipeActivity extends Activity {
 	private ImageButton shareButton;
 	// private Gallery gallery;
 	private Recipe recipe;
-	private ListView lv_ingre;
+	private TextView titleTextView;
+	private TextView descTextView;
+	//private ListView lv_ingre;
 
 	/** Called when the activity is first created. */
 	@Override
@@ -43,7 +46,7 @@ public class ViewDetailedRecipeActivity extends Activity {
 		getRecipe();
 		gallery.setAdapter(new GalleryAdapter(ViewDetailedRecipeActivity.this,
 				(ArrayList<Image>) recipe.getImage()));
-		lv_ingre.setAdapter(new IngredientsAdapter().getAdapter(this, recipe.getIngredients()));
+		//lv_ingre.setAdapter(new IngredientsAdapter().getAdapter(this, recipe.getIngredients()));
 		editButton.setOnClickListener(new OnClickListener() {
 
 			@Override
@@ -78,6 +81,9 @@ public class ViewDetailedRecipeActivity extends Activity {
 		gallery = (Gallery) findViewById(R.id.view_entry_gallery);
 		editButton= (ImageButton) findViewById(R.id.view_edit_imageButton);
 		shareButton = (ImageButton)findViewById(R.id.view_share_imageButton);
+		titleTextView = (TextView)findViewById(R.id.view_textView_title);
+		descTextView = (TextView)findViewById(R.id.view_textView_description);
+	
 	}
 
 	private void getRecipe() {
