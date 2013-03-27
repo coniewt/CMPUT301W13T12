@@ -3,19 +3,28 @@ package ca.ualberta.c301w13t12recipes.view;
 import java.util.ArrayList;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.app.DialogFragment;
+import android.app.AlertDialog.Builder;
+import android.content.DialogInterface;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.EditText;
 import android.widget.Gallery;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 import ca.ualberta.c301w13t12recipes.R;
 import ca.ualberta.c301w13t12recipes.controller.ShareController;
 import ca.ualberta.c301w13t12recipes.controller.GalleryAdapter;
 import ca.ualberta.c301w13t12recipes.controller.IngredientsAdapter;
 import ca.ualberta.c301w13t12recipes.model.Image;
 import ca.ualberta.c301w13t12recipes.model.Recipe;
+import ca.ualberta.c301w13t12recipes.view.AddIngredWizardActivity.AddIngredDiaglogFragment;
 
 /**
  * This is the activity, which is provided a view of each entry includes the
@@ -41,28 +50,30 @@ public class ViewDetailedRecipeActivity extends Activity {
 		setContentView(R.layout.activity_view_entry);
 		setupWidgets();
 		getRecipe();
-		
+
 		refreshGallery();
 		showName();
 		showDescription();
 		refreshList();
-		
+
 		editButton.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View arg0) {
 				// TODO Auto-generated method stub
+				DialogFragment newFragment = new AuthenticationDiaglogFragment();
+				newFragment.show(getFragmentManager(), "AUTHENTICATION");
 
 			}
 		});
-		shareButton.setOnClickListener(new OnClickListener(){
+		shareButton.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				startActivity(ShareController.SendEmail(recipe));
 			}
-			
+
 		});
 	}
 
@@ -82,8 +93,6 @@ public class ViewDetailedRecipeActivity extends Activity {
 		recipe = (Recipe) getIntent().getSerializableExtra("LOCAL_RECIPE");
 	}
 
-	
-
 	private void refreshList() {
 		adapter = new IngredientsAdapter();
 		ingredListView.setAdapter(adapter.getAdapter(this,
@@ -95,13 +104,46 @@ public class ViewDetailedRecipeActivity extends Activity {
 		gallery.setAdapter(new GalleryAdapter(ViewDetailedRecipeActivity.this,
 				(ArrayList<Image>) recipe.getImage()));
 	}
-	
-	private void showDescription(){
+
+	private void showDescription() {
 		descTextView.setText(new String(recipe.getDirections()));
 	}
-	
-	private void showName(){
+
+	private void showName() {
 		titleTextView.setText(new String(recipe.getName()));
 	}
 
+	class AuthenticationDiaglogFragment extends DialogFragment {
+		private EditText passwordEditText;
+		String password;
+
+		public Dialog onCreateDialog(Bundle savedInstanceState) {
+			AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+			LayoutInflater inflater = getActivity().getLayoutInflater();
+			final View v = inflater.inflate(
+					R.layout.dialog_edit_authentication, null);
+			builder.setView(v);
+			passwordEditText = (EditText) v
+					.findViewById(R.id.view_authentication_textEdit);
+			inflater.inflate(R.layout.dialog_edit_authentication, null);
+			builder.setPositiveButton("Confirm",
+					new DialogInterface.OnClickListener() {
+						@Override
+						public void onClick(DialogInterface dialog, int id) {
+
+						}
+					}).setNegativeButton("Cancel",
+					new DialogInterface.OnClickListener() {
+
+						@Override
+						public void onClick(DialogInterface dialog, int which) {
+							AuthenticationDiaglogFragment.this.getDialog()
+									.cancel();
+
+						}
+					});
+			return builder.create();
+		}
+
+	}
 }

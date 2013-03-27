@@ -167,15 +167,6 @@ public class AddIngredWizardActivity extends Activity {
 			return builder.create();
 		}
 
-		public void onPause() {
-			Log.v("AddingActivity", "onpause!!!");
-			super.onPause();
-		}
-
-		public void onStop() {
-			Log.v("AddingAcitivityActivity", "onStop!!!");
-			super.onStop();
-		}
 	}
 
 	private void saveAndJumpToAddImageWizard() {
