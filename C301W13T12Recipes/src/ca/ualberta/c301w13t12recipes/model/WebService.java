@@ -7,6 +7,7 @@ import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -135,9 +136,12 @@ public class WebService {
 
 	/**
 	 * advanced search (logical operators)
+	 * @param the key word
+	 * @return a collection of recipe
 	 */
-	public void searchsearchRecipes(String str) throws ClientProtocolException,
+	public ArrayList<Recipe> advancedSearchRecipes(String str) throws ClientProtocolException,
 			IOException {
+		ArrayList<Recipe> out  = new ArrayList<Recipe>();
 		HttpPost searchRequest = new HttpPost(StrResource.uri);
 		String query = "{\"query\" : {\"query_string\" : " +
 				"{\"default_field\" : \"ingredients\",\"query\" : \""
@@ -161,10 +165,11 @@ public class WebService {
 		System.err.println(esResponse);
 		for (ElasticSearchResponse<Recipe> r : esResponse.getHits()) {
 			Recipe recipe = r.getSource();
+			out.add(recipe);
 			System.err.println(recipe);
 		}
 		// searchRequest.releaseConnection(); not available in android
-		// httpclient
+		return out;
 	}
 
 	/**

@@ -30,15 +30,17 @@ import ca.ualberta.c301w13t12recipes.model.Recipe;
 import ca.ualberta.c301w13t12recipes.model.WebService;
 
 public class SearchActivity extends Activity {
+	//declare the view components
 	MultiAutoCompleteTextView keyword_edittext;
 	ImageButton search_imagebutton;
 	ListView result_listview;
 	String keyword;
 	CheckBox checkbox;
-
+    @Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_search);
+		//initial the view components
 		setUp();
 		prepareAutoCompleteText();
 		
@@ -79,10 +81,6 @@ public class SearchActivity extends Activity {
 						checkbox.setChecked(false);
 					}
 				}
-				/*else {
-					Log.v("Fail","Fail to connect internet");
-					
-				}*/
 		}});
 		
 	}
@@ -96,10 +94,15 @@ public class SearchActivity extends Activity {
 		search_imagebutton = (ImageButton) findViewById(R.id.search_imageButton1);
 		checkbox = (CheckBox)findViewById(R.id.search_web_recipe_checkbox);
 	}
+	/**
+	 * Jump to the class and send the recipe by intent
+	 * @param the index from listview index
+	 */
 	private void jumpToAddViewDetailRecipeActivity(int index) {
 		Intent intent = new Intent(SearchActivity.this,
 		ViewDetailedRecipeActivity.class);
-		Log.v("Test+++",(String) ((HashMap)result_listview.getItemAtPosition(index)).get("name"));
+		//Log.v("Test+++",(String) ((HashMap)result_listview.getItemAtPosition(index)).get("name"));
+		@SuppressWarnings("unchecked")
 		String title = (String)((HashMap<String,String>)result_listview.getItemAtPosition(index)).get("name");
 		List<Recipe> recipeList =(new DatabaseController(this)).getDB().getLocal_Recipe_List();
 		Recipe recipe =null;

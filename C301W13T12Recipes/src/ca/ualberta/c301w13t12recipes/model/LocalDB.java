@@ -141,6 +141,9 @@ public class LocalDB {
 			}
 			return out;
 	}
+	/**
+	 * @return the list of name of recipe exiting in local database
+	 */
 	public ArrayList<String> getAutoCompleteKeyword() {
 		ArrayList<Recipe> in = new ArrayList<Recipe>();
 		ArrayList<String> out = new ArrayList<String>();
