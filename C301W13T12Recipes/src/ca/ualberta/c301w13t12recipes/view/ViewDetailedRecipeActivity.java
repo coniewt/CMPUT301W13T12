@@ -97,6 +97,7 @@ public class ViewDetailedRecipeActivity extends Activity {
 									return true;
 								case R.id.pop_publish:
 									try {
+										stream = new WebStream();
 										stream.insertRecipe(recipe);
 									} catch (IllegalStateException e) {
 										
