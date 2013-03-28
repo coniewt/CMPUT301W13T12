@@ -7,6 +7,8 @@ import java.util.List;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.StrictMode;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
@@ -139,20 +141,29 @@ public class SearchActivity extends Activity {
 		testButton.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
+				StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+				StrictMode.setThreadPolicy(policy); 
+				Thread thread = new Thread()
+				{
+				    @Override
+				    public void run() {
+				    	Recipe testRecipe = new Recipe("Admin", "Test_name", "Test_direction");
+						try {
+							Log.v("Recipe", testRecipe.toString());
+							(new WebStream()).insertRecipe(testRecipe);
+						} catch (IllegalStateException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						} 
+				    }
+				};
+				thread.run();
 				// TODO Auto-generated method stub
-				Recipe testRecipe = new Recipe("Admin", "Test_name", "Test_direction");
-				try {
-					(new WebStream()).insertRecipe(testRecipe);
-				} catch (IllegalStateException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} 
+				
 			}
 		});
-		
-		
 	}
+
+
+	
 }

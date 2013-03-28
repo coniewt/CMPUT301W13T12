@@ -9,22 +9,28 @@ import java.lang.reflect.Type;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpDelete;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
+import org.apache.http.impl.client.DefaultHttpClient;
 
+import android.os.AsyncTask;
 import ca.ualberta.c301w13t12recipes.model.ElasticSearchResponse;
 import ca.ualberta.c301w13t12recipes.model.Recipe;
+import ca.ualberta.c301w13t12recipes.model.WebService;
 
+import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 /**
  * @author 
  *
  */
-public class WebStream extends WebController{
-	
+public class WebStream{
+	protected HttpClient httpclient = new DefaultHttpClient() ;
+	protected Gson gson=new Gson();
 	/**
 	 * 
 	 */
@@ -36,13 +42,13 @@ public class WebStream extends WebController{
 	 * @throws IllegalStateException
 	 * @throws IOException
 	 */
-	public void insertRecipe(Recipe recipe) throws IllegalStateException, IOException{
+	public void insertRecipe(Recipe recipe) {
 		
 		/*URL url = new URL("http://cmput301.softwareprocess.es:8080/cmput301w13t12/"+recipe.getId());
 		
 		HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();*/
 		
-		HttpPost httpPost = new HttpPost("http://cmput301.softwareprocess.es:8080/cmput301w13t12/"+recipe.getId());
+		HttpPost httpPost = new HttpPost("http://cmput301.softwareprocess.es:8080/cmput301w13t12/recipe/"+recipe.getId().substring(6, recipe.getId().length()-1)+ "?op_type=create");
 		StringEntity stringentity = null;
 		try {
 			stringentity = new StringEntity(gson.toJson(recipe));
@@ -50,32 +56,31 @@ public class WebStream extends WebController{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		httpPost.setHeader("Accept","application/json");
-		httpPost.setEntity(stringentity);
-		HttpResponse response = null;
+		
 		try {
+			httpPost.setHeader("Accept","application/json");
+			httpPost.setEntity(stringentity);
+			HttpResponse response = null;
+			System.out.println(httpPost.getURI().getPath());
 			response = httpclient.execute(httpPost);
+			String status = response.getStatusLine().toString();
+			System.out.println(status);
+			HttpEntity entity = response.getEntity();
+			BufferedReader br = new BufferedReader(new InputStreamReader(entity.getContent()));
+			String output;
+			//System.err.println("Output from Server -> ");
+			while ((output = br.readLine()) != null) {
+				System.err.println(output);
+			}
+			//EntityUtils.consume(entity);
+			entity.consumeContent();
 		} catch (ClientProtocolException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
-		String status = response.getStatusLine().toString();
-		System.out.println(status);
-		HttpEntity entity = response.getEntity();
-		BufferedReader br = new BufferedReader(new InputStreamReader(entity.getContent()));
-		String output;
-		//System.err.println("Output from Server -> ");
-		while ((output = br.readLine()) != null) {
-			System.err.println(output);
-		}
-		try {
-			//EntityUtils.consume(entity);
-			entity.consumeContent();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
+		}catch (Exception e){
 			e.printStackTrace();
 		}
 		//httpPost.releaseConnection();
@@ -174,6 +179,19 @@ public class WebStream extends WebController{
 		//EntityUtils.consume(entity);
 		entity.consumeContent();
 		//httpDelete.releaseConnection();
+	}
+	String getEntityContent(HttpResponse response) throws IOException {
+		BufferedReader br = new BufferedReader(
+				new InputStreamReader((response.getEntity().getContent())));
+		String output;
+		System.err.println("Output from Server -> ");
+		String json = "";
+		while ((output = br.readLine()) != null) {
+			System.err.println(output);
+			json += output;
+		}
+		System.err.println("JSON:"+json);
+		return json;
 	}
 
 }

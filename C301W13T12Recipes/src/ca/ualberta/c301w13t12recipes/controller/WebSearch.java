@@ -48,7 +48,7 @@ public class WebSearch extends WebController{
 		String status = response.getStatusLine().toString();
 		System.out.println(status);
 
-		String json = getEntityContent(response);
+		String json = (new WebStream()).getEntityContent(response);
 
 		Type elasticSearchSearchResponseType = new TypeToken<ElasticSearchSearchResponse<Recipe>>(){}.getType();
 		ElasticSearchSearchResponse<Recipe> esResponse = gson.fromJson(json, elasticSearchSearchResponseType);
@@ -81,7 +81,7 @@ public class WebSearch extends WebController{
 		String status = response.getStatusLine().toString();
 		System.out.println(status);
 
-		String json = getEntityContent(response);
+		String json = (new WebStream()).getEntityContent(response);
 
 		Type elasticSearchSearchResponseType = new TypeToken<ElasticSearchSearchResponse<Recipe>>(){}.getType();
 		ElasticSearchSearchResponse<Recipe> esResponse = gson.fromJson(json, elasticSearchSearchResponseType);
@@ -110,7 +110,7 @@ public class WebSearch extends WebController{
 		String status = response.getStatusLine().toString();
 		System.out.println(status);
 
-		String json = getEntityContent(response);
+		String json = (new WebStream()).getEntityContent(response);
 
 		Type elasticSearchSearchResponseType = new TypeToken<ElasticSearchSearchResponse<Recipe>>(){}.getType();
 		ElasticSearchSearchResponse<Recipe> esResponse = gson.fromJson(json, elasticSearchSearchResponseType);
