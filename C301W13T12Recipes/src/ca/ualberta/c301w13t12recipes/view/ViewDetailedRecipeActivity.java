@@ -65,9 +65,12 @@ public class ViewDetailedRecipeActivity extends Activity {
 			@Override
 			public void onClick(View arg0) {
 				// TODO Auto-generated method stub
-				DialogFragment newFragment = new AuthenticationDiaglogFragment();
-				newFragment.show(getFragmentManager(), "AUTHENTICATION");
-
+				if (!recipe.getPassWord().equals("")) {
+					DialogFragment newFragment = new AuthenticationDiaglogFragment();
+					newFragment.show(getFragmentManager(), "AUTHENTICATION");
+				}else{
+					jumpToAddTitleDescWizardActivity();
+				}
 			}
 		});
 		shareButton.setOnClickListener(new OnClickListener() {
@@ -150,19 +153,22 @@ public class ViewDetailedRecipeActivity extends Activity {
 		}
 
 	}
-	private void checkPassword(String prompt){
-		if(recipe.getPassWord().equals(prompt)){
-			jumpToAddTitleDescWizardActivity();
-		}else{
-		    Toast warning = Toast.makeText(getApplicationContext(),"Your password is incorrect.Please try again", 2);
-		    warning.show();
-		}		
-	}
-	
-	private void jumpToAddTitleDescWizardActivity(){
 
-			Intent intent = new Intent();
-			intent.setClass(ViewDetailedRecipeActivity.this, AddTitleDescWizardActivity.class);
-			startActivity(intent);
+	private void checkPassword(String prompt) {
+		if (recipe.getPassWord().equals(prompt)) {
+			jumpToAddTitleDescWizardActivity();
+		} else {
+			Toast warning = Toast.makeText(getApplicationContext(),
+					"Your password is incorrect.Please try again", 2);
+			warning.show();
+		}
+	}
+
+	private void jumpToAddTitleDescWizardActivity() {
+
+		Intent intent = new Intent();
+		intent.setClass(ViewDetailedRecipeActivity.this,
+				AddTitleDescWizardActivity.class);
+		startActivity(intent);
 	}
 }
