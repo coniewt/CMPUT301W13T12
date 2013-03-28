@@ -1,19 +1,19 @@
 package ca.ualberta.c301w13t12testproject;
 
-import static org.junit.Assert.*;
+//import static org.junit.Assert.*;
 
-import org.junit.Before;
-import org.junit.Test;
+//import org.junit.Before;
+//import org.junit.Test;
 
 public class TestControler {
 
-	@Before
+	//@Before
 	public void setUp() throws Exception {
 	}
 
-	@Test
+	//@Test
 	public void test() {
-		fail("Not yet implemented");
+	//	fail("Not yet implemented");
 	}
 
 }

@@ -71,7 +71,7 @@ public class ViewListActivity extends Activity {
 	}
 	private void refreshList() {
 		adapter = new RecipeAdapter();
-		ListAdapter la = adapter.getAdapter(ViewListActivity.this);
+		ListAdapter la = adapter.getAdapter(ViewListActivity.this,"All");
 		listView.setAdapter(la);
 	}
 	/**

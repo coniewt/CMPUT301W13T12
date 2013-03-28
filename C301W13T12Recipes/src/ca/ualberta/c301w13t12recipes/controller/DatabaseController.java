@@ -1,8 +1,8 @@
 package ca.ualberta.c301w13t12recipes.controller;
 
+import java.util.List;
+
 import android.content.Context;
-import android.os.Parcel;
-import android.os.Parcelable;
 import ca.ualberta.c301w13t12recipes.model.LocalDB;
 import ca.ualberta.c301w13t12recipes.model.Recipe;
 /**
@@ -32,8 +32,24 @@ public class DatabaseController {
 	public void addRecipe(Recipe re){
 		this.database.addLocal_Recipe_Table(re);	
 	}	
+	/**
+	 * remove all recipe in local database
+	 */
 	public void removeAll(){
 		this.database.clear_All();
+	}
+	/**
+	 * @param key a string of keyword
+	 * @return list<recipe>
+	 */
+	public List<Recipe> search(String key){
+		return this.database.searchRecipebyKeyword(key);
+	}
+	/**
+	 * @return the name list
+	 */
+	public List<String> getNameList(){
+		return this.database.getAutoCompleteKeyword();
 	}
 
 }

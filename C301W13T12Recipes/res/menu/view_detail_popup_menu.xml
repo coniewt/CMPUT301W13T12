@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+    <item android:id="@+id/email" android:title="@string/view_detail_email"></item>
+    <item android:id="@+id/publish" android:title="@string/view_detail_publish"></item>
+    <item android:id="@+id/delete" android:title="@string/view_detail_delete"></item>
+    <item android:id="@+id/edit" android:title="@string/view_detail_edit"></item>
+</menu>

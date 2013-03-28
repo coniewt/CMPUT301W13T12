@@ -25,7 +25,6 @@ public class Recipe implements Serializable{
 	private List<Ingredient> ingredients;
 	private List<Image> ImageCollection;
 	private String directions;
-	private int status;// shows whether the recipe is complete or not 
 
 	/**
 	 * Structure of recipe
@@ -39,7 +38,7 @@ public class Recipe implements Serializable{
 	public Recipe(String user, String name, String directions) {
 		this.id = getUniqueId();
 		this.user = user;
-		this.passward = "admin";
+		this.passward = "";
 		this.name = name;
 		this.ImageCollection = new ArrayList<Image>();
 		this.ingredients = new ArrayList<Ingredient>();
@@ -48,7 +47,7 @@ public class Recipe implements Serializable{
 	public Recipe(String id,String user,String name,List<Ingredient> ar, String directions) {
 		this.id = id;
 		this.user = user;
-		this.passward = "admin";
+		this.passward = "";
 		this.name = name;
 		this.ImageCollection = new ArrayList<Image>();
 		this.ingredients = ar;
@@ -198,8 +197,8 @@ public class Recipe implements Serializable{
 	 */
 	@Override
 	public String toString() {
-		return "Recipe [id=" + id + ", user=" + user + ", name=" + name
-				+ ", ingredients=" + ingredients + ", directions=" + directions
+		return "Recipe [ " + user + ", " + name
+				+ ", ingredients:" + ingredients.toString() + ", " + directions
 				+ "]";
 	}
 

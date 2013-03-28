@@ -5,24 +5,24 @@
     android:orientation="vertical" >
 
     <TextView
-        android:id="@+id/textView_item_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/textView_item_amount"
-        android:layout_alignParentLeft="true"
-        android:layout_marginLeft="16dp"
-        android:text="Medium Text"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
-
-    <TextView
         android:id="@+id/textView_item_amount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
-        android:layout_marginRight="44dp"
-        android:layout_marginTop="48dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginTop="30dp"
         android:text="Small Text"
-        android:textAppearance="?android:attr/textAppearanceSmall" />
+        android:textSize="8pt" />
+
+    <TextView
+        android:id="@+id/textView_item_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/textView_item_amount"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="15dp"
+        android:text="Medium Text"
+        android:textSize="10pt" />
 
 </RelativeLayout>

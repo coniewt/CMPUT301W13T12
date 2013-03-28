@@ -59,7 +59,41 @@ public class LocalDB {
 		}
 		db.insert(StrResource.LOCAL_RECIPE_TABLE_NAME, null, cv);
 	}
-
+	/**
+	 * @param in ingredient object
+	 */
+	public void addLocal_Ingredient_Table(Ingredient in) {
+		ContentValues cv = new ContentValues();
+		try {
+			//Log.v("Add to Table---------------", re.getName());
+			String id = String.valueOf(System.currentTimeMillis());
+			cv.put("id",id );
+			cv.put("name", in.getName());
+			cv.put("amount", in.getAmount());
+			// cv.put(StrResource.COL_CONTENT, Recipe.toJson().toString() );
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		db.insert(StrResource.LOCAL_RECIPE_TABLE_NAME, null, cv);
+	}
+	/**
+	 * To get the ingredients in the local table
+	 * @return the list of ingredient in the local fridge
+	 */
+	public ArrayList<Ingredient> getLocal_Ingredient_List() {
+			ArrayList<Ingredient> out = new ArrayList<Ingredient>();
+			Cursor c = db.rawQuery("SELECT * FROM "
+					+ StrResource.LOCAL_INGREDIENT_TABLE_NAME, new String[] {});
+			if (c.moveToFirst()) {
+				while (c.isAfterLast() == false) {
+					out.add(new Ingredient(c.getString(1),c.getString(2)));
+					c.moveToNext();
+				}
+				return out;
+			}
+			c.close();
+		return null;
+	}
 	/**
 	 * Get the local task list.
 	 * 
@@ -79,10 +113,11 @@ public class LocalDB {
 				}
 				return out;
 			}
+			c.close();
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
-		return null;
+		return new ArrayList<Recipe>();
 	}
 
 	/**
@@ -94,25 +129,32 @@ public class LocalDB {
 	 * @throws JSONException
 	 */
 	public ArrayList<Recipe> searchRecipebyKeyword(String keyword) {
-		try {
+			ArrayList<Recipe> in = new ArrayList<Recipe>();
 			ArrayList<Recipe> out = new ArrayList<Recipe>();
-			Cursor c = db.rawQuery("SELECT * FROM "
-					+ StrResource.LOCAL_RECIPE_TABLE_NAME
-					+ "WHERE Content LIKE %?%", new String[] { keyword, });
-			if (c.moveToFirst()) {
-				while (c.isAfterLast() == false) {
-					JSONObject obj = toJsonRecipe(c.getString(1));
-					out.add(toRecipe(obj));
-					c.moveToNext();
+			in = getLocal_Recipe_List();
+			for(int i =0;i<in.size();i++){
+				Recipe re = in.get(i);
+				Log.v("recipe", re.toString());
+				if(re.toString().contains(keyword)){
+					out.add(re);
 				}
-				return out;
 			}
-		} catch (JSONException e) {
-			e.printStackTrace();
-		}
-		return null;
+			return out;
 	}
-
+	/**
+	 * @return the list of name of recipe exiting in local database
+	 */
+	public ArrayList<String> getAutoCompleteKeyword() {
+		ArrayList<Recipe> in = new ArrayList<Recipe>();
+		ArrayList<String> out = new ArrayList<String>();
+		in = getLocal_Recipe_List();
+		for(int i =0;i<in.size();i++){
+			Recipe re = in.get(i);
+			Log.v("recipe", re.toString());
+				out.add(re.getName());
+		}
+		return out;
+}
 	/**
 	 * Check if local recipes exist
 	 * 

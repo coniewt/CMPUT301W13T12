@@ -24,7 +24,7 @@ public class MainActivity extends Activity {
 	private ImageButton main_addButton;// Declare add button
 	private ImageButton main_viewButton;// Declare view button
 	private ImageButton main_searchButton;// Declare search button
-	ImageButton main_myFridgeButton;// Declare my fridge button
+	private ImageButton main_myFridgeButton;// Declare my fridge button
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -55,21 +55,22 @@ public class MainActivity extends Activity {
 				startActivity(intent);
 			}
 		});
-		
 		main_searchButton.setOnClickListener(new View.OnClickListener() {
 			
-			@Override
 			public void onClick(View v) {
-				// TODO Jump to searchActivity
-				
+				// TODO Auto-generated method stub
+				Intent intent = new Intent();
+				intent.setClass(MainActivity.this, SearchActivity.class);
+				startActivity(intent);
 			}
 		});
 		main_myFridgeButton.setOnClickListener(new View.OnClickListener() {
-			
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				
+				Intent intent = new Intent();
+				intent.setClass(MainActivity.this, FridgeActivity.class);
+				startActivity(intent);
 			}
 		});
 		
@@ -88,7 +89,5 @@ public class MainActivity extends Activity {
 		main_viewButton = (ImageButton)findViewById(R.id.main_view_button);
 		main_searchButton= (ImageButton)findViewById(R.id.main_search_button);
 		main_myFridgeButton =(ImageButton)findViewById(R.id.main_fridge_button);
-		
-		
 	}
 }
