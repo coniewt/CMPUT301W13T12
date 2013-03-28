@@ -1,5 +1,6 @@
 package ca.ualberta.c301w13t12recipes.view;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 import android.app.Activity;
@@ -23,12 +24,14 @@ import android.widget.Gallery;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.PopupMenu;
+import android.widget.PopupMenu.OnMenuItemClickListener;
 import android.widget.TextView;
 import android.widget.Toast;
 import ca.ualberta.c301w13t12recipes.R;
 import ca.ualberta.c301w13t12recipes.controller.ShareController;
 import ca.ualberta.c301w13t12recipes.controller.GalleryAdapter;
 import ca.ualberta.c301w13t12recipes.controller.IngredientsAdapter;
+import ca.ualberta.c301w13t12recipes.controller.WebStream;
 import ca.ualberta.c301w13t12recipes.model.Image;
 import ca.ualberta.c301w13t12recipes.model.Recipe;
 import ca.ualberta.c301w13t12recipes.view.AddIngredWizardActivity.AddIngredDiaglogFragment;
@@ -40,62 +43,94 @@ import ca.ualberta.c301w13t12recipes.view.AddIngredWizardActivity.AddIngredDiagl
  * @author YUWEI DUAN
  */
 public class ViewDetailedRecipeActivity extends Activity {
-	private Gallery gallery;;
-	private ImageButton editButton;
-	private ImageButton shareButton;
+	private WebStream stream;
+	private Gallery gallery;
+	private ImageButton optionsButton;
 	private IngredientsAdapter adapter;
-	// private Gallery gallery;
 	private Recipe recipe;
 	private TextView titleTextView;
 	private TextView descTextView;
 	private ListView ingredListView;
+	private PopupMenu popupMenu;
+	
 
 	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_view_entry);
+		
 		setupWidgets();
 		getRecipe();
-
-		refreshGallery();
+			
 		showName();
 		showDescription();
+		
+		refreshGallery();
 		refreshList();
 
-		editButton.setOnClickListener(new OnClickListener() {
-
-			@Override
-			public void onClick(View arg0) {
-				// TODO Auto-generated method stub
-				if (!recipe.getPassWord().equals("")) {
-					DialogFragment newFragment = new AuthenticationDiaglogFragment();
-					newFragment.show(getFragmentManager(), "AUTHENTICATION");
-				}else{
-					jumpToAddTitleDescWizardActivity();
-				}
-			}
-		});
-		shareButton.setOnClickListener(new OnClickListener() {
+		optionsButton.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				//startActivity(ShareController.SendEmail(recipe));
+				//
 				showPopup(v);
-				
+				popupMenu
+						.setOnMenuItemClickListener(new OnMenuItemClickListener() {
+
+							@Override
+							public boolean onMenuItemClick(MenuItem item) {
+								// TODO listen the any response from menu
+								switch (item.getItemId()) {
+								case R.id.pop_delete:
+
+									return true;
+								case R.id.pop_edit:
+									if (!recipe.getPassWord().equals("")) {
+										DialogFragment newFragment = new AuthenticationDiaglogFragment();
+										newFragment.show(getFragmentManager(),
+												"AUTHENTICATION");
+									} else {
+										jumpToAddTitleDescWizardActivity();
+									}
+									return true;
+								case R.id.pop_publish:
+									try {
+										stream.insertRecipe(recipe);
+									} catch (IllegalStateException e) {
+										
+										Toast toast = Toast.makeText(getApplicationContext(), "The Recipe can't be published! Please Check Internet Connection", 3);
+										toast.show();
+									} catch (IOException e) {
+										Toast toast = Toast.makeText(getApplicationContext(), "The Recipe can't be published! Please Check Internet Connection", 3);
+										toast.show();
+									}
+									return true;
+								case R.id.pop_share:
+									startActivity(ShareController
+											.SendEmail(recipe));
+									return true;
+								default:
+									return false;
+								}
+
+							}
+						});
+
 			}
 
 		});
+
 	}
-	
+
 	/**
 	 * Set up the new component
 	 */
 	private void setupWidgets() {
 		gallery = (Gallery) findViewById(R.id.view_entry_gallery);
-		editButton = (ImageButton) findViewById(R.id.view_edit_imageButton);
-		shareButton = (ImageButton) findViewById(R.id.view_share_imageButton);
+
+		optionsButton = (ImageButton) findViewById(R.id.view_share_imageButton);
 		titleTextView = (TextView) findViewById(R.id.view_textView_title);
 		descTextView = (TextView) findViewById(R.id.view_textView_description);
 		ingredListView = (ListView) findViewById(R.id.view_ingredients_listView);
@@ -124,29 +159,14 @@ public class ViewDetailedRecipeActivity extends Activity {
 	private void showName() {
 		titleTextView.setText(new String(recipe.getName()));
 	}
-	
-	
-	public void showPopup(View v) {
-	    PopupMenu popup = new PopupMenu(this, v);
-	    MenuInflater inflater = popup.getMenuInflater();
-	    inflater.inflate(R.menu.view_detail_popup_menu, popup.getMenu());
-	    popup.show();
+
+	private void showPopup(View v) {
+		popupMenu = new PopupMenu(this, v);
+		MenuInflater inflater = popupMenu.getMenuInflater();
+		inflater.inflate(R.menu.view_detail_popup_menu, popupMenu.getMenu());
+		popupMenu.show();
 	}
-	
-	@Override
-	public boolean onMenuItemClick(MenuItem item) {
-	    switch (item.getItemId()) {
-	        case R.id.:
-	           // archive(item);
-	            return true;
-	        case R.id.delete:
-	           // delete(item);
-	            return true;
-	        default:
-	            return false;
-	    }
-	}
-	
+
 	class AuthenticationDiaglogFragment extends DialogFragment {
 		private EditText passwordEditText;
 		String password;
