@@ -52,20 +52,19 @@ public class ViewDetailedRecipeActivity extends Activity {
 	private TextView descTextView;
 	private ListView ingredListView;
 	private PopupMenu popupMenu;
-	
 
 	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_view_entry);
-		
+
 		setupWidgets();
 		getRecipe();
-			
+
 		showName();
 		showDescription();
-		
+
 		refreshGallery();
 		refreshList();
 
@@ -100,11 +99,19 @@ public class ViewDetailedRecipeActivity extends Activity {
 										stream = new WebStream();
 										stream.insertRecipe(recipe);
 									} catch (IllegalStateException e) {
-										
-										Toast toast = Toast.makeText(getApplicationContext(), "The Recipe can't be published! Please Check Internet Connection", 3);
+
+										Toast toast = Toast
+												.makeText(
+														getApplicationContext(),
+														"The Recipe can't be published! Please Check Internet Connection",
+														3);
 										toast.show();
 									} catch (IOException e) {
-										Toast toast = Toast.makeText(getApplicationContext(), "The Recipe can't be published! Please Check Internet Connection", 3);
+										Toast toast = Toast
+												.makeText(
+														getApplicationContext(),
+														"The Recipe can't be published! Please Check Internet Connection",
+														3);
 										toast.show();
 									}
 									return true;
