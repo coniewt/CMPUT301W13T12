@@ -19,13 +19,23 @@ import ca.ualberta.c301w13t12recipes.model.Recipe;
 
 import com.google.gson.reflect.TypeToken;
 
+/**
+ * @author 
+ *
+ */
 public class WebStream extends WebController{
 	
-	public WebStream(){
-		
-		
+	/**
+	 * 
+	 */
+	public WebStream(){	
 	}
 	
+	/**
+	 * @param recipe
+	 * @throws IllegalStateException
+	 * @throws IOException
+	 */
 	public void insertRecipe(Recipe recipe) throws IllegalStateException, IOException{
 		
 		/*URL url = new URL("http://cmput301.softwareprocess.es:8080/cmput301w13t12/"+recipe.getId());
@@ -84,6 +94,10 @@ public class WebStream extends WebController{
 			urlConnection.disconnect();}
 		}*/
 	
+	/**
+	 * @param string
+	 * @return the recipe object
+	 */
 	public Recipe getRecipe(String string){
 		
 		try{

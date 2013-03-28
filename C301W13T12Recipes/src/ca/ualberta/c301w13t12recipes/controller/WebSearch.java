@@ -16,10 +16,17 @@ import ca.ualberta.c301w13t12recipes.model.Recipe;
 
 import com.google.gson.reflect.TypeToken;
 
+/**
+ * @author 
+ *
+ */
 public class WebSearch extends WebController{
 	
 	protected ArrayList<Recipe> recipes;
 	
+	/**
+	 * 
+	 */
 	public WebSearch(){
 		
 		recipes = new ArrayList<Recipe>();
@@ -27,6 +34,12 @@ public class WebSearch extends WebController{
 	
 	
 	
+	/**
+	 * @param str
+	 * @return
+	 * @throws ClientProtocolException
+	 * @throws IOException
+	 */
 	public ArrayList<Recipe> searchRecipes(String str) throws ClientProtocolException, IOException {
 		HttpGet searchRequest = new HttpGet("http://cmput301.softwareprocess.es:8080/cmput301w13t12/_search?pretty=1&q=" +
 				java.net.URLEncoder.encode(str,"UTF-8"));
@@ -50,9 +63,12 @@ public class WebSearch extends WebController{
 		return recipes;
 		//searchRequest.releaseConnection();
 	}
-	
-
-	
+	/**
+	 * @param str
+	 * @return
+	 * @throws ClientProtocolException
+	 * @throws IOException
+	 */
 	public ArrayList<Recipe> searchsearchRecipes(String str) throws ClientProtocolException, IOException {
 		HttpPost searchRequest = new HttpPost("http://cmput301.softwareprocess.es:8080/cmput301w13t12/_search?pretty=1");
 		String query = 	"{\"query\" : {\"query_string\" : {\"default_field\" : \"ingredients\",\"query\" : \"" + str + "\"}}}";
@@ -81,6 +97,11 @@ public class WebSearch extends WebController{
 		return recipes;
 	}	
 	
+	/**
+	 * @return
+	 * @throws ClientProtocolException
+	 * @throws IOException
+	 */
 	public ArrayList<Recipe> grabAllRecipe() throws ClientProtocolException, IOException{
 		
 		HttpGet searchRequest = new HttpGet("http://cmput301.softwareprocess.es:8080/cmput301w13t12/_search?pretty=1");
