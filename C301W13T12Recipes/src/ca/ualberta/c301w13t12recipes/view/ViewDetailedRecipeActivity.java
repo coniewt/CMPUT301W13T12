@@ -106,13 +106,6 @@ public class ViewDetailedRecipeActivity extends Activity {
 														"The Recipe can't be published! Please Check Internet Connection",
 														3);
 										toast.show();
-									} catch (IOException e) {
-										Toast toast = Toast
-												.makeText(
-														getApplicationContext(),
-														"The Recipe can't be published! Please Check Internet Connection",
-														3);
-										toast.show();
 									}
 									return true;
 								case R.id.pop_share:
