@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 
+import org.apache.http.client.ClientProtocolException;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -27,6 +29,7 @@ import ca.ualberta.c301w13t12recipes.R;
 import ca.ualberta.c301w13t12recipes.controller.DatabaseController;
 import ca.ualberta.c301w13t12recipes.controller.RecipeAdapter;
 import ca.ualberta.c301w13t12recipes.controller.WebController;
+import ca.ualberta.c301w13t12recipes.controller.WebSearch;
 import ca.ualberta.c301w13t12recipes.controller.WebStream;
 import ca.ualberta.c301w13t12recipes.model.Recipe;
 import ca.ualberta.c301w13t12recipes.model.WebService;
@@ -150,7 +153,15 @@ public class SearchActivity extends Activity {
 				    	Recipe testRecipe = new Recipe("Admin", "Test_name", "Test_direction");
 						try {
 							Log.v("Recipe", testRecipe.toString());
-							(new WebStream()).insertRecipe(testRecipe);
+							try {
+								System.out.println((new WebSearch()).searchRecipes(testRecipe.getId()).get(0).getUser());
+							} catch (ClientProtocolException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							} catch (IOException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
 						} catch (IllegalStateException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();

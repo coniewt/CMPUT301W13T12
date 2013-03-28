@@ -103,20 +103,15 @@ public class WebStream{
 	 * @param string
 	 * @return the recipe object
 	 */
-	public Recipe getRecipe(String string){
+	/*public Recipe getRecipe(String string){
 		
 		try{
-			HttpGet getRequest = new HttpGet("http://cmput301.softwareprocess.es:8080/cmput301w13t12/"+string+"?pretty=1");//S4bRPFsuSwKUDSJImbCE2g?pretty=1
-
+			HttpGet getRequest = new HttpGet("http://cmput301.softwareprocess.es:8080/cmput301w13t12/recipe/"+string+"?pretty=1");
 			getRequest.addHeader("Accept","application/json");
-
 			HttpResponse response = httpclient.execute(getRequest);
-
 			String status = response.getStatusLine().toString();
 			System.out.println(status);
-
 			String json = getEntityContent(response);
-
 			// We have to tell GSON what type we expect
 			Type elasticSearchResponseType = new TypeToken<ElasticSearchResponse<Recipe>>(){}.getType();
 			// Now we expect to get a Recipe response
@@ -137,7 +132,7 @@ public class WebStream{
 		
 		return null;
 		
-	}
+	}*/
 	
 	public void updateRecipes(Recipe recipe) throws ClientProtocolException, IOException {
 		
