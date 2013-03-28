@@ -11,6 +11,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.animation.Animation;
@@ -20,6 +21,7 @@ import android.widget.EditText;
 import android.widget.Gallery;
 import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 import ca.ualberta.c301w13t12recipes.R;
@@ -78,7 +80,9 @@ public class ViewDetailedRecipeActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				startActivity(ShareController.SendEmail(recipe));
+				//startActivity(ShareController.SendEmail(recipe));
+				showPopup(v);
+				
 			}
 
 		});
@@ -119,7 +123,15 @@ public class ViewDetailedRecipeActivity extends Activity {
 	private void showName() {
 		titleTextView.setText(new String(recipe.getName()));
 	}
-
+	
+	
+	public void showPopup(View v) {
+	    PopupMenu popup = new PopupMenu(this, v);
+	    MenuInflater inflater = popup.getMenuInflater();
+	    inflater.inflate(R.menu.view_detail_popup_menu, popup.getMenu());
+	    popup.show();
+	}
+	
 	class AuthenticationDiaglogFragment extends DialogFragment {
 		private EditText passwordEditText;
 		String password;
