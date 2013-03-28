@@ -6,13 +6,12 @@
     android:background="@drawable/background_fridge"
     tools:context=".view.FridgeActivity" >
 
-    <ListView
-        android:id="@+id/listView1"
-        android:layout_width="575px"
-        android:layout_height="600px"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="74dp" >
-    </ListView>
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="wrap_content"
+        android:layout_height="200px"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:src="@drawable/navi_fridge" />
 
 </RelativeLayout>
