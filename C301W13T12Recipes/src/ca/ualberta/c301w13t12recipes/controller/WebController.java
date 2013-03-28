@@ -46,7 +46,13 @@ public class WebController {
 		return new ArrayList<Recipe>();
 	}
 
-	private boolean isNetworkAvailable(Context co) {
+	/**
+	 * To check the the connection of Network
+	 * @param co
+	 * @return boolean if the network works, it will return true, otherwise it
+	 * will return false
+	 */
+	public boolean isNetworkAvailable(Context co) {
 	    ConnectivityManager connectivityManager 
 	          = (ConnectivityManager) co.getSystemService(Context.CONNECTIVITY_SERVICE);
 	    NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();

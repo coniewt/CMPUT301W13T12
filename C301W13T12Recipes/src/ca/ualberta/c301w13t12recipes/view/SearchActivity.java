@@ -12,32 +12,36 @@ import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
+import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.ImageButton;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.MultiAutoCompleteTextView;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 import ca.ualberta.c301w13t12recipes.R;
 import ca.ualberta.c301w13t12recipes.controller.DatabaseController;
 import ca.ualberta.c301w13t12recipes.controller.RecipeAdapter;
+import ca.ualberta.c301w13t12recipes.controller.WebController;
 import ca.ualberta.c301w13t12recipes.model.Recipe;
+import ca.ualberta.c301w13t12recipes.model.WebService;
 
 public class SearchActivity extends Activity {
 	MultiAutoCompleteTextView keyword_edittext;
 	ImageButton search_imagebutton;
 	ListView result_listview;
 	String keyword;
+	CheckBox checkbox;
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_search);
 		setUp();
-		List<String> autoCompleteList = (new DatabaseController(this)).getNameList();
-		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-		     android.R.layout.simple_dropdown_item_1line, autoCompleteList);
-		keyword_edittext.setAdapter(adapter);
-		keyword_edittext.setTokenizer(new MultiAutoCompleteTextView.CommaTokenizer());
+		prepareAutoCompleteText();
+		
 		search_imagebutton.setOnClickListener(new OnClickListener() {
 			
 			@Override
@@ -61,6 +65,26 @@ public class SearchActivity extends Activity {
 				
 			}
 		});
+		checkbox.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+			
+			@Override
+			public void onCheckedChanged(CompoundButton arg0, boolean arg1) {
+				if(arg1==true){
+					System.out.println((new WebController()).isNetworkAvailable(arg0.getContext()));
+					if((new WebController()).isNetworkAvailable(arg0.getContext())){
+						Toast.makeText(arg0.getContext(), "Successfuls to connect the Internet", Toast.LENGTH_SHORT).show();
+					}
+					else{
+						Toast.makeText(arg0.getContext(), "Fail to connect the Internet", Toast.LENGTH_LONG).show();
+						checkbox.setChecked(false);
+					}
+				}
+				/*else {
+					Log.v("Fail","Fail to connect internet");
+					
+				}*/
+		}});
+		
 	}
 
 	/**
@@ -70,6 +94,7 @@ public class SearchActivity extends Activity {
 		keyword_edittext = (MultiAutoCompleteTextView) findViewById(R.id.keyword_autoCompleteTextView1);
 		result_listview = (ListView) findViewById(R.id.searchResult_listView);
 		search_imagebutton = (ImageButton) findViewById(R.id.search_imageButton1);
+		checkbox = (CheckBox)findViewById(R.id.search_web_recipe_checkbox);
 	}
 	private void jumpToAddViewDetailRecipeActivity(int index) {
 		Intent intent = new Intent(SearchActivity.this,
@@ -88,5 +113,15 @@ public class SearchActivity extends Activity {
 		bundle.putSerializable("LOCAL_RECIPE",recipe);
 		intent.putExtras(bundle);
 		startActivity(intent);
+	}
+	/**
+	 * To prepare the multiCompleteText
+	 */
+	private void prepareAutoCompleteText(){
+		List<String> autoCompleteList = (new DatabaseController(this)).getNameList();
+		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+		     android.R.layout.simple_dropdown_item_1line, autoCompleteList);
+		keyword_edittext.setAdapter(adapter);
+		keyword_edittext.setTokenizer(new MultiAutoCompleteTextView.CommaTokenizer());
 	}
 }

@@ -77,7 +77,8 @@ public class LocalDB {
 		db.insert(StrResource.LOCAL_RECIPE_TABLE_NAME, null, cv);
 	}
 	/**
-	 * @return the list of ingredient in local fridge
+	 * To get the ingredients in the local table
+	 * @return the list of ingredient in the local fridge
 	 */
 	public ArrayList<Ingredient> getLocal_Ingredient_List() {
 			ArrayList<Ingredient> out = new ArrayList<Ingredient>();
@@ -116,7 +117,7 @@ public class LocalDB {
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
-		return null;
+		return new ArrayList<Recipe>();
 	}
 
 	/**

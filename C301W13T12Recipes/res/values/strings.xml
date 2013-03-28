@@ -8,4 +8,6 @@
     <string name="view_detail_publish">Publish</string>
     <string name="view_detail_delete">Delete</string>
     <string name="view_detail_edit">Edit</string>
+    <string name="search_from_web">Search Online</string>
+    <string name="search_hint_please_type">Please Type</string>
 </resources>
