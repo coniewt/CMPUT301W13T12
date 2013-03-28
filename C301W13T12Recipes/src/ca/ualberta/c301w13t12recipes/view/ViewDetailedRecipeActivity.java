@@ -12,6 +12,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.animation.Animation;
@@ -130,6 +131,20 @@ public class ViewDetailedRecipeActivity extends Activity {
 	    MenuInflater inflater = popup.getMenuInflater();
 	    inflater.inflate(R.menu.view_detail_popup_menu, popup.getMenu());
 	    popup.show();
+	}
+	
+	@Override
+	public boolean onMenuItemClick(MenuItem item) {
+	    switch (item.getItemId()) {
+	        case R.id.:
+	           // archive(item);
+	            return true;
+	        case R.id.delete:
+	           // delete(item);
+	            return true;
+	        default:
+	            return false;
+	    }
 	}
 	
 	class AuthenticationDiaglogFragment extends DialogFragment {
