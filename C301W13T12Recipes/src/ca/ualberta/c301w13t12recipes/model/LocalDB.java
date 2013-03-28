@@ -59,7 +59,40 @@ public class LocalDB {
 		}
 		db.insert(StrResource.LOCAL_RECIPE_TABLE_NAME, null, cv);
 	}
-
+	/**
+	 * @param in ingredient object
+	 */
+	public void addLocal_Ingredient_Table(Ingredient in) {
+		ContentValues cv = new ContentValues();
+		try {
+			//Log.v("Add to Table---------------", re.getName());
+			String id = String.valueOf(System.currentTimeMillis());
+			cv.put("id",id );
+			cv.put("name", in.getName());
+			cv.put("amount", in.getAmount());
+			// cv.put(StrResource.COL_CONTENT, Recipe.toJson().toString() );
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		db.insert(StrResource.LOCAL_RECIPE_TABLE_NAME, null, cv);
+	}
+	/**
+	 * @return the list of ingredient in local fridge
+	 */
+	public ArrayList<Ingredient> getLocal_Ingredient_List() {
+			ArrayList<Ingredient> out = new ArrayList<Ingredient>();
+			Cursor c = db.rawQuery("SELECT * FROM "
+					+ StrResource.LOCAL_INGREDIENT_TABLE_NAME, new String[] {});
+			if (c.moveToFirst()) {
+				while (c.isAfterLast() == false) {
+					out.add(new Ingredient(c.getString(1),c.getString(2)));
+					c.moveToNext();
+				}
+				return out;
+			}
+			c.close();
+		return null;
+	}
 	/**
 	 * Get the local task list.
 	 * 
