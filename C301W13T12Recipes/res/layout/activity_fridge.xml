@@ -14,4 +14,17 @@
         android:layout_alignParentTop="true"
         android:src="@drawable/navi_fridge" />
 
+    <ListView
+        android:id="@+id/listView1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/imageView1"
+        android:layout_marginLeft="53dp"
+        android:layout_marginTop="102dp"
+        android:layout_marginBottom="80dp"
+        android:layout_marginRight="53dp"
+         >
+    </ListView>
+
 </RelativeLayout>
