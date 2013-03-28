@@ -19,7 +19,8 @@
             android:layout_alignParentRight="true"
             android:layout_alignParentTop="true"
             android:background="@null"
-            android:src="@drawable/view_menu_share_button_light" />
+            android:src="@drawable/view_menu_share_button_light"
+            android:onClick="showPopup" />
 
         <ImageButton
             android:id="@+id/view_edit_imageButton"

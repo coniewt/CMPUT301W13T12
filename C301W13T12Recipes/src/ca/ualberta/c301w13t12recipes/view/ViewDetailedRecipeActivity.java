@@ -83,7 +83,7 @@ public class ViewDetailedRecipeActivity extends Activity {
 
 		});
 	}
-
+	
 	/**
 	 * Set up the new component
 	 */
