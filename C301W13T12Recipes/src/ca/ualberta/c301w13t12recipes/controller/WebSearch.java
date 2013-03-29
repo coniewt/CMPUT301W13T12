@@ -72,14 +72,14 @@ public class WebSearch extends WebController{
 	 * @throws IOException
 	 */
 	public ArrayList<Recipe> searchsearchRecipes(String str) throws ClientProtocolException, IOException {
-		HttpPost searchRequest = new HttpPost("http://cmput301.softwareprocess.es:8080/cmput301w13t12/_search?pretty=1");
+		HttpPost searchRequest = new HttpPost("http://cmput301.softwareprocess.es:8080/cmput301w13t12/_search?pretty=1&");
+		Log.v("PATH::::",searchRequest.getURI().getPath());
 		String query = 	"{\"query\" : {\"query_string\" : {\"default_field\" : \"ingredients\",\"query\" : \"" + str + "\"}}}";
 		StringEntity stringentity = new StringEntity(query);
-
 		searchRequest.setHeader("Accept","application/json");
 		searchRequest.setEntity(stringentity);
-
 		HttpResponse response = httpclient.execute(searchRequest);
+		
 		String status = response.getStatusLine().toString();
 		System.out.println(status);
 

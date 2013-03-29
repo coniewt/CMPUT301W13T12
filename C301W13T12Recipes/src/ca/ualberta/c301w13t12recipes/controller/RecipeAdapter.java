@@ -40,7 +40,7 @@ public class RecipeAdapter {
 		} else if (type.length() > 4) {
 			if ((type.substring(0, 4)).compareTo("web_") == 0) {
 				try {
-					li = (new WebSearch()).searchsearchRecipes(type.substring(
+					li = (new WebSearch()).searchRecipes(type.substring(
 							5, type.length()));
 				} catch (Exception e) {
 					e.printStackTrace();
