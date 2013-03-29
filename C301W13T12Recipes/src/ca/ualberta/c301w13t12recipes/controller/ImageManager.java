@@ -37,11 +37,19 @@ public class ImageManager {
 		out.close();
 	}
 
+	/**
+	 * @param folder
+	 * @return
+	 */
 	public String genImgPath(String folder) {
 		return folder + "/" + String.valueOf(System.currentTimeMillis())
 				+ ".jpg";
 	}
 
+	/**
+	 * @param folder
+	 * @return
+	 */
 	public String createFolder(String folder) {
 		// TODO create a parent folder for HD images
 		// path of temporary folder
@@ -55,6 +63,11 @@ public class ImageManager {
 		return tmpFolderPath;
 	}
 
+	/**
+	 * @param folder
+	 * @param subFolder
+	 * @return
+	 */
 	public String createSubfolder(String folder, String subFolder) {
 		// TODO create a subfolder for thumbnails ( create its parent folder if
 		// doesn't exist)
@@ -78,6 +91,10 @@ public class ImageManager {
 		return thumbnailFolderPath;
 	}
 
+	/**
+	 * @param imageFilePath
+	 * @return
+	 */
 	public Uri createImage(String imageFilePath) {
 		File imageFile = new File(imageFilePath);
 		return Uri.fromFile(imageFile);
@@ -109,7 +126,13 @@ public class ImageManager {
 		return inSampleSize;
 	}
 
-	private Bitmap decodeBitmapFromFile(Uri imageUri,
+	/**
+	 * @param imageUri
+	 * @param reqWidth
+	 * @param reqHeight
+	 * @return Bitmap
+	 */
+	public Bitmap decodeBitmapFromFile(Uri imageUri,
 			int reqWidth, int reqHeight) {
 		//TODO decode the bitmap from the file
 		// First decode with inJustDecodeBounds=true to check dimensions
@@ -126,6 +149,9 @@ public class ImageManager {
 		return BitmapFactory.decodeFile( imageUri.getPath(), options);
 	}
 	
+	/**
+	 * @param image
+	 */
 	public void removeImageFilesFromLocal(Image image){
 		File imageHD = new File(image.getHD_Path());
 		if(imageHD.exists()){
@@ -135,5 +161,17 @@ public class ImageManager {
 		if(imageTN.exists()){
 			imageTN.delete();
 		}
+	}
+	public String convertFromBitmapToFilePath(Bitmap bitmap ,String name){
+		String path =Environment.getExternalStorageDirectory().getAbsolutePath()+"tmp/"+name;
+		File image_file = new File(path);
+		image_file.mkdir();
+		if(image_file.exists()){
+			image_file.delete();
+		}
+		//OutputStream out = new FileOutputStream(path);
+		bitmap.compress(Bitmap.CompressFormat.JPEG, 75, out);
+		//out.close();
+		return path;
 	}
 }

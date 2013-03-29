@@ -65,7 +65,6 @@ public class LocalDB {
 	public void addLocal_Ingredient_Table(Ingredient in) {
 		ContentValues cv = new ContentValues();
 		try {
-			//Log.v("Add to Table---------------", re.getName());
 			String id = String.valueOf(System.currentTimeMillis());
 			cv.put("id",id );
 			cv.put("name", in.getName());

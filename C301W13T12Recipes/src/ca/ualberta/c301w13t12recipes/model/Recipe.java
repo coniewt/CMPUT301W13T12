@@ -1,13 +1,22 @@
 package ca.ualberta.c301w13t12recipes.model;
 
 import java.io.Serializable;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 import java.util.UUID;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import ca.ualberta.c301w13t12recipes.controller.ImageManager;
+
+import android.graphics.Bitmap;
 
 
 /**
@@ -25,6 +34,7 @@ public class Recipe implements Serializable{
 	private List<Ingredient> ingredients;
 	private List<Image> ImageCollection;
 	private String directions;
+	private HashMap<String,Bitmap> bitmap_hashmap;
 
 	/**
 	 * Structure of recipe
@@ -44,6 +54,13 @@ public class Recipe implements Serializable{
 		this.ingredients = new ArrayList<Ingredient>();
 		this.directions = directions;
 	}
+	/**
+	 * @param id
+	 * @param user
+	 * @param name
+	 * @param ar
+	 * @param directions
+	 */
 	public Recipe(String id,String user,String name,List<Ingredient> ar, String directions) {
 		this.id = id;
 		this.user = user;
@@ -54,10 +71,32 @@ public class Recipe implements Serializable{
 		this.directions = directions;
 	}
 	/**
+	 * This construct is used to construct objects,which contain 
+	 * bitmaps.
+	 * @param id
+	 * @param user
+	 * @param name
+	 * @param ar
+	 * @param directions
+	 * @param bitmapList
+	 */
+	public Recipe(String id,String user,String name,List<Ingredient> ar, String directions,HashMap<String,Bitmap> bitmap_hashmap) {
+		this.id = id;
+		this.user = user;
+		this.passward = "";
+		this.name = name;
+		this.ingredients = ar;
+		this.directions = directions;
+		this.bitmap_hashmap = bitmap_hashmap;
+	}
+	
+	
+	/**
 	 * Add an ingredient to the recipe
 	 * @param Name of ingredient
 	 * @param Amount of ingredient
 	 */
+	
 	public void addIngredient(String name,String amount){
 		this.ingredients.add(new Ingredient(name,amount));
 	}
@@ -282,6 +321,12 @@ public class Recipe implements Serializable{
 			}
 		}
 	}
+	/**
+	 * @return the hashmap of bitmap
+	 */
+	public HashMap<String, Bitmap> getImageBitmapHashMap(){
+		return this.bitmap_hashmap;
+	}
 	
 	/**
 	 * Get ingredient name from specific position
@@ -290,5 +335,31 @@ public class Recipe implements Serializable{
 	 */
 	public String getIngredientName(int pos){
 		return this.ingredients.get(pos).getName();
+	}
+	/**
+	 * Mainly responsible for converting the local recipe
+	 * to the recipe on web
+	 * @return the recipe contains the hashmap of Bitmaps
+	 */
+	public Recipe convertTobitmapRecipe(){
+		HashMap<String,Bitmap> list = new HashMap<String,Bitmap>();
+		ArrayList<Image> image_list = (ArrayList<Image>) this.getImage();
+		ImageManager im = new ImageManager();
+		for(Image image:image_list){
+			list.put(image.getName(), im.decodeBitmapFromFile(im.createImage(image.getTN_Path()), 500, 500));
+		}
+		return new Recipe(getId(), getUser(), getName(), getIngredients(), getDirections(), bitmap_hashmap);
+	}
+	public Recipe convertToLocalRecipe(){
+		HashMap<String,Bitmap> map = this.getImageBitmapHashMap();
+		ArrayList<Image> image_list = (ArrayList<Image>) this.getImage();
+		ImageManager im = new ImageManager();
+		Iterator<Entry<String, Bitmap>> it =map.entrySet().iterator(); 
+		while(it.hasNext()){
+			Map.Entry<String, Bitmap> pair = it.next();
+			//image_list.add(new Image(pair.getKey(), pair.getValue(), directions))
+			it.remove();
+		}
+		return new Recipe(getId(), getUser(), getName(), getIngredients(), getDirections(), bitmap_hashmap);
 	}
 }
