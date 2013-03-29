@@ -10,7 +10,7 @@ import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 
-public class EditTitleDescWizardActivity extends EditCompleteWizardActivity {
+public class EditTitleDescWizardActivity extends AddTitleDescWizardActivity {
 
 	/** Called when the activity is first created. */
 	@Override

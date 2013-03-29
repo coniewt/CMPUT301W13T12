@@ -35,7 +35,6 @@
         <activity android:name=".view.FridgeActivity"></activity>
         <activity android:name=".view.SearchActivity"></activity>
         <activity android:name=".view.EditTitleDescWizardActivity" android:theme="@android:style/Theme.Holo.Light.NoActionBar"></activity>
-        <activity android:name=".view.EditCompleteWizardActivity" android:theme="@android:style/Theme.Holo.Light.NoActionBar"></activity>
     </application>
 
 </manifest>
