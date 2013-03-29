@@ -357,7 +357,7 @@ public class Recipe implements Serializable{
 		Iterator<Entry<String, Bitmap>> it =map.entrySet().iterator(); 
 		while(it.hasNext()){
 			Map.Entry<String, Bitmap> pair = it.next();
-			//image_list.add(new Image(pair.getKey(), pair.getValue(), directions))
+			image_list.add(new Image("",pair.getKey(), im.convertFromBitmapToFilePath(pair.getValue(), pair.getKey())));
 			it.remove();
 		}
 		return new Recipe(getId(), getUser(), getName(), getIngredients(), getDirections(), bitmap_hashmap);
