@@ -163,15 +163,22 @@ public class ImageManager {
 		}
 	}
 	public String convertFromBitmapToFilePath(Bitmap bitmap ,String name){
+		createFolder("/tmp");
+		createSubfolder("/tmp", "/thumbnail");
 		String path =Environment.getExternalStorageDirectory().getAbsolutePath()+"tmp/"+name;
 		File image_file = new File(path);
-		image_file.mkdir();
 		if(image_file.exists()){
 			image_file.delete();
 		}
-		//OutputStream out = new FileOutputStream(path);
+		OutputStream out;
+		try {
+			out = new FileOutputStream(path);
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		bitmap.compress(Bitmap.CompressFormat.JPEG, 75, out);
-		//out.close();
+		out.close();
 		return path;
 	}
 }
