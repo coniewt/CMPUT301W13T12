@@ -56,7 +56,15 @@ public class AddCompleteWizardActivity extends Activity {
 	private void saveRecipe() {
 		getRecipe();
 		controller = new DatabaseController(AddCompleteWizardActivity.this);
-		controller.addRecipe(recipe);
+		
+		if(controller.isRecipeExists(recipe)){
+			controller.delete(recipe);
+			controller.addRecipe(recipe);
+		}else{
+			controller.addRecipe(recipe);
+		}
+		
+		
 
 	}
 
