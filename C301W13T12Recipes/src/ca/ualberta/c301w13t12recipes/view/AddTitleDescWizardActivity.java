@@ -125,7 +125,9 @@ public class AddTitleDescWizardActivity extends Activity {
 						@Override
 						public void onClick(DialogInterface dialog, int which) {
 							setPasswordFragment.this.getDialog().cancel();
-							lock.setEnabled(false);
+							lock.setChecked(false);
+							Toast.makeText(AddTitleDescWizardActivity.this,
+									"Operation is cancelled", 2).show();
 
 						}
 					});
