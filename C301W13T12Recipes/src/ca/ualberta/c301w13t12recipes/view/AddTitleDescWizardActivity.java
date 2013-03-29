@@ -15,6 +15,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CompoundButton;
+import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.EditText;
 import android.widget.Switch;
 import android.widget.Toast;
@@ -52,7 +54,19 @@ public class AddTitleDescWizardActivity extends Activity {
 	    		saveAndJumpToAddIngredWizard();
 	    	}
 	    });
-	    
+	    lock.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+			
+			@Override
+			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+				// TODO Auto-generated method stub
+				if(isChecked == true){
+					DialogFragment newFragment = new setPasswordFragment();
+					newFragment.show(getFragmentManager(), "CREATE_PASSWORD");
+				}else{
+					recipe.setPassWord("");
+				}
+			}
+		});
 	    
 	    // TODO Auto-generated method stub
 	}
