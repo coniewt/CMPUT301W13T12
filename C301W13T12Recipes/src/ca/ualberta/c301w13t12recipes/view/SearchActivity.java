@@ -150,23 +150,16 @@ public class SearchActivity extends Activity {
 				{
 				    @Override
 				    public void run() {
-				    	Recipe testRecipe = new Recipe("Admin", "Test_name", "Test_direction");
+				    	Recipe testRecipe = new Recipe("Admin2", "Test_name2", "Test_direction2");
 						try {
 							Log.v("Recipe", testRecipe.toString());
-							try {
-								System.out.println((new WebSearch()).searchRecipes(testRecipe.getId()).get(0).getUser());
-							} catch (ClientProtocolException e) {
-								// TODO Auto-generated catch block
-								e.printStackTrace();
-							} catch (IOException e) {
-								// TODO Auto-generated catch block
-								e.printStackTrace();
-							}
-						} catch (IllegalStateException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						} 
-				    }
+							(new WebStream()).deleteRecipe();
+								(new WebStream()).insertRecipe(testRecipe);
+						}
+						catch (Exception e){
+							e.printStackTrace();	
+						}
+						}
 				};
 				thread.run();
 				// TODO Auto-generated method stub

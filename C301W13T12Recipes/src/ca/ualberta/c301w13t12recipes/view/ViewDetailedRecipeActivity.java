@@ -28,6 +28,7 @@ import android.widget.PopupMenu.OnMenuItemClickListener;
 import android.widget.TextView;
 import android.widget.Toast;
 import ca.ualberta.c301w13t12recipes.R;
+import ca.ualberta.c301w13t12recipes.controller.DatabaseController;
 import ca.ualberta.c301w13t12recipes.controller.ShareController;
 import ca.ualberta.c301w13t12recipes.controller.GalleryAdapter;
 import ca.ualberta.c301w13t12recipes.controller.IngredientsAdapter;
@@ -71,7 +72,7 @@ public class ViewDetailedRecipeActivity extends Activity {
 		optionsButton.setOnClickListener(new OnClickListener() {
 
 			@Override
-			public void onClick(View v) {
+			public void onClick(final View v) {
 				// TODO Auto-generated method stub
 				//
 				showPopup(v);
@@ -83,7 +84,9 @@ public class ViewDetailedRecipeActivity extends Activity {
 								// TODO listen the any response from menu
 								switch (item.getItemId()) {
 								case R.id.pop_delete:
-
+									(new DatabaseController(v.getContext())).delete(recipe.getId());
+									jumpback();
+									finish();
 									return true;
 								case R.id.pop_edit:
 									if (!recipe.getPassWord().equals("")) {
@@ -217,6 +220,12 @@ public class ViewDetailedRecipeActivity extends Activity {
 		Intent intent = new Intent();
 		intent.setClass(ViewDetailedRecipeActivity.this,
 				AddTitleDescWizardActivity.class);
+		startActivity(intent);
+	}
+	private void jumpback() {
+		Intent intent = new Intent();
+		intent.setClass(ViewDetailedRecipeActivity.this,
+				ViewListActivity.class);
 		startActivity(intent);
 	}
 }

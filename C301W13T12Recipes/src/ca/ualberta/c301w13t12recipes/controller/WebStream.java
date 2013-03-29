@@ -47,7 +47,7 @@ public class WebStream{
 		/*URL url = new URL("http://cmput301.softwareprocess.es:8080/cmput301w13t12/"+recipe.getId());
 		
 		HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();*/
-		
+		recipe = recipe.convertTobitmapRecipe();
 		HttpPost httpPost = new HttpPost("http://cmput301.softwareprocess.es:8080/cmput301w13t12/recipe/"+recipe.getId().substring(6, recipe.getId().length()-1)+ "?op_type=create");
 		StringEntity stringentity = null;
 		try {
@@ -136,7 +136,7 @@ public class WebStream{
 	
 	public void updateRecipes(Recipe recipe) throws ClientProtocolException, IOException {
 		
-		deleteRecipe(recipe);
+		//deleteRecipe();
 		insertRecipe(recipe);
 		
 		/*HttpPost updateRequest = new HttpPost("http://cmput301.softwareprocess.es:8080/cmput301w13t12/"+recipe.getId()+"/_update");
@@ -155,12 +155,10 @@ public class WebStream{
 	}	
 
 
-	public void deleteRecipe(Recipe recipe) throws IOException {
-		HttpDelete httpDelete = new HttpDelete("http://cmput301.softwareprocess.es:8080/cmput301w13t12/"+recipe.getId());
+	public void deleteRecipe() throws IOException {
+		HttpDelete httpDelete = new HttpDelete("http://cmput301.softwareprocess.es:8080/cmput301w13t12/recipe");
 		httpDelete.addHeader("Accept","application/json");
-
 		HttpResponse response = httpclient.execute(httpDelete);
-
 		String status = response.getStatusLine().toString();
 		System.out.println(status);
 

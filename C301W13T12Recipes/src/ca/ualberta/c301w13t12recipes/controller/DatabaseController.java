@@ -14,6 +14,9 @@ import ca.ualberta.c301w13t12recipes.model.Recipe;
 
 public class DatabaseController {
 	private LocalDB database;
+	/**
+	 * @param context
+	 */
 	public DatabaseController(Context context){
 		this.database = new LocalDB(context);	
 	}
@@ -37,6 +40,12 @@ public class DatabaseController {
 	 */
 	public void removeAll(){
 		this.database.clear_All();
+	}
+	/**
+	 * remove all recipe in local database
+	 */
+	public void delete(String id){
+		this.database.delete_Local_Recipe(id);
 	}
 	/**
 	 * @param key a string of keyword

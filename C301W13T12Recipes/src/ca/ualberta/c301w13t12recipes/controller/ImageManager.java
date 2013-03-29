@@ -162,6 +162,12 @@ public class ImageManager {
 			imageTN.delete();
 		}
 	}
+	/**
+	 * Convert bitmap to file and store it
+	 * @param bitmap
+	 * @param name
+	 * @return String the path of file
+	 */
 	public String convertFromBitmapToFilePath(Bitmap bitmap ,String name){
 		createFolder("/tmp");
 		createSubfolder("/tmp", "/thumbnail");
