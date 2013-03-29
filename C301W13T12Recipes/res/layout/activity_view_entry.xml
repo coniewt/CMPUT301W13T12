@@ -30,6 +30,7 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="14dp"
             android:text="Photos"
+            android:textSize="10pt"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="#FFFFFF" />
     </RelativeLayout>
