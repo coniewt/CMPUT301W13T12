@@ -23,6 +23,7 @@ import ca.ualberta.c301w13t12recipes.R;
 import ca.ualberta.c301w13t12recipes.controller.IngredientsAdapter;
 import ca.ualberta.c301w13t12recipes.model.Recipe;
 
+
 /**
  * Activity class for adding ingredient wizard
  * @author GUANQI HUANG
@@ -123,10 +124,6 @@ public class AddIngredWizardActivity extends Activity {
 
 	}
 
-	/**
-	 * @author dw
-	 *
-	 */
 	class AddIngredDiaglogFragment extends DialogFragment {
 		private EditText nameEditText;
 		private EditText amountEditText;
@@ -152,7 +149,7 @@ public class AddIngredWizardActivity extends Activity {
 							amount = amountEditText.getText().toString();
 							recipe.addIngredient(name, amount);
 							Toast.makeText(AddIngredWizardActivity.this,
-									name + " is added", 1).show();
+									"Successfully adding a new ingredient", 2).show();
 							refreshList();
 						}
 					}).setNegativeButton("Cancel",

@@ -3,13 +3,20 @@ package ca.ualberta.c301w13t12recipes.view;
 import ca.ualberta.c301w13t12recipes.R;
 import ca.ualberta.c301w13t12recipes.controller.DatabaseController;
 import ca.ualberta.c301w13t12recipes.model.Recipe;
+import ca.ualberta.c301w13t12recipes.view.AddIngredWizardActivity.AddIngredDiaglogFragment;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.app.DialogFragment;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Switch;
 import android.widget.Toast;
 
 /**
@@ -23,6 +30,10 @@ public class AddTitleDescWizardActivity extends Activity {
 	
 	private Button cancelButton; // cancel button
 	private Button nextButton;// next button	
+	
+	private Switch lock;// password switch
+	
+	Recipe recipe = new Recipe("","","");
 	
 	
 	/** Called when the activity is first created. */
@@ -48,6 +59,7 @@ public class AddTitleDescWizardActivity extends Activity {
 	private void setupButton(){
 		cancelButton = (Button)findViewById(R.id.add_step1_Clear_button);
 		nextButton = (Button)findViewById(R.id.add_step1_next_button);
+		lock =(Switch)findViewById(R.id.add_switch_password);
 		
 	}
 	private void setupEditText(){
@@ -58,7 +70,7 @@ public class AddTitleDescWizardActivity extends Activity {
 	
 	private void saveAndJumpToAddIngredWizard(){
 		
-		Recipe recipe = new Recipe("","","");
+		
 		recipe.setDirections(descEditText.getText().toString());//get description from descEditText Widget
 		recipe.setName(nameEditText.getText().toString());// get nameEditText from nameEditText Widget
 		Toast.makeText(AddTitleDescWizardActivity.this, "Name and directions are saved !", 3).show();
@@ -69,5 +81,42 @@ public class AddTitleDescWizardActivity extends Activity {
 	    startActivity(intent);
 	    
 		
+	}
+	class setPasswordFragment extends DialogFragment {
+		private EditText passwordEditText;
+		String password;
+
+		public Dialog onCreateDialog(Bundle savedInstanceState) {
+			AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+			LayoutInflater inflater = getActivity().getLayoutInflater();
+			final View v = inflater.inflate(R.layout.dialog_edit_password_enabler,
+					null);
+			builder.setView(v);
+			
+			passwordEditText = (EditText) v
+					.findViewById(R.id.add_password_textEdit);
+			builder.setTitle("New Ingredient");
+			inflater.inflate(R.layout.dialog_add_ingredient, null);
+			builder.setPositiveButton("Done",
+					new DialogInterface.OnClickListener() {
+						@Override
+						public void onClick(DialogInterface dialog, int id) {
+							password = passwordEditText.getText().toString();
+							recipe.setPassWord(password);
+							Toast.makeText(AddTitleDescWizardActivity.this,
+									"Password has been set", 2).show();
+						}
+					}).setNegativeButton("Cancel",
+					new DialogInterface.OnClickListener() {
+
+						@Override
+						public void onClick(DialogInterface dialog, int which) {
+							setPasswordFragment.this.getDialog().cancel();
+
+						}
+					});
+			return builder.create();
+		}
+
 	}
 }
