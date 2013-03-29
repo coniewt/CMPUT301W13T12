@@ -25,6 +25,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 import ca.ualberta.c301w13t12recipes.R;
 import ca.ualberta.c301w13t12recipes.controller.DatabaseController;
+import ca.ualberta.c301w13t12recipes.controller.ImageManager;
+import ca.ualberta.c301w13t12recipes.controller.RecipeManager;
 import ca.ualberta.c301w13t12recipes.controller.ShareController;
 import ca.ualberta.c301w13t12recipes.controller.GalleryAdapter;
 import ca.ualberta.c301w13t12recipes.controller.IngredientsAdapter;
@@ -48,6 +50,7 @@ public class ViewDetailedRecipeActivity extends Activity {
 	private TextView descTextView;
 	private ListView ingredListView;
 	private PopupMenu popupMenu;
+	private RecipeManager recipeManager;
 
 	/** Called when the activity is first created. */
 	@Override
@@ -80,7 +83,8 @@ public class ViewDetailedRecipeActivity extends Activity {
 								// TODO listen the any response from menu
 								switch (item.getItemId()) {
 								case R.id.pop_delete:
-									(new DatabaseController(v.getContext())).delete(recipe);
+									recipeManager = new RecipeManager(getApplicationContext());
+									recipeManager.deteleRecipe(recipe);
 									jumpToRecipeListView();
 									finish();
 									return true;
