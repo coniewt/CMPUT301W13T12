@@ -109,7 +109,6 @@ public class AddTitleDescWizardActivity extends Activity {
 			
 			passwordEditText = (EditText) v
 					.findViewById(R.id.add_password_textEdit);
-			builder.setTitle("New Ingredient");
 			inflater.inflate(R.layout.dialog_add_ingredient, null);
 			builder.setPositiveButton("Done",
 					new DialogInterface.OnClickListener() {
@@ -126,6 +125,7 @@ public class AddTitleDescWizardActivity extends Activity {
 						@Override
 						public void onClick(DialogInterface dialog, int which) {
 							setPasswordFragment.this.getDialog().cancel();
+							lock.setEnabled(false);
 
 						}
 					});
