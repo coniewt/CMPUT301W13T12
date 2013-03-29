@@ -1,10 +1,7 @@
 package ca.ualberta.c301w13t12recipes.view;
 
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
-
-import org.apache.http.client.ClientProtocolException;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -29,10 +26,8 @@ import ca.ualberta.c301w13t12recipes.R;
 import ca.ualberta.c301w13t12recipes.controller.DatabaseController;
 import ca.ualberta.c301w13t12recipes.controller.RecipeAdapter;
 import ca.ualberta.c301w13t12recipes.controller.WebController;
-import ca.ualberta.c301w13t12recipes.controller.WebSearch;
 import ca.ualberta.c301w13t12recipes.controller.WebStream;
 import ca.ualberta.c301w13t12recipes.model.Recipe;
-import ca.ualberta.c301w13t12recipes.model.WebService;
 
 public class SearchActivity extends Activity {
 	//declare the view components

@@ -1,9 +1,6 @@
 package ca.ualberta.c301w13t12recipes.view;
 
 import ca.ualberta.c301w13t12recipes.R;
-import ca.ualberta.c301w13t12recipes.R.layout;
-import ca.ualberta.c301w13t12recipes.R.menu;
-import ca.ualberta.c301w13t12recipes.controller.DatabaseController;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
@@ -33,7 +30,6 @@ public class MainActivity extends Activity {
 		
 		setupButtons();// initialize buttons
 		
-		DatabaseController database = new DatabaseController(MainActivity.this);// create a Database controller 
 		
 		main_addButton.setOnClickListener(new View.OnClickListener() {
 			

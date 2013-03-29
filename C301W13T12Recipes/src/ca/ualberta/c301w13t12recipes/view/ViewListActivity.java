@@ -1,27 +1,20 @@
 package ca.ualberta.c301w13t12recipes.view;
 
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
-import android.widget.GridView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import ca.ualberta.c301w13t12recipes.R;
 import ca.ualberta.c301w13t12recipes.controller.DatabaseController;
-import ca.ualberta.c301w13t12recipes.controller.ImageManager;
 import ca.ualberta.c301w13t12recipes.controller.RecipeAdapter;
-import ca.ualberta.c301w13t12recipes.model.Image;
 import ca.ualberta.c301w13t12recipes.model.Recipe;
 
 /**

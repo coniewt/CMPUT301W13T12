@@ -1,9 +1,7 @@
 package ca.ualberta.c301w13t12recipes.view;
 
 import ca.ualberta.c301w13t12recipes.R;
-import ca.ualberta.c301w13t12recipes.controller.DatabaseController;
 import ca.ualberta.c301w13t12recipes.model.Recipe;
-import ca.ualberta.c301w13t12recipes.view.AddIngredWizardActivity.AddIngredDiaglogFragment;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -11,7 +9,6 @@ import android.app.DialogFragment;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -30,7 +27,7 @@ public class AddTitleDescWizardActivity extends Activity {
 	protected EditText descEditText; //description widget
 	protected EditText nameEditText; //name widget
 	
-	protected Button cancelButton; // cancel button
+	protected Button clearButton; // cancel button
 	protected Button nextButton;// next button	
 	
 	protected Switch lock;// password switch
@@ -54,6 +51,15 @@ public class AddTitleDescWizardActivity extends Activity {
 	    		saveAndJumpToAddIngredWizard();
 	    	}
 	    });
+	    clearButton.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				clearAllFields();
+				Toast toast = Toast.makeText(getApplicationContext(), "Operation Complete", 1);
+				toast.show();
+			}
+		});
 	    lock.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 			
 			@Override
@@ -71,7 +77,7 @@ public class AddTitleDescWizardActivity extends Activity {
 	    // TODO Auto-generated method stub
 	}
 	protected void setupButton(){
-		cancelButton = (Button)findViewById(R.id.add_step1_Clear_button);
+		clearButton = (Button)findViewById(R.id.add_step1_Clear_button);
 		nextButton = (Button)findViewById(R.id.add_step1_next_button);
 		lock =(Switch)findViewById(R.id.add_switch_password);
 		
@@ -80,6 +86,10 @@ public class AddTitleDescWizardActivity extends Activity {
 		descEditText =(EditText)findViewById(R.id.add_editText_description);
 		nameEditText =(EditText)findViewById(R.id.add_editText_recipe_name);
 		
+	}
+	protected void clearAllFields(){
+		descEditText.setText("");
+		nameEditText.setText("");
 	}
 	
 	void saveAndJumpToAddIngredWizard(){

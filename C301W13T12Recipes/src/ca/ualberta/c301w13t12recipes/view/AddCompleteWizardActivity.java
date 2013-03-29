@@ -7,13 +7,13 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import ca.ualberta.c301w13t12recipes.R;
-import ca.ualberta.c301w13t12recipes.R.layout;
 import ca.ualberta.c301w13t12recipes.controller.DatabaseController;
 import ca.ualberta.c301w13t12recipes.model.Recipe;
+
 /**
  * 
  * @author GUANQI HUANG
- *
+ * 
  */
 public class AddCompleteWizardActivity extends Activity {
 	Button doneButton;
@@ -32,11 +32,10 @@ public class AddCompleteWizardActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				
+
 				saveRecipe();
 				jumpToMainActivity();
-				Intent intent = new Intent(AddCompleteWizardActivity.this,AddIngredWizardActivity.class);
-				finish();
+
 			}
 
 		});
@@ -56,21 +55,21 @@ public class AddCompleteWizardActivity extends Activity {
 	private void saveRecipe() {
 		getRecipe();
 		controller = new DatabaseController(AddCompleteWizardActivity.this);
-		
-		if(controller.isRecipeExists(recipe)){
+
+		if (controller.isRecipeExists(recipe)) {
 			controller.delete(recipe);
 			controller.addRecipe(recipe);
-		}else{
+		} else {
 			controller.addRecipe(recipe);
 		}
-		
-		
 
 	}
 
 	private void jumpToMainActivity() {
-		Intent intent = new Intent(AddCompleteWizardActivity.this,MainActivity.class);
+		Intent intent = new Intent(AddCompleteWizardActivity.this,
+				MainActivity.class);
 		startActivity(intent);
 
 	}
+
 }

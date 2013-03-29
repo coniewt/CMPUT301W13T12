@@ -2,12 +2,11 @@ package ca.ualberta.c301w13t12recipes.view;
 
 import ca.ualberta.c301w13t12recipes.R;
 import ca.ualberta.c301w13t12recipes.model.Recipe;
-import ca.ualberta.c301w13t12recipes.view.AddTitleDescWizardActivity.setPasswordFragment;
-import android.app.Activity;
 import android.app.DialogFragment;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.CompoundButton;
+import android.widget.Toast;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 
 public class EditTitleDescWizardActivity extends AddTitleDescWizardActivity {
@@ -28,6 +27,16 @@ public class EditTitleDescWizardActivity extends AddTitleDescWizardActivity {
 				saveAndJumpToAddIngredWizard();
 			}
 		});
+		clearButton.setOnClickListener(new View.OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				clearAllFields();
+				Toast toast = Toast.makeText(getApplicationContext(),
+						"Operation Complete", 1);
+				toast.show();
+			}
+		});
 		lock.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
 			@Override
@@ -45,22 +54,22 @@ public class EditTitleDescWizardActivity extends AddTitleDescWizardActivity {
 	}
 
 	/**
-	 * receive the recipe object from ViewDetailedRecipeActivity 
+	 * receive the recipe object from ViewDetailedRecipeActivity
 	 */
 	private void getRecipeFromIntent() {
 		recipe = (Recipe) getIntent().getSerializableExtra("NEW_RECIPE");
 
 	}
-	
-	private void fillInfoBackTofields(){
-		if(recipe.getPassword().equals("")){
+
+	private void fillInfoBackTofields() {
+		if (recipe.getPassword().equals("")) {
 			lock.setChecked(false);
-		}else{
+		} else {
 			lock.setChecked(true);
 		}
 		nameEditText.setText(recipe.getName());
 		descEditText.setText(recipe.getDirections());
-		
+
 	}
 
 }
