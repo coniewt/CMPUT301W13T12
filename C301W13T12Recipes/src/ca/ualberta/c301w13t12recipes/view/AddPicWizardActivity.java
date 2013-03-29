@@ -47,7 +47,7 @@ public class AddPicWizardActivity extends Activity {
 		getRecipe();
 		setContentView(R.layout.activity_add_img_wizard);
 		setupWidgets();
-
+		refreshGridView();
 		addButton.setOnClickListener(new OnClickListener() {
 
 			@Override
@@ -76,7 +76,7 @@ public class AddPicWizardActivity extends Activity {
 				imageManager.removeImageFilesFromLocal(recipe.getImage(pos));
 				recipe.removeImage(pos);
 				Toast.makeText(AddPicWizardActivity.this, "Image is removed successfully", Toast.LENGTH_SHORT).show();
-				refreshView();
+				refreshGridView();
 				return false;
 			}
 
@@ -152,7 +152,7 @@ public class AddPicWizardActivity extends Activity {
 				}
 
 				recipe.addImage(uriImgHD.getPath(),uriImgTN.getPath());
-				refreshView();
+				refreshGridView();
 			} else if (resultCode == RESULT_CANCELED) {
 				Toast.makeText(this, "Operation cancelled", Toast.LENGTH_LONG)
 						.show();
@@ -162,7 +162,7 @@ public class AddPicWizardActivity extends Activity {
 		}
 	}
 
-	public void refreshView() {
+	public void refreshGridView() {
 		gridView.setAdapter(new ImageAdapter(AddPicWizardActivity.this,
 				(ArrayList<Image>) recipe.getImage()));
 	}
