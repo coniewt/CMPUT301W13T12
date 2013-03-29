@@ -165,7 +165,7 @@ public class ImageManager {
 	public String convertFromBitmapToFilePath(Bitmap bitmap ,String name){
 		createFolder("/tmp");
 		createSubfolder("/tmp", "/thumbnail");
-		String path =Environment.getExternalStorageDirectory().getAbsolutePath()+"tmp/"+name;
+		String path =Environment.getExternalStorageDirectory().getAbsolutePath()+"tmp/thumbnail/"+name;
 		File image_file = new File(path);
 		if(image_file.exists()){
 			image_file.delete();
@@ -173,7 +173,7 @@ public class ImageManager {
 		OutputStream out;
 		try {
 			out = new FileOutputStream(path);
-			bitmap.compress(Bitmap.CompressFormat.JPEG, 75, out);
+			bitmap.compress(Bitmap.CompressFormat.JPEG, 100, out);
 			out.close();
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
