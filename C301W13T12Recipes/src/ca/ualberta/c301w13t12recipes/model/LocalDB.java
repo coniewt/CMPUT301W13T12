@@ -157,13 +157,14 @@ public class LocalDB {
 	/**
 	 * Check if local recipes exist
 	 * 
-	 * @param id
+	 * @param recipe
 	 * @return True if exist, false if not exist
 	 */
-	private boolean localIdExists(String id) {
+	public boolean isLocalIdExists(Recipe recipe) {
+		
 		Cursor c = db.rawQuery("SELECT * FROM "
 				+ StrResource.LOCAL_RECIPE_TABLE_NAME + " WHERE id" + "=?",
-				new String[] { id, });
+				new String[] { recipe.getId(), });
 		if (c == null || c.getCount() == 0) {
 			return false;
 		}
