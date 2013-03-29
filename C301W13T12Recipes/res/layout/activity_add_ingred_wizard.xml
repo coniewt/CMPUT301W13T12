@@ -22,11 +22,11 @@
 
     <ListView
         android:id="@+id/listView_ingredients_list"
-        android:layout_width="345dp"
+        android:layout_width="342dp"
         android:layout_height="307dp"
-        android:layout_marginLeft="35px"
-        android:layout_marginRight="25px"
-        android:layout_weight="0.50" >
+        android:layout_marginLeft="41px"
+        android:layout_marginRight="34px"
+        android:layout_weight="0.31" >
 
     </ListView>
 

@@ -22,15 +22,6 @@
             android:src="@drawable/view_menu_share_button_light"
             android:onClick="showPopup" />
 
-        <ImageButton
-            android:id="@+id/view_edit_imageButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_toLeftOf="@+id/view_share_imageButton"
-            android:background="@null"
-            android:src="@drawable/view_menu_compose_button" />
-
         <TextView
             android:id="@+id/textView3"
             android:layout_width="wrap_content"
@@ -91,7 +82,7 @@
         android:layout_width="match_parent"
         android:layout_height="60px"
         android:background="@drawable/view_ingredients_banner"
-        android:text="		Description"
+        android:text="		Direction"
         android:textColor="#FFFFFF"
         android:textSize="10pt" />
 
