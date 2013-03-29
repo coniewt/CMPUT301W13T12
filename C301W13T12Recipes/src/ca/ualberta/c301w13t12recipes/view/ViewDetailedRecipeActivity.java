@@ -80,8 +80,8 @@ public class ViewDetailedRecipeActivity extends Activity {
 								// TODO listen the any response from menu
 								switch (item.getItemId()) {
 								case R.id.pop_delete:
-									(new DatabaseController(v.getContext())).delete(recipe.getId());
-									jumpback();
+									(new DatabaseController(v.getContext())).delete(recipe);
+									jumpToRecipeListView();
 									finish();
 									return true;
 								case R.id.pop_edit:
@@ -221,7 +221,7 @@ public class ViewDetailedRecipeActivity extends Activity {
 	    intent.putExtras(bundle);
 	    startActivity(intent);
 	}
-	private void jumpback() {
+	private void jumpToRecipeListView() {
 		Intent intent = new Intent();
 		intent.setClass(ViewDetailedRecipeActivity.this,
 				ViewListActivity.class);

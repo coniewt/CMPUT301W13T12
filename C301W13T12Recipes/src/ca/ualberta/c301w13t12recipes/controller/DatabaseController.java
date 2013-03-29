@@ -44,8 +44,8 @@ public class DatabaseController {
 	/**
 	 * remove all recipe in local database
 	 */
-	public void delete(String id){
-		this.database.delete_Local_Recipe(id);
+	public void delete(Recipe recipe){
+		this.database.delete_Local_Recipe(recipe.getId());
 	}
 	/**
 	 * @param key a string of keyword
@@ -60,5 +60,7 @@ public class DatabaseController {
 	public List<String> getNameList(){
 		return this.database.getAutoCompleteKeyword();
 	}
-
+	public boolean isRecipeExists(Recipe recipe){
+		return this.database.isLocalIdExists(recipe);
+	}
 }
