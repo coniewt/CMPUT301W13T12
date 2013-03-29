@@ -47,6 +47,8 @@ public class SearchActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_search);
 		//initial the view components
+		StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+		StrictMode.setThreadPolicy(policy); 
 		setUp();
 		prepareAutoCompleteText();
 		testWeb();
@@ -58,11 +60,15 @@ public class SearchActivity extends Activity {
 				// TODO Auto-generated method stub
 				keyword = keyword_edittext.getText().toString();
 				if (keyword.length() > 0) {
-					result_listview = (ListView) findViewById(R.id.searchResult_listView);
+					if(checkbox.isChecked())
+						refreshListview("web_"+keyword);
+					else 
+						refreshListview(keyword);
+					/*result_listview = (ListView) findViewById(R.id.searchResult_listView);
 					RecipeAdapter adapter = new RecipeAdapter();
 					ListAdapter la = adapter.getAdapter(arg0.getContext(),
 							keyword);
-					result_listview.setAdapter(la);
+					result_listview.setAdapter(la);*/
 				}
 			}
 		});
@@ -136,16 +142,19 @@ public class SearchActivity extends Activity {
 		keyword_edittext.setAdapter(adapter);
 		keyword_edittext.setTokenizer(new MultiAutoCompleteTextView.CommaTokenizer());
 	}
-	private void refreshListviewFromWeb(){
+	private void refreshListview(String key){
+		result_listview = (ListView) findViewById(R.id.searchResult_listView);
 		RecipeAdapter adapter = new RecipeAdapter();
+		ListAdapter la = adapter.getAdapter(this,
+				key);
+		result_listview.setAdapter(la);
 	}
 	private void testWeb(){
 		testButton = (Button)findViewById(R.id.testbutton);
 		testButton.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-				StrictMode.setThreadPolicy(policy); 
+				
 				Thread thread = new Thread()
 				{
 				    @Override

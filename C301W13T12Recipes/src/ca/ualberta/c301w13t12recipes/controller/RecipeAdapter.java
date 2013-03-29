@@ -1,8 +1,11 @@
 package ca.ualberta.c301w13t12recipes.controller;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+
+import org.apache.http.client.ClientProtocolException;
 
 import android.content.Context;
 import android.util.Log;
@@ -29,12 +32,19 @@ public class RecipeAdapter {
 	 */
 	public ListAdapter getAdapter(Context ct,String type) {
 		List<HashMap<String, String>> fillMaps = new ArrayList<HashMap<String, String>>();
-		List<Recipe> li;
+		List<Recipe> li = new ArrayList<Recipe>();
 		if(type.compareTo("All")==0){
 			li= (new DatabaseController(ct)).getDB()
 				.getLocal_Recipe_List();
 		 }
-		else 
+		else if((type.substring(0,4)).compareTo("web_")==0) {
+			try {
+				li= (new WebSearch()).searchsearchRecipes(type.substring(5, type.length()));
+			} catch (Exception e){
+				e.printStackTrace();
+			}
+		}
+		else
 			li= (new DatabaseController(ct)).getDB()
 				.searchRecipebyKeyword(type);
 		//Log.v("hello", li.get(0).getPassWord());
