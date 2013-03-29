@@ -21,6 +21,7 @@ public class EditTitleDescWizardActivity extends EditCompleteWizardActivity {
 		setupButton();// Initialize all the buttons
 		setupWidgets();// Initialize all the EditText widgets
 		getRecipeFromIntent();
+		fillInfoBackTofields();
 
 		nextButton.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
@@ -52,8 +53,14 @@ public class EditTitleDescWizardActivity extends EditCompleteWizardActivity {
 	}
 	
 	private void fillInfoBackTofields(){
-		recipe.getPassword();
-		recipe.getDirections();
+		if(recipe.getPassword().equals("")){
+			lock.setChecked(false);
+		}else{
+			lock.setChecked(true);
+		}
+		nameEditText.setText(recipe.getName());
+		descEditText.setText(recipe.getDirections());
+		
 	}
 
 }

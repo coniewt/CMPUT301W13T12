@@ -27,10 +27,10 @@ import android.widget.Toast;
  */
 public class AddTitleDescWizardActivity extends Activity {
 	
-	private EditText descEditText; //description widget
-	private EditText nameEditText; //name widget
+	protected EditText descEditText; //description widget
+	protected EditText nameEditText; //name widget
 	
-	private Button cancelButton; // cancel button
+	protected Button cancelButton; // cancel button
 	protected Button nextButton;// next button	
 	
 	protected Switch lock;// password switch
