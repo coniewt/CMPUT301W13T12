@@ -85,7 +85,7 @@ public class ViewDetailedRecipeActivity extends Activity {
 									finish();
 									return true;
 								case R.id.pop_edit:
-									if (!recipe.getPassWord().equals("")) {
+									if (!recipe.getPassword().equals("")) {
 										DialogFragment newFragment = new AuthenticationDiaglogFragment();
 										newFragment.show(getFragmentManager(),
 												"AUTHENTICATION");
@@ -202,7 +202,7 @@ public class ViewDetailedRecipeActivity extends Activity {
 	}
 
 	private void checkPassword(String prompt) {
-		if (recipe.getPassWord().equals(prompt)) {
+		if (recipe.getPassword().equals(prompt)) {
 			jumpToAddTitleDescWizardActivity();
 		} else {
 			Toast warning = Toast.makeText(getApplicationContext(),
@@ -215,8 +215,11 @@ public class ViewDetailedRecipeActivity extends Activity {
 
 		Intent intent = new Intent();
 		intent.setClass(ViewDetailedRecipeActivity.this,
-				AddTitleDescWizardActivity.class);
-		startActivity(intent);
+				EditTitleDescWizardActivity.class);
+		Bundle bundle = new Bundle();
+		bundle.putSerializable("NEW_RECIPE",recipe);
+	    intent.putExtras(bundle);
+	    startActivity(intent);
 	}
 	private void jumpback() {
 		Intent intent = new Intent();

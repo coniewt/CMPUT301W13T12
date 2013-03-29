@@ -31,9 +31,9 @@ public class AddTitleDescWizardActivity extends Activity {
 	private EditText nameEditText; //name widget
 	
 	private Button cancelButton; // cancel button
-	private Button nextButton;// next button	
+	protected Button nextButton;// next button	
 	
-	private Switch lock;// password switch
+	protected Switch lock;// password switch
 	
 	Recipe recipe = new Recipe("","","");
 	
@@ -45,7 +45,7 @@ public class AddTitleDescWizardActivity extends Activity {
 	    this.setContentView(R.layout.activity_add_title_desc_wizard);
 	    
 	    setupButton();// Initialize all the buttons
-	    setupEditText();//Initialize all the EditText widgets
+	    setupWidgets();//Initialize all the EditText widgets
 	    
 	    
 	    
@@ -63,26 +63,26 @@ public class AddTitleDescWizardActivity extends Activity {
 					DialogFragment newFragment = new setPasswordFragment();
 					newFragment.show(getFragmentManager(), "CREATE_PASSWORD");
 				}else{
-					recipe.setPassWord("");
+					recipe.setPassword("");
 				}
 			}
 		});
 	    
 	    // TODO Auto-generated method stub
 	}
-	private void setupButton(){
+	protected void setupButton(){
 		cancelButton = (Button)findViewById(R.id.add_step1_Clear_button);
 		nextButton = (Button)findViewById(R.id.add_step1_next_button);
 		lock =(Switch)findViewById(R.id.add_switch_password);
 		
 	}
-	private void setupEditText(){
+	protected void setupWidgets(){
 		descEditText =(EditText)findViewById(R.id.add_editText_description);
 		nameEditText =(EditText)findViewById(R.id.add_editText_recipe_name);
 		
 	}
 	
-	private void saveAndJumpToAddIngredWizard(){
+	void saveAndJumpToAddIngredWizard(){
 		
 		
 		recipe.setDirections(descEditText.getText().toString());//get description from descEditText Widget
@@ -115,7 +115,7 @@ public class AddTitleDescWizardActivity extends Activity {
 						@Override
 						public void onClick(DialogInterface dialog, int id) {
 							password = passwordEditText.getText().toString();
-							recipe.setPassWord(password);
+							recipe.setPassword(password);
 							Toast.makeText(AddTitleDescWizardActivity.this,
 									"Password has been set", 2).show();
 						}

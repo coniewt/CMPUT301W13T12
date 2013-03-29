@@ -243,7 +243,7 @@ public class LocalDB {
 					j.getString("name"), toIngredients(j),
 					j.getString("directions"));
 			re.setImageList(toImages(j));
-			re.setPassWord(j.getString("password"));
+			re.setPassword(j.getString("password"));
 			return re; 
 		}
 	}

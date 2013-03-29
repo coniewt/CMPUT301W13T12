@@ -133,14 +133,14 @@ public class Recipe implements Serializable {
 	/**
 	 * @param pw
 	 */
-	public void setPassWord(String pw) {
+	public void setPassword(String pw) {
 		this.passward = pw;
 	}
 
 	/**
 	 * @return
 	 */
-	public String getPassWord() {
+	public String getPassword() {
 		return this.passward;
 	}
 
@@ -283,7 +283,7 @@ public class Recipe implements Serializable {
 		try {
 			jsonObject.put("name", getName());
 			jsonObject.put("user", getUser());
-			jsonObject.put("password", getPassWord());
+			jsonObject.put("password", getPassword());
 			jsonObject.put("directions", getDirections());
 			jsonObject.put("id", getId());
 			JSONArray ingre_arr = new JSONArray();
