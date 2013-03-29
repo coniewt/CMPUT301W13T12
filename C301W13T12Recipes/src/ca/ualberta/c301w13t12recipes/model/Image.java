@@ -53,10 +53,7 @@ public class Image implements Serializable {
 	 * @return Current data
 	 */
 	public static String getTime() {
-		Calendar cal = Calendar.getInstance();
-		cal.getTime();
-		SimpleDateFormat sdf = new SimpleDateFormat("yyMMddHHmmss");
-		return sdf.format(cal.getTime());
+		return String.valueOf(System.currentTimeMillis());
 	}
 
 	/**

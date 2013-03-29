@@ -173,12 +173,16 @@ public class ImageManager {
 		OutputStream out;
 		try {
 			out = new FileOutputStream(path);
+			bitmap.compress(Bitmap.CompressFormat.JPEG, 75, out);
+			out.close();
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-		bitmap.compress(Bitmap.CompressFormat.JPEG, 75, out);
-		out.close();
+		
 		return path;
 	}
 }
