@@ -23,7 +23,7 @@ public class ShareController {
 	private static Intent FillEmailText(Intent intent, Recipe re){
 		
 		String[] emailReceipient = {re.getUser()};
-		String emailSubject;
+		String emailSubject ="";
 		String name = re.getName().toString();
 		String emailBody = re.getDirections().toString();
 			emailSubject = "Recipe:" + name;
