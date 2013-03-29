@@ -49,6 +49,7 @@ public class SearchActivity extends Activity {
 		//initial the view components
 		StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
 		StrictMode.setThreadPolicy(policy); 
+		//set thread policy
 		setUp();
 		prepareAutoCompleteText();
 		testWeb();

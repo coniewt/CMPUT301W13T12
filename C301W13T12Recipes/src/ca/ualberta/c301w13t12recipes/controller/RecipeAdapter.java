@@ -26,28 +26,33 @@ public class RecipeAdapter {
 
 	/**
 	 * @param ct
-	 * @param type if type is "All" the adpter will return all recipe
-	 * otherwise it will return the recipe with keyword in type
+	 * @param type
+	 *            if type is "All" the adpter will return all recipe otherwise
+	 *            it will return the recipe with keyword in type
 	 * @return ListAdapter
 	 */
-	public ListAdapter getAdapter(Context ct,String type) {
+	public ListAdapter getAdapter(Context ct, String type) {
 		List<HashMap<String, String>> fillMaps = new ArrayList<HashMap<String, String>>();
 		List<Recipe> li = new ArrayList<Recipe>();
-		if(type.compareTo("All")==0){
-			li= (new DatabaseController(ct)).getDB()
-				.getLocal_Recipe_List();
-		 }
-		else if((type.substring(0,4)).compareTo("web_")==0) {
-			try {
-				li= (new WebSearch()).searchsearchRecipes(type.substring(5, type.length()));
-			} catch (Exception e){
-				e.printStackTrace();
+		Log.v("Key", type);
+		if (type.compareTo("All") == 0) {
+			li = (new DatabaseController(ct)).getDB().getLocal_Recipe_List();
+		} else if (type.length() > 4) {
+			if ((type.substring(0, 4)).compareTo("web_") == 0) {
+				try {
+					li = (new WebSearch()).searchsearchRecipes(type.substring(
+							5, type.length()));
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 			}
-		}
-		else
-			li= (new DatabaseController(ct)).getDB()
-				.searchRecipebyKeyword(type);
-		//Log.v("hello", li.get(0).getPassWord());
+			else
+				li = (new DatabaseController(ct)).getDB().searchRecipebyKeyword(
+						type);
+		} else
+			li = (new DatabaseController(ct)).getDB().searchRecipebyKeyword(
+					type);
+		// Log.v("hello", li.get(0).getPassWord());
 		// if database does not contain any row, getDB() will return null to li
 		// we need if condition to check when li equals null or not
 		if (li != null) {

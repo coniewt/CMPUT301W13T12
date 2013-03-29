@@ -10,6 +10,7 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 
+import android.util.Log;
 import ca.ualberta.c301w13t12recipes.model.ElasticSearchResponse;
 import ca.ualberta.c301w13t12recipes.model.ElasticSearchSearchResponse;
 import ca.ualberta.c301w13t12recipes.model.Recipe;
@@ -43,6 +44,7 @@ public class WebSearch extends WebController{
 	public ArrayList<Recipe> searchRecipes(String str) throws ClientProtocolException, IOException {
 		HttpGet searchRequest = new HttpGet("http://cmput301.softwareprocess.es:8080/cmput301w13t12/_search?pretty=1&q=" +
 				java.net.URLEncoder.encode(str,"UTF-8"));
+		Log.v("PATH::::",searchRequest.getURI().getPath());
 		searchRequest.setHeader("Accept","application/json");
 		HttpResponse response = httpclient.execute(searchRequest);
 		String status = response.getStatusLine().toString();

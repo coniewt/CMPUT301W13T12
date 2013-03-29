@@ -17,6 +17,7 @@ import org.json.JSONObject;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.util.Base64;
 import android.util.Log;
 import ca.ualberta.c301w13t12recipes.controller.ImageManager;
 
@@ -388,8 +389,10 @@ public class Recipe implements Serializable {
 		ArrayList<Image> image_list = (ArrayList<Image>) this.getImage();
 		ImageManager im = new ImageManager();
 		for (Image image : image_list) {
-			list.put(image.getName(), convertBitmapToString(im.decodeBitmapFromFile(
-					im.createImage(image.getTN_Path()), 500, 500)));
+			list.put(
+					image.getName(),
+					convertBitmapToString(im.decodeBitmapFromFile(
+							im.createImage(image.getTN_Path()), 500, 500)));
 		}
 		return new Recipe(getId(), getUser(), getName(), getIngredients(),
 				getDirections(), list);
@@ -407,8 +410,9 @@ public class Recipe implements Serializable {
 		Iterator<Entry<String, String>> it = map.entrySet().iterator();
 		while (it.hasNext()) {
 			Map.Entry<String, String> pair = it.next();
-			image_list.add(new Image("", im.convertFromBitmapToFilePath
-					(getBitMapFromString(pair.getValue()), pair.getKey()), pair.getKey()));
+			image_list.add(new Image("", im.convertFromBitmapToFilePath(
+					getBitMapFromString(pair.getValue()), pair.getKey()), pair
+					.getKey()));
 			it.remove();
 		}
 		Recipe re = new Recipe(getId(), getUser(), getName(), getIngredients(),
@@ -417,25 +421,35 @@ public class Recipe implements Serializable {
 		return re;
 	}
 
-	/**Convert Bitmap to String
-	 * @param bitmap	
+	/**
+	 * Convert Bitmap to String
+	 * 
+	 * @param bitmap
 	 * @return String
 	 */
-	public static String convertBitmapToString(Bitmap src) {
-		ByteArrayOutputStream os = new ByteArrayOutputStream();
-		src.compress(android.graphics.Bitmap.CompressFormat.PNG, 100,
-				(OutputStream) os);
-		return os.toString();
+	public static String convertBitmapToString(Bitmap bitmap) {
+		ByteArrayOutputStream baos = new ByteArrayOutputStream();
+		bitmap.compress(Bitmap.CompressFormat.PNG, 100, baos);
+		byte[] b = baos.toByteArray();
+		String temp = Base64.encodeToString(b, Base64.DEFAULT);
+		return temp;
 	}
 
 	/**
 	 * Convert String to bitmap
+	 * 
 	 * @param String
 	 * @return bitmap
 	 */
-	public static Bitmap getBitMapFromString(String src) {
-		Log.i("b=", "" + src.getBytes().length);// returns 12111 as a length.
-		return BitmapFactory.decodeByteArray(src.getBytes(), 0,
-				src.getBytes().length);
+	public static Bitmap getBitMapFromString(String encodedString) {
+		try {
+			byte[] encodeByte = Base64.decode(encodedString, Base64.DEFAULT);
+			Bitmap bitmap = BitmapFactory.decodeByteArray(encodeByte, 0,
+					encodeByte.length);
+			return bitmap;
+		} catch (Exception e) {
+			e.getMessage();
+			return null;
+		}
 	}
 }
