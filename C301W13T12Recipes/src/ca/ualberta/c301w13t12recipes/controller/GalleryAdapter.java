@@ -23,12 +23,7 @@ public class GalleryAdapter extends ImageAdapter{
 	public View getView(int position, View convertView, ViewGroup parent) {
 		// TODO Auto-generated method stub
 		ImageView imageView = new ImageView(context);
-		
-		
 		imageView.setScaleType(ImageView.ScaleType.FIT_XY);
-		/*imageView.setLayoutParams(new Gallery.LayoutParams(
-				(int) (ITEM_WIDTH * density + 0.5f),
-				(int) (ITEM_HEIGHT * density + 0.5f)));*/
 		File image = new File(gallery.get(position).getTN_Path());
 		imageView.setImageURI(Uri.fromFile(image));
 		return imageView;

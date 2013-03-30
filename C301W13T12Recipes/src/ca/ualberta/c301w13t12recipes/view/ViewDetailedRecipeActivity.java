@@ -237,8 +237,7 @@ public class ViewDetailedRecipeActivity extends Activity {
 	}
 
 	public boolean onKeyUp(int keyCode, KeyEvent event) {
-		if (keyCode == KeyEvent.KEYCODE_BACK)
-		{
+		if (keyCode == KeyEvent.KEYCODE_BACK) {
 			finish();
 		}
 		return super.onKeyUp(keyCode, event);
