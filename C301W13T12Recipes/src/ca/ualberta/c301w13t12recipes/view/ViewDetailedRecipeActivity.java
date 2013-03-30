@@ -1,6 +1,5 @@
 package ca.ualberta.c301w13t12recipes.view;
 
-
 import java.util.ArrayList;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -10,6 +9,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.StrictMode;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -41,11 +41,12 @@ import ca.ualberta.c301w13t12recipes.model.Recipe;
  * @author YUWEI DUAN
  */
 public class ViewDetailedRecipeActivity extends Activity {
+	// declare view components
 	private WebStream stream;
 	private Gallery gallery;
 	private ImageButton optionsButton;
 	private IngredientsAdapter adapter;
-	private Recipe recipe;
+	private Recipe recipe = new Recipe();
 	private TextView titleTextView;
 	private TextView descTextView;
 	private ListView ingredListView;
@@ -57,8 +58,9 @@ public class ViewDetailedRecipeActivity extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_view_entry);
-		StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-		StrictMode.setThreadPolicy(policy); 
+		// StrictMode.ThreadPolicy policy = new
+		// StrictMode.ThreadPolicy.Builder().permitAll().build();
+		// StrictMode.setThreadPolicy(policy);
 		setupWidgets();
 		getRecipe();
 
@@ -83,7 +85,8 @@ public class ViewDetailedRecipeActivity extends Activity {
 								// TODO listen the any response from menu
 								switch (item.getItemId()) {
 								case R.id.pop_delete:
-									recipeManager = new RecipeManager(getApplicationContext());
+									recipeManager = new RecipeManager(
+											getApplicationContext());
 									recipeManager.deteleRecipe(recipe);
 									jumpToRecipeListView();
 									finish();
@@ -221,14 +224,23 @@ public class ViewDetailedRecipeActivity extends Activity {
 		intent.setClass(ViewDetailedRecipeActivity.this,
 				EditTitleDescWizardActivity.class);
 		Bundle bundle = new Bundle();
-		bundle.putSerializable("NEW_RECIPE",recipe);
-	    intent.putExtras(bundle);
-	    startActivity(intent);
+		bundle.putSerializable("NEW_RECIPE", recipe);
+		intent.putExtras(bundle);
+		startActivity(intent);
 	}
+
 	private void jumpToRecipeListView() {
 		Intent intent = new Intent();
-		intent.setClass(ViewDetailedRecipeActivity.this,
-				ViewListActivity.class);
+		intent.setClass(ViewDetailedRecipeActivity.this, ViewListActivity.class);
 		startActivity(intent);
+		finish();
+	}
+
+	public boolean onKeyUp(int keyCode, KeyEvent event) {
+		if (keyCode == KeyEvent.KEYCODE_BACK)
+		{
+			finish();
+		}
+		return super.onKeyUp(keyCode, event);
 	}
 }

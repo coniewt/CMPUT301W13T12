@@ -42,6 +42,7 @@ public class RecipeAdapter {
 				try {
 					li = (new WebSearch()).searchRecipes(type.substring(
 							4, type.length()));
+						(new DatabaseController(ct)).postRemote(li);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}

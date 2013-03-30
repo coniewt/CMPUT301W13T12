@@ -56,7 +56,7 @@ public class AddCompleteWizardActivity extends Activity {
 		getRecipe();
 		controller = new DatabaseController(AddCompleteWizardActivity.this);
 
-		if (controller.isRecipeExists(recipe)) {
+		if (controller.isLocalRecipeExists(recipe)) {
 			controller.delete(recipe);
 			controller.addRecipe(recipe);
 		} else {

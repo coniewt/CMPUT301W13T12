@@ -478,6 +478,9 @@ public class LocalDB {
 	public void close() {
 		db.close();
 	}
+	/**
+	 * @param id
+	 */
 	public void transferFromRemoteToLocal(String id){
 		Recipe re = getRemoteRecipe(id);
 		addLocal_Recipe_Table(re);

@@ -171,7 +171,7 @@ public class ImageManager {
 	public String convertFromBitmapToFilePath(Bitmap bitmap ,String name){
 		createFolder("/tmp");
 		createSubfolder("/tmp", "/thumbnail");
-		String path =Environment.getExternalStorageDirectory().getAbsolutePath()+"tmp/thumbnail/"+name;
+		String path =Environment.getExternalStorageDirectory().getAbsolutePath()+"/tmp/thumbnail/"+name+".jpg";
 		File image_file = new File(path);
 		if(image_file.exists()){
 			image_file.delete();

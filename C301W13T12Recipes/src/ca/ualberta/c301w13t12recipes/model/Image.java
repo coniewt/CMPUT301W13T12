@@ -102,10 +102,8 @@ public class Image implements Serializable {
 	public void setTNPath(String path) {
 		this.tn_path = path;
 	}
-
-	/**
-	 * Converting name and path into single string
-	 * 
-	 * @return Single string containing image name and path
-	 */
+@Override
+	public String toString(){
+		return this.name+", "+this.tn_path;
+	}
 }

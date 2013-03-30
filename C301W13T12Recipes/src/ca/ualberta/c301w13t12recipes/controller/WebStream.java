@@ -25,7 +25,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 /**
- * @author 
+ * @author YUWEi DUAN
  *
  */
 public class WebStream{
@@ -83,22 +83,7 @@ public class WebStream{
 		}catch (Exception e){
 			e.printStackTrace();
 		}
-		//httpPost.releaseConnection();
 		}
-		
-		/*try {
-			urlConnection.setDoOutput(true);
-			urlConnection.setChunkedStreamingMode(0);
-
-			OutputStream out = new BufferedOutputStream(urlConnection.getOutputStream());
-			writeStream(out);
-
-			InputStream in = new BufferedInputStream(urlConnection.getInputStream());
-			readStream(in);
-		finally {
-			urlConnection.disconnect();}
-		}*/
-	
 	/**
 	 * @param string
 	 * @return the recipe object
@@ -155,6 +140,9 @@ public class WebStream{
 	}	
 
 
+	/**
+	 * @throws IOException
+	 */
 	public void deleteRecipe() throws IOException {
 		HttpDelete httpDelete = new HttpDelete("http://cmput301.softwareprocess.es:8080/cmput301w13t12/recipe");
 		httpDelete.addHeader("Accept","application/json");

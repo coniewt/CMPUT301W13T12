@@ -119,7 +119,13 @@ public class SearchActivity extends Activity {
 		//Log.v("Test+++",(String) ((HashMap)result_listview.getItemAtPosition(index)).get("name"));
 		@SuppressWarnings("unchecked")
 		String title = (String)((HashMap<String,String>)result_listview.getItemAtPosition(index)).get("name");
-		List<Recipe> recipeList =(new DatabaseController(this)).getDB().getLocal_Recipe_List();
+		List<Recipe> recipeList;
+		if(checkbox.isChecked()){
+			recipeList=(new DatabaseController(this)).getDB().getLocal_Recipe_List();
+		}
+		else{
+			recipeList =(new DatabaseController(this)).getDB().getLocal_Recipe_List();
+			}
 		Recipe recipe =null;
 		for(int i=0;i<recipeList.size();i++){
 			recipe= recipeList.get(i);

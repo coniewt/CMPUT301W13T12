@@ -82,6 +82,6 @@ public class ViewListActivity extends Activity {
 		bundle.putSerializable("LOCAL_RECIPE",recipe);
 		intent.putExtras(bundle);
 		startActivity(intent);
-		finish();
+		//finish();
 	}
 }
