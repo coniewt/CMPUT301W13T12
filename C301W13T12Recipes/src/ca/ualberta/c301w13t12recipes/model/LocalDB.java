@@ -170,22 +170,44 @@ public class LocalDB {
 		}
 		return true;
 	}
+	/**
+	 * Check if remote recipes exist
+	 * @param recipe
+	 * @return True if exist, false if not exist
+	 */
+	public boolean isRemoteIdExists(Recipe recipe) {
+		
+		Cursor c = db.rawQuery("SELECT * FROM "
+				+ StrResource.REMOTE_RECIPE_TABLE_NAME + " WHERE id" + "=?",
+				new String[] { recipe.getId(), });
+		if (c == null || c.getCount() == 0) {
+			return false;
+		}
+		return true;
+	}
 
-	/*
+	/**
 	 * Post a task to the "remote" table of the database.
 	 * 
 	 * @param task The task to be added.
 	 * 
 	 * @return The task that was added along with it's id.
 	 */
-	/*
-	 * public Recipe postRemote(Recipe re) { ContentValues cv = new
-	 * ContentValues(); // cv.put(StrResource.COL_ID, task.getId()); try { //
-	 * cv.put(StrResource.COL_CONTENT, task.toJson().toString()); } catch
-	 * (Exception e) { // TODO Auto-generated catch block e.printStackTrace(); }
-	 * // db.insert(StrResource.REMOTE_TASK_TABLE_NAME, StrResource.COL_ID, //
-	 * cv); return null; }
-	 */
+
+	public boolean postRemote(Recipe re) { 
+		  ContentValues cv = new ContentValues(); // cv.put(StrResource.COL_ID, task.getId()); try { //
+		  cv.put("id", re.getId());
+		  cv.put("content", re.toJson().toString());
+		  Log.v(re.getId(),re.toString());
+		  try{
+			  db.insert(StrResource.REMOTE_RECIPE_TABLE_NAME, null,cv);
+		  }
+	  		catch  (Exception e) { // TODO Auto-generated catch block e.printStackTrace(); }
+	  		e.printStackTrace();
+	  		}
+		  return isRemoteIdExists(re);
+	  }
+	 
 
 	/**
 	 * Deletes a task from the "local" table of the database.

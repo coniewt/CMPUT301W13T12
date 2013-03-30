@@ -29,6 +29,10 @@ import ca.ualberta.c301w13t12recipes.controller.WebController;
 import ca.ualberta.c301w13t12recipes.controller.WebStream;
 import ca.ualberta.c301w13t12recipes.model.Recipe;
 
+/**
+ * @author YWUEI DUAN
+ *
+ */
 public class SearchActivity extends Activity {
 	//declare the view components
 	MultiAutoCompleteTextView keyword_edittext;

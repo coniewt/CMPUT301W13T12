@@ -23,28 +23,27 @@ import com.google.gson.reflect.TypeToken;
  */
 public class WebSearch extends WebController{
 	
-	protected ArrayList<Recipe> recipes;
-	
 	/**
 	 * 
 	 */
 	public WebSearch(){
 		
-		recipes = new ArrayList<Recipe>();
+		
 	}
 	
 	
 	
 	/**
 	 * @param str
-	 * @return
+	 * @return an array list of recipe
 	 * @throws ClientProtocolException
 	 * @throws IOException
 	 */
 	public ArrayList<Recipe> searchRecipes(String str) throws ClientProtocolException, IOException {
+		ArrayList<Recipe> recipes = new ArrayList<Recipe>();
 		HttpGet searchRequest = new HttpGet("http://cmput301.softwareprocess.es:8080/cmput301w13t12/_search?pretty=1&q=" +
 				java.net.URLEncoder.encode(str,"UTF-8"));
-		Log.v("PATH::::",searchRequest.getURI().getPath());
+		//Log.v("PATH::::",searchRequest.getURI().getPath());
 		searchRequest.setHeader("Accept","application/json");
 		HttpResponse response = httpclient.execute(searchRequest);
 		String status = response.getStatusLine().toString();
@@ -57,9 +56,8 @@ public class WebSearch extends WebController{
 		System.err.println(esResponse);
 		for (ElasticSearchResponse<Recipe> r : esResponse.getHits()) {
 			Recipe recipe = r.getSource();
-			
-			recipes.add(recipe);
-			//System.err.println(recipe);
+			recipes.add(recipe.convertToLocalRecipe());
+			System.out.println("hello"+recipe.toString());
 		}
 		
 		return recipes;
@@ -72,7 +70,8 @@ public class WebSearch extends WebController{
 	 * @throws IOException
 	 */
 	public ArrayList<Recipe> searchsearchRecipes(String str) throws ClientProtocolException, IOException {
-		HttpPost searchRequest = new HttpPost("http://cmput301.softwareprocess.es:8080/cmput301w13t12/_search?pretty=1&");
+		ArrayList<Recipe> recipes = new ArrayList<Recipe>();
+		HttpPost searchRequest = new HttpPost("http://cmput301.softwareprocess.es:8080/cmput301w13t12/_search?pretty=1");
 		Log.v("PATH::::",searchRequest.getURI().getPath());
 		String query = 	"{\"query\" : {\"query_string\" : {\"default_field\" : \"ingredients\",\"query\" : \"" + str + "\"}}}";
 		StringEntity stringentity = new StringEntity(query);
@@ -91,7 +90,7 @@ public class WebSearch extends WebController{
 		for (ElasticSearchResponse<Recipe> r : esResponse.getHits()) {
 			Recipe recipe = r.getSource();
 			
-			recipes.add(recipe);
+			recipes.add(recipe.convertToLocalRecipe());
 			//System.err.println(recipe);
 		}
 		//searchRequest.releaseConnection();
@@ -105,7 +104,7 @@ public class WebSearch extends WebController{
 	 * @throws IOException
 	 */
 	public ArrayList<Recipe> grabAllRecipe() throws ClientProtocolException, IOException{
-		
+		ArrayList<Recipe> recipes = new ArrayList<Recipe>();
 		HttpGet searchRequest = new HttpGet("http://cmput301.softwareprocess.es:8080/cmput301w13t12/_search?pretty=1");
 		searchRequest.setHeader("Accept","application/json");
 		HttpResponse response = httpclient.execute(searchRequest);
