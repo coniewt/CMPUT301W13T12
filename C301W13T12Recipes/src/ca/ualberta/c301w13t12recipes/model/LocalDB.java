@@ -14,6 +14,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.net.ParseException;
 import android.util.Log;
 //import org.apache.http.client.fluent.Response;
+import android.widget.Toast;
 
 /**
  * @author dw
@@ -57,7 +58,11 @@ public class LocalDB {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		db.insert(StrResource.LOCAL_RECIPE_TABLE_NAME, null, cv);
+		if(isLocalIdExists(re)){
+			updateRemoteRecipe(re);
+		}
+		else
+			db.insert(StrResource.LOCAL_RECIPE_TABLE_NAME, null, cv);
 	}
 	/**
 	 * @param in ingredient object
@@ -394,14 +399,14 @@ public class LocalDB {
 	}
 
 	/**
-	 * Updates the database with the passed in task based on the id.
+	 * Updates the local database with the passed in task based on the id.
 	 * 
 	 * Looks through both local and remote tables for a matching task.
 	 * 
 	 * @param Recipe
 	 *            object user wishes to change
 	 */
-	public void updateRecipe(Recipe re) {
+	public void updateLocalRecipe(Recipe re) {
 		try {
 			ContentValues cv = new ContentValues();
 			cv.put("id", re.getId());
@@ -412,16 +417,36 @@ public class LocalDB {
 					new String[] { re.getId(), });
 			if (n == 1) {
 				db.insert(StrResource.LOCAL_RECIPE_TABLE_NAME, null, cv);
-			}/*
-			 * else {int b = db.delete(StrResource.REMOTE_TASK_TABLE_NAME,
-			 * StrResource.COL_ID + "=?", new String[]{task.getId(),}); if(b==1)
-			 * { db.insert(StrResource.REMOTE_TASK_TABLE_NAME,
-			 * StrResource.COL_ID, cv); }
-			 */
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
+	/**
+	 * Updates the remote database with the passed in task based on the id.
+	 * 
+	 * Looks through both local and remote tables for a matching task.
+	 * 
+	 * @param Recipe
+	 *            object user wishes to change
+	 */
+	public void updateRemoteRecipe(Recipe re) {
+		try {
+			ContentValues cv = new ContentValues();
+			cv.put("id", re.getId());
+			cv.put("content", re.toJson().toString());
+			// cv.put(StrResource.COL_ID,task.getId());
+
+			int n = db.delete(StrResource.REMOTE_RECIPE_TABLE_NAME, "id" + "=?",
+					new String[] { re.getId(), });
+			if (n == 1) {
+				db.insert(StrResource.LOCAL_RECIPE_TABLE_NAME, null, cv);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
 
 	/**
 	 * Delete all recipes from remote server
@@ -453,15 +478,12 @@ public class LocalDB {
 	public void close() {
 		db.close();
 	}
-
-	/*
-	 * public void hideTask(String taskid) { Task task =
-	 * this.getLocalTask(taskid); task.setStatus(5); ContentValues cv = new
-	 * ContentValues(); cv.put(StrResource.COL_ID, task.getId()); try {
-	 * cv.put(StrResource.COL_CONTENT, task.toJson().toString());
-	 * db.delete(StrResource.LOCAL_TASK_TABLE_NAME, StrResource.COL_ID+"=?", new
-	 * String[]{taskid,}); db.insert(StrResource.LOCAL_TASK_TABLE_NAME,
-	 * StrResource.COL_ID, cv); } catch (JSONException e) { // TODO
-	 * Auto-generated catch block e.printStackTrace(); } }
-	 */
+	public void transferFromRemoteToLocal(String id){
+		Recipe re = getRemoteRecipe(id);
+		addLocal_Recipe_Table(re);
+		if(isLocalIdExists(re)){
+			Log.v("LocalDb:","Successful transfer from remote db to local db");
+		}
+		delete_Local_Recipe(id);
+	}
 }

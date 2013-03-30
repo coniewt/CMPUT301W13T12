@@ -41,7 +41,7 @@ public class RecipeAdapter {
 			if ((type.substring(0, 4)).compareTo("web_") == 0) {
 				try {
 					li = (new WebSearch()).searchRecipes(type.substring(
-							5, type.length()));
+							4, type.length()));
 				} catch (Exception e) {
 					e.printStackTrace();
 				}

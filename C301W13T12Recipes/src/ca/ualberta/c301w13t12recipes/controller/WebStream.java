@@ -178,13 +178,13 @@ public class WebStream{
 				new InputStreamReader((response.getEntity().getContent())));
 		String output;
 		System.err.println("Output from Server -> ");
-		String json = "";
+		StringBuffer json = new StringBuffer();
 		while ((output = br.readLine()) != null) {
 			System.err.println(output);
-			json += output;
+			json.append(output) ;
 		}
-		System.err.println("JSON:"+json);
-		return json;
+		System.err.println("JSON:"+json.toString());
+		return json.toString();
 	}
 
 }

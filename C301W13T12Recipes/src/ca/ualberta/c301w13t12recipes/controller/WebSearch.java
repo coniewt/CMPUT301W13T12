@@ -43,7 +43,7 @@ public class WebSearch extends WebController{
 		ArrayList<Recipe> recipes = new ArrayList<Recipe>();
 		HttpGet searchRequest = new HttpGet("http://cmput301.softwareprocess.es:8080/cmput301w13t12/_search?pretty=1&q=" +
 				java.net.URLEncoder.encode(str,"UTF-8"));
-		//Log.v("PATH::::",searchRequest.getURI().getPath());
+		Log.v("Name::"+str,java.net.URLEncoder.encode(str,"UTF-8"));
 		searchRequest.setHeader("Accept","application/json");
 		HttpResponse response = httpclient.execute(searchRequest);
 		String status = response.getStatusLine().toString();
