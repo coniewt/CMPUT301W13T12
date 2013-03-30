@@ -3,6 +3,7 @@ package ca.ualberta.c301w13t12recipes.view;
 import ca.ualberta.c301w13t12recipes.R;
 import ca.ualberta.c301w13t12recipes.model.Recipe;
 import android.app.DialogFragment;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.CompoundButton;
@@ -70,6 +71,18 @@ public class EditTitleDescWizardActivity extends AddTitleDescWizardActivity {
 		nameEditText.setText(recipe.getName());
 		descEditText.setText(recipe.getDirections());
 
+	}
+	void saveAndJumpToAddIngredWizard(){
+		recipe.setDirections(descEditText.getText().toString());//get description from descEditText Widget
+		recipe.setName(nameEditText.getText().toString());// get nameEditText from nameEditText Widget
+		Toast.makeText(EditTitleDescWizardActivity.this, "Name and directions are saved !", 3).show();
+		Intent intent = new Intent(EditTitleDescWizardActivity.this,AddIngredWizardActivity.class);
+		Bundle bundle = new Bundle();
+		bundle.putSerializable("NEW_RECIPE",recipe);
+	    intent.putExtras(bundle);
+	    startActivity(intent);
+	    finish();
+		
 	}
 
 }

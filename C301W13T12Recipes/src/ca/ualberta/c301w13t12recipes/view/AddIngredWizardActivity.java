@@ -30,7 +30,7 @@ import ca.ualberta.c301w13t12recipes.model.Recipe;
  */
 public class AddIngredWizardActivity extends Activity {
 	private ImageButton addIngredButton;
-	private Recipe recipe;
+	private Recipe recipe = new Recipe();
 	private IngredientsAdapter adapter;
 	private Button clearButton, nextButton;
 	private ListView lv;
@@ -40,7 +40,6 @@ public class AddIngredWizardActivity extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_add_ingred_wizard);
-
 		this.setupListView();
 		this.setupWidgets();
 		this.getRecipeFromIntent();
@@ -174,6 +173,7 @@ public class AddIngredWizardActivity extends Activity {
 		bundle.putSerializable("NEW_RECIPE", recipe);
 		intent.putExtras(bundle);
 		startActivity(intent);
+		finish();
 	}
 	/**
 	 * TODO display a dialog to notify user the empty ingredient list

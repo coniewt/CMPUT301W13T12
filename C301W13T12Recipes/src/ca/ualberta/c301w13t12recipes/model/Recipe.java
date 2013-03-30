@@ -97,6 +97,16 @@ public class Recipe implements Serializable {
 		this.bitmap_String = bitmap_hashmap;
 	}
 
+	public Recipe() {
+		this.id = getUniqueId();
+		this.user = "";
+		this.passward = "";
+		this.name = "";
+		this.ImageCollection = new ArrayList<Image>();
+		this.ingredients = new ArrayList<Ingredient>();
+		this.directions = "";
+	}
+
 	/**
 	 * Add an ingredient to the recipe
 	 * 

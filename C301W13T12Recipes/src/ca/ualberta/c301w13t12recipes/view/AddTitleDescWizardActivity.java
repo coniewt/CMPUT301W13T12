@@ -103,7 +103,7 @@ public class AddTitleDescWizardActivity extends Activity {
 		bundle.putSerializable("NEW_RECIPE",recipe);
 	    intent.putExtras(bundle);
 	    startActivity(intent);
-	    
+	    finish();
 		
 	}
 	class setPasswordFragment extends DialogFragment {
