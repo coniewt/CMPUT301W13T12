@@ -202,7 +202,7 @@ public class ViewDetailedRecipeActivity extends Activity {
 		if (type == 0) {
 			inflater.inflate(R.menu.view_detail_popup_menu, popupMenu.getMenu());
 		} else {
-			inflater.inflate(R.menu.view_detial_pop_menu_online,
+			inflater.inflate(R.menu.view_detial_popup_menu_online_result,
 					popupMenu.getMenu());
 		}
 		popupMenu.show();
