@@ -33,19 +33,18 @@ public class AddIngredWizardActivity extends Activity {
 	private Recipe recipe = new Recipe();
 	private IngredientsAdapter adapter;
 	private Button clearButton, nextButton;
-	private ListView lv;
+	protected ListView ingredientsListView;
 
 	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_add_ingred_wizard);
-		this.setupListView();
 		this.setupWidgets();
 		this.getRecipeFromIntent();
 		this.refreshList();
 
-		lv.setOnItemLongClickListener(new OnItemLongClickListener() {
+		ingredientsListView.setOnItemLongClickListener(new OnItemLongClickListener() {
 
 			@Override
 			public boolean onItemLongClick(AdapterView<?> listView, View view,
@@ -100,20 +99,16 @@ public class AddIngredWizardActivity extends Activity {
 		});
 	}
 
-	private void setupWidgets() {
+	protected void setupWidgets() {
 		addIngredButton = (ImageButton) findViewById(R.id.imgBtn_add_ingredient_button);
 		nextButton = (Button) findViewById(R.id.add_step1_next_button);
 		clearButton = (Button) findViewById(R.id.add_step1_Clear_button);
-	}
-
-	private void setupListView() {
-
-		lv = (ListView) findViewById(R.id.listView_ingredients_list);
+		ingredientsListView = (ListView) findViewById(R.id.listView_ingredients_list);
 	}
 
 	private void refreshList() {
 		adapter = new IngredientsAdapter();
-		lv.setAdapter(adapter.getAdapter(this, recipe.getIngredients()));
+		ingredientsListView.setAdapter(adapter.getAdapter(this, recipe.getIngredients()));
 
 	}
 
