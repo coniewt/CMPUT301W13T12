@@ -2,6 +2,7 @@ package ca.ualberta.c301w13t12recipes.view;
 
 import java.util.ArrayList;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -17,9 +18,10 @@ import ca.ualberta.c301w13t12recipes.model.Ingredient;
  * @author HUANG GUANQI
  *
  */
-public class IngredientsFridgeActivity extends AddIngredWizardActivity{
+public class IngredientsFridgeActivity extends Activity{
 	
 	private DatabaseController controller;
+	private ListView ingredientsListView;
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		
@@ -53,7 +55,7 @@ public class IngredientsFridgeActivity extends AddIngredWizardActivity{
 	}
 	
 	protected void refreshList() {
-		adapter = new IngredientsAdapter();
+		IngredientsAdapter adapter = new IngredientsAdapter();
 		ArrayList<Ingredient> li = controller.getIngredListFromIngredDB();
 		if(li != null){
 		ingredientsListView.setAdapter(adapter.getAdapter(this, li));

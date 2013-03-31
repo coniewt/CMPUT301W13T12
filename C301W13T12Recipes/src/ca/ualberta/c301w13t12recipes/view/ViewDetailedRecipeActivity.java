@@ -7,6 +7,7 @@ import android.app.Dialog;
 import android.app.DialogFragment;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.util.Log;
@@ -22,6 +23,7 @@ import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.PopupMenu;
 import android.widget.PopupMenu.OnMenuItemClickListener;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 import ca.ualberta.c301w13t12recipes.R;
@@ -53,6 +55,7 @@ public class ViewDetailedRecipeActivity extends Activity {
 	private ListView ingredListView;
 	private PopupMenu popupMenu;
 	private RecipeManager recipeManager;
+	private ProgressBar pb;
 	private int recipeType;
 
 	/** Called when the activity is first created. */
@@ -104,8 +107,8 @@ public class ViewDetailedRecipeActivity extends Activity {
 									return true;
 								case R.id.pop_publish:
 									try {
-										stream = new WebStream();
-										stream.insertRecipe(recipe);
+										PublishTask pt = new PublishTask();
+										pt.execute(20);
 									} catch (IllegalStateException e) {
 
 										Toast toast = Toast
@@ -151,7 +154,7 @@ public class ViewDetailedRecipeActivity extends Activity {
 	 */
 	private void setupWidgets() {
 		gallery = (Gallery) findViewById(R.id.view_entry_gallery);
-
+		pb = (ProgressBar) findViewById(R.id.view_detail_publish_progressBar1);
 		optionsButton = (ImageButton) findViewById(R.id.view_share_imageButton);
 		titleTextView = (TextView) findViewById(R.id.view_textView_title);
 		descTextView = (TextView) findViewById(R.id.view_textView_description);
@@ -276,4 +279,39 @@ public class ViewDetailedRecipeActivity extends Activity {
 		}
 		return super.onKeyUp(keyCode, event);
 	}
+	   class PublishTask extends AsyncTask<Integer, Integer, String>{
+	    	@Override
+			protected void onPreExecute() {
+				super.onPreExecute();
+			}
+	    	
+			@Override
+			protected String doInBackground(Integer... params) {
+				//第二个执行方法,onPreExecute()执行完后执行
+				stream = new WebStream();
+				stream.insertRecipe(recipe);
+				for(int i=0;i<=100;i++){
+					pb.setProgress(i);
+					publishProgress(i);
+					try {
+						Thread.sleep(params[0]);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+				}
+				return "Completed";
+			}
+
+			@Override
+			protected void onProgressUpdate(Integer... progress) {
+				super.onProgressUpdate(progress);
+			}
+
+			@Override
+			protected void onPostExecute(String result) {
+				setTitle(result);
+				super.onPostExecute(result);
+			}
+	    	
+	    }
 }
