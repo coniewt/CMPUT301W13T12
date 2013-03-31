@@ -1,6 +1,9 @@
 package ca.ualberta.c301w13t12recipes.view;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -12,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.Button;
 import android.widget.EditText;
@@ -20,6 +24,7 @@ import android.widget.Toast;
 import ca.ualberta.c301w13t12recipes.R;
 import ca.ualberta.c301w13t12recipes.controller.DatabaseController;
 import ca.ualberta.c301w13t12recipes.controller.IngredientsAdapter;
+import ca.ualberta.c301w13t12recipes.controller.IngredientsFridgeAdapter;
 import ca.ualberta.c301w13t12recipes.model.Ingredient;
 import ca.ualberta.c301w13t12recipes.view.AddIngredWizardActivity.AddIngredDiaglogFragment;
 
@@ -33,6 +38,7 @@ public class IngredientsFridgeActivity extends Activity{
 	private ListView ingredientsListView;
 	private Button addButton;
 	private Button clearButton;
+	private HashMap<String,Object> map;
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		
@@ -41,7 +47,7 @@ public class IngredientsFridgeActivity extends Activity{
 		this.setupWidgets();
 		this.refreshList();
 		
-		
+		/*
 		ingredientsListView.setOnItemLongClickListener(new OnItemLongClickListener() {
 
 			@Override
@@ -58,6 +64,23 @@ public class IngredientsFridgeActivity extends Activity{
 			}
 
 		});
+		*/
+		ingredientsListView.setOnItemClickListener(new OnItemClickListener(){
+
+			@SuppressWarnings("unchecked")
+			@Override
+			public void onItemClick(AdapterView<?> parent, View arg1, int pos,
+					long arg3) {
+				// TODO Auto-generated method stub
+				map = (HashMap<String, Object>) parent.getItemAtPosition(pos);
+				
+			}
+			
+		});
+		
+		
+		
+		
 		addButton.setOnClickListener(new OnClickListener() {
 			
 			@Override
@@ -74,6 +97,13 @@ public class IngredientsFridgeActivity extends Activity{
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				
+				Iterator it = map.entrySet().iterator();
+			    while (it.hasNext()) {
+			        Map.Entry pairs = (Map.Entry)it.next();
+			        pairs.getValue();
+			        controller.removeIngredFromIngredDB(ingredient);
+			    }
+				
 			}
 			
 		});
@@ -87,7 +117,7 @@ public class IngredientsFridgeActivity extends Activity{
 	}
 	
 	protected void refreshList() {
-		IngredientsAdapter adapter = new IngredientsAdapter();
+		IngredientsFridgeAdapter adapter = new IngredientsFridgeAdapter();
 		ArrayList<Ingredient> li = controller.getIngredListFromIngredDB();
 		ingredientsListView.setAdapter(adapter.getAdapter(this, li));
 	}

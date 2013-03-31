@@ -41,7 +41,7 @@
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/fridge_item_amount"
         android:layout_alignBottom="@+id/fridge_item_amount"
-        android:layout_marginLeft="32dp"
-        android:layout_toRightOf="@+id/fridge_item_amount" />
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="21dp" />
 
 </RelativeLayout>
