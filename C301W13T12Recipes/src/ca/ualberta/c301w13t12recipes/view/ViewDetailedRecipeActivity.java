@@ -167,10 +167,14 @@ public class ViewDetailedRecipeActivity extends Activity {
 		titleTextView.setText(new String(recipe.getName()));
 	}
 
-	private void showPopup(View v) {
+	private void showPopup(View v, String viewCase) {
 		popupMenu = new PopupMenu(this, v);
 		MenuInflater inflater = popupMenu.getMenuInflater();
+		if(viewCase.equals("web")){
 		inflater.inflate(R.menu.view_detail_popup_menu, popupMenu.getMenu());
+		}else{
+			inflater.inflate(R.menu.view_detial_pop_menu_online,popupMenu.getMenu());
+		}
 		popupMenu.show();
 	}
 
