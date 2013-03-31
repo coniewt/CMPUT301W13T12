@@ -13,7 +13,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.ParseException;
 import android.util.Log;
-//import org.apache.http.client.fluent.Response;
 
 /**
  * @author dw

@@ -1,5 +1,6 @@
 package ca.ualberta.c301w13t12recipes.view;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -26,6 +27,7 @@ import ca.ualberta.c301w13t12recipes.R;
 import ca.ualberta.c301w13t12recipes.controller.DatabaseController;
 import ca.ualberta.c301w13t12recipes.controller.RecipeAdapter;
 import ca.ualberta.c301w13t12recipes.controller.WebController;
+import ca.ualberta.c301w13t12recipes.controller.WebSearch;
 import ca.ualberta.c301w13t12recipes.controller.WebStream;
 import ca.ualberta.c301w13t12recipes.model.Recipe;
 
@@ -119,13 +121,18 @@ public class SearchActivity extends Activity {
 		//Log.v("Test+++",(String) ((HashMap)result_listview.getItemAtPosition(index)).get("name"));
 		@SuppressWarnings("unchecked")
 		String title = (String)((HashMap<String,String>)result_listview.getItemAtPosition(index)).get("name");
-		List<Recipe> recipeList;
+		List<Recipe> recipeList = new ArrayList<Recipe>();
 		if(checkbox.isChecked()){
 			recipeList=(new DatabaseController(this)).getDB().getRemoteRecipeList();
 		}
 		else{
-			recipeList =(new DatabaseController(this)).getDB().getLocal_Recipe_List();
-			}
+			Recipe recipe = (new DatabaseController(this)).getRecipeListFromSharePreference().get(index);
+			Bundle bundle = new Bundle();
+			bundle.putSerializable("LOCAL_RECIPE",recipe);
+			intent.putExtras(bundle);
+			startActivity(intent);
+			return;
+		}
 		Recipe recipe =null;
 		for(int i=0;i<recipeList.size();i++){
 			recipe= recipeList.get(i);
