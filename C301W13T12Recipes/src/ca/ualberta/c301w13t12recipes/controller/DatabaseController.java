@@ -144,7 +144,7 @@ public class DatabaseController {
 		return this.database.getLocal_Ingredient_List();
 		
 	}
-	public void removeIngredFromIngredDB(){
-		//this.database.
+	public void removeIngredFromIngredDB(Ingredient ingredient){
+		this.database.removeLocal_Ingredient_List(ingredient);//this.database.
 	}
 }
