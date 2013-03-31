@@ -50,7 +50,7 @@ public class IngredientsFridgeActivity extends Activity{
 				// TODO long click to delete selected item and then remove
 				
 				Toast.makeText(IngredientsFridgeActivity.this,
-						 " is removed", 3)
+						 controller.getIngredListFromIngredDB().get(pos).getName()+" is removed", 3)
 						.show();
 				controller.removeIngredFromIngredDB(pos);
 				refreshList();
@@ -63,8 +63,19 @@ public class IngredientsFridgeActivity extends Activity{
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
+				DialogFragment newFragment = new AddIngredDiaglogFragment();
+				newFragment.show(getFragmentManager(), "NEW_INGREDIENT");
 				
 			}
+		});
+		clearButton.setOnClickListener(new OnClickListener(){
+
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				
+			}
+			
 		});
 	}
 	
@@ -105,7 +116,7 @@ public class IngredientsFridgeActivity extends Activity{
 						public void onClick(DialogInterface dialog, int id) {
 							name = nameEditText.getText().toString();
 							amount = amountEditText.getText().toString();
-							//controller.
+							controller.addIngredFromIngredDB(new Ingredient(name,amount));
 							Toast.makeText(IngredientsFridgeActivity.this,
 									"Successfully adding a new ingredient", 2).show();
 							refreshList();
