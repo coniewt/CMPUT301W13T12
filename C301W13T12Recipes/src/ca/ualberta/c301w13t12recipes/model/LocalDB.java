@@ -77,8 +77,9 @@ public class LocalDB {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		db.insert(StrResource.LOCAL_RECIPE_TABLE_NAME, null, cv);
+		db.insert(StrResource.LOCAL_INGREDIENT_TABLE_NAME, null, cv);
 	}
+	
 
 	/**
 	 * To get the ingredients in the local table
@@ -99,7 +100,10 @@ public class LocalDB {
 		c.close();
 		return null;
 	}
-
+	public void removeLocal_Ingredient_List(Ingredient ingredient){
+		String id = String.valueOf(ingredient.getId());
+		db.delete(StrResource.LOCAL_INGREDIENT_TABLE_NAME, "id" + " =?",new String[] { id, });
+	}
 	/**
 	 * Get the local task list.
 	 * 

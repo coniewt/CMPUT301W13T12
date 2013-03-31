@@ -12,6 +12,7 @@ import com.google.gson.Gson;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.util.Log;
+import ca.ualberta.c301w13t12recipes.model.Ingredient;
 import ca.ualberta.c301w13t12recipes.model.LocalDB;
 import ca.ualberta.c301w13t12recipes.model.Recipe;
 import ca.ualberta.c301w13t12recipes.model.StrResource;
@@ -134,5 +135,16 @@ public class DatabaseController {
 			if (this.database.postRemote(re))
 				Log.v("Database", "add to remote database");
 		}
+	}
+	/**
+	 * Get a list of ingredients from local ingredients database 
+	 * @return ArrayList<Ingredient>
+	 */
+	public ArrayList<Ingredient> getIngredListFromIngredDB(){
+		return this.database.getLocal_Ingredient_List();
+		
+	}
+	public void removeIngredFromIngredDB(){
+		//this.database.
 	}
 }
