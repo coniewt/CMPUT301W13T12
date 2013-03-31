@@ -24,6 +24,15 @@ public class Ingredient implements Serializable {
 	 * @param name
 	 * @param amount
 	 */
+	public Ingredient(String id,String name, String amount) {
+		this.id=id;
+		this.name = name;
+		this.amount = amount;
+	}
+	/**
+	 * @param name
+	 * @param amount
+	 */
 	public Ingredient(String name, String amount) {
 		this.id="ingre@"+System.currentTimeMillis();
 		this.name = name;

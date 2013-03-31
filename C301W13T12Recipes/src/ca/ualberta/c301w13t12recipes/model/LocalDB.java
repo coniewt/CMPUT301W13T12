@@ -69,8 +69,7 @@ public class LocalDB {
 	public void addLocal_Ingredient_Table(Ingredient in) {
 		ContentValues cv = new ContentValues();
 		try {
-			String id = String.valueOf(System.currentTimeMillis());
-			cv.put("id", id);
+			cv.put("id", in.getId());
 			cv.put("name", in.getName());
 			cv.put("amount", in.getAmount());
 			// cv.put(StrResource.COL_CONTENT, Recipe.toJson().toString() );
@@ -92,7 +91,8 @@ public class LocalDB {
 				+ StrResource.LOCAL_INGREDIENT_TABLE_NAME, new String[] {});
 		if (c.moveToFirst()) {
 			while (c.isAfterLast() == false) {
-				out.add(new Ingredient(c.getString(1), c.getString(2)));
+				out.add(new Ingredient(c.getString(0),c.getString(1), c.getString(2)));
+				Log.v("getLocalIngre",c.getString(0));
 				c.moveToNext();
 			}
 			return out;
@@ -104,7 +104,9 @@ public class LocalDB {
 	 * @param ingredient2
 	 */
 	public void removeLocal_Ingredient_List(Ingredient ingredient){
+		
 		String id = ingredient.getId();
+		Log.v("ingredient:",id);
 		db.delete(StrResource.LOCAL_INGREDIENT_TABLE_NAME, "id" + " =?",new String[] { id, });
 	}
 	/**
