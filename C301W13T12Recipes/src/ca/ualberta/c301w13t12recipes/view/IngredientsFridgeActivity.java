@@ -89,9 +89,7 @@ public class IngredientsFridgeActivity extends Activity{
 	protected void refreshList() {
 		IngredientsAdapter adapter = new IngredientsAdapter();
 		ArrayList<Ingredient> li = controller.getIngredListFromIngredDB();
-		if(li != null){
 		ingredientsListView.setAdapter(adapter.getAdapter(this, li));
-		}
 	}
 	class AddIngredDiaglogFragment extends DialogFragment {
 		private EditText nameEditText;
