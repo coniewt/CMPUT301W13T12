@@ -131,7 +131,7 @@ public class ViewDetailedRecipeActivity extends Activity {
 								case R.id.pop_download_online:
 									(new DatabaseController(v.getContext()))
 											.getDB().transferFromRemoteToLocal(
-													recipe.getId());
+													recipe);
 									Toast toast = Toast
 											.makeText(
 													getApplicationContext(),

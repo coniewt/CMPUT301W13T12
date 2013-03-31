@@ -35,8 +35,6 @@ import com.google.gson.reflect.TypeToken;
  */
  
 
-
-
 public class WebSearch extends WebController {
 	/**
 	 * 

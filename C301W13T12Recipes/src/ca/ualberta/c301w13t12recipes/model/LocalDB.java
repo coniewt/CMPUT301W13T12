@@ -198,7 +198,7 @@ public class LocalDB {
 	public boolean isRemoteIdExists(Recipe recipe) {
 
 		Cursor c = db.rawQuery("SELECT * FROM "
-				+ StrResource.REMOTE_RECIPE_TABLE_NAME + " WHERE id" + "=?",
+				+ StrResource.REMOTE_RECIPE_TABLE_NAME + " WHERE id =?",
 				new String[] { recipe.getId(), });
 		if (c == null || c.getCount() == 0) {
 			return false;
@@ -498,12 +498,12 @@ public class LocalDB {
 	/**
 	 * @param id
 	 */
-	public void transferFromRemoteToLocal(String id) {
-		Recipe re = getRemoteRecipe(id);
+	public void transferFromRemoteToLocal(Recipe re) {
+		System.out.println("Transfer"+re.toString());
 		addLocal_Recipe_Table(re);
 		if (isLocalIdExists(re)) {
 			Log.v("LocalDb:", "Successful transfer from remote db to local db");
 		}
-		delete_Local_Recipe(id);
+		delete_Local_Recipe(re.getId());
 	}
 }
