@@ -52,6 +52,7 @@ public class ViewDetailedRecipeActivity extends Activity {
 	private ListView ingredListView;
 	private PopupMenu popupMenu;
 	private RecipeManager recipeManager;
+	private int recipeType;
 
 	/** Called when the activity is first created. */
 	@Override
@@ -62,7 +63,7 @@ public class ViewDetailedRecipeActivity extends Activity {
 		// StrictMode.ThreadPolicy.Builder().permitAll().build();
 		// StrictMode.setThreadPolicy(policy);
 		setupWidgets();
-		getRecipe();
+		recipeType = getRecipe();
 
 		showName();
 		showDescription();
@@ -76,7 +77,7 @@ public class ViewDetailedRecipeActivity extends Activity {
 			public void onClick(final View v) {
 				// TODO Auto-generated method stub
 				//
-				showPopup(v);
+				showPopup(v, recipeType);
 				popupMenu
 						.setOnMenuItemClickListener(new OnMenuItemClickListener() {
 
@@ -118,6 +119,19 @@ public class ViewDetailedRecipeActivity extends Activity {
 									startActivity(ShareController
 											.SendEmail(recipe));
 									return true;
+
+								case R.id.pop_share_online:
+									startActivity(ShareController
+											.SendEmail(recipe));
+									return true;
+								case R.id.pop_download_online:
+									Toast toast = Toast
+											.makeText(
+													getApplicationContext(),
+													"Downloading Recipe.Please wait for few seconds.",
+													3);
+									toast.show();
+
 								default:
 									return false;
 								}
@@ -143,8 +157,22 @@ public class ViewDetailedRecipeActivity extends Activity {
 		ingredListView = (ListView) findViewById(R.id.view_ingredients_listView);
 	}
 
-	private void getRecipe() {
+	/**
+	 * getRecipe() obtains an recipe object from intent that was passed by another activity
+	 * It also can distinguish the recipe type by checking its string identifier
+	 * 
+	 * @return Returns 1: WEB_RECIPE. Returns 0: LOCAL_RECIPE
+	 */
+
+	private int getRecipe() {
+
 		recipe = (Recipe) getIntent().getSerializableExtra("LOCAL_RECIPE");
+		if (recipe == null) {
+			recipe = (Recipe) getIntent().getSerializableExtra("WEB_RECIPE");
+			return 1;
+		} else {
+			return 0;
+		}
 	}
 
 	private void refreshList() {
@@ -167,13 +195,14 @@ public class ViewDetailedRecipeActivity extends Activity {
 		titleTextView.setText(new String(recipe.getName()));
 	}
 
-	private void showPopup(View v, String viewCase) {
+	private void showPopup(View v, int type) {
 		popupMenu = new PopupMenu(this, v);
 		MenuInflater inflater = popupMenu.getMenuInflater();
-		if(viewCase.equals("web")){
-		inflater.inflate(R.menu.view_detail_popup_menu, popupMenu.getMenu());
-		}else{
-			inflater.inflate(R.menu.view_detial_pop_menu_online,popupMenu.getMenu());
+		if (type == 0) {
+			inflater.inflate(R.menu.view_detail_popup_menu, popupMenu.getMenu());
+		} else {
+			inflater.inflate(R.menu.view_detial_pop_menu_online,
+					popupMenu.getMenu());
 		}
 		popupMenu.show();
 	}
