@@ -67,14 +67,14 @@ public class WebSearch extends WebController {
 				elasticSearchSearchResponseType);
 		System.err.println(esResponse);
 		//initial a json array;
-		ArrayList<String> list = new ArrayList<String>();
+		//ArrayList<String> list = new ArrayList<String>();
 		for (ElasticSearchResponse<Recipe> r : esResponse.getHits()) {
 			Recipe recipe = r.getSource().convertToLocalRecipe();
-			list.add(recipe.toJson().toString());
+			//list.add(recipe.toJson().toString());
 			recipes.add(recipe);
 			System.out.println("hello" + recipe.toString());
 		}
-		// use sharedpreference to store the list into file
+		/*// use sharedpreference to store the list into file
 		SharedPreferences tempShare = co.getSharedPreferences(
 				"Temp_recipe_list", co.MODE_WORLD_READABLE);
 		SharedPreferences.Editor tempshare_edit = tempShare.edit();
@@ -82,7 +82,7 @@ public class WebSearch extends WebController {
 		tempshare_edit.putStringSet(StrResource.SHARE_PREFERENCE_KEY, new HashSet<String> (list));
 		tempshare_edit.commit();
 		//end
-		return recipes;
+*/		return recipes;
 	}
 	/**
 	 * @param str

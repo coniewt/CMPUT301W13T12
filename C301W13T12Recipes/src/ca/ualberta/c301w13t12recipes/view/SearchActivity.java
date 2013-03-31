@@ -1,10 +1,14 @@
 package ca.ualberta.c301w13t12recipes.view;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import org.apache.http.client.ClientProtocolException;
+
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.StrictMode;
@@ -78,8 +82,12 @@ public class SearchActivity extends Activity {
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1, int pos,
 					long arg3) {
-				jumpToAddViewDetailRecipeActivity(pos);
-				
+				String key  = keyword_edittext.getEditableText().toString();
+				if(key.length()>0){
+					jumpToAddViewDetailRecipeActivity(pos,key);
+				}
+				else 
+					jumpToAddViewDetailRecipeActivity(pos, "");
 			}
 		});
 		checkbox.setOnCheckedChangeListener(new OnCheckedChangeListener() {
@@ -119,28 +127,27 @@ public class SearchActivity extends Activity {
 		Intent intent = new Intent(SearchActivity.this,
 		ViewDetailedRecipeActivity.class);
 		//Log.v("Test+++",(String) ((HashMap)result_listview.getItemAtPosition(index)).get("name"));
-		@SuppressWarnings("unchecked")
-		String title = (String)((HashMap<String,String>)result_listview.getItemAtPosition(index)).get("name");
-		List<Recipe> recipeList = new ArrayList<Recipe>();
+		//String title = (String)((HashMap<String,String>)result_listview.getItemAtPosition(index)).get("name");
+		ArrayList<Recipe> recipeList = new ArrayList<Recipe>();
 		if(checkbox.isChecked()){
-			recipeList=(new DatabaseController(this)).getDB().getRemoteRecipeList();
-		}
-		else{
-			Recipe recipe = (new DatabaseController(this)).getRecipeListFromSharePreference().get(index);
-			System.out.println(recipe==null);
+			Recipe recipe = new Recipe();
+			try {
+				recipe = (new WebSearch()).searchRecipes(key, this).get(index);
+			} catch (Exception e) {
+			e.printStackTrace();
+			}
+			//System.out.println(recipe==null);
 			Bundle bundle = new Bundle();
 			bundle.putSerializable("WEB_RECIPE",recipe);
 			intent.putExtras(bundle);
 			startActivity(intent);
 			return;
 		}
-		Recipe recipe =null;
-		for(int i=0;i<recipeList.size();i++){
-			recipe= recipeList.get(i);
-			if(recipe.getName().compareTo(title)==0){
-				break;
-				}
+		else{
+			recipeList=(new DatabaseController(this)).getDB().searchRecipebyKeyword(
+					key);;
 		}
+		Recipe recipe =recipeList.get(index);
 		Bundle bundle = new Bundle();
 		bundle.putSerializable("LOCAL_RECIPE",recipe);
 		intent.putExtras(bundle);
