@@ -18,11 +18,24 @@ public class Ingredient implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	private String name, amount;
-	private int id;
+	private String id;
 
+	/**
+	 * @param name
+	 * @param amount
+	 */
 	public Ingredient(String name, String amount) {
+		this.id="ingre@"+System.currentTimeMillis();
 		this.name = name;
 		this.amount = amount;
+	}
+	/**
+	 * 
+	 * @return the id of the ingredient
+	 */
+	
+	public String getId(){
+		return this.id;
 	}
 
 	/**
@@ -32,24 +45,6 @@ public class Ingredient implements Serializable {
 	 */
 	public String getName() {
 		return this.name;
-	}
-
-	/**
-	 * Set ID
-	 * 
-	 * @param i
-	 */
-	public void setId(int i) {
-		id = i;
-	}
-
-	/**
-	 * Get ID
-	 * 
-	 * @return id
-	 */
-	public int getId() {
-		return id;
 	}
 
 	/**

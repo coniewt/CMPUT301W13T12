@@ -68,7 +68,7 @@ public class ViewDetailedRecipeActivity extends Activity {
 		// StrictMode.setThreadPolicy(policy);
 		setupWidgets();
 		recipeType = getRecipe();
-		Log.v("gg", recipeType+ "!!!!!!!!!!");
+		Log.v("gg", recipeType + "!!!!!!!!!!");
 		showName();
 		showDescription();
 
@@ -129,6 +129,9 @@ public class ViewDetailedRecipeActivity extends Activity {
 											.SendEmail(recipe));
 									return true;
 								case R.id.pop_download_online:
+									(new DatabaseController(v.getContext()))
+											.getDB().transferFromRemoteToLocal(
+													recipe.getId());
 									Toast toast = Toast
 											.makeText(
 													getApplicationContext(),
@@ -161,8 +164,9 @@ public class ViewDetailedRecipeActivity extends Activity {
 	}
 
 	/**
-	 * getRecipe() obtains an recipe object from intent that was passed by another activity
-	 * It also can distinguish the recipe type by checking its string identifier
+	 * getRecipe() obtains an recipe object from intent that was passed by
+	 * another activity It also can distinguish the recipe type by checking its
+	 * string identifier
 	 * 
 	 * @return Returns 1: WEB_RECIPE. Returns 0: LOCAL_RECIPE
 	 */
@@ -278,38 +282,39 @@ public class ViewDetailedRecipeActivity extends Activity {
 		}
 		return super.onKeyUp(keyCode, event);
 	}
-	   class PublishTask extends AsyncTask<Integer, Integer, String>{
-	    	@Override
-			protected void onPreExecute() {
-				super.onPreExecute();
-			}
-	    	
-			@Override
-			protected String doInBackground(Integer... params) {
-				stream = new WebStream();
-				stream.insertRecipe(recipe);
-				for(int i=0;i<=100;i++){
-					pb.setProgress(i);
-					publishProgress(i);
-					try {
-						Thread.sleep(params[0]);
-					} catch (InterruptedException e) {
-						e.printStackTrace();
-					}
+
+	class PublishTask extends AsyncTask<Integer, Integer, String> {
+		@Override
+		protected void onPreExecute() {
+			super.onPreExecute();
+		}
+
+		@Override
+		protected String doInBackground(Integer... params) {
+			stream = new WebStream();
+			stream.insertRecipe(recipe);
+			for (int i = 0; i <= 100; i++) {
+				pb.setProgress(i);
+				publishProgress(i);
+				try {
+					Thread.sleep(params[0]);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
 				}
-				return "Completed";
 			}
+			return "Completed";
+		}
 
-			@Override
-			protected void onProgressUpdate(Integer... progress) {
-				super.onProgressUpdate(progress);
-			}
+		@Override
+		protected void onProgressUpdate(Integer... progress) {
+			super.onProgressUpdate(progress);
+		}
 
-			@Override
-			protected void onPostExecute(String result) {
-				setTitle(result);
-				super.onPostExecute(result);
-			}
-	    	
-	    }
+		@Override
+		protected void onPostExecute(String result) {
+			setTitle(result);
+			super.onPostExecute(result);
+		}
+
+	}
 }
