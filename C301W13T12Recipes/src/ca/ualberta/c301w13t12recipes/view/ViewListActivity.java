@@ -31,7 +31,7 @@ public class ViewListActivity extends Activity {
 	
 	public void onCreate(Bundle savedInstanceState) {
 	    super.onCreate(savedInstanceState);
-	    this.setContentView(R.layout.activity_view_list);
+	    this.setContentView(R.layout.tesing_list_view);
 	    controller = new DatabaseController(this);
 	    this.setupWidgets();
 	    this.refreshList();
@@ -59,8 +59,8 @@ public class ViewListActivity extends Activity {
 	    // TODO Auto-generated method stub
 	}
 	private void setupWidgets() {
-		listView= (ListView) findViewById(R.id.view_listview);
-		deleteAllButton = (Button)findViewById(R.id.view_button_delete_all);
+		listView= (ListView) findViewById(R.id.testing_view_listview);
+		deleteAllButton = (Button)findViewById(R.id.testing_view_button_delete_all);
 	}
 	private void refreshList() {
 		adapter = new RecipeAdapter();
