@@ -123,10 +123,10 @@ public class DatabaseController {
 
 	/**
 	 * Remove the item at specific position
-	 * @param pos the position of database
+	 * @param ingredient the position of database
 	 */
-	public void removeIngredFromIngredDB(int pos) {
-		this.database.removeLocal_Ingredient_List(pos);// this.database.
+	public void removeIngredFromIngredDB(Ingredient ingredient) {
+		this.database.removeLocal_Ingredient_List(ingredient);// this.database.
 	}
 
 	/**

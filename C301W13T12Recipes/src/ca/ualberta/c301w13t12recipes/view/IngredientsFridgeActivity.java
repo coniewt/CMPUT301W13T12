@@ -48,11 +48,11 @@ public class IngredientsFridgeActivity extends Activity{
 			public boolean onItemLongClick(AdapterView<?> listView, View view,
 					int pos, long id) {
 				// TODO long click to delete selected item and then remove
-				
+				Ingredient ingredient = controller.getIngredListFromIngredDB().get(pos);
 				Toast.makeText(IngredientsFridgeActivity.this,
-						 controller.getIngredListFromIngredDB().get(pos).getName()+" is removed", 3)
+						ingredient.getName() +" is removed", 3)
 						.show();
-				controller.removeIngredFromIngredDB(pos);
+				controller.removeIngredFromIngredDB(ingredient);
 				refreshList();
 				return false;
 			}

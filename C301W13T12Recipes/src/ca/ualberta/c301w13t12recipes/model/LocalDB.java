@@ -101,10 +101,9 @@ public class LocalDB {
 		return null;
 	}
 	/**
-	 * @param pos
+	 * @param ingredient2
 	 */
-	public void removeLocal_Ingredient_List(int pos){
-		Ingredient ingredient = getLocal_Ingredient_List().get(pos);
+	public void removeLocal_Ingredient_List(Ingredient ingredient){
 		String id = ingredient.getId();
 		db.delete(StrResource.LOCAL_INGREDIENT_TABLE_NAME, "id" + " =?",new String[] { id, });
 	}
