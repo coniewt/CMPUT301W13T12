@@ -31,7 +31,7 @@ import ca.ualberta.c301w13t12recipes.model.Recipe;
 public class AddIngredWizardActivity extends Activity {
 	private ImageButton addIngredButton;
 	private Recipe recipe = new Recipe();
-	private IngredientsAdapter adapter;
+	protected IngredientsAdapter adapter;
 	private Button clearButton, nextButton;
 	protected ListView ingredientsListView;
 
@@ -106,7 +106,7 @@ public class AddIngredWizardActivity extends Activity {
 		ingredientsListView = (ListView) findViewById(R.id.listView_ingredients_list);
 	}
 
-	private void refreshList() {
+	protected void refreshList() {
 		adapter = new IngredientsAdapter();
 		ingredientsListView.setAdapter(adapter.getAdapter(this, recipe.getIngredients()));
 

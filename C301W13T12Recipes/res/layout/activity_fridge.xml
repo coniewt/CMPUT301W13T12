@@ -27,4 +27,21 @@
          >
     </ListView>
 
+    <Button
+        android:id="@+id/fridge_clear_button"
+        android:layout_width="380px"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:text="Clear" />
+
+    <Button
+        android:id="@+id/fridge_add_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_toRightOf="@+id/button1"
+        android:text="Add" />
+
 </RelativeLayout>

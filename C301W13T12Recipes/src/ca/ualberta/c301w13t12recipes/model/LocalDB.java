@@ -100,7 +100,8 @@ public class LocalDB {
 		c.close();
 		return null;
 	}
-	public void removeLocal_Ingredient_List(Ingredient ingredient){
+	public void removeLocal_Ingredient_List(int pos){
+		Ingredient ingredient = getLocal_Ingredient_List().get(pos);
 		String id = String.valueOf(ingredient.getId());
 		db.delete(StrResource.LOCAL_INGREDIENT_TABLE_NAME, "id" + " =?",new String[] { id, });
 	}
