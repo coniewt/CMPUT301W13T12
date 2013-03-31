@@ -115,7 +115,7 @@ public class SearchActivity extends Activity {
 	 * Jump to the class and send the recipe by intent
 	 * @param the index from listview index
 	 */
-	private void jumpToAddViewDetailRecipeActivity(int index) {
+	private void jumpToAddViewDetailRecipeActivity(int index,String key) {
 		Intent intent = new Intent(SearchActivity.this,
 		ViewDetailedRecipeActivity.class);
 		//Log.v("Test+++",(String) ((HashMap)result_listview.getItemAtPosition(index)).get("name"));
@@ -127,8 +127,9 @@ public class SearchActivity extends Activity {
 		}
 		else{
 			Recipe recipe = (new DatabaseController(this)).getRecipeListFromSharePreference().get(index);
+			System.out.println(recipe==null);
 			Bundle bundle = new Bundle();
-			bundle.putSerializable("LOCAL_RECIPE",recipe);
+			bundle.putSerializable("WEB_RECIPE",recipe);
 			intent.putExtras(bundle);
 			startActivity(intent);
 			return;

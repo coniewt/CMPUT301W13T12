@@ -1,8 +1,10 @@
 package ca.ualberta.c301w13t12recipes.controller;
 
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
@@ -65,19 +67,19 @@ public class WebSearch extends WebController {
 				elasticSearchSearchResponseType);
 		System.err.println(esResponse);
 		//initial a json array;
-		JSONArray jsonarray = new JSONArray();
+		ArrayList<String> list = new ArrayList<String>();
 		for (ElasticSearchResponse<Recipe> r : esResponse.getHits()) {
-			Recipe recipe = r.getSource();
-			jsonarray.put(recipe.toJson());
-			recipes.add(recipe.convertToLocalRecipe());
+			Recipe recipe = r.getSource().convertToLocalRecipe();
+			list.add(recipe.toJson().toString());
+			recipes.add(recipe);
 			System.out.println("hello" + recipe.toString());
 		}
 		// use sharedpreference to store the list into file
 		SharedPreferences tempShare = co.getSharedPreferences(
-				"Temp_recipe_list", co.MODE_PRIVATE);
+				"Temp_recipe_list", co.MODE_WORLD_READABLE);
 		SharedPreferences.Editor tempshare_edit = tempShare.edit();
 		tempshare_edit.clear();	
-		tempshare_edit.putString(StrResource.SHARE_PREFERENCE_KEY, jsonarray.toString());
+		tempshare_edit.putStringSet(StrResource.SHARE_PREFERENCE_KEY, new HashSet<String> (list));
 		tempshare_edit.commit();
 		//end
 		return recipes;

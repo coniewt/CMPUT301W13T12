@@ -44,7 +44,8 @@ public class DatabaseController {
 		SharedPreferences sp = context.getSharedPreferences("Temp_recipe_list",
 				context.MODE_PRIVATE);
 		String jaoncontent = sp.getString(StrResource.SHARE_PREFERENCE_KEY,
-				null);
+				"None");
+		Log.v("jaoncontent:",jaoncontent);
 		JSONArray jsa;
 		try {
 			jsa = new JSONArray(jaoncontent);
