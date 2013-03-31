@@ -121,7 +121,7 @@ public class SearchActivity extends Activity {
 		String title = (String)((HashMap<String,String>)result_listview.getItemAtPosition(index)).get("name");
 		List<Recipe> recipeList;
 		if(checkbox.isChecked()){
-			recipeList=(new DatabaseController(this)).getDB().getLocal_Recipe_List();
+			recipeList=(new DatabaseController(this)).getDB().getRemoteRecipeList();
 		}
 		else{
 			recipeList =(new DatabaseController(this)).getDB().getLocal_Recipe_List();

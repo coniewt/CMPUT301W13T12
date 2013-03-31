@@ -97,6 +97,9 @@ public class Recipe implements Serializable {
 		this.bitmap_String = bitmap_hashmap;
 	}
 
+	/**
+	 * default constructor
+	 */
 	public Recipe() {
 		this.id = getUniqueId();
 		this.user = "";

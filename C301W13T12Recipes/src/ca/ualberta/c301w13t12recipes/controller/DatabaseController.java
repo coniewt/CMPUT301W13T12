@@ -1,11 +1,20 @@
 package ca.ualberta.c301w13t12recipes.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import com.google.gson.Gson;
+
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.util.Log;
 import ca.ualberta.c301w13t12recipes.model.LocalDB;
 import ca.ualberta.c301w13t12recipes.model.Recipe;
+import ca.ualberta.c301w13t12recipes.model.StrResource;
 
 /**
  * Database controller class, used for various background handling purpose.
@@ -16,12 +25,38 @@ import ca.ualberta.c301w13t12recipes.model.Recipe;
 
 public class DatabaseController {
 	private LocalDB database;
+	private Context context;
 
 	/**
 	 * @param context
 	 */
 	public DatabaseController(Context context) {
 		this.database = new LocalDB(context);
+		this.context = context;
+	}
+
+	/**
+	 * To get recipe from sharepreference
+	 * @return array list of recipe
+	 */
+	public ArrayList<Recipe> getRecipeListFromSharePreference() {
+		ArrayList<Recipe> re = new ArrayList<Recipe>();
+		SharedPreferences sp = context.getSharedPreferences("Temp_recipe_list",
+				context.MODE_PRIVATE);
+		String jaoncontent = sp.getString(StrResource.SHARE_PREFERENCE_KEY,
+				null);
+		JSONArray jsa;
+		try {
+			jsa = new JSONArray(jaoncontent);
+			for (int i = 0; i < jsa.length(); i++) {
+				re.add((new LocalDB(context)).toRecipe((JSONObject) jsa.get(i)));
+			}
+			return re;
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 	/**
