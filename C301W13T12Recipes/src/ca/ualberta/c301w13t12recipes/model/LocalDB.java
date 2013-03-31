@@ -98,7 +98,7 @@ public class LocalDB {
 			return out;
 		}
 		c.close();
-		return null;
+		return out;
 	}
 	/**
 	 * @param ingredient2
