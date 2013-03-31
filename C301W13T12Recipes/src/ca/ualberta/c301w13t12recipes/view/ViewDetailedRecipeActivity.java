@@ -9,6 +9,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.StrictMode;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.MenuInflater;
@@ -64,7 +65,7 @@ public class ViewDetailedRecipeActivity extends Activity {
 		// StrictMode.setThreadPolicy(policy);
 		setupWidgets();
 		recipeType = getRecipe();
-
+		Log.v("gg", recipeType+ "!!!!!!!!!!");
 		showName();
 		showDescription();
 
