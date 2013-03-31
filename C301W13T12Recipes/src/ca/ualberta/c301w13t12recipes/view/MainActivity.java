@@ -65,7 +65,7 @@ public class MainActivity extends Activity {
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				Intent intent = new Intent();
-				intent.setClass(MainActivity.this, FridgeActivity.class);
+				intent.setClass(MainActivity.this, IngredientsFridgeActivity.class);
 				startActivity(intent);
 			}
 		});
