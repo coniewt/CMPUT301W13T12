@@ -287,7 +287,6 @@ public class ViewDetailedRecipeActivity extends Activity {
 	    	
 			@Override
 			protected String doInBackground(Integer... params) {
-				//第二个执行方法,onPreExecute()执行完后执行
 				stream = new WebStream();
 				stream.insertRecipe(recipe);
 				for(int i=0;i<=100;i++){
