@@ -146,7 +146,6 @@ public class ViewDetailedRecipeActivity extends Activity {
 			}
 
 		});
-
 	}
 
 	/**

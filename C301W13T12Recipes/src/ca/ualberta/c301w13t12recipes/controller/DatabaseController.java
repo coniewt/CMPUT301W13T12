@@ -35,33 +35,6 @@ public class DatabaseController {
 		this.database = new LocalDB(context);
 		this.context = context;
 	}
-
-	/**
-	 * To get recipe from sharepreference
-	 * 
-	 * @return array list of recipe
-	 */
-	public ArrayList<Recipe> getRecipeListFromSharePreference() {
-		ArrayList<Recipe> re = new ArrayList<Recipe>();
-		SharedPreferences sp = context.getSharedPreferences("Temp_recipe_list",
-				context.MODE_PRIVATE);
-		String jaoncontent = sp.getString(StrResource.SHARE_PREFERENCE_KEY,
-				"None");
-		Log.v("jaoncontent:", jaoncontent);
-		JSONArray jsa;
-		try {
-			jsa = new JSONArray(jaoncontent);
-			for (int i = 0; i < jsa.length(); i++) {
-				re.add((new LocalDB(context)).toRecipe((JSONObject) jsa.get(i)));
-			}
-			return re;
-		} catch (JSONException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return null;
-	}
-
 	/**
 	 * Get local database
 	 * 
@@ -148,10 +121,18 @@ public class DatabaseController {
 
 	}
 
+	/**
+	 * Remove the item at specific position
+	 * @param pos the position of database
+	 */
 	public void removeIngredFromIngredDB(int pos) {
 		this.database.removeLocal_Ingredient_List(pos);// this.database.
 	}
 
+	/**
+	 * Add the ingredients
+	 * @param in the ingredient object
+	 */
 	public void addIngredFromIngredDB(Ingredient in) {
 		this.database.addLocal_Ingredient_Table(in);
 	}
