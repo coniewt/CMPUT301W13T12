@@ -41,7 +41,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
-        android:layout_toRightOf="@+id/button1"
+        android:layout_toRightOf="@+id/fridge_clear_button"
         android:text="Add" />
 
 </RelativeLayout>

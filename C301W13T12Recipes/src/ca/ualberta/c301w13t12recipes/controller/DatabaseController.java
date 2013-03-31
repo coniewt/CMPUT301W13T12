@@ -38,6 +38,7 @@ public class DatabaseController {
 
 	/**
 	 * To get recipe from sharepreference
+	 * 
 	 * @return array list of recipe
 	 */
 	public ArrayList<Recipe> getRecipeListFromSharePreference() {
@@ -46,7 +47,7 @@ public class DatabaseController {
 				context.MODE_PRIVATE);
 		String jaoncontent = sp.getString(StrResource.SHARE_PREFERENCE_KEY,
 				"None");
-		Log.v("jaoncontent:",jaoncontent);
+		Log.v("jaoncontent:", jaoncontent);
 		JSONArray jsa;
 		try {
 			jsa = new JSONArray(jaoncontent);
@@ -136,15 +137,22 @@ public class DatabaseController {
 				Log.v("Database", "add to remote database");
 		}
 	}
+
 	/**
-	 * Get a list of ingredients from local ingredients database 
+	 * Get a list of ingredients from local ingredients database
+	 * 
 	 * @return ArrayList<Ingredient>
 	 */
-	public ArrayList<Ingredient> getIngredListFromIngredDB(){
+	public ArrayList<Ingredient> getIngredListFromIngredDB() {
 		return this.database.getLocal_Ingredient_List();
-		
+
 	}
-	public void removeIngredFromIngredDB(int pos){
-		this.database.removeLocal_Ingredient_List(pos);//this.database.
+
+	public void removeIngredFromIngredDB(int pos) {
+		this.database.removeLocal_Ingredient_List(pos);// this.database.
+	}
+
+	public void addIngredFromIngredDB(Ingredient in) {
+		this.database.addLocal_Ingredient_Table(in);
 	}
 }
