@@ -1,0 +1,21 @@
+Add recipe
+	password
+	take picture, retake
+
+View recipes (cached)
+
+Upload recipe
+
+
+Fridge
+	Add ingredients
+	Delete ingredient
+Search recipes
+	based on fridge (show editable)
+
+Download recipe
+
+Add picure to downloaded recipe
+
+Email recipe
+
