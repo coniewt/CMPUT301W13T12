@@ -48,6 +48,7 @@ public class IngredientsFridgeActivity extends Activity {
 	private IngredientsFridgeAdapter adapter;
 	private ArrayList<Ingredient> li = new ArrayList<Ingredient>();
 	private ArrayList<Ingredient> selected_list = new ArrayList<Ingredient>();
+
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
@@ -94,12 +95,10 @@ public class IngredientsFridgeActivity extends Activity {
 		searchButton.setOnClickListener(new OnClickListener() {
 
 			public void onClick(View v) {
-<<<<<<< HEAD
 				Map<String, Object> map = null;
 				boolean isChecked;
 				for (int i = 0; i < ingredientsListView.getCount(); i++) {
-					map = (Map<String, Object>) ingredientsListView
-							.getItemAtPosition(i);
+					map = (Map<String, Object>) ingredientsListView.getItemAtPosition(i);
 					isChecked = (Boolean) map.get("checked");
 					if (isChecked) {
 						selected_list.add(li.get(i));
@@ -108,10 +107,9 @@ public class IngredientsFridgeActivity extends Activity {
 								(CharSequence) map.get("name"), 1).show();
 					}
 				}
-				 jumpToSearchIngredientResultActivity(selected_list);
-=======
+				jumpToSearchIngredientResultActivity(selected_list);
 				removeSelectedItems();
->>>>>>> a5e6a771d9b0d568f4e3232fdc1f1000d8ad8dfa
+
 			}
 
 		});
@@ -131,7 +129,7 @@ public class IngredientsFridgeActivity extends Activity {
 				Toast.makeText(IngredientsFridgeActivity.this,
 						ingredient.getName() + " is removed", 3).show();
 				controller.removeIngredFromIngredDB(ingredient);
-				
+
 			}
 		}
 		refreshList();
@@ -150,18 +148,20 @@ public class IngredientsFridgeActivity extends Activity {
 		li = controller.getIngredListFromIngredDB();
 		ingredientsListView.setAdapter(adapter.getAdapter(this, li));
 	}
+
 	/**
-	 * Jump to SearchIngredientResultActivity 
+	 * Jump to SearchIngredientResultActivity
+	 * 
 	 * @param index
 	 */
 	private void jumpToSearchIngredientResultActivity(ArrayList<Ingredient> ar) {
 		Intent intent = new Intent(IngredientsFridgeActivity.this,
-		SearchIngredientResultActivity.class);
+				SearchIngredientResultActivity.class);
 		Bundle bundle = new Bundle();
-		bundle.putSerializable(StrResource.INTENT_INGREDIENT_LIST_KEY,ar);
+		bundle.putSerializable(StrResource.INTENT_INGREDIENT_LIST_KEY, ar);
 		intent.putExtras(bundle);
 		startActivity(intent);
-		//finish();
+		// finish();
 	}
 
 	class AddIngredDiaglogFragment extends DialogFragment {
