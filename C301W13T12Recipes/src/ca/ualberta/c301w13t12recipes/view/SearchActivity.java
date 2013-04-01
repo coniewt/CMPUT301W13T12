@@ -33,6 +33,7 @@ import ca.ualberta.c301w13t12recipes.controller.RecipeAdapter;
 import ca.ualberta.c301w13t12recipes.controller.WebController;
 import ca.ualberta.c301w13t12recipes.controller.WebSearch;
 import ca.ualberta.c301w13t12recipes.controller.WebStream;
+import ca.ualberta.c301w13t12recipes.model.Ingredient;
 import ca.ualberta.c301w13t12recipes.model.Recipe;
 
 /**
@@ -197,6 +198,7 @@ public class SearchActivity extends Activity {
 			}
 		});
 	}
+
 
 
 	

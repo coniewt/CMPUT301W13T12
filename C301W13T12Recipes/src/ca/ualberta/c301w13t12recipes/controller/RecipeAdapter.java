@@ -47,9 +47,9 @@ public class RecipeAdapter {
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
-			}else if ((type.substring(0, 11)).compareTo("INGREDIENT_") == 0) {
+			}else if (type.compareTo("INGREDIENT_") == 0) {
 				try {
-					//li = (new WebSearch()).searchRecipes();
+					li = (new WebSearch()).searchRecipesByIngredient(convertTo(ar), ct);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -71,5 +71,13 @@ public class RecipeAdapter {
 			}
 		}
 		return new SimpleAdapter(ct, fillMaps, R.layout.item_recipe, from, to);
+	}
+	private ArrayList<String> convertTo(ArrayList<Ingredient> in)
+	{
+		ArrayList<String> out = new ArrayList<String>();
+		for(Ingredient ing:in){
+			out.add(ing.getName());
+		}
+		return out;
 	}
 }
