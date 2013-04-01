@@ -10,13 +10,14 @@ import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.ListAdapter;
 import android.widget.SimpleAdapter;
+import android.widget.Toast;
 import ca.ualberta.c301w13t12recipes.R;
 import ca.ualberta.c301w13t12recipes.model.Ingredient;
 
 public class IngredientsFridgeAdapter {
+	
 	String[] from = new String[]{"name","amount","checked"};
 	int[] to = new int[] { R.id.fridge_item_name,R.id.fridge_item_amount,R.id.fridge_item_checkbox};
-	
 	/**
 	 * Get Adapter for listView
 	 * @param Context
@@ -42,7 +43,7 @@ public class IngredientsFridgeAdapter {
 		                checkBox.setOnClickListener(new View.OnClickListener() {  
 		                  
 		                    public void onClick(View view) {  
-		                        map.put("checked", ((CheckBox)view).isChecked());  
+		                        map.put("checked", ((CheckBox)view).isChecked());
 		                    }  
 		                });  
 		                return view;
@@ -50,4 +51,5 @@ public class IngredientsFridgeAdapter {
 		};
 		return adapter;
 	}
+	
 }

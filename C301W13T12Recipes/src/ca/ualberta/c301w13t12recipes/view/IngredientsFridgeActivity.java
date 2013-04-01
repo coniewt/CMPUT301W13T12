@@ -11,6 +11,7 @@ import android.app.Dialog;
 import android.app.DialogFragment;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -30,97 +31,93 @@ import ca.ualberta.c301w13t12recipes.view.AddIngredWizardActivity.AddIngredDiagl
 
 /**
  * @author HUANG GUANQI
- *
+ * 
  */
-public class IngredientsFridgeActivity extends Activity{
-	
+public class IngredientsFridgeActivity extends Activity {
+
 	private DatabaseController controller;
 	private ListView ingredientsListView;
 	private Button addButton;
 	private Button clearButton;
-	private HashMap<String,Object> map;
+	private HashMap<String, Object> map;
+	private IngredientsFridgeAdapter adapter;
+
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		
+
 		setContentView(R.layout.activity_fridge);
 		controller = new DatabaseController(getApplicationContext());
 		this.setupWidgets();
 		this.refreshList();
-		
+
 		/*
-		ingredientsListView.setOnItemLongClickListener(new OnItemLongClickListener() {
+		 * ingredientsListView.setOnItemLongClickListener(new
+		 * OnItemLongClickListener() {
+		 * 
+		 * @Override public boolean onItemLongClick(AdapterView<?> listView,
+		 * View view, int pos, long id) { // TODO long click to delete selected
+		 * item and then remove Ingredient ingredient =
+		 * controller.getIngredListFromIngredDB().get(pos);
+		 * Toast.makeText(IngredientsFridgeActivity.this, ingredient.getName()
+		 * +" is removed", 3) .show();
+		 * controller.removeIngredFromIngredDB(ingredient); refreshList();
+		 * return false; }
+		 * 
+		 * });
+		 */
+		ingredientsListView.setOnItemClickListener(new OnItemClickListener() {
 
-			@Override
-			public boolean onItemLongClick(AdapterView<?> listView, View view,
-					int pos, long id) {
-				// TODO long click to delete selected item and then remove
-				Ingredient ingredient = controller.getIngredListFromIngredDB().get(pos);
-				Toast.makeText(IngredientsFridgeActivity.this,
-						ingredient.getName() +" is removed", 3)
-						.show();
-				controller.removeIngredFromIngredDB(ingredient);
-				refreshList();
-				return false;
-			}
-
-		});
-		*/
-		ingredientsListView.setOnItemClickListener(new OnItemClickListener(){
-
-			@SuppressWarnings("unchecked")
-			@Override
-			public void onItemClick(AdapterView<?> parent, View arg1, int pos,
+			public void onItemClick(AdapterView<?> parent, View view, int pos,
 					long arg3) {
 				// TODO Auto-generated method stub
-				map = (HashMap<String, Object>) parent.getItemAtPosition(pos);
-				
+
 			}
-			
+
 		});
-		
-		
-		
-		
+
 		addButton.setOnClickListener(new OnClickListener() {
-			
+
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				DialogFragment newFragment = new AddIngredDiaglogFragment();
 				newFragment.show(getFragmentManager(), "NEW_INGREDIENT");
-				
+
 			}
 		});
-		clearButton.setOnClickListener(new OnClickListener(){
+		clearButton.setOnClickListener(new OnClickListener() {
 
+			@SuppressWarnings("unchecked")
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				
-				Iterator it = map.entrySet().iterator();
-			    while (it.hasNext()) {
-			        Map.Entry pairs = (Map.Entry)it.next();
-			        pairs.getValue();
-			        controller.removeIngredFromIngredDB(ingredient);
-			    }
-				
+				Map<String, Object> map = null;
+				boolean isChecked;
+				for (int i = 0; i < ingredientsListView.getCount(); i++) {
+					map = (Map<String, Object>) ingredientsListView
+							.getItemAtPosition(i);
+					isChecked = (Boolean) map.get("checked");
+					if (isChecked) {
+						Toast.makeText(getApplicationContext(),
+								(CharSequence) map.get("name"), 1).show();
+					}
+				}
 			}
-			
+
 		});
 	}
-	
 
-	protected void setupWidgets(){
-		ingredientsListView = (ListView)findViewById(R.id.fridge_listView);
-		addButton = (Button)findViewById(R.id.fridge_add_button);
-		clearButton =(Button)findViewById(R.id.fridge_clear_button);
+	protected void setupWidgets() {
+		ingredientsListView = (ListView) findViewById(R.id.fridge_listView);
+		addButton = (Button) findViewById(R.id.fridge_add_button);
+		clearButton = (Button) findViewById(R.id.fridge_clear_button);
 	}
-	
+
 	protected void refreshList() {
-		IngredientsFridgeAdapter adapter = new IngredientsFridgeAdapter();
+		adapter = new IngredientsFridgeAdapter();
 		ArrayList<Ingredient> li = controller.getIngredListFromIngredDB();
 		ingredientsListView.setAdapter(adapter.getAdapter(this, li));
 	}
+
 	class AddIngredDiaglogFragment extends DialogFragment {
 		private EditText nameEditText;
 		private EditText amountEditText;
@@ -144,9 +141,11 @@ public class IngredientsFridgeActivity extends Activity{
 						public void onClick(DialogInterface dialog, int id) {
 							name = nameEditText.getText().toString();
 							amount = amountEditText.getText().toString();
-							controller.addIngredFromIngredDB(new Ingredient(name,amount));
+							controller.addIngredFromIngredDB(new Ingredient(
+									name, amount));
 							Toast.makeText(IngredientsFridgeActivity.this,
-									"Successfully adding a new ingredient", 2).show();
+									"Successfully adding a new ingredient", 2)
+									.show();
 							refreshList();
 						}
 					}).setNegativeButton("Cancel",

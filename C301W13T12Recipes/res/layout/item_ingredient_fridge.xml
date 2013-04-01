@@ -42,6 +42,7 @@
         android:layout_alignBaseline="@+id/fridge_item_amount"
         android:layout_alignBottom="@+id/fridge_item_amount"
         android:layout_alignParentRight="true"
-        android:layout_marginRight="21dp" />
+        android:layout_marginRight="21dp" 
+        android:focusable="false"/>
 
 </RelativeLayout>
