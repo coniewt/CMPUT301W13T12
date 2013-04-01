@@ -87,23 +87,32 @@ public class IngredientsFridgeActivity extends Activity {
 		});
 		clearButton.setOnClickListener(new OnClickListener() {
 
-			@SuppressWarnings("unchecked")
-			@Override
 			public void onClick(View v) {
-				Map<String, Object> map = null;
-				boolean isChecked;
-				for (int i = 0; i < ingredientsListView.getCount(); i++) {
-					map = (Map<String, Object>) ingredientsListView
-							.getItemAtPosition(i);
-					isChecked = (Boolean) map.get("checked");
-					if (isChecked) {
-						Toast.makeText(getApplicationContext(),
-								(CharSequence) map.get("name"), 1).show();
-					}
-				}
+				removeSelectedItems();
 			}
 
 		});
+	}
+
+	@SuppressWarnings("unchecked")
+	private void removeSelectedItems() {
+		Map<String, Object> map = null;
+		boolean isChecked;
+		for (int i = 0; i < ingredientsListView.getCount(); i++) {
+			map = (Map<String, Object>) ingredientsListView
+					.getItemAtPosition(i);
+			isChecked = (Boolean) map.get("checked");
+			if (isChecked) {
+				Ingredient ingredient = controller.getIngredListFromIngredDB()
+						.get(i);
+				Toast.makeText(IngredientsFridgeActivity.this,
+						ingredient.getName() + " is removed", 3).show();
+				controller.removeIngredFromIngredDB(ingredient);
+				
+			}
+		}
+		refreshList();
+
 	}
 
 	protected void setupWidgets() {
