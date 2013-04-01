@@ -12,6 +12,7 @@ import android.util.Log;
 import android.widget.ListAdapter;
 import android.widget.SimpleAdapter;
 import ca.ualberta.c301w13t12recipes.R;
+import ca.ualberta.c301w13t12recipes.model.Ingredient;
 import ca.ualberta.c301w13t12recipes.model.Recipe;
 
 /**
@@ -31,7 +32,7 @@ public class RecipeAdapter {
 	 *            it will return the recipe with keyword in type
 	 * @return ListAdapter
 	 */
-	public ListAdapter getAdapter(Context ct, String type) {
+	public ListAdapter getAdapter(Context ct, String type,ArrayList<Ingredient> ar) {
 		List<HashMap<String, String>> fillMaps = new ArrayList<HashMap<String, String>>();
 		List<Recipe> li = new ArrayList<Recipe>();
 		Log.v("Key", type);
@@ -39,6 +40,14 @@ public class RecipeAdapter {
 			li = (new DatabaseController(ct)).getDB().getLocal_Recipe_List();
 		} else if (type.length() > 4) {
 			if ((type.substring(0, 4)).compareTo("web_") == 0) {
+				try {
+					li = (new WebSearch()).searchRecipes(type.substring(
+							4, type.length()),ct);
+						(new DatabaseController(ct)).postRemote(li);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}else if ((type.substring(0, 4)).compareTo("ingreSearch_") == 0) {
 				try {
 					li = (new WebSearch()).searchRecipes(type.substring(
 							4, type.length()),ct);

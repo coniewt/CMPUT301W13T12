@@ -87,46 +87,23 @@ public class WebSearch extends WebController {
 */		return recipes;
 	}
 	/**
+	 * Search recipes,which includes the ingredient
 	 * @param str
 	 * @return the list of searched recipe
 	 */
-	public ArrayList<Recipe> searchsearchRecipes(String searchTerm,
-			ArrayList<String> ingredients) 
-{
+	public ArrayList<Recipe> searchRecipesByIngredient(
+			ArrayList<String> ingredients,Context co) 
+			{
 		ArrayList<Recipe> recipes = new ArrayList<Recipe>();
-		String ingredientsString = gson.toJson(ingredients);
-		HttpPost searchRequest = new HttpPost(
-				"http://cmput301.softwareprocess.es:8080/cmput301w13t12/_search?pretty=1");
-		Log.v("PATH::::", searchRequest.getURI().getPath());
-		String query = "{\"query\":{\"filtered\":{\"query\":{\"query_string\":"
-				+ "{\"query\":\"" + searchTerm
-				+ "\"}},\"filter\":{\"term\":{\"ingredients\":"
-				+ ingredientsString + "}}}}}";
 		try{
-		StringEntity stringentity = new StringEntity(query);
-		searchRequest.setHeader("Accept", "application/json");
-		searchRequest.setEntity(stringentity);
-		HttpResponse response = httpclient.execute(searchRequest);
-
-		String status = response.getStatusLine().toString();
-		System.out.println(status);
-
-		String json = (new WebStream()).getEntityContent(response);
-
-		Type elasticSearchSearchResponseType = new TypeToken<ElasticSearchSearchResponse<Recipe>>() {
-		}.getType();
-		ElasticSearchSearchResponse<Recipe> esResponse = gson.fromJson(json,
-				elasticSearchSearchResponseType);
-		System.err.println(esResponse);
-		for (ElasticSearchResponse<Recipe> r : esResponse.getHits()) {
-			Recipe recipe = r.getSource();
-
-			recipes.add(recipe.convertToLocalRecipe());
-			// System.err.println(recipe);
+		for(String st:ingredients){
+			ArrayList<Recipe> tep= searchRecipes(st,co);
+			for(Recipe re:tep){
+				if(re.isIncluded(st))
+					recipes.add(re);
+			}
 		}
-		// searchRequest.releaseConnection();
-		}
-		catch (Exception e){
+		}catch(Exception e){
 			e.printStackTrace();
 		}
 		return recipes;

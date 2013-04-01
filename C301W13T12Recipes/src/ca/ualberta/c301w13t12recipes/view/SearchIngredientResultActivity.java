@@ -8,6 +8,10 @@ import ca.ualberta.c301w13t12recipes.controller.RecipeAdapter;
 import ca.ualberta.c301w13t12recipes.model.Ingredient;
 import ca.ualberta.c301w13t12recipes.model.StrResource;
 
+/**
+ * @author YUWEI DUAN
+ *
+ */
 public class SearchIngredientResultActivity extends ListActivity {
 	private ArrayList<Ingredient> ar = new ArrayList<Ingredient>();
     @Override

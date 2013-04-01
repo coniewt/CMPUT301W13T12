@@ -280,7 +280,8 @@ public class Recipe implements Serializable {
 	@Override
 	public String toString() {
 		return "Recipe [ " + user + ", " + name + ", ingredients:"
-				+ ingredients.toString() + ", "+ImageCollection.toString() + directions + "]";
+				+ ingredients.toString() + ", " + ImageCollection.toString()
+				+ directions + "]";
 	}
 
 	/**
@@ -465,20 +466,18 @@ public class Recipe implements Serializable {
 			return null;
 		}
 	}
+
 	/**
-	 * @param arraylist of ingredients
+	 * @param arraylist
+	 *            of ingredients
 	 * @return if the recipe includes the ingredient
 	 */
-	public boolean isIncluded(ArrayList<Ingredient> ar){
-		ArrayList<Ingredient> list = (ArrayList<Ingredient>) this.getIngredients();
-		if(ar.size()>list.size()){
-			for(Ingredient in :list){
-				for(Ingredient in2:ar){
-					if(in.getName().compareTo(in2.getName())!=0)
-						return false;
-				}
-			}
-			return true;
+	public boolean isIncluded(String ar) {
+		ArrayList<Ingredient> list = (ArrayList<Ingredient>) this
+				.getIngredients();
+		for (Ingredient in : list) {
+			if (in.getName().compareTo(ar) != 0)
+				return false;
 		}
 		return false;
 	}

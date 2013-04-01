@@ -94,6 +94,7 @@ public class IngredientsFridgeActivity extends Activity {
 		});
 		searchButton.setOnClickListener(new OnClickListener() {
 
+			@SuppressWarnings("unchecked")
 			public void onClick(View v) {
 				Map<String, Object> map = null;
 				boolean isChecked;
@@ -105,8 +106,6 @@ public class IngredientsFridgeActivity extends Activity {
 					}
 				}
 				jumpToSearchIngredientResultActivity(selected_list);
-				removeSelectedItems();
-
 			}
 
 		});
