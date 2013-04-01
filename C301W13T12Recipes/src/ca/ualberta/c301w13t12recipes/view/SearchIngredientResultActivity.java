@@ -19,7 +19,7 @@ public class SearchIngredientResultActivity extends ListActivity {
         super.onCreate(savedInstanceState);
         getIngredientListFromIntent();
         // Use our own list adapter
-        setListAdapter(new RecipeAdapter().getAdapter(this, "INGREDIENT_"));
+        setListAdapter(new RecipeAdapter().getAdapter(this, "INGREDIENT_",ar));
     }
     /**
      * To initial the ingredient list from intent

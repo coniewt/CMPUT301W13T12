@@ -167,7 +167,7 @@ public class SearchActivity extends Activity {
 		result_listview = (ListView) findViewById(R.id.searchResult_listView);
 		RecipeAdapter adapter = new RecipeAdapter();
 		ListAdapter la = adapter.getAdapter(this,
-				key);
+				key,null);
 		result_listview.setAdapter(la);
 	}
 	private void testWeb(){

@@ -47,11 +47,9 @@ public class RecipeAdapter {
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
-			}else if ((type.substring(0, 4)).compareTo("ingreSearch_") == 0) {
+			}else if ((type.substring(0, 11)).compareTo("INGREDIENT_") == 0) {
 				try {
-					li = (new WebSearch()).searchRecipes(type.substring(
-							4, type.length()),ct);
-						(new DatabaseController(ct)).postRemote(li);
+					//li = (new WebSearch()).searchRecipes();
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
