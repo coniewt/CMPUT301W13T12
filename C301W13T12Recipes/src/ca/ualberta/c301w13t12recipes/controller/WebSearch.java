@@ -88,18 +88,21 @@ public class WebSearch extends WebController {
 	}
 	/**
 	 * @param str
-	 * @return
-	 * @throws ClientProtocolException
-	 * @throws IOException
+	 * @return the list of searched recipe
 	 */
-	public ArrayList<Recipe> searchsearchRecipes(String str)
-			throws ClientProtocolException, IOException {
+	public ArrayList<Recipe> searchsearchRecipes(String searchTerm,
+			ArrayList<String> ingredients) 
+{
 		ArrayList<Recipe> recipes = new ArrayList<Recipe>();
+		String ingredientsString = gson.toJson(ingredients);
 		HttpPost searchRequest = new HttpPost(
 				"http://cmput301.softwareprocess.es:8080/cmput301w13t12/_search?pretty=1");
 		Log.v("PATH::::", searchRequest.getURI().getPath());
-		String query = "{\"query\" : {\"query_string\" : {\"default_field\" : \"ingredients\",\"query\" : \""
-				+ str + "\"}}}";
+		String query = "{\"query\":{\"filtered\":{\"query\":{\"query_string\":"
+				+ "{\"query\":\"" + searchTerm
+				+ "\"}},\"filter\":{\"term\":{\"ingredients\":"
+				+ ingredientsString + "}}}}}";
+		try{
 		StringEntity stringentity = new StringEntity(query);
 		searchRequest.setHeader("Accept", "application/json");
 		searchRequest.setEntity(stringentity);
@@ -122,7 +125,10 @@ public class WebSearch extends WebController {
 			// System.err.println(recipe);
 		}
 		// searchRequest.releaseConnection();
-
+		}
+		catch (Exception e){
+			e.printStackTrace();
+		}
 		return recipes;
 	}
 

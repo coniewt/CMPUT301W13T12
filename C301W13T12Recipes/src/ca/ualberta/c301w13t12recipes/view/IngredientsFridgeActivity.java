@@ -3,6 +3,7 @@ package ca.ualberta.c301w13t12recipes.view;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
 import android.app.Activity;
@@ -10,6 +11,7 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -27,6 +29,8 @@ import ca.ualberta.c301w13t12recipes.controller.DatabaseController;
 import ca.ualberta.c301w13t12recipes.controller.IngredientsAdapter;
 import ca.ualberta.c301w13t12recipes.controller.IngredientsFridgeAdapter;
 import ca.ualberta.c301w13t12recipes.model.Ingredient;
+import ca.ualberta.c301w13t12recipes.model.Recipe;
+import ca.ualberta.c301w13t12recipes.model.StrResource;
 import ca.ualberta.c301w13t12recipes.view.AddIngredWizardActivity.AddIngredDiaglogFragment;
 
 /**
@@ -39,9 +43,11 @@ public class IngredientsFridgeActivity extends Activity {
 	private ListView ingredientsListView;
 	private Button addButton;
 	private Button clearButton;
+	private Button searchButton;
 	private HashMap<String, Object> map;
 	private IngredientsFridgeAdapter adapter;
-
+	private ArrayList<Ingredient> li = new ArrayList<Ingredient>();
+	private ArrayList<Ingredient> selected_list = new ArrayList<Ingredient>();
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
@@ -85,7 +91,7 @@ public class IngredientsFridgeActivity extends Activity {
 
 			}
 		});
-		clearButton.setOnClickListener(new OnClickListener() {
+		searchButton.setOnClickListener(new OnClickListener() {
 
 			@SuppressWarnings("unchecked")
 			@Override
@@ -97,10 +103,13 @@ public class IngredientsFridgeActivity extends Activity {
 							.getItemAtPosition(i);
 					isChecked = (Boolean) map.get("checked");
 					if (isChecked) {
+						selected_list.add(li.get(i));
+						System.out.println(selected_list.toString());
 						Toast.makeText(getApplicationContext(),
 								(CharSequence) map.get("name"), 1).show();
 					}
 				}
+				 jumpToSearchIngredientResultActivity(selected_list);
 			}
 
 		});
@@ -110,12 +119,26 @@ public class IngredientsFridgeActivity extends Activity {
 		ingredientsListView = (ListView) findViewById(R.id.fridge_listView);
 		addButton = (Button) findViewById(R.id.fridge_add_button);
 		clearButton = (Button) findViewById(R.id.fridge_clear_button);
+		searchButton = (Button) findViewById(R.id.fridge_search_button);
 	}
 
 	protected void refreshList() {
 		adapter = new IngredientsFridgeAdapter();
-		ArrayList<Ingredient> li = controller.getIngredListFromIngredDB();
+		li = controller.getIngredListFromIngredDB();
 		ingredientsListView.setAdapter(adapter.getAdapter(this, li));
+	}
+	/**
+	 * Jump to SearchIngredientResultActivity 
+	 * @param index
+	 */
+	private void jumpToSearchIngredientResultActivity(ArrayList<Ingredient> ar) {
+		Intent intent = new Intent(IngredientsFridgeActivity.this,
+		SearchIngredientResultActivity.class);
+		Bundle bundle = new Bundle();
+		bundle.putSerializable(StrResource.INTENT_INGREDIENT_LIST_KEY,ar);
+		intent.putExtras(bundle);
+		startActivity(intent);
+		//finish();
 	}
 
 	class AddIngredDiaglogFragment extends DialogFragment {

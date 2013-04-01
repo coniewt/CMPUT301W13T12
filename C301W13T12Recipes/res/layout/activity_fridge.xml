@@ -20,28 +20,38 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/imageView1"
-        android:layout_marginLeft="53dp"
-        android:layout_marginTop="102dp"
         android:layout_marginBottom="80dp"
+        android:layout_marginLeft="53dp"
         android:layout_marginRight="53dp"
-         >
+        android:layout_marginTop="102dp" >
     </ListView>
 
-    <Button
-        android:id="@+id/fridge_clear_button"
-        android:layout_width="380px"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:text="Clear" />
+        android:layout_alignParentLeft="true" >
 
-    <Button
-        android:id="@+id/fridge_add_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_toRightOf="@+id/fridge_clear_button"
-        android:text="Add" />
+        <Button
+            android:id="@+id/fridge_clear_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Clear" />
+
+        <Button
+            android:id="@+id/fridge_add_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Add" />
+
+        <Button
+            android:id="@+id/fridge_search_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Search" />
+    </LinearLayout>
 
 </RelativeLayout>

@@ -36,6 +36,7 @@
         <activity android:name=".view.SearchActivity"></activity>
         <activity android:name=".view.EditTitleDescWizardActivity" android:theme="@android:style/Theme.Holo.Light.NoActionBar"></activity>
         <activity android:name=".view.IngredientsFridgeActivity"></activity>
+        <activity android:name=".view.SearchIngredientResultActivity"></activity>
     </application>
 
 </manifest>

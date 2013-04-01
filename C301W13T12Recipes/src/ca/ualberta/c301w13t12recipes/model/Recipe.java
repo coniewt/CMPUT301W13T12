@@ -465,4 +465,21 @@ public class Recipe implements Serializable {
 			return null;
 		}
 	}
+	/**
+	 * @param arraylist of ingredients
+	 * @return if the recipe includes the ingredient
+	 */
+	public boolean isIncluded(ArrayList<Ingredient> ar){
+		ArrayList<Ingredient> list = (ArrayList<Ingredient>) this.getIngredients();
+		if(ar.size()>list.size()){
+			for(Ingredient in :list){
+				for(Ingredient in2:ar){
+					if(in.getName().compareTo(in2.getName())!=0)
+						return false;
+				}
+			}
+			return true;
+		}
+		return false;
+	}
 }
