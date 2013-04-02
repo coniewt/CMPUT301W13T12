@@ -8,6 +8,7 @@ import java.util.List;
 import org.apache.http.client.ClientProtocolException;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.util.Log;
 import android.widget.ListAdapter;
 import android.widget.SimpleAdapter;
@@ -35,7 +36,7 @@ public class RecipeAdapter {
 	 */
 	public ListAdapter getAdapter(Context ct, String type,
 			ArrayList<Ingredient> ar) {
-		List<HashMap<String, String>> fillMaps = new ArrayList<HashMap<String, String>>();
+		List<HashMap<String, Object>> fillMaps = new ArrayList<HashMap<String, Object>>();
 		List<Recipe> li = new ArrayList<Recipe>();
 		Log.v("Key", type);
 		if (type.compareTo("All") == 0) {
@@ -66,13 +67,13 @@ public class RecipeAdapter {
 		// we need if condition to check when li equals null or not
 		if (li != null) {
 			for (Recipe re : li) {
-				HashMap<String, String> map = new HashMap<String, String>();
+				HashMap<String, Object> map = new HashMap<String, Object>();
 				map.put("name", re.getName());
 				map.put("direction", re.getDirections());
 				if (re.getImage().size() != 0) {
 					map.put("image", re.getImage(0).getTN_Path());
 				} else {
-					//map.put("image", R.drawable.view_listview_no_photo);
+					map.put("image",R.drawable.view_listview_no_photo);
 				}
 				fillMaps.add(map);
 			}
