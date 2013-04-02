@@ -100,20 +100,26 @@ public class IngredientsFridgeActivity extends Activity {
 				boolean isChecked;
 				int count = ingredientsListView.getCount();
 				for (int i = 0; i < count; i++) {
-					map = (Map<String, Object>) ingredientsListView.getItemAtPosition(i);
+					map = (Map<String, Object>) ingredientsListView
+							.getItemAtPosition(i);
 					isChecked = (Boolean) map.get("checked");
 					if (isChecked) {
-						selected_list.add(controller.getIngredListFromIngredDB().get(i));
+						selected_list.add(controller
+								.getIngredListFromIngredDB().get(i));
 					}
 				}
-				jumpToSearchIngredientResultActivity(selected_list);
+				if (selected_list.size() == 0) {
+					Toast.makeText(getApplicationContext(), "You must select at least one ingredient", Toast.LENGTH_SHORT).show();
+				} else {
+					jumpToSearchIngredientResultActivity(selected_list);
+				}
 			}
 
 		});
-		clearButton.setOnClickListener(new OnClickListener(){
+		clearButton.setOnClickListener(new OnClickListener() {
 			@SuppressWarnings("unchecked")
 			public void onClick(View v) {
-						removeSelectedItems();
+				removeSelectedItems();
 			}
 		});
 	}
@@ -122,16 +128,17 @@ public class IngredientsFridgeActivity extends Activity {
 	private void removeSelectedItems() {
 		Map<String, Object> map = null;
 		boolean isChecked;
-		for (int i = ingredientsListView.getCount()-1; i >= 0; i--) {
+		for (int i = ingredientsListView.getCount() - 1; i >= 0; i--) {
 			map = (Map<String, Object>) ingredientsListView
 					.getItemAtPosition(i);
 			isChecked = (Boolean) map.get("checked");
 			if (isChecked) {
-				
+
 				Ingredient ingredient = controller.getIngredListFromIngredDB()
 						.get(i);
 				Toast.makeText(IngredientsFridgeActivity.this,
-						ingredient.getName() + "is removed", Toast.LENGTH_SHORT).show();
+						ingredient.getName() + "is removed", Toast.LENGTH_SHORT)
+						.show();
 				controller.removeIngredFromIngredDB(ingredient);
 
 			}
