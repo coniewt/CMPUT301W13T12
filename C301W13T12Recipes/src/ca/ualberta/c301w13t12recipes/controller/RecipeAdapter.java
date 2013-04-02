@@ -32,10 +32,17 @@ public class RecipeAdapter {
 	 *            if type is "All" the adpter will return all recipe otherwise
 	 *            it will return the recipe with keyword in type
 	 * @return ListAdapter
+<<<<<<< HEAD
 	 */
 	@SuppressWarnings("unchecked")
 	public ListAdapter getAdapter(Context ct, String type,ArrayList<Ingredient> ar) {
 		List<HashMap<String, String>> fillMaps = new ArrayList<HashMap<String, String>>();
+=======
+	 */
+	@SuppressWarnings("unchecked")
+	public ListAdapter getAdapter(Context ct, String type,ArrayList<Ingredient> ar) {
+		List<HashMap<String, Object>> fillMaps = new ArrayList<HashMap<String, Object>>();
+>>>>>>> c37ba618233c64aec20fbe4761e43f57f06cb89a
 		List<Recipe> li = new ArrayList<Recipe>();
 		Log.v("Key", type);
 		if (type.compareTo("All") == 0) {
@@ -48,13 +55,23 @@ public class RecipeAdapter {
 						(new DatabaseController(ct)).postRemote(li);
 				} catch (Exception e) {
 					e.printStackTrace();
+<<<<<<< HEAD
 				}
+=======
+				}
+>>>>>>> c37ba618233c64aec20fbe4761e43f57f06cb89a
 			}else if (type.compareTo("INGREDIENT_") == 0) {
 				try {
-					//Log.v(ar.get(0).getAmount(), ar.get(0).getName());
 					li= (List<Recipe>) new GetTask().execute(convertTo(ar));
 					Log.v(">>>>>>>>>>>>>>", li.toString());
+<<<<<<< HEAD
 					//li = (new WebSearch()).searchRecipesByIngredient("*",convertTo(ar));
+=======
+
+			} else if ((type.substring(0, 11)).compareTo("INGREDIENT_") == 0) {
+				try {
+
+>>>>>>> c37ba618233c64aec20fbe4761e43f57f06cb89a
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
