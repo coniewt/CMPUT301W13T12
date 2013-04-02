@@ -57,8 +57,8 @@ public class RecipeAdapter {
 				try {
 					Log.v(">>>>>>>>>>>>>>", li.size() + "");
 					List<String> name_list = convertTo(ar);
-					//li = new WebSearch().searchRecipesByIngredient("*", name_list);
-					li = (List<Recipe>) ((new GetTask()).execute(name_list));
+					li = new WebSearch().searchRecipesByIngredient("*", name_list);
+					//li = (List<Recipe>) ((new GetTask()).execute(name_list));
 					Log.v("22222", "ar size:"+ar.size()+" return size:"+li.size() + "");
 					
 					// li = (new
@@ -66,10 +66,10 @@ public class RecipeAdapter {
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
-			}else{
+			}
+			else
 				li = (new DatabaseController(ct)).getDB().searchRecipebyKeyword(
 						type);
-			}
 		} else {
 			li = (new DatabaseController(ct)).getDB().searchRecipebyKeyword(
 					type);
