@@ -13,8 +13,7 @@ import ca.ualberta.c301w13t12recipes.R;
 import ca.ualberta.c301w13t12recipes.model.Ingredient;
 
 /**
- * Return an Adapter of ingredients for listView
- * @author 
+ * Return an Adapter of ingredients for ListView
  *
  */
 public class IngredientsAdapter {
@@ -22,10 +21,10 @@ public class IngredientsAdapter {
 	int[] to = new int[] { R.id.textView_item_name,R.id.textView_item_amount};
 	
 	/**
-	 * Get Adapter for listView
+	 * Get Adapter for ListView
 	 * @param Context
-	 * @param Array of ingredient
-	 * @return SimpleAdapter
+	 * @param List<Ingredient> Array of ingredient
+	 * @return ListAdapter - Adapter for ListView
 	 */
 	public ListAdapter getAdapter(Context ct,List<Ingredient> li){
 		List<HashMap<String, String>> fillMaps = new ArrayList<HashMap<String, String>>();		
