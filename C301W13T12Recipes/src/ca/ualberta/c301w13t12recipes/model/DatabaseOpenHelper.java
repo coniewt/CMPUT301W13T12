@@ -19,10 +19,10 @@ public class DatabaseOpenHelper extends SQLiteOpenHelper
 			StrResource.REMOTE_RECIPE_TABLE_NAME+" (id TEXT PRIMARY KEY, Content TEXT)";
 	private static final String LOCAL_INGREDIENT_TABLE_CREATE ="CREATE TABLE IF NOT EXISTS "+
 			StrResource.LOCAL_INGREDIENT_TABLE_NAME+" (id TEXT PRIMARY KEY, name TEXT,amount TEXT)";
+	
 	/**
-	 * This is extended constructor from the super class
-	 * SQLiteOpenHelper
-	 * @param context
+	 * This is extended constructor from the super class SQLiteOpenHelper
+	 * @param Context
 	 */
 	public DatabaseOpenHelper(Context context)
 	{
