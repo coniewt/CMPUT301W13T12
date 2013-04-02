@@ -31,7 +31,7 @@ public class ViewListActivity extends Activity {
 	
 	public void onCreate(Bundle savedInstanceState) {
 	    super.onCreate(savedInstanceState);
-	    this.setContentView(R.layout.tesing_list_view);
+	    this.setContentView(R.layout.activity_list_view);
 	    controller = new DatabaseController(this);
 	    this.setupWidgets();
 	    this.refreshList();
