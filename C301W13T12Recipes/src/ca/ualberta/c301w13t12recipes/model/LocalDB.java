@@ -23,28 +23,17 @@ public class LocalDB {
 	private SQLiteDatabase db;
 
 	/**
-	 * Create a new database manager with the "database" being saved to a file.
-	 * 
-	 * @param filename
+	 * Constructor to create a singleton for database instance
+	 * @param Context
 	 */
 	public LocalDB(Context context) {
 		DatabaseSingleton ds = DatabaseSingleton.getInstance(context);
 		db = ds.getDB();
 	}
 
-	/*
-	 * Post a task to the "local" table of the database.
-	 * 
-	 * @param task The task to be added.
-	 * 
-	 * @return The task that was added along with it's id.
-	 */
-
 	/**
 	 * Add recipe to local database
-	 * 
-	 * @param Recipe
-	 *            object
+	 * @param Recipe Recipe wish to store into local database
 	 * @throws Exception
 	 */
 	public void addLocal_Recipe_Table(Recipe re) {
@@ -64,8 +53,9 @@ public class LocalDB {
 	}
 
 	/**
-	 * @param in
-	 *            ingredient object
+	 * Add ingredient to local database
+	 * @param Ingredient Ingredients wish to add into local database
+	 * @throws Exception
 	 */
 	public void addLocal_Ingredient_Table(Ingredient in) {
 		ContentValues cv = new ContentValues();
@@ -82,9 +72,9 @@ public class LocalDB {
 	
 
 	/**
-	 * To get the ingredients in the local table
+	 * To get a list of ingredients from the local database
 	 * 
-	 * @return the list of ingredient in the local fridge
+	 * @return ArrayList<Ingredient> - A list of ingredient in the local fridge
 	 */
 	public ArrayList<Ingredient> getLocal_Ingredient_List() {
 		ArrayList<Ingredient> out = new ArrayList<Ingredient>();
@@ -101,8 +91,10 @@ public class LocalDB {
 		c.close();
 		return out;
 	}
+	
 	/**
-	 * @param ingredient2
+	 * Remove an ingredient from the local database
+	 * @param Ingredient Ingredient wish to remove from local fridge
 	 */
 	public void removeLocal_Ingredient_List(Ingredient ingredient){
 		
@@ -110,10 +102,10 @@ public class LocalDB {
 		Log.v("ingredient:",id);
 		db.delete(StrResource.LOCAL_INGREDIENT_TABLE_NAME, "id" + " =?",new String[] { id, });
 	}
+	
 	/**
-	 * Get the local task list.
-	 * 
-	 * @return A list of tasks in the local table of the database
+	 * Get the local recipe list.
+	 * @return ArrayList<Recipe> An array of recipes in local database
 	 * @throws JSONException
 	 */
 	public ArrayList<Recipe> getLocal_Recipe_List() {
@@ -139,9 +131,8 @@ public class LocalDB {
 	/**
 	 * Search local recipes by keywords
 	 * 
-	 * @param Search
-	 *            keywords
-	 * @return An array of Recipe object
+	 * @param String keywords for the search
+	 * @return ArrayList<Recipe> - An array of Recipe math the keywords
 	 * @throws JSONException
 	 */
 	public ArrayList<Recipe> searchRecipebyKeyword(String keyword) {
@@ -159,7 +150,9 @@ public class LocalDB {
 	}
 
 	/**
-	 * @return the list of name of recipe exiting in local database
+	 * Auto complete the recipe search keywords for user
+	 * @return ArrayList<String> - A list of name of recipe exiting in local database
+	 * matching part of the search keywords
 	 */
 	public ArrayList<String> getAutoCompleteKeyword() {
 		ArrayList<Recipe> in = new ArrayList<Recipe>();
@@ -174,10 +167,10 @@ public class LocalDB {
 	}
 
 	/**
-	 * Check if local recipes exist
+	 * Check if local recipe exists
 	 * 
-	 * @param recipe
-	 * @return True if exist, false if not exist
+	 * @param Recipe Recipe wish to check
+	 * @return boolean - Return True if recipe existed locally, False otherwise.
 	 */
 	public boolean isLocalIdExists(Recipe recipe) {
 
@@ -191,10 +184,10 @@ public class LocalDB {
 	}
 
 	/**
-	 * Check if remote recipes exist
+	 * Check if recipe exists on web server
 	 * 
-	 * @param recipe
-	 * @return True if exist, false if not exist
+	 * @param Recipe Recipe wish to check
+	 * @return boolean - Return True if recipe existed on web server, False otherwise.
 	 */
 	public boolean isRemoteIdExists(Recipe recipe) {
 
@@ -208,12 +201,10 @@ public class LocalDB {
 	}
 
 	/**
-	 * Post a task to the "remote" table of the database.
+	 * Post a task to the remote table of the database
 	 * 
-	 * @param task
-	 *            The task to be added.
-	 * 
-	 * @return The task that was added along with it's id.
+	 * @param Recipe Recipe to be added to remote
+	 * @return boolean - Return True if recipe successfully added to table remote, False otherwise.
 	 */
 
 	public boolean postRemote(Recipe re) {
@@ -231,10 +222,9 @@ public class LocalDB {
 	}
 
 	/**
-	 * Deletes a task from the "local" table of the database.
+	 * Deletes a task from the "local" table of the database
 	 * 
-	 * @param id
-	 *            The id of the task to be deleted.
+	 * @param String The id of the task to be deleted.
 	 */
 	public void delete_Local_Recipe(String id) {
 		db.delete(StrResource.LOCAL_RECIPE_TABLE_NAME, "id" + " =?",
@@ -244,9 +234,8 @@ public class LocalDB {
 	/**
 	 * Gets a task (if exists) from the "local" table of the database.
 	 * 
-	 * @param id
-	 *            ID of task to search for
-	 * @return Task found, if nothing found returns null.
+	 * @param String  ID of task to be performed
+	 * @return Recipe - Return Recipe object if found, null otherwise
 	 * @throws JSONException
 	 */
 
@@ -272,10 +261,8 @@ public class LocalDB {
 	/**
 	 * Convert JSON object to Recipe object
 	 * 
-	 * @param JSON
-	 *            object
-	 * @return Null if object contains nothing, otherwise return a Recipeobject
-	 *         containing the information from that JSON object
+	 * @param JSONObject JSON object containing the recipe
+	 * @return Recipe - Return the recipe in the JSON object, null if object contains nothing
 	 * @throws JSONException
 	 */
 	public Recipe toRecipe(JSONObject j) throws JSONException {
@@ -293,11 +280,10 @@ public class LocalDB {
 	}
 
 	/**
-	 * Get the list of ingredients from jsonObject and return them
+	 * Convert the list of ingredients from JSON Object to list of Ingredient
 	 * 
-	 * @param JSON
-	 *            object
-	 * @return An array of ingredient
+	 * @param JSONObject JSON object containing the ingredients
+	 * @return List<Ingredient> - Return a list of Ingredient object
 	 * @throws JSONException
 	 */
 	private static List<Ingredient> toIngredients(JSONObject jsonTask)
@@ -325,7 +311,12 @@ public class LocalDB {
 		}
 		return null;
 	}
-
+	/**
+	 * Convert the images corresponding to the recipe from a JSON object
+	 * @param JSONObject JSON object containing the images
+	 * @return ArrayList<Image> - An arraylist of image objects
+	 * @throws JSONException
+	 */
 	private static ArrayList<Image> toImages(JSONObject jsonTask)
 			throws JSONException {
 		try {
@@ -350,8 +341,8 @@ public class LocalDB {
 	/**
 	 * Convert String to JSON object
 	 * 
-	 * @param String
-	 * @return JSONObject
+	 * @param String Contents of the recipe
+	 * @return JSONObject - JSON onject of that recipe
 	 */
 	private JSONObject toJsonRecipe(String recipeContent) throws JSONException {
 		JSONObject jsonRecipe = new JSONObject(recipeContent);
@@ -359,14 +350,12 @@ public class LocalDB {
 	}
 
 	/**
-	 * Gets a recipe (if exists) from the "remote" table of the database.
+	 * Gets a recipe from the remote table of the database
 	 * 
-	 * @param id
-	 *            ID of recipe to search for
-	 * @return Recipe found, if nothing found returns null.
+	 * @param String ID of recipe to search for
+	 * @return Recipe - Return recipe if found, null otherwise
 	 * @throws JSONException
 	 */
-
 	public Recipe getRemoteRecipe(String id) {
 		try {
 			Cursor c = db.rawQuery("SELECT * FROM "
@@ -389,10 +378,9 @@ public class LocalDB {
 	/**
 	 * Get the remote recipe list.
 	 * 
-	 * @return A list of tasks in the remote table of the database
+	 * @return ArrayList<Recipe> - An arraylist of tasks in the remote table of the database
 	 * @throws JSONException
 	 */
-
 	public ArrayList<Recipe> getRemoteRecipeList() {
 		try {
 			Log.d("refresh", "STARTING REMOTE TASK LIST");
@@ -420,8 +408,7 @@ public class LocalDB {
 	 * 
 	 * Looks through both local and remote tables for a matching task.
 	 * 
-	 * @param Recipe
-	 *            object user wishes to change
+	 * @param Recipe Recipe user wishes to change
 	 */
 	public void updateLocalRecipe(Recipe re) {
 		try {
@@ -445,8 +432,7 @@ public class LocalDB {
 	 * 
 	 * Looks through both local and remote tables for a matching task.
 	 * 
-	 * @param Recipe
-	 *            object user wishes to change
+	 * @param Recipe Recipe user wishes to change
 	 */
 	public void updateRemoteRecipe(Recipe re) {
 		try {
@@ -490,7 +476,7 @@ public class LocalDB {
 	}
 
 	/**
-	 * Close database
+	 * Close database instance
 	 */
 	public void close() {
 		db.close();
@@ -498,7 +484,7 @@ public class LocalDB {
 
 	/**
 	 * Transfer the recipe in remote database to local
-	 * @param id
+	 * @param Recipe Recipe wish to transfer
 	 */
 	public void transferFromRemoteToLocal(Recipe re) {
 		System.out.println("Transfer"+re.toString());
