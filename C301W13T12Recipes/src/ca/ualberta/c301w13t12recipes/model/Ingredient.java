@@ -21,28 +21,32 @@ public class Ingredient implements Serializable {
 	private String id;
 
 	/**
-	 * @param name
-	 * @param amount
+	 * Constructor for new ingredients
+	 * @param String ID of the ingredient
+	 * @param String Name of the ingredient
+	 * @param String Amount of the ingredient
 	 */
 	public Ingredient(String id,String name, String amount) {
 		this.id=id;
 		this.name = name;
 		this.amount = amount;
 	}
+	
 	/**
-	 * @param name
-	 * @param amount
+	 * Constructor for existing ingredients
+	 * @param String Name of the ingredient
+	 * @param String Amount of the ingredient
 	 */
 	public Ingredient(String name, String amount) {
 		this.id="ingre@"+System.currentTimeMillis();
 		this.name = name;
 		this.amount = amount;
 	}
-	/**
-	 * 
-	 * @return the id of the ingredient
-	 */
 	
+	/**
+	 * Get ID of the ingredient
+	 * @return String - ID of the ingredient
+	 */
 	public String getId(){
 		return this.id;
 	}
@@ -50,7 +54,7 @@ public class Ingredient implements Serializable {
 	/**
 	 * Get name of the ingredient
 	 * 
-	 * @return Name of ingredient
+	 * @return String - Name of ingredient
 	 */
 	public String getName() {
 		return this.name;
@@ -59,7 +63,7 @@ public class Ingredient implements Serializable {
 	/**
 	 * Get amount of the ingredient
 	 * 
-	 * @return Amount of ingredient
+	 * @return String - Amount of ingredient
 	 */
 	public String getAmount() {
 		return this.amount;
@@ -68,7 +72,7 @@ public class Ingredient implements Serializable {
 	/**
 	 * Convert ingredient plus associated amount into one string
 	 * 
-	 * @return Single string of ingredient + amount
+	 * @return String - Single string of ingredient + amount
 	 */
 	public String toString() {
 		return this.name + "," + this.amount;
@@ -77,8 +81,7 @@ public class Ingredient implements Serializable {
 	/**
 	 * Set the name of the ingredient
 	 * 
-	 * @param Name
-	 *            of ingredient
+	 * @param String Name of the ingredient
 	 */
 	public void setName(String name) {
 		this.name = name;
@@ -87,8 +90,7 @@ public class Ingredient implements Serializable {
 	/**
 	 * Set the amount of the ingredient
 	 * 
-	 * @param Amount
-	 *            of ingredient
+	 * @param String Amount of the ingredient
 	 */
 	public void setamount(String amount) {
 		this.amount = amount;
@@ -96,9 +98,9 @@ public class Ingredient implements Serializable {
 
 	/**
 	 * Convert jsonArray to ingredients list
+	 * @param JSONArray JSON object array wish to convert to ingredient list
+	 * @return List<Ingredient> List of ingredients which contained in the JSON object array
 	 * @exception JSONException
-	 * @return list<Ingredient>
-	 * @param JSONArray
 	 */
 	public List<Ingredient> toIngredientsList(JSONArray jsA) {
 		List<Ingredient> li = new ArrayList<Ingredient>();
