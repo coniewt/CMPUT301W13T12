@@ -168,6 +168,11 @@ public class AddTitleDescWizardActivity extends Activity {
 
 	}
 
+	/**
+	 * Show a warning dialog and ask user to confirm his deleting operation
+	 * If the user clicks continue, then all the ingredients are removed
+	 * 
+	 */
 	public void displayClearFieldsWarningDialog() {
 		AlertDialog.Builder builder = new Builder(
 				AddTitleDescWizardActivity.this);

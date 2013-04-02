@@ -10,6 +10,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
+import android.app.AlertDialog.Builder;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -44,6 +45,8 @@ public class IngredientsFridgeActivity extends Activity {
 	private Button addButton;
 	private Button clearButton;
 	private Button searchButton;
+	private EditText nameEditText;
+	private EditText amountEditText;
 	private HashMap<String, Object> map;
 	private IngredientsFridgeAdapter adapter;
 	private ArrayList<Ingredient> li = new ArrayList<Ingredient>();
@@ -117,9 +120,9 @@ public class IngredientsFridgeActivity extends Activity {
 
 		});
 		clearButton.setOnClickListener(new OnClickListener() {
-			@SuppressWarnings("unchecked")
-			public void onClick(View v) {
-				removeSelectedItems();
+			
+			public void onClick(View v) {	
+				displayClearFieldsWarningDialog();
 			}
 		});
 	}
@@ -159,7 +162,32 @@ public class IngredientsFridgeActivity extends Activity {
 		li = controller.getIngredListFromIngredDB();
 		ingredientsListView.setAdapter(adapter.getAdapter(this, li));
 	}
+	/**
+	 * 
+	 */
+	public void displayClearFieldsWarningDialog() {
+		AlertDialog.Builder builder = new Builder(
+				IngredientsFridgeActivity.this);
+		builder.setTitle("Warning");
+		builder.setNegativeButton("Cancel",
+				new android.content.DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface arg0, int arg1) {
 
+					}
+				});
+		builder.setPositiveButton("Continue",
+				new android.content.DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface arg0, int arg1) {
+						removeSelectedItems();
+						Toast toast = Toast.makeText(getApplicationContext(),
+								"Operation Complete", 1);
+						toast.show();
+					}
+				});
+		builder.setIcon(android.R.drawable.ic_dialog_info);
+		builder.setMessage("Are you sure you want to delete selected items?");
+		builder.show();
+	}
 	/**
 	 * Jump to SearchIngredientResultActivity
 	 * 
@@ -176,8 +204,7 @@ public class IngredientsFridgeActivity extends Activity {
 	}
 
 	class AddIngredDiaglogFragment extends DialogFragment {
-		private EditText nameEditText;
-		private EditText amountEditText;
+		
 		String name, amount;
 
 		public Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -198,11 +225,7 @@ public class IngredientsFridgeActivity extends Activity {
 						public void onClick(DialogInterface dialog, int id) {
 							name = nameEditText.getText().toString();
 							amount = amountEditText.getText().toString();
-							controller.addIngredFromIngredDB(new Ingredient(
-									name, amount));
-							Toast.makeText(IngredientsFridgeActivity.this,
-									"Successfully adding a new ingredient", 2)
-									.show();
+							checkAllFields(name, amount);
 							refreshList();
 						}
 					}).setNegativeButton("Cancel",
@@ -215,6 +238,26 @@ public class IngredientsFridgeActivity extends Activity {
 						}
 					});
 			return builder.create();
+		}
+	}
+	/**
+	 * Check both name EditText and amount EditText, if user add string into both
+	 * widgets, the method will grant the user to add a new ingredient
+	 * @param name
+	 * @param amount
+	 */
+	private void checkAllFields(String name,String amount) {
+		if (amount.equals("") || name.equals("")) {
+			Toast.makeText(
+					getApplicationContext(),
+					"Sorry! You must fill both name and direction input field.",
+					Toast.LENGTH_SHORT).show();
+		}else{
+			controller.addIngredFromIngredDB(new Ingredient(
+					name, amount));
+			Toast.makeText(IngredientsFridgeActivity.this,
+					"Successfully adding a new ingredient", 2)
+					.show();
 		}
 	}
 }
