@@ -1,7 +1,7 @@
 package ca.ualberta.c301w13t12recipes.controller;
 
-import ca.ualberta.c301w13t12recipes.model.Recipe;
 import android.content.Context;
+import ca.ualberta.c301w13t12recipes.model.Recipe;
 
 /**
  * Recipe manage class, responsible for creating database controller and image manager instance

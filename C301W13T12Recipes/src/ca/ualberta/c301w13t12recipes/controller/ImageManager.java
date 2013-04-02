@@ -6,13 +6,11 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 
-import ca.ualberta.c301w13t12recipes.model.Image;
-
-import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Environment;
+import ca.ualberta.c301w13t12recipes.model.Image;
 /**
  * Handling the pictures taken by camera
  * 

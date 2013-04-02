@@ -3,17 +3,13 @@ package ca.ualberta.c301w13t12recipes.controller;
 import java.io.File;
 import java.util.ArrayList;
 
-import ca.ualberta.c301w13t12recipes.model.Image;
-
+import android.content.Context;
+import android.net.Uri;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.content.Context;
-import android.graphics.drawable.Drawable;
-import android.net.Uri;
-import android.widget.BaseAdapter;
-import android.widget.GridView;
 import android.widget.ImageView;
+import ca.ualberta.c301w13t12recipes.model.Image;
 
 /**
  * Convert an ArrayList of images to a grid view adapter for ListView

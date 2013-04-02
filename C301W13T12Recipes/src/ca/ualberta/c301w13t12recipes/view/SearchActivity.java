@@ -1,14 +1,9 @@
 package ca.ualberta.c301w13t12recipes.view;
 
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
-import org.apache.http.client.ClientProtocolException;
-
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.StrictMode;
@@ -20,28 +15,21 @@ import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.CheckBox;
-import android.widget.CompoundButton;
-import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.ImageButton;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.MultiAutoCompleteTextView;
 import android.widget.PopupMenu;
 import android.widget.PopupMenu.OnMenuItemClickListener;
-import android.widget.Toast;
 import ca.ualberta.c301w13t12recipes.R;
 import ca.ualberta.c301w13t12recipes.controller.DatabaseController;
 import ca.ualberta.c301w13t12recipes.controller.RecipeAdapter;
-import ca.ualberta.c301w13t12recipes.controller.WebController;
 import ca.ualberta.c301w13t12recipes.controller.WebSearch;
-import ca.ualberta.c301w13t12recipes.controller.WebStream;
-import ca.ualberta.c301w13t12recipes.model.Ingredient;
 import ca.ualberta.c301w13t12recipes.model.Recipe;
 
 /**
- * Users are able to search recipes both online and offline 
+ * Users are able to search recipes both online and offline
+ * 
  * @author YWUEI DUAN
  * 
  */
@@ -74,7 +62,7 @@ public class SearchActivity extends Activity {
 			@Override
 			public void onClick(View arg0) {
 				// TODO Auto-generated method stub
-				Log.v("button test", ""+searchModeSwitch);
+				Log.v("button test", "" + searchModeSwitch);
 				keyword = keyword_edittext.getText().toString();
 				if (keyword.length() > 0) {
 					if (searchModeSwitch == 1)
@@ -131,22 +119,6 @@ public class SearchActivity extends Activity {
 			}
 		});
 
-		/*
-		 * checkbox.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-		 * 
-		 * @Override public void onCheckedChanged(CompoundButton arg0, boolean
-		 * arg1) { if(arg1==true){ System.out.println((new
-		 * WebController()).isNetworkAvailable(arg0.getContext())); if((new
-		 * WebController()).isNetworkAvailable(arg0.getContext())){
-		 * 
-		 * 
-		 * Toast.makeText(arg0.getContext(),
-		 * "Successfuls to connect the Internet", Toast.LENGTH_SHORT).show(); }
-		 * else{ Toast.makeText(arg0.getContext(),
-		 * "Fail to connect the Internet", Toast.LENGTH_LONG).show();
-		 * checkbox.setChecked(false); } } }});
-		 */
-
 	}
 
 	private void showPopup(View v) {
@@ -165,7 +137,6 @@ public class SearchActivity extends Activity {
 		search_imagebutton = (ImageButton) findViewById(R.id.search_imageButton1);
 		optionMenu = (ImageButton) findViewById(R.id.search_option_menu);
 		searchModeSwitch = 0;
-		// checkbox = (CheckBox)findViewById(R.id.search_web_recipe_checkbox);
 	}
 
 	/**
@@ -177,10 +148,6 @@ public class SearchActivity extends Activity {
 	private void jumpToAddViewDetailRecipeActivity(int index, String key) {
 		Intent intent = new Intent(SearchActivity.this,
 				ViewDetailedRecipeActivity.class);
-		// Log.v("Test+++",(String)
-		// ((HashMap)result_listview.getItemAtPosition(index)).get("name"));
-		// String title =
-		// (String)((HashMap<String,String>)result_listview.getItemAtPosition(index)).get("name");
 		ArrayList<Recipe> recipeList = new ArrayList<Recipe>();
 		if (searchModeSwitch == 1) {
 			Recipe recipe = new Recipe();
@@ -189,7 +156,7 @@ public class SearchActivity extends Activity {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			// System.out.println(recipe==null);
+
 			Bundle bundle = new Bundle();
 			bundle.putSerializable("WEB_RECIPE", recipe);
 			intent.putExtras(bundle);
@@ -226,32 +193,5 @@ public class SearchActivity extends Activity {
 		ListAdapter la = adapter.getAdapter(this, key, null);
 		result_listview.setAdapter(la);
 	}
-	/*
-	private void testWeb() {
-		// testButton = (Button)findViewById(R.id.testbutton);
-		testButton.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-
-				Thread thread = new Thread() {
-					@Override
-					public void run() {
-						Recipe testRecipe = new Recipe("Admin2", "Test_name2",
-								"Test_direction2");
-						try {
-							Log.v("Recipe", testRecipe.toString());
-							(new WebStream()).deleteRecipe();
-							// (new WebStream()).insertRecipe(testRecipe);
-						} catch (Exception e) {
-							e.printStackTrace();
-						}
-					}
-				};
-				thread.run();
-				// TODO Auto-generated method stub
-
-			}
-		});
-	}*/
 
 }

@@ -3,19 +3,11 @@ package ca.ualberta.c301w13t12recipes.controller;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import com.google.gson.Gson;
-
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.util.Log;
 import ca.ualberta.c301w13t12recipes.model.Ingredient;
 import ca.ualberta.c301w13t12recipes.model.LocalDB;
 import ca.ualberta.c301w13t12recipes.model.Recipe;
-import ca.ualberta.c301w13t12recipes.model.StrResource;
 
 /**
  * Database controller class, used for background database handling.

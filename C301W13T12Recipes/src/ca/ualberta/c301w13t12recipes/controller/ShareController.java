@@ -2,12 +2,8 @@ package ca.ualberta.c301w13t12recipes.controller;
 
 import java.util.ArrayList;
 
-import android.content.ContentResolver;
-import android.content.ContentValues;
-import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
-import android.provider.MediaStore.Images;
 import ca.ualberta.c301w13t12recipes.model.Image;
 import ca.ualberta.c301w13t12recipes.model.Recipe;
 /** 

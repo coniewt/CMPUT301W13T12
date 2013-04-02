@@ -1,11 +1,8 @@
 package ca.ualberta.c301w13t12recipes.controller;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-
-import org.apache.http.client.ClientProtocolException;
 
 import android.content.Context;
 import android.os.AsyncTask;

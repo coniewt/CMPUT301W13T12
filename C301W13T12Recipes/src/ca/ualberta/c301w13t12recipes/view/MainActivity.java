@@ -1,12 +1,11 @@
 package ca.ualberta.c301w13t12recipes.view;
 
-import ca.ualberta.c301w13t12recipes.R;
-import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
-import android.view.Menu;
+import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
+import ca.ualberta.c301w13t12recipes.R;
 
 /**
  * Main activity class for main menu
@@ -81,6 +80,9 @@ public class MainActivity extends Activity {
 		
 	}
 	
+	/**
+	 * Initialize all the imageButtons
+	 */
 	public void setupButtons(){
 		//TODO initialize all the buttons via R.id
 		main_addButton = (ImageButton)findViewById(R.id.main_add_button);

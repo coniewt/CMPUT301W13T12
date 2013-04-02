@@ -1,15 +1,20 @@
 package ca.ualberta.c301w13t12recipes.view;
 
-import ca.ualberta.c301w13t12recipes.R;
-import ca.ualberta.c301w13t12recipes.model.Recipe;
 import android.app.DialogFragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.CompoundButton;
-import android.widget.Toast;
 import android.widget.CompoundButton.OnCheckedChangeListener;
+import android.widget.Toast;
+import ca.ualberta.c301w13t12recipes.R;
+import ca.ualberta.c301w13t12recipes.model.Recipe;
 
+/**
+ * User is able to edit their recipe by using this activity
+ * @author frank
+ *
+ */
 public class EditTitleDescWizardActivity extends AddTitleDescWizardActivity {
 
 	/** Called when the activity is first created. */

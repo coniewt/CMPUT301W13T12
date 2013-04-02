@@ -4,9 +4,6 @@ import java.util.HashMap;
 import java.util.List;
 
 import android.content.Context;
-import android.view.View;
-import android.widget.Adapter;
-import android.widget.CheckBox;
 import android.widget.ListAdapter;
 import android.widget.SimpleAdapter;
 import ca.ualberta.c301w13t12recipes.R;

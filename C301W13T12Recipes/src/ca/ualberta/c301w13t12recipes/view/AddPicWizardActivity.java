@@ -7,6 +7,7 @@ package ca.ualberta.c301w13t12recipes.view;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
@@ -162,6 +163,9 @@ public class AddPicWizardActivity extends Activity {
 		}
 	}
 
+	/**
+	 * refresh gridview by generating the adapter from recipe arraylist
+	 */
 	public void refreshGridView() {
 		gridView.setAdapter(new ImageAdapter(AddPicWizardActivity.this,
 				(ArrayList<Image>) recipe.getImage()));
