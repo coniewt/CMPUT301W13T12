@@ -1,8 +1,10 @@
 package ca.ualberta.c301w13t12recipes.view;
 
 import ca.ualberta.c301w13t12recipes.R;
+import ca.ualberta.c301w13t12recipes.model.StrResource;
 import android.app.Activity;
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
 import android.widget.TextView;
 
 public class HelpManualActivity extends Activity {
@@ -21,7 +23,10 @@ public class HelpManualActivity extends Activity {
 		
 	}
 	private void setText(){
-		manualTextView.setText("Hello");
+		manualTextView.setText((new StrResource()).MAIN_HELP_CONTENT);
+		manualTextView.setMovementMethod(new ScrollingMovementMethod());
+
+
 	}
 	
 }

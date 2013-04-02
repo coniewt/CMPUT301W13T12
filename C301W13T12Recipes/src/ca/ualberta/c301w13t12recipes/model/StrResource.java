@@ -2,17 +2,18 @@ package ca.ualberta.c301w13t12recipes.model;
 
 /**
  * Class of useful string resources for various purposes
- *
+ * 
  */
-public class StrResource
-{
-	//constant strings outside of android scope
+public class StrResource {
+	// constant strings outside of android scope
 	public static final String LOCAL_RECIPE_TABLE_NAME = "local_recipe_table";
 	public static final String LOCAL_INGREDIENT_TABLE_NAME = "local_ingredient_table";
-	//public static final String LOCAL_INGREDIENT_TABLE_NAME = "local_recipe_table";
-	public static final String REMOTE_RECIPE_TABLE_NAME = "remote_recipe_table";	
+	// public static final String LOCAL_INGREDIENT_TABLE_NAME =
+	// "local_recipe_table";
+	public static final String REMOTE_RECIPE_TABLE_NAME = "remote_recipe_table";
 	public static final String uri = "http://cmput301.softwareprocess.es:8080/CMPUT301W13T12/recipe/";
 	public static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 100;
 	public static final String SHARE_PREFERENCE_KEY = "Temp_Recipe_list";
-	public static final String INTENT_INGREDIENT_LIST_KEY ="Ingredient_List";
+	public static final String INTENT_INGREDIENT_LIST_KEY = "Ingredient_List";
+	public static final String MAIN_HELP_CONTENT = "Search \n By click search you will be able to search recipes by title. Clicking on the top right button you will be able to choose to search online or offline. Then start entering criteria into the search box. After typing few letters, there will be a drop down menu automatically completes the entry based on the recipes available on local or web server. Click on the options on the drop down menu and click search button on the right. If you are performing an online search this may take a while. In the meantime please be patient. After the list of recipe is shown, click on the recipe you desired and a more detailed version of the recipe will be available.\nAdd\n Clicking on the add button, a wizard will pop up. Enter the recipe name and description on the first step. In this step you will be able to use a password to protect your recipe from editing by others. Should you choose to use this method, toggle on the password protection method and enter a password of your choice in the popup window. If you made any mistake and wish to start over, click the Clear button. Click Next when finished. The next step is to enter all the ingredients for the recipe. Click on the + sign and enter the ingredient name and amount into corresponding field. If you wish to delete a single entry from the ingredient list simply press on the item and hold, the item will be deleted. On the third step you will be able to take pictures for your recipe. You can skip this step entirely if you wish. However if you wish to add picture to your recipe click add button. The camera will automatically start and you can take any picture you want. After taking a picture you can choose to discard, retake or confirm photo. After you confirmed this photo will be added to the recipe. Again should you wish to delete a single photo just press on it and hold. You may take as many photo as you want. Click next and you recipe will be saved to your local storage.\n\n View \nThis is the place where you can browse all the recipes from your local storage, whether it¡¯s added by yourself or downloaded from the web server. Click on the recipe to see more details. On the top right corner there is a button to provide you with additional features. If you want to email this recipe to others you can choose share. This will automatically open the email program and you will be able to enter the email address you wish to send the recipe to. Subject and contents will automatically be filled with recipe title and directions. Images associated with the recipe with automatically listed in the attachments. Just click send and you are done. You can also choose to send the recipe to web server for everyone to browse. A progress bar will show up to signal the current progress of the publication. You can delete the recipe if you choose delete. However you should know that this only deletes the recipe from local storage not from the web server. At last you can edit the recipe again. Should you choose to edit the recipe the app will prompt a similar interface with add recipe, except all fields are filled with the current information of the recipe. Edit if you want.\n My Fridge \n My Fridge is a convenient way to organize the ingredients you have and search for possible recipes with the ingredients you have. You can add ingredients name and amount to the list. Check in the box at the end to select ingredient(s). Click Clear button if you want to delete them. Click Search button will perform a search on web server based on the ingredients you have selected. The result will be much like search recipe by title.";
 }
