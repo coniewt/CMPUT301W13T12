@@ -4,25 +4,20 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
-import java.lang.reflect.Type;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpDelete;
-import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 
 import android.os.AsyncTask;
-import ca.ualberta.c301w13t12recipes.model.ElasticSearchResponse;
 import ca.ualberta.c301w13t12recipes.model.Recipe;
-import ca.ualberta.c301w13t12recipes.model.WebService;
 
 import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 
 /**
  * @author YUWEi DUAN
@@ -84,41 +79,14 @@ public class WebStream{
 			e.printStackTrace();
 		}
 		}
-	/**
-	 * @param string
-	 * @return the recipe object
-	 */
-	/*public Recipe getRecipe(String string){
-		
-		try{
-			HttpGet getRequest = new HttpGet("http://cmput301.softwareprocess.es:8080/cmput301w13t12/recipe/"+string+"?pretty=1");
-			getRequest.addHeader("Accept","application/json");
-			HttpResponse response = httpclient.execute(getRequest);
-			String status = response.getStatusLine().toString();
-			System.out.println(status);
-			String json = getEntityContent(response);
-			// We have to tell GSON what type we expect
-			Type elasticSearchResponseType = new TypeToken<ElasticSearchResponse<Recipe>>(){}.getType();
-			// Now we expect to get a Recipe response
-			ElasticSearchResponse<Recipe> esResponse = gson.fromJson(json, elasticSearchResponseType);
-			// We get the recipe from it!
-			Recipe recipe = esResponse.getSource();
-			
-			return recipe;
-			
-			//System.out.println(recipe.toString());
-			//getRequest.releaseConnection();
-
-		} catch (ClientProtocolException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		
-		return null;
-		
-	}*/
 	
+	
+	/**
+	 * update the recipe in web database
+	 * @param recipe
+	 * @throws ClientProtocolException
+	 * @throws IOException
+	 */
 	public void updateRecipes(Recipe recipe) throws ClientProtocolException, IOException {
 		
 		//deleteRecipe();

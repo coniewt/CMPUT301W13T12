@@ -496,6 +496,7 @@ public class LocalDB {
 	}
 
 	/**
+	 * Transfer the recipe in remote database to local
 	 * @param id
 	 */
 	public void transferFromRemoteToLocal(Recipe re) {

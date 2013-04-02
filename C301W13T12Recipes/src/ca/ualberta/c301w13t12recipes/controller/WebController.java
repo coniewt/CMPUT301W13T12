@@ -11,7 +11,6 @@ import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import ca.ualberta.c301w13t12recipes.model.LocalDB;
 import ca.ualberta.c301w13t12recipes.model.Recipe;
-import ca.ualberta.c301w13t12recipes.model.WebService;
 
 import com.google.gson.Gson;
 
@@ -25,27 +24,31 @@ public class WebController extends AsyncTask<String, Void, Recipe> {
 
 	// HTTP Connector
 	protected HttpClient httpclient;
-	private static WebService webservice;
+	//private static WebService webservice;
 	private static LocalDB localdb;
+	private WebStream webservice ;
 
 	// JSON Utilities
 
 	protected Gson gson;
 
+	/**
+	 * The constructor of web controller
+	 */
 	public WebController() {
 
 		httpclient = new DefaultHttpClient();
 
 		gson = new Gson();
 
-		webservice = new WebService();
+		webservice = new WebStream();
 		localdb = new LocalDB(null);
 	}
 
 	/**
 	 * @param re
 	 */
-	public static void publishToWeb(Recipe re) {
+	public void publishToWeb(Recipe re) {
 		webservice.insertRecipe(re);
 
 	}

@@ -39,7 +39,6 @@ public class RecipeAdapter {
 			List<Ingredient> ar) {
 		List<HashMap<String, Object>> fillMaps = new ArrayList<HashMap<String, Object>>();
 		List<Recipe> li = new ArrayList<Recipe>();
-		// Log.v("Key", "" + type.compareTo("INGREDIENT_"));
 		if (type.compareTo("All") == 0) {
 			li = (new DatabaseController(ct)).getDB().getLocal_Recipe_List();
 		} else if (type.length() > 4) {
@@ -58,7 +57,7 @@ public class RecipeAdapter {
 					Log.v(">>>>>>>>>>>>>>", li.size() + "");
 					List<String> name_list = convertTo(ar);
 					li = new WebSearch().searchRecipesByIngredient("*", name_list);
-					//li = (List<Recipe>) ((new GetTask()).execute(name_list));
+					//li = (List<Recipe>) ((new GetTask()).execute(name_list).get());
 					Log.v("22222", "ar size:"+ar.size()+" return size:"+li.size() + "");
 					
 					// li = (new
@@ -88,7 +87,6 @@ public class RecipeAdapter {
 					// map.put("image", R.drawable.view_listview_no_photo);
 					map.put("image", R.drawable.view_listview_no_photo);
 				}
-
 				fillMaps.add(map);
 			}
 		}
@@ -96,8 +94,9 @@ public class RecipeAdapter {
 	}
 
 	/**
+	 * Convert the list of ingredients to list of their names
 	 * @param in
-	 * @return
+	 * @return the list of string
 	 */
 	public List<String> convertTo(List<Ingredient> in) {
 		List<String> out = new ArrayList<String>();

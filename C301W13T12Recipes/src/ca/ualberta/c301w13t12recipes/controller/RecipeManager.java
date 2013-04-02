@@ -3,6 +3,11 @@ package ca.ualberta.c301w13t12recipes.controller;
 import ca.ualberta.c301w13t12recipes.model.Recipe;
 import android.content.Context;
 
+/**
+ * This class is mainly responsible for the management of recipe
+ * @author YUWEI DUAN
+ *
+ */
 public class RecipeManager {
 	private DatabaseController database;
 	private ImageManager imageManager;
