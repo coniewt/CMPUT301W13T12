@@ -45,4 +45,13 @@
         android:background="#00000000"
         android:src="@drawable/add_button_release" />
 
+    <ImageButton
+        android:id="@+id/main_help_imageButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="297dp"
+        android:layout_y="492dp"
+        android:background="@null"
+        android:src="@drawable/main_help_icon" />
+
 </AbsoluteLayout>
