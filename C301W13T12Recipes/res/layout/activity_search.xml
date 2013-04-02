@@ -22,7 +22,8 @@
                 android:layout_weight="1"
                 android:ems="10"
                 android:hint="@string/search_hint_please_type"
-                android:maxLines="1" >
+                android:maxLines="1"
+                android:textColor="#FFFFFF" >
 
                 <requestFocus />
             </MultiAutoCompleteTextView>
@@ -36,7 +37,7 @@
                 android:src="@android:drawable/ic_search_category_default" />
 
             <ImageButton
-                android:id="@+id/imageButton1"
+                android:id="@+id/search_option_menu"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
