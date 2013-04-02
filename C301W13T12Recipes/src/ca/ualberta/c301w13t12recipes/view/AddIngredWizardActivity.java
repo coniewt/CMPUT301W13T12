@@ -32,7 +32,7 @@ public class AddIngredWizardActivity extends Activity {
 	private ImageButton addIngredButton;
 	private Recipe recipe = new Recipe();
 	protected IngredientsAdapter adapter;
-	private Button clearButton, nextButton;
+	private Button nextButton;
 	protected ListView ingredientsListView;
 
 	/** Called when the activity is first created. */
@@ -70,22 +70,6 @@ public class AddIngredWizardActivity extends Activity {
 			}
 
 		});
-		clearButton.setOnClickListener(new OnClickListener() {
-			public void onClick(View arg0) {
-				AlertDialog.Builder builder = new Builder(AddIngredWizardActivity.this); 
-				builder.setTitle("Notification");
-				builder.setPositiveButton("Continue",new android.content.DialogInterface.OnClickListener(){
-					public void onClick(DialogInterface arg0, int arg1) {
-						recipe.removeAllIngredient();
-						refreshList();
-						}
-				}); 
-				builder.setNegativeButton("Cancel", null);
-					builder.setIcon(android.R.drawable.ic_dialog_info); 
-					builder.setMessage("Are you sure you want to delete?"); 
-				builder.show(); 
-				}
-		});
 		nextButton.setOnClickListener(new OnClickListener() {
 			public void onClick(View arg0) {
 				Log.v("Hello",""+recipe.getIngredients().size());
@@ -103,7 +87,6 @@ public class AddIngredWizardActivity extends Activity {
 	protected void setupWidgets() {
 		addIngredButton = (ImageButton) findViewById(R.id.imgBtn_add_ingredient_button);
 		nextButton = (Button) findViewById(R.id.add_step1_next_button);
-		clearButton = (Button) findViewById(R.id.add_step1_Clear_button);
 		ingredientsListView = (ListView) findViewById(R.id.listView_ingredients_list);
 	}
 	/**

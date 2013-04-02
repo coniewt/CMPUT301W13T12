@@ -47,12 +47,6 @@
             android:layout_height="67dp" >
 
             <Button
-                android:id="@+id/add_step1_Clear_button"
-                android:layout_width="192dp"
-                android:layout_height="wrap_content"
-                android:text="Clear" />
-
-            <Button
                 android:id="@+id/add_step1_next_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

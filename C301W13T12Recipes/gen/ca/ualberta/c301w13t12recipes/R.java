@@ -58,17 +58,17 @@ public final class R {
     public static final class id {
         public static final int LinearLayout1=0x7f08002f;
         public static final int add_button_complete=0x7f080001;
-        public static final int add_editText_description=0x7f08000e;
-        public static final int add_editText_recipe_name=0x7f08000c;
-        public static final int add_imageView_navi_bar1=0x7f08000a;
+        public static final int add_editText_description=0x7f08000d;
+        public static final int add_editText_recipe_name=0x7f08000b;
+        public static final int add_imageView_navi_bar1=0x7f080009;
         public static final int add_password_textEdit=0x7f080036;
         public static final int add_photo_button_next=0x7f080004;
         public static final int add_photo_gridView=0x7f080003;
-        public static final int add_step1_Clear_button=0x7f080008;
-        public static final int add_step1_next_button=0x7f080009;
-        public static final int add_switch_password=0x7f080010;
-        public static final int add_textView_description=0x7f08000d;
-        public static final int add_textView_recipe_name=0x7f08000b;
+        public static final int add_step1_Clear_button=0x7f080010;
+        public static final int add_step1_next_button=0x7f080008;
+        public static final int add_switch_password=0x7f08000f;
+        public static final int add_textView_description=0x7f08000c;
+        public static final int add_textView_recipe_name=0x7f08000a;
         public static final int dialog_add_editText_name=0x7f080032;
         public static final int dialog_editText_add_amount=0x7f080033;
         public static final int edit_editText_description=0x7f080015;
@@ -113,7 +113,7 @@ public final class R {
         public static final int search_option_menu=0x7f080024;
         public static final int testing_view_button_delete_all=0x7f080040;
         public static final int testing_view_listview=0x7f08003f;
-        public static final int textView1=0x7f08000f;
+        public static final int textView1=0x7f08000e;
         public static final int textView2=0x7f08002c;
         public static final int textView3=0x7f080027;
         public static final int textView_item_amount=0x7f080038;
