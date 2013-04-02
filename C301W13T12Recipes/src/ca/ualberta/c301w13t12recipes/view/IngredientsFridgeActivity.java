@@ -1,9 +1,6 @@
 package ca.ualberta.c301w13t12recipes.view;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
 import java.util.Map;
 
 import android.app.Activity;
@@ -14,27 +11,29 @@ import android.app.AlertDialog.Builder;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.AdapterView.OnItemLongClickListener;
+
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 import ca.ualberta.c301w13t12recipes.R;
 import ca.ualberta.c301w13t12recipes.controller.DatabaseController;
-import ca.ualberta.c301w13t12recipes.controller.IngredientsAdapter;
+
 import ca.ualberta.c301w13t12recipes.controller.IngredientsFridgeAdapter;
 import ca.ualberta.c301w13t12recipes.model.Ingredient;
-import ca.ualberta.c301w13t12recipes.model.Recipe;
+
 import ca.ualberta.c301w13t12recipes.model.StrResource;
-import ca.ualberta.c301w13t12recipes.view.AddIngredWizardActivity.AddIngredDiaglogFragment;
 
 /**
+ * 
+ *  Finding online recipes by using ingredients that user provided.
+ *  
  * @author HUANG GUANQI
  * 
  */
@@ -47,7 +46,6 @@ public class IngredientsFridgeActivity extends Activity {
 	private Button searchButton;
 	private EditText nameEditText;
 	private EditText amountEditText;
-	private HashMap<String, Object> map;
 	private IngredientsFridgeAdapter adapter;
 	private ArrayList<Ingredient> li = new ArrayList<Ingredient>();
 	private ArrayList<Ingredient> selected_list = new ArrayList<Ingredient>();
@@ -60,21 +58,6 @@ public class IngredientsFridgeActivity extends Activity {
 		this.setupWidgets();
 		this.refreshList();
 
-		/*
-		 * ingredientsListView.setOnItemLongClickListener(new
-		 * OnItemLongClickListener() {
-		 * 
-		 * @Override public boolean onItemLongClick(AdapterView<?> listView,
-		 * View view, int pos, long id) { // TODO long click to delete selected
-		 * item and then remove Ingredient ingredient =
-		 * controller.getIngredListFromIngredDB().get(pos);
-		 * Toast.makeText(IngredientsFridgeActivity.this, ingredient.getName()
-		 * +" is removed", 3) .show();
-		 * controller.removeIngredFromIngredDB(ingredient); refreshList();
-		 * return false; }
-		 * 
-		 * });
-		 */
 		ingredientsListView.setOnItemClickListener(new OnItemClickListener() {
 
 			public void onItemClick(AdapterView<?> parent, View view, int pos,
@@ -149,21 +132,28 @@ public class IngredientsFridgeActivity extends Activity {
 		refreshList();
 
 	}
-
+	/**
+	 *  Initialize all the widget objects
+	 */
 	protected void setupWidgets() {
 		ingredientsListView = (ListView) findViewById(R.id.fridge_listView);
 		addButton = (Button) findViewById(R.id.fridge_add_button);
 		clearButton = (Button) findViewById(R.id.fridge_clear_button);
 		searchButton = (Button) findViewById(R.id.fridge_search_button);
 	}
-
+	/**
+	 * Generate an adapter from an arrayList of ingredients, then set it to our listView
+	 * 
+	 */
 	protected void refreshList() {
 		adapter = new IngredientsFridgeAdapter();
 		li = controller.getIngredListFromIngredDB();
 		ingredientsListView.setAdapter(adapter.getAdapter(this, li));
 	}
 	/**
-	 * 
+	 *  Use AlerDialog builder to create a dialog that is able to
+	 *  warn the user while they are attempting to delete any selected items
+	 *  from the listView
 	 */
 	public void displayClearFieldsWarningDialog() {
 		AlertDialog.Builder builder = new Builder(
@@ -202,7 +192,11 @@ public class IngredientsFridgeActivity extends Activity {
 		startActivity(intent);
 		// finish();
 	}
-
+	/**
+	 *  A Class for dialog fragment that can construct a 
+	 * @author GUANQI HUANG
+	 *
+	 */
 	class AddIngredDiaglogFragment extends DialogFragment {
 		
 		String name, amount;
