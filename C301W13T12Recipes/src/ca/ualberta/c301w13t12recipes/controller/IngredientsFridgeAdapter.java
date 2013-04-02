@@ -14,15 +14,20 @@ import android.widget.Toast;
 import ca.ualberta.c301w13t12recipes.R;
 import ca.ualberta.c301w13t12recipes.model.Ingredient;
 
+/**
+ * Adapter for fridge ListView
+ *
+ */
 public class IngredientsFridgeAdapter {
 	
 	String[] from = new String[]{"name","amount","checked"};
 	int[] to = new int[] { R.id.fridge_item_name,R.id.fridge_item_amount,R.id.fridge_item_checkbox};
+
 	/**
 	 * Get Adapter for listView
 	 * @param Context
-	 * @param Array of ingredient
-	 * @return SimpleAdapter
+	 * @param List<Ingredient> Array of ingredient
+	 * @return SimpleAdapter - Adapter for fridge ListView
 	 */
 	public SimpleAdapter getAdapter(Context ct,List<Ingredient> li){
 		List<HashMap<String, Object>> fillMaps = new ArrayList<HashMap<String, Object>>();		
