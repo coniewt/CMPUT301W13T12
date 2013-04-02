@@ -10,15 +10,19 @@ import android.net.Uri;
 import android.provider.MediaStore.Images;
 import ca.ualberta.c301w13t12recipes.model.Image;
 import ca.ualberta.c301w13t12recipes.model.Recipe;
-/** Basic email class with email addresses, subject and body filled in automatically.
+/** 
+ * Apply basic email functionality. Provide email addresses, subject and body filled in automatically.
  * 
  */
 public class ShareController {
-	/** Fills in email fields (sender & recipient email addresses, subject, body).
-	 *  Puts them into an intent.
+
+	/** 
+	 * Fills in email fields (sender & recipient email addresses, subject, body),
+	 * puts them into an intent.
 	 * 
-	 * @param Recipe
-	 * @return intent
+	 * @param Intent Email operation to be performed
+	 * @param Recipe Recipe wish to email
+	 * @return Intent - Email operation to be performed
 	 */
 	private static Intent FillEmailText(Intent intent, Recipe re){
 		
@@ -34,6 +38,12 @@ public class ShareController {
 		return intent;
 	}
 	
+	/**
+	 * Add corresponding recipe image as attachment to email
+	 * @param Intent Email operation to be performed
+	 * @param Recipe Recipe wish to email
+	 * @return Intent - Email operation to be performed
+	 */
 	private static Intent AttachMedia(Intent intent, Recipe re){
 		
 		if (re.getImage().size()>0){
@@ -50,11 +60,11 @@ public class ShareController {
 	}
 	
         
-	/** Parses Recipe and creates an email from Recipe attributes.
-	 *  Lets user choose email client to use to send email.
+	/** 
+	 * Parses Recipe and creates an email from Recipe attributes. Lets user choose email client to send email.
 	 * 
-	 * @param  Intent - intent with info to send/call email client
-	 * @param  Recipe - Recipe to get text and/or media path from
+	 * @param Intent Email operation to be performed
+	 * @param Recipe Recipe wish to email
 	 */
 	public static Intent SendEmail(Recipe Recipe){
 		Intent intent = new Intent(android.content.Intent.ACTION_SEND_MULTIPLE);
