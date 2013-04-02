@@ -25,13 +25,13 @@ public class SearchIngredientResultActivity extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.view_search_ingre_result);
-		lv = (ListView)findViewById(R.id.searchResult_listView);
+		lv = (ListView)findViewById(R.id.view_ingre_result_listview);
 		
 		
 		getIngredientListFromIntent();
 		// Use our own list adapter
 		Log.v("Adpter",""+(new RecipeAdapter().getAdapter(this, "INGREDIENT_", ar)==null));
-		Log.v("list:",""+(ar==null));
+		Log.v("list:",""+(ar.size()));
 		lv.setAdapter(new RecipeAdapter().getAdapter(this, "INGREDIENT_", ar));
 	}
 
