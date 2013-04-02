@@ -16,7 +16,7 @@ import android.util.Log;
 
 /**
  * Local database class. Used to build basic database structure and functionality
- * @author dw
+ * @author YUWEI DUAN
  * 
  */
 public class LocalDB {
@@ -42,7 +42,6 @@ public class LocalDB {
 			Log.v("Add to Table---------------", re.getName());
 			cv.put("id", re.getId());
 			cv.put("content", re.toJson().toString());
-			// cv.put(StrResource.COL_CONTENT, Recipe.toJson().toString() );
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -63,7 +62,6 @@ public class LocalDB {
 			cv.put("id", in.getId());
 			cv.put("name", in.getName());
 			cv.put("amount", in.getAmount());
-			// cv.put(StrResource.COL_CONTENT, Recipe.toJson().toString() );
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -220,6 +218,15 @@ public class LocalDB {
 		}
 		return isRemoteIdExists(re);
 	}
+	/**
+	 * Deletes a task from the "remote" table of the database
+	 * 
+	 * @param String The id of the task to be deleted.
+	 */
+	public void delete_Remote_Recipe(String id) {
+		db.delete(StrResource.REMOTE_RECIPE_TABLE_NAME, "id" + " =?",
+				new String[] { id, });
+	}
 
 	/**
 	 * Deletes a task from the "local" table of the database
@@ -291,14 +298,7 @@ public class LocalDB {
 		try {
 			JSONArray jsonArray = jsonTask.getJSONArray("Ingredients");
 			ArrayList<Ingredient> ingredients = new ArrayList<Ingredient>();
-			// ResponseFactory respFactory =
-			// getRespFactory(jsonTask.getString("Ingredients"));
 			for (int i = 0; i < jsonArray.length(); i++) {
-				// Response resp =
-				// respFactory.createResponse(jsonArray.getJSONObject(i).getString("annotation"),
-				// jsonArray.getJSONObject(i).getString("content"));
-				// resp.setTimestamp(new
-				// SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy").parse(jsonArray.getJSONObject(i).getString("timestamp")));
 				Ingredient in = new Ingredient(jsonArray.getJSONObject(i)
 						.getString("name"), jsonArray.getJSONObject(i)
 						.getString("amount"));
@@ -322,8 +322,6 @@ public class LocalDB {
 		try {
 			JSONArray jsonArray = jsonTask.getJSONArray("image");
 			ArrayList<Image> ingredients = new ArrayList<Image>();
-			// ResponseFactory respFactory =
-			// getRespFactory(jsonTask.getString("Ingredients"));
 			for (int i = 0; i < jsonArray.length(); i++) {
 				Image in = new Image(jsonArray.getJSONObject(i).getString(
 						"HD_path"), jsonArray.getJSONObject(i).getString(
@@ -461,16 +459,16 @@ public class LocalDB {
 	/**
 	 * Delete all recipes from both local storage and remote server
 	 */
-	// fixed
+	
 	public void clear_All() {
 		db.delete(StrResource.LOCAL_RECIPE_TABLE_NAME, null, null);
-		// db.delete(StrResource.REMOTE_RECIPE_TABLE_NAME, null, null);
+		
 	}
 
 	/**
 	 * Delete all recipes from local storage
 	 */
-	// fixed
+	
 	public void clear_Local() {
 		db.delete(StrResource.LOCAL_RECIPE_TABLE_NAME, null, null);
 	}
@@ -492,6 +490,6 @@ public class LocalDB {
 		if (isLocalIdExists(re)) {
 			Log.v("LocalDb:", "Successful transfer from remote db to local db");
 		}
-		delete_Local_Recipe(re.getId());
+		delete_Remote_Recipe(re.getId());
 	}
 }
