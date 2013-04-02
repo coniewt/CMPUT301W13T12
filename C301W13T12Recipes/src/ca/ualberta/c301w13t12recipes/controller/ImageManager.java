@@ -15,19 +15,22 @@ import android.net.Uri;
 import android.os.Environment;
 /**
  * Handling the pictures taken by camera
- * 	Include:
- * 		1. Compressing BMP
- * 		2. Image path generator
- * 		3. Creating parent folder & sub folder 
+ * 
+ * Include:
+ * 	1. Compressing BMP
+ * 	2. Image path generator
+ * 	3. Creating parent folder & sub folder 
  * 
  * @author YUWEI DUAN & GUANQI HUANG
  * 
  */
 public class ImageManager {
-	/**
-	 * Take Pictures from camera
-	 */
 
+	/**
+	 * Take pictures from camera
+	 * @param URI Uniform resource identifier for picture in high definition
+	 * @param URI Uniform resource identifier for picture thumb nail
+	 */
 	public void compressBMP(Uri uriImageHD,Uri uriImageTN ) throws IOException,
 			FileNotFoundException {
 		File thumbnailFile = new File(uriImageTN.getPath());
@@ -38,8 +41,9 @@ public class ImageManager {
 	}
 
 	/**
-	 * @param folder
-	 * @return
+	 * Automatically generate a file name and path string for pictures
+	 * @param String Path for the folder to store pictures
+	 * @return String - Complete path for the image including path and file name
 	 */
 	public String genImgPath(String folder) {
 		return folder + "/" + String.valueOf(System.currentTimeMillis())
@@ -47,8 +51,9 @@ public class ImageManager {
 	}
 
 	/**
-	 * @param folder
-	 * @return
+	 * Generate a parent folder to store HD images and corresponding thumb nail folder
+	 * @param String Folder name
+	 * @return String - Complete path for the folder
 	 */
 	public String createFolder(String folder) {
 		// TODO create a parent folder for HD images
@@ -64,9 +69,11 @@ public class ImageManager {
 	}
 
 	/**
-	 * @param folder
-	 * @param subFolder
-	 * @return
+	 * Creating the sub folder for corresponding thumb nail pictures, if the parent folder
+	 * is not existed, create that folder too
+	 * @param String Folder name for HD images
+	 * @param String Sub folder name for thumb nails
+	 * @return String - Complete path of sub folder for storing the thumb nail pictures
 	 */
 	public String createSubfolder(String folder, String subFolder) {
 		// TODO create a subfolder for thumbnails ( create its parent folder if
@@ -92,14 +99,22 @@ public class ImageManager {
 	}
 
 	/**
-	 * @param imageFilePath
-	 * @return
+	 * Create image file
+	 * @param String Path of the image file
+	 * @return URI - URI of the image file
 	 */
 	public Uri createImage(String imageFilePath) {
 		File imageFile = new File(imageFilePath);
 		return Uri.fromFile(imageFile);
 	}
 
+	/**
+	 * Calculate images size and return a modified scale of the image
+	 * @param BitmapFactory.Options Options object of the original image
+	 * @param int Preferred width of the scaled image
+	 * @param int Preferred height of the scaled image
+	 * @return int - New size of the image
+	 */
 	private int calculateInSampleSize(BitmapFactory.Options options,
 			int reqWidth, int reqHeight) {
 		
@@ -127,10 +142,11 @@ public class ImageManager {
 	}
 
 	/**
-	 * @param imageUri
-	 * @param reqWidth
-	 * @param reqHeight
-	 * @return Bitmap
+	 * Decode a image from the file
+	 * @param URI Unified resource identifier for image file
+	 * @param int Preferred width of the scaled image
+	 * @param int Preferred height of the scaled image
+	 * @return Bitmap - Bitmap of the image
 	 */
 	public Bitmap decodeBitmapFromFile(Uri imageUri,
 			int reqWidth, int reqHeight) {
@@ -150,7 +166,8 @@ public class ImageManager {
 	}
 	
 	/**
-	 * @param image
+	 * Remove a image from local storage
+	 * @param Image Image object of the image wish to remove
 	 */
 	public void removeImageFilesFromLocal(Image image){
 		File imageHD = new File(image.getHD_Path());
@@ -162,11 +179,12 @@ public class ImageManager {
 			imageTN.delete();
 		}
 	}
+
 	/**
-	 * Convert bitmap to file and store it
-	 * @param bitmap
-	 * @param name
-	 * @return String the path of file
+	 * Convert bitmap to file and store it locally
+	 * @param Bitmap Bitmap of the image wish to store
+	 * @param String Name of the file
+	 * @return String - Path of the image
 	 */
 	public String convertFromBitmapToFilePath(Bitmap bitmap ,String name){
 		createFolder("/tmp");
