@@ -66,6 +66,9 @@ public class RecipeAdapter {
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
+			}else{
+				li = (new DatabaseController(ct)).getDB().searchRecipebyKeyword(
+						type);
 			}
 		} else {
 			li = (new DatabaseController(ct)).getDB().searchRecipebyKeyword(
