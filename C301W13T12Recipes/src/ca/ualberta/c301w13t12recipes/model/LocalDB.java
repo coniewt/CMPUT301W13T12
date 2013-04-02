@@ -15,6 +15,7 @@ import android.net.ParseException;
 import android.util.Log;
 
 /**
+ * Local database class. Used to build basic database structure and functionality
  * @author dw
  * 
  */
