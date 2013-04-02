@@ -16,6 +16,7 @@ import com.google.gson.Gson;
 
 /**
  * Class for handling web services
+ * @author shihao1
  * 
  */
 
@@ -43,7 +44,8 @@ public class WebController extends AsyncTask<String, Void, Recipe> {
 	}
 
 	/**
-	 * @param re
+	 * Publish recipe to web server
+	 * @param Recipe Recipe user wishes to publish
 	 */
 	public void publishToWeb(Recipe re) {
 		webservice.insertRecipe(re);
@@ -51,14 +53,14 @@ public class WebController extends AsyncTask<String, Void, Recipe> {
 	}
 
 	/**
-	 * @return
+	 * Grab all recipes from web server
+	 * @return ArrayList<Recipe> An arraylist of all recipes from web server
 	 */
 	public ArrayList<Recipe> getAllRecipeFromWeb() {
 		return new ArrayList<Recipe>();
 	}
 	
 	
-
 	/**
 	 * Check if there is an active Internet connection
 	 * 

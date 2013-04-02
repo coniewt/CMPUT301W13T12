@@ -31,22 +31,27 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 /**
- * @author
+ * Fulfill the web search functionality, handling elastic search queries,
+ * extends web controller
+ * @author shihao1
  * 
  */
  
 
 public class WebSearch extends WebController {
+	
 	/**
-	 * 
+	 * Constructor
 	 */
 	public WebSearch() {
 
 	}
 
 	/**
-	 * @param str
-	 * @return an array list of recipe
+	 * Search online recipes with a string provided by user
+	 * @param String Keyword user wants to search
+	 * @param Context
+	 * @return ArrayList<Recipe> - An array list of qualified recipe
 	 * @throws ClientProtocolException
 	 * @throws IOException
 	 */
