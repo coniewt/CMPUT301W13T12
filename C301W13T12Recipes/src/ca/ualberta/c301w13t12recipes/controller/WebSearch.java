@@ -127,7 +127,7 @@ public class WebSearch extends WebController {
 			System.err.println(esResponse);
 			for (ElasticSearchResponse<Recipe> r : esResponse.getHits()) {
 				Recipe recipe = r.getSource();
-				recipes.add(recipe);
+				recipes.add(recipe.convertToLocalRecipe());
 			}
 		} catch (IOException e) {
 
