@@ -22,7 +22,9 @@ public class Image implements Serializable {
 
 	/**
 	 * The construct to build a new image by the parameters
-	 * @param hd_path,tn_path,time
+	 * @param hd_path Path to store high definition images
+	 * @param tn_path Path to store thumb nail images
+	 * @param time Acquire system time as file name
 	 */
 	public Image(String hd_path,String tn_path,String time) {
 		this.tn_path = tn_path;
@@ -33,7 +35,7 @@ public class Image implements Serializable {
 	/**
 	 * Create JSON object from designated image file
 	 * 
-	 * @return JSON object a
+	 * @return JSONObject - JSON object containing the data of the image
 	 */
 	public JSONObject toJson() {
 		JSONObject js = new JSONObject();
@@ -48,25 +50,25 @@ public class Image implements Serializable {
 	}
 
 	/**
-	 * Get current date from system
+	 * Get current date and time from system
 	 * 
-	 * @return Current data
+	 * @return String - Current system date and time
 	 */
 	public static String getTime() {
 		return String.valueOf(System.currentTimeMillis());
 	}
 
 	/**
-	 * Get the path of the hd image
+	 * Get the path of the high definition image
 	 * 
-	 * @return Path of image
+	 * @return String - Path to store the high definition image
 	 */
 	public String getHD_Path() {
 		return hd_path;
 	}
 	/**
-	 * Get the path of the TN image
-	 * @return
+	 * Get the path of the thumb nail image
+	 * @return String - Path to store the thumb nail image
 	 */
 	public String getTN_Path() {
 		return tn_path;
@@ -75,34 +77,33 @@ public class Image implements Serializable {
 	/**
 	 * Get the name of the image
 	 * 
-	 * @return Name of image
+	 * @return String - Name of image
 	 */
 	public String getName() {
 		return name;
 	}
 
-	/**
-	 * @param name
-	 */
-	/*
-	 * public void setName(String name){ this.name=name; }
-	 */
 
 	/**
-	 * Set image path 
-	 * @param path
-	 *            of image
+	 * Set path for high definition image
+	 * @param String - Path of the high definition image
 	 */
 	public void setHDPath(String path) {
 		this.hd_path = path;
 	}
+	
 	/**
-	 * @param path
+	 * Set path for thumb nail image
+	 * @param String - Path of the thumb nail image
 	 */
 	public void setTNPath(String path) {
 		this.tn_path = path;
 	}
-@Override
+	/**
+	 * Combine the path and image name to a full absolute path for the image
+	 * @return String - Full path of the image
+	 */
+	@Override
 	public String toString(){
 		return this.name+", "+this.tn_path;
 	}
