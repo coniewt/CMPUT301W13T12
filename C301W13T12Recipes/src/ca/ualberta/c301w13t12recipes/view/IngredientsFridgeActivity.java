@@ -98,7 +98,8 @@ public class IngredientsFridgeActivity extends Activity {
 			public void onClick(View v) {
 				Map<String, Object> map = null;
 				boolean isChecked;
-				for (int i = 0; i < ingredientsListView.getCount(); i++) {
+				int count = ingredientsListView.getCount();
+				for (int i = 0; i < count; i++) {
 					map = (Map<String, Object>) ingredientsListView.getItemAtPosition(i);
 					isChecked = (Boolean) map.get("checked");
 					if (isChecked) {

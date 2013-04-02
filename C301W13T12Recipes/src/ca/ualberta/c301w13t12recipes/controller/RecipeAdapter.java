@@ -38,15 +38,16 @@ public class RecipeAdapter {
 	public ListAdapter getAdapter(Context ct, String type,ArrayList<Ingredient> ar) {
 		List<HashMap<String, Object>> fillMaps = new ArrayList<HashMap<String, Object>>();
 		List<Recipe> li = new ArrayList<Recipe>();
-		Log.v("Key", type);
+		Log.v("Key", ""+type.compareTo("INGREDIENT_"));
 		if (type.compareTo("All") == 0) {
 			li = (new DatabaseController(ct)).getDB().getLocal_Recipe_List();
 		} else if (type.length() > 4) {
 			if ((type.substring(0, 4)).compareTo("web_") == 0) {
 				try {
-					li = (new WebSearch()).searchRecipes(type.substring(
-							4, type.length()),ct);
-						(new DatabaseController(ct)).postRemote(li);
+					li = (new DatabaseController(ct)).getDB().getLocal_Recipe_List();
+							//(new WebSearch()).searchRecipes(type.substring(
+							//4, type.length()),ct);
+						//(new DatabaseController(ct)).postRemote(li);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -61,9 +62,10 @@ public class RecipeAdapter {
 					e.printStackTrace();
 				}
 			}
-			else
+			else{
 				li = (new DatabaseController(ct)).getDB().searchRecipebyKeyword(
 						type);
+				}
 		// Log.v("hello", li.get(0).getPassWord());
 		// if database does not contain any row, getDB() will return null to li
 		// we need if condition to check when li equals null or not

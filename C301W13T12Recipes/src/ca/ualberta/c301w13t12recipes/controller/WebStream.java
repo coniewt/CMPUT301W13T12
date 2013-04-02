@@ -144,7 +144,7 @@ public class WebStream{
 	 * @throws IOException
 	 */
 	public void deleteRecipe() throws IOException {
-		HttpDelete httpDelete = new HttpDelete("http://cmput301.softwareprocess.es:8080/cmput301w13t12/recipe");
+		HttpDelete httpDelete = new HttpDelete("http://cmput301.softwareprocess.es:8080/cmput301w13t05/recipe");
 		httpDelete.addHeader("Accept","application/json");
 		HttpResponse response = httpclient.execute(httpDelete);
 		String status = response.getStatusLine().toString();

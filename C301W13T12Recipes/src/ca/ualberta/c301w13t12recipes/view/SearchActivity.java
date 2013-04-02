@@ -185,7 +185,7 @@ public class SearchActivity extends Activity {
 						try {
 							Log.v("Recipe", testRecipe.toString());
 							(new WebStream()).deleteRecipe();
-								(new WebStream()).insertRecipe(testRecipe);
+								//(new WebStream()).insertRecipe(testRecipe);
 						}
 						catch (Exception e){
 							e.printStackTrace();	
