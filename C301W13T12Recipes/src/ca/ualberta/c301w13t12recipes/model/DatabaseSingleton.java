@@ -34,7 +34,8 @@ public class DatabaseSingleton
 	}
 	
 	/**
-	 * @param context
+	 * Constructor
+	 * @param Context
 	 */
 	public DatabaseSingleton(Context context)
 	{
@@ -42,7 +43,7 @@ public class DatabaseSingleton
 	}
 	
 	/**
-	 * Get SQLiteDatabase
+	 * Get current instance of SQLiteDatabase
 	 * @return SQLiteDatabase
 	 */
 	public SQLiteDatabase getDB(){

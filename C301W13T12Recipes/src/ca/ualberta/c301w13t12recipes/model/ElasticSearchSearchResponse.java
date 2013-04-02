@@ -4,11 +4,8 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 
-
 /**
- * @author dw
- *
- * @param <T>
+ * Handle response coming from a Elastic Search result
  */
 public class ElasticSearchSearchResponse<T> {
     int took;
@@ -19,9 +16,6 @@ public class ElasticSearchSearchResponse<T> {
     public Collection<ElasticSearchResponse<T>> getHits() {
         return hits.getHits();        
     }
-    /**
-     * @return collection<T>
-     */
     public Collection<T> getSources() {
         Collection<T> out = new ArrayList<T>();
         for (ElasticSearchResponse<T> essrt : getHits()) {
@@ -29,7 +23,6 @@ public class ElasticSearchSearchResponse<T> {
         }
         return out;
     }
-    @Override
     public String toString() {
         return (super.toString() + ":" + took + "," + _shards + "," + exists + ","  + hits);     
     }
