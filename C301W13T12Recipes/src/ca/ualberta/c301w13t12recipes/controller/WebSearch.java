@@ -48,7 +48,7 @@ public class WebSearch extends WebController {
 	}
 
 	/**
-	 * Search online recipes with a string provided by user
+	 * Search online recipes by title with a string provided by user
 	 * @param String Keyword user wants to search
 	 * @param Context
 	 * @return ArrayList<Recipe> - An array list of qualified recipe
@@ -84,10 +84,12 @@ public class WebSearch extends WebController {
 		}
 		return recipes;
 	}
+	
 	/**
-	 * Search recipes,which includes the ingredient
-	 * @param str
-	 * @return the list of searched recipe
+	 * Search online recipes by ingredient with a string provided by user
+	 * @param String Keyword user wants to search
+	 * @param List<String> List of ingredient in string format
+	 * @return List<Recipe> - A list of qualified recipe
 	 */
 	public List<Recipe> searchRecipesByIngredient(String searchTerm,
 			List<String> ingredients) 
@@ -133,7 +135,8 @@ public class WebSearch extends WebController {
 	}
 
 	/**
-	 * @return
+	 * Grab all recipes from the web server
+	 * @return ArrayList<Recipe> - An arraylist of all recipes from web server
 	 * @throws ClientProtocolException
 	 * @throws IOException
 	 */
