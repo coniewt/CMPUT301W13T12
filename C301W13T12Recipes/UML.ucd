@@ -1,0 +1,357 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<editmodel:ClassDiagramEditModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:editmodel="editmodel.xmi" xmlns:options="options.xmi" name="(default package)" size="1750,910" id="" metadata="uml2-1.0" initialized="true" scrolledX="-5" scrolledY="-33" tag="1000" key="32303037303533312D313030302063612E75616C62657274612E63333031773133743132726563697065732E766965772E4D61696E41637469766974792F626F72796E6563">
+  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.1/@sourceConnections.0 //@children.13/@sourceConnections.0 //@children.15/@sourceConnections.1 //@children.17/@sourceConnections.0" name="DatabaseController" location="585,115" size="229,296" id="ca.ualberta.c301w13t12recipes.controller/DatabaseController">
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="170,234">
+      <children xsi:type="editmodel:MethodEditModel" name="DatabaseController" id="ca.ualberta.c301w13t12recipes.controller/DatabaseController#DatabaseController(Landroid.content.Context;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="addIngredFromIngredDB" id="ca.ualberta.c301w13t12recipes.controller/DatabaseController#addIngredFromIngredDB(Lca.ualberta.c301w13t12recipes.model.Ingredient;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="addRecipe" id="ca.ualberta.c301w13t12recipes.controller/DatabaseController#addRecipe(Lca.ualberta.c301w13t12recipes.model.Recipe;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="delete" id="ca.ualberta.c301w13t12recipes.controller/DatabaseController#delete(Lca.ualberta.c301w13t12recipes.model.Recipe;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getDB" id="ca.ualberta.c301w13t12recipes.controller/DatabaseController#getDB()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getIngredListFromIngredDB" id="ca.ualberta.c301w13t12recipes.controller/DatabaseController#getIngredListFromIngredDB()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getNameList" id="ca.ualberta.c301w13t12recipes.controller/DatabaseController#getNameList()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="isLocalRecipeExists" id="ca.ualberta.c301w13t12recipes.controller/DatabaseController#isLocalRecipeExists(Lca.ualberta.c301w13t12recipes.model.Recipe;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="isRemoteRecipeExists" id="ca.ualberta.c301w13t12recipes.controller/DatabaseController#isRemoteRecipeExists(Lca.ualberta.c301w13t12recipes.model.Recipe;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="postRemote" id="ca.ualberta.c301w13t12recipes.controller/DatabaseController#postRemote(Ljava.util.List;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="removeAll" id="ca.ualberta.c301w13t12recipes.controller/DatabaseController#removeAll()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="removeIngredFromIngredDB" id="ca.ualberta.c301w13t12recipes.controller/DatabaseController#removeIngredFromIngredDB(Lca.ualberta.c301w13t12recipes.model.Ingredient;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="search" id="ca.ualberta.c301w13t12recipes.controller/DatabaseController#search(Ljava.lang.String;)"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <sourceConnections xsi:type="editmodel:DependencyEditModel" autoLocated="true" id="ca.ualberta.c301w13t12recipes.controller/DatabaseController-Soyatec::Import->ca.ualberta.c301w13t12recipes.model/Ingredient" source="//@children.0" target="//@children.7" targetEnd="//@children.0/@sourceConnections.0/@children.2" label="//@children.0/@sourceConnections.0/@children.0" sourceEnd="//@children.0/@sourceConnections.0/@children.1" connectionRouterKind="Manual">
+      <children xsi:type="editmodel:WireLabelEditModel" name="«Import»" size="45,13" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="0,245" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="212,4"/>
+    </sourceConnections>
+    <sourceConnections xsi:type="editmodel:DependencyEditModel" autoLocated="true" id="ca.ualberta.c301w13t12recipes.controller/DatabaseController-Standard::Call->ca.ualberta.c301w13t12recipes.model/LocalDB*ca.ualberta.c301w13t12recipes.controller/DatabaseController-Standard::Instantiate->ca.ualberta.c301w13t12recipes.model/LocalDB*ca.ualberta.c301w13t12recipes.controller/DatabaseController-Soyatec::Import->ca.ualberta.c301w13t12recipes.model/LocalDB" source="//@children.0" target="//@children.8" targetEnd="//@children.0/@sourceConnections.1/@children.2" label="//@children.0/@sourceConnections.1/@children.0" sourceEnd="//@children.0/@sourceConnections.1/@children.1" connectionRouterKind="Manual">
+      <children xsi:type="editmodel:WireLabelEditModel" name="«Instantiate, Call, Import»" size="129,13" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="0,187" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="212,107"/>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.16/@sourceConnections.0" name="RecipeManager" location="585,435" size="229,98" id="ca.ualberta.c301w13t12recipes.controller/RecipeManager">
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="107,36">
+      <children xsi:type="editmodel:MethodEditModel" name="RecipeManager" id="ca.ualberta.c301w13t12recipes.controller/RecipeManager#RecipeManager(Landroid.content.Context;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="deteleRecipe" id="ca.ualberta.c301w13t12recipes.controller/RecipeManager#deteleRecipe(Lca.ualberta.c301w13t12recipes.model.Recipe;)"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <sourceConnections xsi:type="editmodel:DependencyEditModel" autoLocated="true" id="ca.ualberta.c301w13t12recipes.controller/RecipeManager-Standard::Call->ca.ualberta.c301w13t12recipes.controller/DatabaseController*ca.ualberta.c301w13t12recipes.controller/RecipeManager-Standard::Instantiate->ca.ualberta.c301w13t12recipes.controller/DatabaseController*ca.ualberta.c301w13t12recipes.controller/RecipeManager-Soyatec::Import->ca.ualberta.c301w13t12recipes.controller/DatabaseController" source="//@children.1" target="//@children.0" targetEnd="//@children.1/@sourceConnections.0/@children.2" label="//@children.1/@sourceConnections.0/@children.0" sourceEnd="//@children.1/@sourceConnections.0/@children.1" connectionRouterKind="Manual">
+      <children xsi:type="editmodel:WireLabelEditModel" name="«Instantiate, Call, Import»" size="129,13" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="114,0" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="114,296"/>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" name="ShareController" location="585,558" size="229,80" id="ca.ualberta.c301w13t12recipes.controller/ShareController">
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="82,18">
+      <children xsi:type="editmodel:MethodEditModel" name="SendEmail" id="ca.ualberta.c301w13t12recipes.controller/ShareController#SendEmail(Lca.ualberta.c301w13t12recipes.model.Recipe;)"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <sourceConnections xsi:type="editmodel:DependencyEditModel" autoLocated="true" id="ca.ualberta.c301w13t12recipes.controller/ShareController-Standard::Call->ca.ualberta.c301w13t12recipes.model/Image" source="//@children.2" target="//@children.6" targetEnd="//@children.2/@sourceConnections.0/@children.2" label="//@children.2/@sourceConnections.0/@children.0" sourceEnd="//@children.2/@sourceConnections.0/@children.1" connectionRouterKind="Manual">
+      <children xsi:type="editmodel:WireLabelEditModel" name="«Call»" size="31,13" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="0,39" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="212,102"/>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.4/@sourceConnections.0 //@children.4/@sourceConnections.2" name="WebController" location="585,-27" size="229,134" id="ca.ualberta.c301w13t12recipes.controller/WebController">
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="139,72">
+      <children xsi:type="editmodel:MethodEditModel" name="WebController" id="ca.ualberta.c301w13t12recipes.controller/WebController#WebController()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getAllRecipeFromWeb" id="ca.ualberta.c301w13t12recipes.controller/WebController#getAllRecipeFromWeb()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="isNetworkAvailable" id="ca.ualberta.c301w13t12recipes.controller/WebController#isNetworkAvailable(Landroid.content.Context;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="publishToWeb" id="ca.ualberta.c301w13t12recipes.controller/WebController#publishToWeb(Lca.ualberta.c301w13t12recipes.model.Recipe;)"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <sourceConnections xsi:type="editmodel:DependencyEditModel" autoLocated="true" id="ca.ualberta.c301w13t12recipes.controller/WebController-Standard::Instantiate->ca.ualberta.c301w13t12recipes.model/LocalDB" source="//@children.3" target="//@children.8" targetEnd="//@children.3/@sourceConnections.0/@children.2" label="//@children.3/@sourceConnections.0/@children.0" sourceEnd="//@children.3/@sourceConnections.0/@children.1" connectionRouterKind="Manual">
+      <children xsi:type="editmodel:WireLabelEditModel" name="«Instantiate»" size="65,13" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="51,134" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="212,125"/>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.15/@sourceConnections.0" name="WebSearch" location="885,-20" size="229,134" id="ca.ualberta.c301w13t12recipes.controller/WebSearch">
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="165,72">
+      <children xsi:type="editmodel:MethodEditModel" name="WebSearch" id="ca.ualberta.c301w13t12recipes.controller/WebSearch#WebSearch()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="grabAllRecipe" id="ca.ualberta.c301w13t12recipes.controller/WebSearch#grabAllRecipe()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="searchRecipes" id="ca.ualberta.c301w13t12recipes.controller/WebSearch#searchRecipes(Ljava.lang.String;Landroid.content.Context;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="searchRecipesByIngredient" id="ca.ualberta.c301w13t12recipes.controller/WebSearch#searchRecipesByIngredient(Ljava.lang.String;Ljava.util.List;)"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" autoLocated="true" id="ca.ualberta.c301w13t12recipes.controller/WebController&lt;-ca.ualberta.c301w13t12recipes.controller/WebSearch" source="//@children.4" target="//@children.3" targetEnd="//@children.4/@sourceConnections.0/@children.1" sourceEnd="//@children.4/@sourceConnections.0/@children.0" connectionRouterKind="Manual">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="0,63" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="229,70"/>
+    </sourceConnections>
+    <sourceConnections xsi:type="editmodel:DependencyEditModel" autoLocated="true" id="ca.ualberta.c301w13t12recipes.controller/WebSearch-Standard::Call->ca.ualberta.c301w13t12recipes.model/ElasticSearchResponse*ca.ualberta.c301w13t12recipes.controller/WebSearch-Soyatec::Import->ca.ualberta.c301w13t12recipes.model/ElasticSearchResponse" source="//@children.4" target="//@children.5" targetEnd="//@children.4/@sourceConnections.1/@children.2" label="//@children.4/@sourceConnections.1/@children.0" sourceEnd="//@children.4/@sourceConnections.1/@children.1" connectionRouterKind="Manual">
+      <children xsi:type="editmodel:WireLabelEditModel" name="«Call, Import»" size="70,13" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="0,69" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="247,64"/>
+      <bendpoints secondRelativeDimension="345,-82" firstRelativeDimension="-53,-82"/>
+      <bendpoints secondRelativeDimension="94,-80" firstRelativeDimension="-304,-80"/>
+    </sourceConnections>
+    <sourceConnections xsi:type="editmodel:DependencyEditModel" autoLocated="true" id="ca.ualberta.c301w13t12recipes.controller/WebSearch-Standard::Derive->ca.ualberta.c301w13t12recipes.controller/WebController" source="//@children.4" target="//@children.3" targetEnd="//@children.4/@sourceConnections.2/@children.2" label="//@children.4/@sourceConnections.2/@children.0" sourceEnd="//@children.4/@sourceConnections.2/@children.1" connectionRouterKind="Manual">
+      <children xsi:type="editmodel:WireLabelEditModel" name="«Derive»" size="45,13" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="0,67" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="229,90"/>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.4/@sourceConnections.1" name="ElasticSearchResponse" location="225,-15" size="247,206" id="ca.ualberta.c301w13t12recipes.model/ElasticSearchResponse">
+    <children xsi:type="editmodel:CompartmentEditModel" size="112,126">
+      <children xsi:type="editmodel:AttributeEditModel" name="_id" id="ca.ualberta.c301w13t12recipes.model/ElasticSearchResponse#_id"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="_index" id="ca.ualberta.c301w13t12recipes.model/ElasticSearchResponse#_index"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="_source" id="ca.ualberta.c301w13t12recipes.model/ElasticSearchResponse#_source"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="_type" id="ca.ualberta.c301w13t12recipes.model/ElasticSearchResponse#_type"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="_version" id="ca.ualberta.c301w13t12recipes.model/ElasticSearchResponse#_version"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="exists" id="ca.ualberta.c301w13t12recipes.model/ElasticSearchResponse#exists"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="max_score" id="ca.ualberta.c301w13t12recipes.model/ElasticSearchResponse#max_score"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="80,18">
+      <children xsi:type="editmodel:MethodEditModel" name="getSource" id="ca.ualberta.c301w13t12recipes.model/ElasticSearchResponse#getSource()"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.2/@sourceConnections.0 //@children.8/@sourceConnections.1 //@children.18/@sourceConnections.1" name="Image" location="0,495" size="212,170" id="ca.ualberta.c301w13t12recipes.model/Image">
+    <children xsi:type="editmodel:CompartmentEditModel" size="93,54">
+      <children xsi:type="editmodel:AttributeEditModel" name="hd_path" id="ca.ualberta.c301w13t12recipes.model/Image#hd_path"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="name" id="ca.ualberta.c301w13t12recipes.model/Image#name"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="tn_path" id="ca.ualberta.c301w13t12recipes.model/Image#tn_path"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="89,162">
+      <children xsi:type="editmodel:MethodEditModel" name="Image" id="ca.ualberta.c301w13t12recipes.model/Image#Image(Ljava.lang.String;Ljava.lang.String;Ljava.lang.String;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="toJson" id="ca.ualberta.c301w13t12recipes.model/Image#toJson()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="toString" id="ca.ualberta.c301w13t12recipes.model/Image#toString()"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.0/@sourceConnections.0 //@children.8/@sourceConnections.0 //@children.18/@sourceConnections.0" name="Ingredient" location="0,675" size="212,188" id="ca.ualberta.c301w13t12recipes.model/Ingredient">
+    <children xsi:type="editmodel:CompartmentEditModel" size="92,54">
+      <children xsi:type="editmodel:AttributeEditModel" name="amount" id="ca.ualberta.c301w13t12recipes.model/Ingredient#amount"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="id" id="ca.ualberta.c301w13t12recipes.model/Ingredient#id"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="name" id="ca.ualberta.c301w13t12recipes.model/Ingredient#name"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="113,162">
+      <children xsi:type="editmodel:MethodEditModel" name="Ingredient" id="ca.ualberta.c301w13t12recipes.model/Ingredient#Ingredient(Ljava.lang.String;Ljava.lang.String;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="Ingredient" id="ca.ualberta.c301w13t12recipes.model/Ingredient#Ingredient(Ljava.lang.String;Ljava.lang.String;Ljava.lang.String;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="toIngredientsList" id="ca.ualberta.c301w13t12recipes.model/Ingredient#toIngredientsList(Lorg.json.JSONArray;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="toString" id="ca.ualberta.c301w13t12recipes.model/Ingredient#toString()"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.0/@sourceConnections.1 //@children.3/@sourceConnections.0" name="LocalDB" location="225,195" size="212,476" id="ca.ualberta.c301w13t12recipes.model/LocalDB">
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="173,414">
+      <children xsi:type="editmodel:MethodEditModel" name="LocalDB" id="ca.ualberta.c301w13t12recipes.model/LocalDB#LocalDB(Landroid.content.Context;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="addLocal_Ingredient_Table" id="ca.ualberta.c301w13t12recipes.model/LocalDB#addLocal_Ingredient_Table(Lca.ualberta.c301w13t12recipes.model.Ingredient;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="addLocal_Recipe_Table" id="ca.ualberta.c301w13t12recipes.model/LocalDB#addLocal_Recipe_Table(Lca.ualberta.c301w13t12recipes.model.Recipe;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="clear_All" id="ca.ualberta.c301w13t12recipes.model/LocalDB#clear_All()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="clear_Local" id="ca.ualberta.c301w13t12recipes.model/LocalDB#clear_Local()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="clear_Remote" id="ca.ualberta.c301w13t12recipes.model/LocalDB#clear_Remote()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="close" id="ca.ualberta.c301w13t12recipes.model/LocalDB#close()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="delete_Local_Recipe" id="ca.ualberta.c301w13t12recipes.model/LocalDB#delete_Local_Recipe(Ljava.lang.String;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getAutoCompleteKeyword" id="ca.ualberta.c301w13t12recipes.model/LocalDB#getAutoCompleteKeyword()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getLocal_Ingredient_List" id="ca.ualberta.c301w13t12recipes.model/LocalDB#getLocal_Ingredient_List()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getLocal_Recipe_List" id="ca.ualberta.c301w13t12recipes.model/LocalDB#getLocal_Recipe_List()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getRemoteRecipe" id="ca.ualberta.c301w13t12recipes.model/LocalDB#getRemoteRecipe(Ljava.lang.String;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getRemoteRecipeList" id="ca.ualberta.c301w13t12recipes.model/LocalDB#getRemoteRecipeList()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="get_Local_Recipe" id="ca.ualberta.c301w13t12recipes.model/LocalDB#get_Local_Recipe(Ljava.lang.String;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="isLocalIdExists" id="ca.ualberta.c301w13t12recipes.model/LocalDB#isLocalIdExists(Lca.ualberta.c301w13t12recipes.model.Recipe;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="isRemoteIdExists" id="ca.ualberta.c301w13t12recipes.model/LocalDB#isRemoteIdExists(Lca.ualberta.c301w13t12recipes.model.Recipe;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="postRemote" id="ca.ualberta.c301w13t12recipes.model/LocalDB#postRemote(Lca.ualberta.c301w13t12recipes.model.Recipe;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="removeLocal_Ingredient_List" id="ca.ualberta.c301w13t12recipes.model/LocalDB#removeLocal_Ingredient_List(Lca.ualberta.c301w13t12recipes.model.Ingredient;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="searchRecipebyKeyword" id="ca.ualberta.c301w13t12recipes.model/LocalDB#searchRecipebyKeyword(Ljava.lang.String;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="toRecipe" id="ca.ualberta.c301w13t12recipes.model/LocalDB#toRecipe(Lorg.json.JSONObject;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="transferFromRemoteToLocal" id="ca.ualberta.c301w13t12recipes.model/LocalDB#transferFromRemoteToLocal(Lca.ualberta.c301w13t12recipes.model.Recipe;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="updateLocalRecipe" id="ca.ualberta.c301w13t12recipes.model/LocalDB#updateLocalRecipe(Lca.ualberta.c301w13t12recipes.model.Recipe;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="updateRemoteRecipe" id="ca.ualberta.c301w13t12recipes.model/LocalDB#updateRemoteRecipe(Lca.ualberta.c301w13t12recipes.model.Recipe;)"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <sourceConnections xsi:type="editmodel:DependencyEditModel" autoLocated="true" id="ca.ualberta.c301w13t12recipes.model/LocalDB-Standard::Call->ca.ualberta.c301w13t12recipes.model/Ingredient*ca.ualberta.c301w13t12recipes.model/LocalDB-Standard::Instantiate->ca.ualberta.c301w13t12recipes.model/Ingredient*ca.ualberta.c301w13t12recipes.model/LocalDB-Soyatec::Import->ca.ualberta.c301w13t12recipes.model/Ingredient" source="//@children.8" target="//@children.7" targetEnd="//@children.8/@sourceConnections.0/@children.2" label="//@children.8/@sourceConnections.0/@children.0" sourceEnd="//@children.8/@sourceConnections.0/@children.1" connectionRouterKind="Manual">
+      <children xsi:type="editmodel:WireLabelEditModel" name="«Instantiate, Call, Import»" size="129,13" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="0,396" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="169,0"/>
+    </sourceConnections>
+    <sourceConnections xsi:type="editmodel:DependencyEditModel" autoLocated="true" id="ca.ualberta.c301w13t12recipes.model/LocalDB-Standard::Call->ca.ualberta.c301w13t12recipes.model/Image*ca.ualberta.c301w13t12recipes.model/LocalDB-Standard::Instantiate->ca.ualberta.c301w13t12recipes.model/Image*ca.ualberta.c301w13t12recipes.model/LocalDB-Soyatec::Import->ca.ualberta.c301w13t12recipes.model/Image" source="//@children.8" target="//@children.6" targetEnd="//@children.8/@sourceConnections.1/@children.2" label="//@children.8/@sourceConnections.1/@children.0" sourceEnd="//@children.8/@sourceConnections.1/@children.1" connectionRouterKind="Manual">
+      <children xsi:type="editmodel:WireLabelEditModel" name="«Instantiate, Call, Import»" size="129,13" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="0,385" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="212,85"/>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" name="AddIngredWizardActivity" location="1488,410" size="221,98" id="ca.ualberta.c301w13t12recipes.view/AddIngredWizardActivity">
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="179,36">
+      <children xsi:type="editmodel:MethodEditModel" name="displayEmptyIngredientDialog" id="ca.ualberta.c301w13t12recipes.view/AddIngredWizardActivity#displayEmptyIngredientDialog()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="onCreate" id="ca.ualberta.c301w13t12recipes.view/AddIngredWizardActivity#onCreate(Landroid.os.Bundle;)"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="242,105"/>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" name="AddPicWizardActivity" location="1227,97" size="204,116" id="ca.ualberta.c301w13t12recipes.view/AddPicWizardActivity">
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="110,54">
+      <children xsi:type="editmodel:MethodEditModel" name="onCreate" id="ca.ualberta.c301w13t12recipes.view/AddPicWizardActivity#onCreate(Landroid.os.Bundle;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="refreshGridView" id="ca.ualberta.c301w13t12recipes.view/AddPicWizardActivity#refreshGridView()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="takePhoto" id="ca.ualberta.c301w13t12recipes.view/AddPicWizardActivity#takePhoto()"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.12/@sourceConnections.0 //@children.12/@sourceConnections.1" name="AddTitleDescWizardActivity" location="1478,115" size="242,116" id="ca.ualberta.c301w13t12recipes.view/AddTitleDescWizardActivity">
+    <children xsi:type="editmodel:CompartmentEditModel" size="90,18">
+      <children xsi:type="editmodel:AttributeEditModel" name="recipe" id="ca.ualberta.c301w13t12recipes.view/AddTitleDescWizardActivity#recipe"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="191,36">
+      <children xsi:type="editmodel:MethodEditModel" name="displayClearFieldsWarningDialog" id="ca.ualberta.c301w13t12recipes.view/AddTitleDescWizardActivity#displayClearFieldsWarningDialog()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="onCreate" id="ca.ualberta.c301w13t12recipes.view/AddTitleDescWizardActivity#onCreate(Landroid.os.Bundle;)"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="206,87"/>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" name="EditTitleDescWizardActivity" location="1488,300" size="242,80" id="ca.ualberta.c301w13t12recipes.view/EditTitleDescWizardActivity">
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="75,18">
+      <children xsi:type="editmodel:MethodEditModel" name="onCreate" id="ca.ualberta.c301w13t12recipes.view/EditTitleDescWizardActivity#onCreate(Landroid.os.Bundle;)"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" autoLocated="true" id="ca.ualberta.c301w13t12recipes.view/AddTitleDescWizardActivity&lt;-ca.ualberta.c301w13t12recipes.view/EditTitleDescWizardActivity" source="//@children.12" target="//@children.11" targetEnd="//@children.12/@sourceConnections.0/@children.1" sourceEnd="//@children.12/@sourceConnections.0/@children.0" connectionRouterKind="Manual">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="115,0" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="125,116"/>
+    </sourceConnections>
+    <sourceConnections xsi:type="editmodel:DependencyEditModel" autoLocated="true" id="ca.ualberta.c301w13t12recipes.view/EditTitleDescWizardActivity-Standard::Derive->ca.ualberta.c301w13t12recipes.view/AddTitleDescWizardActivity" source="//@children.12" target="//@children.11" targetEnd="//@children.12/@sourceConnections.1/@children.2" label="//@children.12/@sourceConnections.1/@children.0" sourceEnd="//@children.12/@sourceConnections.1/@children.1" connectionRouterKind="Manual">
+      <children xsi:type="editmodel:WireLabelEditModel" name="«Derive»" size="45,13" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="135,0" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="145,116"/>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" name="IngredientsFridgeActivity" location="1232,225" size="224,98" id="ca.ualberta.c301w13t12recipes.view/IngredientsFridgeActivity">
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="191,36">
+      <children xsi:type="editmodel:MethodEditModel" name="displayClearFieldsWarningDialog" id="ca.ualberta.c301w13t12recipes.view/IngredientsFridgeActivity#displayClearFieldsWarningDialog()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="onCreate" id="ca.ualberta.c301w13t12recipes.view/IngredientsFridgeActivity#onCreate(Landroid.os.Bundle;)"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="242,105"/>
+    <sourceConnections xsi:type="editmodel:DependencyEditModel" autoLocated="true" id="ca.ualberta.c301w13t12recipes.view/IngredientsFridgeActivity-Standard::Call->ca.ualberta.c301w13t12recipes.controller/DatabaseController*ca.ualberta.c301w13t12recipes.view/IngredientsFridgeActivity-Standard::Instantiate->ca.ualberta.c301w13t12recipes.controller/DatabaseController*ca.ualberta.c301w13t12recipes.view/IngredientsFridgeActivity-Soyatec::Import->ca.ualberta.c301w13t12recipes.controller/DatabaseController" source="//@children.13" target="//@children.0" targetEnd="//@children.13/@sourceConnections.0/@children.2" label="//@children.13/@sourceConnections.0/@children.0" sourceEnd="//@children.13/@sourceConnections.0/@children.1" connectionRouterKind="Manual">
+      <children xsi:type="editmodel:WireLabelEditModel" name="«Instantiate, Call, Import»" size="129,13" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="0,48" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="229,158"/>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" name="MainActivity" location="1488,-9" size="204,80" id="ca.ualberta.c301w13t12recipes.view/MainActivity">
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="95,18">
+      <children xsi:type="editmodel:MethodEditModel" name="setupButtons" id="ca.ualberta.c301w13t12recipes.view/MainActivity#setupButtons()"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" name="SearchActivity" location="1227,-18" size="204,98" id="ca.ualberta.c301w13t12recipes.view/SearchActivity">
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="75,36">
+      <children xsi:type="editmodel:MethodEditModel" name="onCreate" id="ca.ualberta.c301w13t12recipes.view/SearchActivity#onCreate(Landroid.os.Bundle;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="setUp" id="ca.ualberta.c301w13t12recipes.view/SearchActivity#setUp()"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <sourceConnections xsi:type="editmodel:DependencyEditModel" autoLocated="true" id="ca.ualberta.c301w13t12recipes.view/SearchActivity-Standard::Call->ca.ualberta.c301w13t12recipes.controller/WebSearch*ca.ualberta.c301w13t12recipes.view/SearchActivity-Standard::Instantiate->ca.ualberta.c301w13t12recipes.controller/WebSearch" source="//@children.15" target="//@children.4" targetEnd="//@children.15/@sourceConnections.0/@children.2" label="//@children.15/@sourceConnections.0/@children.0" sourceEnd="//@children.15/@sourceConnections.0/@children.1" connectionRouterKind="Manual">
+      <children xsi:type="editmodel:WireLabelEditModel" name="«Instantiate, Call»" size="90,13" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="0,48" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="229,50"/>
+    </sourceConnections>
+    <sourceConnections xsi:type="editmodel:DependencyEditModel" autoLocated="true" id="ca.ualberta.c301w13t12recipes.view/SearchActivity-Standard::Call->ca.ualberta.c301w13t12recipes.controller/DatabaseController*ca.ualberta.c301w13t12recipes.view/SearchActivity-Standard::Instantiate->ca.ualberta.c301w13t12recipes.controller/DatabaseController" source="//@children.15" target="//@children.0" targetEnd="//@children.15/@sourceConnections.1/@children.2" label="//@children.15/@sourceConnections.1/@children.0" sourceEnd="//@children.15/@sourceConnections.1/@children.1" connectionRouterKind="Manual">
+      <children xsi:type="editmodel:WireLabelEditModel" name="«Instantiate, Call»" size="90,13" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="0,87" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="229,106"/>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" name="ViewDetailedRecipeActivity" location="1223,435" size="241,139" id="ca.ualberta.c301w13t12recipes.view/ViewDetailedRecipeActivity">
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="75,36">
+      <children xsi:type="editmodel:MethodEditModel" name="onCreate" id="ca.ualberta.c301w13t12recipes.view/ViewDetailedRecipeActivity#onCreate(Landroid.os.Bundle;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="onKeyUp" id="ca.ualberta.c301w13t12recipes.view/ViewDetailedRecipeActivity#onKeyUp(ILandroid.view.KeyEvent;)"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="274,118">
+      <children xsi:type="editmodel:ClassEditModel" name="PublishTask" size="128,29" id="ca.ualberta.c301w13t12recipes.view/ViewDetailedRecipeActivity$PublishTask">
+        <children xsi:type="editmodel:CompartmentEditModel"/>
+        <children xsi:type="editmodel:CompartmentEditModel"/>
+        <children xsi:type="editmodel:CompartmentEditModel"/>
+        <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+      </children>
+    </children>
+    <sourceConnections xsi:type="editmodel:DependencyEditModel" autoLocated="true" id="ca.ualberta.c301w13t12recipes.view/ViewDetailedRecipeActivity-Soyatec::Import->ca.ualberta.c301w13t12recipes.controller/RecipeManager" source="//@children.16" target="//@children.1" targetEnd="//@children.16/@sourceConnections.0/@children.2" label="//@children.16/@sourceConnections.0/@children.0" sourceEnd="//@children.16/@sourceConnections.0/@children.1" connectionRouterKind="Manual">
+      <children xsi:type="editmodel:WireLabelEditModel" name="«Import»" size="45,13" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="0,48" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="229,48"/>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" name="ViewListActivity" location="1227,345" size="204,80" id="ca.ualberta.c301w13t12recipes.view/ViewListActivity">
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="75,18">
+      <children xsi:type="editmodel:MethodEditModel" name="onCreate" id="ca.ualberta.c301w13t12recipes.view/ViewListActivity#onCreate(Landroid.os.Bundle;)"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <sourceConnections xsi:type="editmodel:DependencyEditModel" autoLocated="true" id="ca.ualberta.c301w13t12recipes.view/ViewListActivity-Standard::Call->ca.ualberta.c301w13t12recipes.controller/DatabaseController*ca.ualberta.c301w13t12recipes.view/ViewListActivity-Standard::Instantiate->ca.ualberta.c301w13t12recipes.controller/DatabaseController*ca.ualberta.c301w13t12recipes.view/ViewListActivity-Soyatec::Import->ca.ualberta.c301w13t12recipes.controller/DatabaseController" source="//@children.17" target="//@children.0" targetEnd="//@children.17/@sourceConnections.0/@children.2" label="//@children.17/@sourceConnections.0/@children.0" sourceEnd="//@children.17/@sourceConnections.0/@children.1" connectionRouterKind="Manual">
+      <children xsi:type="editmodel:WireLabelEditModel" name="«Instantiate, Call, Import»" size="129,13" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="0,32" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="229,262"/>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" name="Recipe" location="0,-15" size="212,476" id="ca.ualberta.c301w13t12recipes.model/Recipe">
+    <children xsi:type="editmodel:CompartmentEditModel" size="164,90">
+      <children xsi:type="editmodel:AttributeEditModel" name="directions" id="ca.ualberta.c301w13t12recipes.model/Recipe#directions"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="id" id="ca.ualberta.c301w13t12recipes.model/Recipe#id"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="ingredients" id="ca.ualberta.c301w13t12recipes.model/Recipe#ingredients"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="name" id="ca.ualberta.c301w13t12recipes.model/Recipe#name"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="user" id="ca.ualberta.c301w13t12recipes.model/Recipe#user"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="159,648">
+      <children xsi:type="editmodel:MethodEditModel" name="Authentication" id="ca.ualberta.c301w13t12recipes.model/Recipe#Authentication(Ljava.lang.String;Ljava.lang.String;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="Recipe" id="ca.ualberta.c301w13t12recipes.model/Recipe#Recipe(Ljava.lang.String;Ljava.lang.String;Ljava.lang.String;Ljava.util.List;Ljava.lang.String;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="Recipe" id="ca.ualberta.c301w13t12recipes.model/Recipe#Recipe(Ljava.lang.String;Ljava.lang.String;Ljava.lang.String;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="Recipe" id="ca.ualberta.c301w13t12recipes.model/Recipe#Recipe()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="Recipe" id="ca.ualberta.c301w13t12recipes.model/Recipe#Recipe(Ljava.lang.String;Ljava.lang.String;Ljava.lang.String;Ljava.util.List;Ljava.lang.String;Ljava.util.HashMap;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="addImage" id="ca.ualberta.c301w13t12recipes.model/Recipe#addImage(Ljava.lang.String;Ljava.lang.String;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="addIngredient" id="ca.ualberta.c301w13t12recipes.model/Recipe#addIngredient(Ljava.lang.String;Ljava.lang.String;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="convertBitmapToString" id="ca.ualberta.c301w13t12recipes.model/Recipe#convertBitmapToString(Landroid.graphics.Bitmap;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="convertToLocalRecipe" id="ca.ualberta.c301w13t12recipes.model/Recipe#convertToLocalRecipe()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="convertTobitmapRecipe" id="ca.ualberta.c301w13t12recipes.model/Recipe#convertTobitmapRecipe()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getBitMapFromString" id="ca.ualberta.c301w13t12recipes.model/Recipe#getBitMapFromString(Ljava.lang.String;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="isIncluded" id="ca.ualberta.c301w13t12recipes.model/Recipe#isIncluded(Ljava.lang.String;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="newArray" id="ca.ualberta.c301w13t12recipes.model/Recipe#newArray(I)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="removeAllIngredient" id="ca.ualberta.c301w13t12recipes.model/Recipe#removeAllIngredient()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="removeImage" id="ca.ualberta.c301w13t12recipes.model/Recipe#removeImage(I)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="removeIngredientByIndex" id="ca.ualberta.c301w13t12recipes.model/Recipe#removeIngredientByIndex(I)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="toJson" id="ca.ualberta.c301w13t12recipes.model/Recipe#toJson()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="toString" id="ca.ualberta.c301w13t12recipes.model/Recipe#toString()"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <sourceConnections xsi:type="editmodel:DependencyEditModel" autoLocated="true" id="ca.ualberta.c301w13t12recipes.model/Recipe-Standard::Call->ca.ualberta.c301w13t12recipes.model/Ingredient*ca.ualberta.c301w13t12recipes.model/Recipe-Standard::Instantiate->ca.ualberta.c301w13t12recipes.model/Ingredient*ca.ualberta.c301w13t12recipes.model/Recipe-Soyatec::Import->ca.ualberta.c301w13t12recipes.model/Ingredient" source="//@children.18" target="//@children.7" targetEnd="//@children.18/@sourceConnections.0/@children.2" label="//@children.18/@sourceConnections.0/@children.0" sourceEnd="//@children.18/@sourceConnections.0/@children.1" connectionRouterKind="Manual">
+      <children xsi:type="editmodel:WireLabelEditModel" name="«Instantiate, Call, Import»" size="129,13" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="106,476" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="106,0"/>
+    </sourceConnections>
+    <sourceConnections xsi:type="editmodel:DependencyEditModel" autoLocated="true" id="ca.ualberta.c301w13t12recipes.model/Recipe-Standard::Call->ca.ualberta.c301w13t12recipes.model/Image*ca.ualberta.c301w13t12recipes.model/Recipe-Standard::Instantiate->ca.ualberta.c301w13t12recipes.model/Image*ca.ualberta.c301w13t12recipes.model/Recipe-Soyatec::Import->ca.ualberta.c301w13t12recipes.model/Image" source="//@children.18" target="//@children.6" targetEnd="//@children.18/@sourceConnections.1/@children.2" label="//@children.18/@sourceConnections.1/@children.0" sourceEnd="//@children.18/@sourceConnections.1/@children.1" connectionRouterKind="Manual">
+      <children xsi:type="editmodel:WireLabelEditModel" name="«Instantiate, Call, Import»" size="129,13" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="106,476" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="106,0"/>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <diagramOptions xsi:type="options:ClassDiagramOptions" properties="wireOptions=7;Product=eUML2" autoName="false"/>
+  <boardSetting snapToGeometry="true" gridEnabled="true" gridSpacing="15,15" gridOrigin="0,0" rulerUnit="pixel" gridVisibility="false">
+    <leftRuler/>
+    <topRuler/>
+  </boardSetting>
+  <classDiagramPreferences xsi:type="editmodel:UMLClassDiagramPreference" showPopupBars="true" showConnectionHandles="true" attributeSorter="Natural" methodSorter="Natural" showClassStereotype="true" showPackageStereotype="true" showDependencyStereotype="true" showInterfaceStereotype="true" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+</editmodel:ClassDiagramEditModel>
