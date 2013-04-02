@@ -3,7 +3,6 @@ package ca.ualberta.c301w13t12recipes.model;
 import java.util.ArrayList;
 import java.util.Collection;
 
-
 /**
  * Handle response coming from a Elastic Search result
  */
@@ -13,9 +12,11 @@ public class ElasticSearchSearchResponse<T> {
     transient Object _shards;
     Hits<T> hits;
     boolean exists;    
+    
     public Collection<ElasticSearchResponse<T>> getHits() {
         return hits.getHits();        
     }
+    
     public Collection<T> getSources() {
         Collection<T> out = new ArrayList<T>();
         for (ElasticSearchResponse<T> essrt : getHits()) {
@@ -23,6 +24,7 @@ public class ElasticSearchSearchResponse<T> {
         }
         return out;
     }
+    
     public String toString() {
         return (super.toString() + ":" + took + "," + _shards + "," + exists + ","  + hits);     
     }
