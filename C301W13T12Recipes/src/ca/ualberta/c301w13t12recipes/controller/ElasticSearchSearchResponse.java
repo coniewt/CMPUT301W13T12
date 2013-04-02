@@ -6,6 +6,9 @@ import java.util.Collection;
 import ca.ualberta.c301w13t12recipes.model.ElasticSearchResponse;
 import ca.ualberta.c301w13t12recipes.model.Hits;
 
+/**
+ * Handle response coming from a Elastic Search result
+ */
 public class ElasticSearchSearchResponse<T> {
     int took;
     boolean timed_out;
