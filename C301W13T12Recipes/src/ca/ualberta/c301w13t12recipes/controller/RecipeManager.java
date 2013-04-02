@@ -4,8 +4,7 @@ import ca.ualberta.c301w13t12recipes.model.Recipe;
 import android.content.Context;
 
 /**
- * This class is mainly responsible for the management of recipe
- * @author YUWEI DUAN
+ * Recipe manage class, responsible for creating database controller and image manager instance
  *
  */
 public class RecipeManager {
@@ -16,6 +15,7 @@ public class RecipeManager {
 		database = new DatabaseController(context);
 		imageManager = new ImageManager();
 	}
+	
 	/**
 	 * remove all the info and pictures that relate to this recipe away from phone
 	 * @param Recipe recipe
