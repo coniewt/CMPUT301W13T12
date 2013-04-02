@@ -20,20 +20,25 @@ import ca.ualberta.c301w13t12recipes.model.Recipe;
 import com.google.gson.Gson;
 
 /**
- * @author YUWEi DUAN
+ * Fulfill the basic web service functionality including connections and up/download recipes
+ * @author shihao1
  *
  */
 public class WebStream{
+	
 	protected HttpClient httpclient = new DefaultHttpClient() ;
 	protected Gson gson=new Gson();
+	
 	/**
+	 * Constructor
 	 * 
 	 */
 	public WebStream(){	
 	}
 	
 	/**
-	 * @param recipe
+	 * Publish an recipe to web service
+	 * @param Recipe The recipe user wish to publish to web server
 	 * @throws IllegalStateException
 	 * @throws IOException
 	 */
@@ -82,8 +87,8 @@ public class WebStream{
 	
 	
 	/**
-	 * update the recipe in web database
-	 * @param recipe
+	 * Ppdate the recipe on web database
+	 * @param Recipe The recipe user with to update
 	 * @throws ClientProtocolException
 	 * @throws IOException
 	 */
@@ -109,6 +114,7 @@ public class WebStream{
 
 
 	/**
+	 * Delete an recipe from web server
 	 * @throws IOException
 	 */
 	public void deleteRecipe() throws IOException {
@@ -129,6 +135,13 @@ public class WebStream{
 		entity.consumeContent();
 		//httpDelete.releaseConnection();
 	}
+	
+	/**
+	 * Get entity from current content
+	 * @param HttpResponse HttpResponse coming from the connection
+	 * @return String Entity stripped from the content
+	 * @throws IOException
+	 */
 	String getEntityContent(HttpResponse response) throws IOException {
 		BufferedReader br = new BufferedReader(
 				new InputStreamReader((response.getEntity().getContent())));
@@ -142,7 +155,8 @@ public class WebStream{
 		System.err.println("JSON:"+json.toString());
 		return json.toString();
 	}
-	class publishRecipee extends AsyncTask<Integer, Integer, String>{
+	
+	class publishRecipe extends AsyncTask<Integer, Integer, String>{
 
 		@Override
 		protected String doInBackground(Integer... params) {
