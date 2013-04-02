@@ -77,15 +77,7 @@ public class WebSearch extends WebController {
 			recipes.add(recipe);
 			System.out.println("hello" + recipe.toString());
 		}
-		/*// use sharedpreference to store the list into file
-		SharedPreferences tempShare = co.getSharedPreferences(
-				"Temp_recipe_list", co.MODE_WORLD_READABLE);
-		SharedPreferences.Editor tempshare_edit = tempShare.edit();
-		tempshare_edit.clear();	
-		tempshare_edit.putStringSet(StrResource.SHARE_PREFERENCE_KEY, new HashSet<String> (list));
-		tempshare_edit.commit();
-		//end
-*/		return recipes;
+		return recipes;
 	}
 	/**
 	 * Search recipes,which includes the ingredient

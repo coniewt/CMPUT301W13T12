@@ -36,7 +36,7 @@ public class RecipeAdapter {
 	 */
 	@SuppressWarnings("unchecked")
 	public ListAdapter getAdapter(Context ct, String type,
-			ArrayList<Ingredient> ar) {
+			List<Ingredient> ar) {
 		List<HashMap<String, Object>> fillMaps = new ArrayList<HashMap<String, Object>>();
 		List<Recipe> li = new ArrayList<Recipe>();
 		// Log.v("Key", "" + type.compareTo("INGREDIENT_"));
@@ -57,8 +57,8 @@ public class RecipeAdapter {
 				try {
 					Log.v(">>>>>>>>>>>>>>", li.size() + "");
 					List<String> name_list = convertTo(ar);
-					li = new WebSearch().searchRecipesByIngredient("*", name_list);
-					//li = (List<Recipe>) ((new GetTask()).execute(name_list));
+					//li = new WebSearch().searchRecipesByIngredient("*", name_list);
+					li = (List<Recipe>) ((new GetTask()).execute(name_list));
 					Log.v("22222", "ar size:"+ar.size()+" return size:"+li.size() + "");
 					
 					// li = (new
@@ -92,7 +92,11 @@ public class RecipeAdapter {
 		return new SimpleAdapter(ct, fillMaps, R.layout.item_recipe, from, to);
 	}
 
-	private List<String> convertTo(ArrayList<Ingredient> in) {
+	/**
+	 * @param in
+	 * @return
+	 */
+	public List<String> convertTo(List<Ingredient> in) {
 		List<String> out = new ArrayList<String>();
 		for (Ingredient ing : in) {
 			out.add(ing.getName());
