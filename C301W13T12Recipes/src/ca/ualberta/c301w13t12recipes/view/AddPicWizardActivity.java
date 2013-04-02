@@ -107,6 +107,7 @@ public class AddPicWizardActivity extends Activity {
 		bundle.putSerializable("NEW_RECIPE", recipe);
 		intent.putExtras(bundle);
 		startActivity(intent);
+		finish();
 	}
 
 	/**

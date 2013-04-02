@@ -11,6 +11,8 @@ import ca.ualberta.c301w13t12recipes.controller.DatabaseController;
 import ca.ualberta.c301w13t12recipes.model.Recipe;
 
 /**
+ * AddCompleteWizardActivity is the activity of last step that can store the complete recipe
+ * object into the database
  * 
  * @author GUANQI HUANG
  * 
@@ -42,16 +44,26 @@ public class AddCompleteWizardActivity extends Activity {
 
 		// TODO Auto-generated method stub
 	}
-
+	/**
+	 * Initialize all the widgets objects
+	 * 
+	 */
 	private void setupWidgets() {
 		doneButton = (Button) findViewById(R.id.add_button_complete);
 	}
-
+	/**
+	 * acquire the recipe that passing by another activity
+	 * 
+	 */
 	private void getRecipe() {
 		recipe = (Recipe) getIntent().getSerializableExtra("NEW_RECIPE");
 
 	}
-
+	/**
+	 *  Save the complete recipe object into local database
+	 *  if old one exists, this method would delete the old one
+	 *  and then add the new recipe
+	 */
 	private void saveRecipe() {
 		getRecipe();
 		controller = new DatabaseController(AddCompleteWizardActivity.this);
@@ -64,11 +76,11 @@ public class AddCompleteWizardActivity extends Activity {
 		}
 
 	}
-
+	/**
+	 *  Jump from current activity to the MainActivty
+	 */
 	private void jumpToMainActivity() {
-		Intent intent = new Intent(AddCompleteWizardActivity.this,
-				MainActivity.class);
-		startActivity(intent);
+		finish();
 
 	}
 

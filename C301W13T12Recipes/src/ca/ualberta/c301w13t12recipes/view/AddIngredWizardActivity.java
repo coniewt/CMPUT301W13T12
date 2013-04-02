@@ -82,11 +82,10 @@ public class AddIngredWizardActivity extends Activity {
 				}); 
 				builder.setNegativeButton("Cancel", null);
 					builder.setIcon(android.R.drawable.ic_dialog_info); 
-					builder.setMessage("Are you sure to delete?"); 
+					builder.setMessage("Are you sure you want to delete?"); 
 				builder.show(); 
 				}
 		});
-		// TODO Auto-generated method stub
 		nextButton.setOnClickListener(new OnClickListener() {
 			public void onClick(View arg0) {
 				Log.v("Hello",""+recipe.getIngredients().size());
@@ -98,25 +97,35 @@ public class AddIngredWizardActivity extends Activity {
 			}
 		});
 	}
-
+	/**
+	 * Initialize all the widget objects
+	 */
 	protected void setupWidgets() {
 		addIngredButton = (ImageButton) findViewById(R.id.imgBtn_add_ingredient_button);
 		nextButton = (Button) findViewById(R.id.add_step1_next_button);
 		clearButton = (Button) findViewById(R.id.add_step1_Clear_button);
 		ingredientsListView = (ListView) findViewById(R.id.listView_ingredients_list);
 	}
-
+	/**
+	 * get a new adapter for a ingredients list and set it to the listView
+	 */
 	protected void refreshList() {
 		adapter = new IngredientsAdapter();
 		ingredientsListView.setAdapter(adapter.getAdapter(this, recipe.getIngredients()));
 
 	}
-
+	/**
+	 * acquire the recipe that passing by another activity
+	 */
 	private void getRecipeFromIntent() {
 		recipe = (Recipe) getIntent().getSerializableExtra("NEW_RECIPE");
 
 	}
-
+	/**
+	 * A Fragment class that help us to set up the "Add" dialog
+	 * @author GUANQI HUANG
+	 *
+	 */
 	class AddIngredDiaglogFragment extends DialogFragment {
 		private EditText nameEditText;
 		private EditText amountEditText;
@@ -140,9 +149,14 @@ public class AddIngredWizardActivity extends Activity {
 						public void onClick(DialogInterface dialog, int id) {
 							name = nameEditText.getText().toString();
 							amount = amountEditText.getText().toString();
-							recipe.addIngredient(name, amount);
-							Toast.makeText(AddIngredWizardActivity.this,
-									"Successfully adding a new ingredient", 2).show();
+							
+							if(name.equals("")||amount.equals("")){
+								Toast.makeText(AddIngredWizardActivity.this,"Sorry! You must fill both name and amount input field.", Toast.LENGTH_LONG).show();
+							}else{
+								recipe.addIngredient(name, amount);
+								Toast.makeText(AddIngredWizardActivity.this,"Successfully adding a new ingredient", 2).show();
+							}
+								
 							refreshList();
 						}
 					}).setNegativeButton("Cancel",
@@ -158,7 +172,10 @@ public class AddIngredWizardActivity extends Activity {
 		}
 
 	}
-
+	/**
+	 * pass the incomplete recipe to the intent so that other activity can get it.
+	 * jumping from current activity to AddPicWizardActivity and then terminate itself
+	 */
 	private void saveAndJumpToAddImageWizard() {
 		Toast.makeText(AddIngredWizardActivity.this, "Ingredients are saved !",
 				3).show();
@@ -176,17 +193,12 @@ public class AddIngredWizardActivity extends Activity {
 	public void displayEmptyIngredientDialog(){
 		AlertDialog.Builder builder = new Builder(AddIngredWizardActivity.this); 
 		builder.setTitle("Warning"); 
-		builder.setNegativeButton("Continue",new android.content.DialogInterface.OnClickListener(){
-		public void onClick(DialogInterface arg0, int arg1) {
-			saveAndJumpToAddImageWizard();
-		}}); 
-		builder.setPositiveButton("Back",new android.content.DialogInterface.OnClickListener(){
+		builder.setNegativeButton("Ok",new android.content.DialogInterface.OnClickListener(){
 		public void onClick(DialogInterface arg0, int arg1) {
 			
-		}
-		}); 
+		}}); 
 		builder.setIcon(android.R.drawable.ic_dialog_info); 
-		builder.setMessage("No Ingredient ? "); 
+		builder.setMessage("You must have at least one ingredient!"); 
 	builder.show(); 
 	}
 }

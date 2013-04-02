@@ -72,7 +72,7 @@ public class EditTitleDescWizardActivity extends AddTitleDescWizardActivity {
 		descEditText.setText(recipe.getDirections());
 
 	}
-	void saveAndJumpToAddIngredWizard(){
+	protected void saveAndJumpToAddIngredWizard(){
 		recipe.setDirections(descEditText.getText().toString());//get description from descEditText Widget
 		recipe.setName(nameEditText.getText().toString());// get nameEditText from nameEditText Widget
 		Toast.makeText(EditTitleDescWizardActivity.this, "Name and directions are saved !", 3).show();

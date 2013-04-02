@@ -39,7 +39,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="30px"
-        android:text="Description:"
+        android:text="Direction:"
         android:textSize="8pt" />
     <EditText
         android:id="@+id/add_editText_description"
@@ -96,7 +96,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="0.42"
-            android:text="Cancel" />
+            android:text="Clear" />
 
         <Button
             android:id="@+id/add_step1_next_button"

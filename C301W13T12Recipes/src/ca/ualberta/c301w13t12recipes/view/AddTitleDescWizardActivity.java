@@ -6,6 +6,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
+import android.app.AlertDialog.Builder;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -20,92 +21,113 @@ import android.widget.Toast;
 
 /**
  * Activity class for adding details of the recipe
- *
+ * 
  */
 public class AddTitleDescWizardActivity extends Activity {
-	
-	protected EditText descEditText; //description widget
-	protected EditText nameEditText; //name widget
-	
+
+	protected EditText descEditText; // description widget
+	protected EditText nameEditText; // name widget
+
 	protected Button clearButton; // cancel button
-	protected Button nextButton;// next button	
-	
+	protected Button nextButton;// next button
+
 	protected Switch lock;// password switch
-	
-	Recipe recipe = new Recipe("","","");
-	
-	
+
+	Recipe recipe = new Recipe("", "", "");
+
 	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
-	    super.onCreate(savedInstanceState);
-	    this.setContentView(R.layout.activity_add_title_desc_wizard);
-	    
-	    setupButton();// Initialize all the buttons
-	    setupWidgets();//Initialize all the EditText widgets
-	    
-	    
-	    
-	    nextButton.setOnClickListener(new View.OnClickListener(){
-	    	public void onClick(View v){
-	    		saveAndJumpToAddIngredWizard();
-	    	}
-	    });
-	    clearButton.setOnClickListener(new View.OnClickListener() {
-			
-			@Override
+		super.onCreate(savedInstanceState);
+		this.setContentView(R.layout.activity_add_title_desc_wizard);
+
+		setupButton();// Initialize all the buttons
+		setupWidgets();// Initialize all the EditText widgets
+
+		nextButton.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
-				clearAllFields();
-				Toast toast = Toast.makeText(getApplicationContext(), "Operation Complete", 1);
-				toast.show();
+				checkAllFields();
 			}
 		});
-	    lock.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-			
+		clearButton.setOnClickListener(new View.OnClickListener() {
+
 			@Override
-			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+			public void onClick(View v) {
+				displayClearFieldsWarningDialog();
+			}
+		});
+		lock.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+
+			@Override
+			public void onCheckedChanged(CompoundButton buttonView,
+					boolean isChecked) {
 				// TODO Auto-generated method stub
-				if(isChecked == true){
+				if (isChecked == true) {
 					DialogFragment newFragment = new setPasswordFragment();
 					newFragment.show(getFragmentManager(), "CREATE_PASSWORD");
-				}else{
+				} else {
 					recipe.setPassword("");
 				}
 			}
 		});
-	    
-	    // TODO Auto-generated method stub
+
+		// TODO Auto-generated method stub
 	}
-	protected void setupButton(){
-		clearButton = (Button)findViewById(R.id.add_step1_Clear_button);
-		nextButton = (Button)findViewById(R.id.add_step1_next_button);
-		lock =(Switch)findViewById(R.id.add_switch_password);
-		
+
+	protected void setupButton() {
+		clearButton = (Button) findViewById(R.id.add_step1_Clear_button);
+		nextButton = (Button) findViewById(R.id.add_step1_next_button);
+		lock = (Switch) findViewById(R.id.add_switch_password);
+
 	}
-	protected void setupWidgets(){
-		descEditText =(EditText)findViewById(R.id.add_editText_description);
-		nameEditText =(EditText)findViewById(R.id.add_editText_recipe_name);
-		
+
+	protected void setupWidgets() {
+		descEditText = (EditText) findViewById(R.id.add_editText_description);
+		nameEditText = (EditText) findViewById(R.id.add_editText_recipe_name);
+
 	}
-	protected void clearAllFields(){
+
+	protected void clearAllFields() {
 		descEditText.setText("");
 		nameEditText.setText("");
 	}
-	
-	void saveAndJumpToAddIngredWizard(){
-		
-		
-		recipe.setDirections(descEditText.getText().toString());//get description from descEditText Widget
-		recipe.setName(nameEditText.getText().toString());// get nameEditText from nameEditText Widget
-		Toast.makeText(AddTitleDescWizardActivity.this, "Name and directions are saved !", 3).show();
-		Intent intent = new Intent(AddTitleDescWizardActivity.this,AddIngredWizardActivity.class);
-		Bundle bundle = new Bundle();
-		bundle.putSerializable("NEW_RECIPE",recipe);
-	    intent.putExtras(bundle);
-	    startActivity(intent);
-	    finish();
-		
+
+	protected void checkAllFields() {
+		String direction = descEditText.getText().toString();
+		String name = nameEditText.getText().toString();
+		if (direction.equals("") || name.equals("")) {
+			Toast.makeText(
+					getApplicationContext(),
+					"Sorry! You must fill both name and direction input field.",
+					Toast.LENGTH_SHORT).show();
+		} else {
+			saveAndJumpToAddIngredWizard();
+		}
+
 	}
+
+	protected void saveAndJumpToAddIngredWizard() {
+
+		recipe.setDirections(descEditText.getText().toString());// get
+																// description
+																// from
+																// descEditText
+																// Widget
+		recipe.setName(nameEditText.getText().toString());// get nameEditText
+															// from nameEditText
+															// Widget
+		Toast.makeText(AddTitleDescWizardActivity.this,
+				"Name and directions are successfully saved", 3).show();
+		Intent intent = new Intent(AddTitleDescWizardActivity.this,
+				AddIngredWizardActivity.class);
+		Bundle bundle = new Bundle();
+		bundle.putSerializable("NEW_RECIPE", recipe);
+		intent.putExtras(bundle);
+		startActivity(intent);
+		finish();
+
+	}
+
 	class setPasswordFragment extends DialogFragment {
 		private EditText passwordEditText;
 		String password;
@@ -113,10 +135,10 @@ public class AddTitleDescWizardActivity extends Activity {
 		public Dialog onCreateDialog(Bundle savedInstanceState) {
 			AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 			LayoutInflater inflater = getActivity().getLayoutInflater();
-			final View v = inflater.inflate(R.layout.dialog_edit_password_enabler,
-					null);
+			final View v = inflater.inflate(
+					R.layout.dialog_edit_password_enabler, null);
 			builder.setView(v);
-			
+
 			passwordEditText = (EditText) v
 					.findViewById(R.id.add_password_textEdit);
 			inflater.inflate(R.layout.dialog_add_ingredient, null);
@@ -144,5 +166,29 @@ public class AddTitleDescWizardActivity extends Activity {
 			return builder.create();
 		}
 
+	}
+
+	public void displayClearFieldsWarningDialog() {
+		AlertDialog.Builder builder = new Builder(
+				AddTitleDescWizardActivity.this);
+		builder.setTitle("Warning");
+		builder.setNegativeButton("Cancel",
+				new android.content.DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface arg0, int arg1) {
+
+					}
+				});
+		builder.setPositiveButton("Continue",
+				new android.content.DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface arg0, int arg1) {
+						clearAllFields();
+						Toast toast = Toast.makeText(getApplicationContext(),
+								"Operation Complete", 1);
+						toast.show();
+					}
+				});
+		builder.setIcon(android.R.drawable.ic_dialog_info);
+		builder.setMessage("Are you sure you want to clear?");
+		builder.show();
 	}
 }
