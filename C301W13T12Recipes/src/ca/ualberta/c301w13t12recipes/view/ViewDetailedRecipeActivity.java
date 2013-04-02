@@ -33,6 +33,7 @@ import ca.ualberta.c301w13t12recipes.controller.RecipeManager;
 import ca.ualberta.c301w13t12recipes.controller.ShareController;
 import ca.ualberta.c301w13t12recipes.controller.GalleryAdapter;
 import ca.ualberta.c301w13t12recipes.controller.IngredientsAdapter;
+import ca.ualberta.c301w13t12recipes.controller.WebController;
 import ca.ualberta.c301w13t12recipes.controller.WebStream;
 import ca.ualberta.c301w13t12recipes.model.Image;
 import ca.ualberta.c301w13t12recipes.model.Recipe;
@@ -107,8 +108,12 @@ public class ViewDetailedRecipeActivity extends Activity {
 									return true;
 								case R.id.pop_publish:
 									try {
-										PublishTask pt = new PublishTask();
-										pt.execute(20);
+										if((new WebController()).isNetworkAvailable(v.getContext())){
+											PublishTask pt = new PublishTask();
+											pt.execute(20);
+										}
+										else 
+											Toast.makeText(v.getContext(), "Fail to connect the Internet", Toast.LENGTH_LONG).show();
 									} catch (IllegalStateException e) {
 
 										Toast toast = Toast
