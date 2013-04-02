@@ -8,6 +8,7 @@ import java.util.List;
 import org.apache.http.client.ClientProtocolException;
 
 import android.content.Context;
+import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.ListAdapter;
 import android.widget.SimpleAdapter;
@@ -32,6 +33,7 @@ public class RecipeAdapter {
 	 *            it will return the recipe with keyword in type
 	 * @return ListAdapter
 	 */
+	@SuppressWarnings("unchecked")
 	public ListAdapter getAdapter(Context ct, String type,ArrayList<Ingredient> ar) {
 		List<HashMap<String, String>> fillMaps = new ArrayList<HashMap<String, String>>();
 		List<Recipe> li = new ArrayList<Recipe>();
@@ -49,7 +51,10 @@ public class RecipeAdapter {
 				}
 			}else if (type.compareTo("INGREDIENT_") == 0) {
 				try {
-					li = (new WebSearch()).searchRecipesByIngredient(convertTo(ar), ct);
+					//Log.v(ar.get(0).getAmount(), ar.get(0).getName());
+					li= (List<Recipe>) new GetTask().execute(convertTo(ar));
+					Log.v(">>>>>>>>>>>>>>", li.toString());
+					//li = (new WebSearch()).searchRecipesByIngredient("*",convertTo(ar));
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -71,13 +76,5 @@ public class RecipeAdapter {
 			}
 		}
 		return new SimpleAdapter(ct, fillMaps, R.layout.item_recipe, from, to);
-	}
-	private ArrayList<String> convertTo(ArrayList<Ingredient> in)
-	{
-		ArrayList<String> out = new ArrayList<String>();
-		for(Ingredient ing:in){
-			out.add(ing.getName());
-		}
-		return out;
 	}
 }
