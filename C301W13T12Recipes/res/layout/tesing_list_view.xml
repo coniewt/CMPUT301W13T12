@@ -3,17 +3,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
+
     <ListView
         android:id="@+id/testing_view_listview"
         android:layout_width="match_parent"
         android:layout_height="110dp"
-        android:layout_marginLeft="23dp"
-        android:layout_marginRight="23dp"
-        android:layout_weight="0.87" >
+        android:layout_weight="1.01" >
     </ListView>
-	<Button
+
+    <Button
         android:id="@+id/testing_view_button_delete_all"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Delete All" />
+
 </LinearLayout>
