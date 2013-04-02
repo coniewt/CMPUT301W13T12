@@ -17,7 +17,7 @@ import ca.ualberta.c301w13t12recipes.model.Ingredient;
 import ca.ualberta.c301w13t12recipes.model.Recipe;
 
 /**
- * TODO return the adapter of recipe
+ * Return the adapter of recipe for ListView
  * 
  * @author YUWEI DUAN
  * 
@@ -28,10 +28,10 @@ public class RecipeAdapter {
 			R.id.item_recipe_image };
 
 	/**
-	 * @param ct
-	 * @param type
-	 *            if type is "All" the adpter will return all recipe otherwise
-	 *            it will return the recipe with keyword in type
+	 * Return the adapter of recipe for ListView. If type is "All" the adapter will return all recipe,
+	 * otherwise it will return the recipe with keyword in type
+	 * @param Context
+	 * @param String Keyword of the designated recipe
 	 * @return ListAdapter
 	 */
 	@SuppressWarnings("unchecked")
@@ -95,8 +95,8 @@ public class RecipeAdapter {
 
 	/**
 	 * Convert the list of ingredients to list of their names
-	 * @param in
-	 * @return the list of string
+	 * @param List<Ingredient> A list of ingredient objects
+	 * @return List<String> - String form of the list of ingredients
 	 */
 	public List<String> convertTo(List<Ingredient> in) {
 		List<String> out = new ArrayList<String>();
