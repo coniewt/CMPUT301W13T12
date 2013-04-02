@@ -22,7 +22,7 @@ public class MainActivity extends Activity {
 	private ImageButton main_viewButton;// Declare view button
 	private ImageButton main_searchButton;// Declare search button
 	private ImageButton main_myFridgeButton;// Declare my fridge button
-
+	private ImageButton main_helpButton;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -69,6 +69,15 @@ public class MainActivity extends Activity {
 				startActivity(intent);
 			}
 		});
+		main_helpButton.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				Intent intent = new Intent();
+				intent.setClass(MainActivity.this, HelpManualActivity.class);
+				startActivity(intent);
+			}
+		});
 		
 	}
 	
@@ -78,5 +87,6 @@ public class MainActivity extends Activity {
 		main_viewButton = (ImageButton)findViewById(R.id.main_view_button);
 		main_searchButton= (ImageButton)findViewById(R.id.main_search_button);
 		main_myFridgeButton =(ImageButton)findViewById(R.id.main_fridge_button);
+		main_helpButton = (ImageButton)findViewById(R.id.main_help_imageButton);
 	}
 }
