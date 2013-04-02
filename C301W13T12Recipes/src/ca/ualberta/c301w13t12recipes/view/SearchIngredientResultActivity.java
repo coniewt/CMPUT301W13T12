@@ -3,14 +3,14 @@ package ca.ualberta.c301w13t12recipes.view;
 import java.util.ArrayList;
 
 import android.app.Activity;
-import android.app.ListActivity;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.util.Log;
 import android.widget.ListView;
+import ca.ualberta.c301w13t12recipes.R;
 import ca.ualberta.c301w13t12recipes.controller.RecipeAdapter;
 import ca.ualberta.c301w13t12recipes.model.Ingredient;
 import ca.ualberta.c301w13t12recipes.model.StrResource;
-import ca.ualberta.c301w13t12recipes.R;
 
 ;
 /**
@@ -26,8 +26,8 @@ public class SearchIngredientResultActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.view_search_ingre_result);
 		lv = (ListView)findViewById(R.id.view_ingre_result_listview);
-		
-		
+		StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+		StrictMode.setThreadPolicy(policy);
 		getIngredientListFromIntent();
 		// Use our own list adapter
 		Log.v("Adpter",""+(new RecipeAdapter().getAdapter(this, "INGREDIENT_", ar)==null));

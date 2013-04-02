@@ -5,6 +5,7 @@ import java.lang.reflect.Array;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -91,11 +92,11 @@ public class WebSearch extends WebController {
 	 * @param str
 	 * @return the list of searched recipe
 	 */
-	public ArrayList<Recipe> searchRecipesByIngredient(String searchTerm,
-			ArrayList<String> ingredients) 
+	public List<Recipe> searchRecipesByIngredient(String searchTerm,
+			List<String> ingredients) 
 			{
-		ArrayList<Recipe> recipes = new ArrayList<Recipe>();
-		HttpPost searchRequest = new HttpPost("http://cmput301.softwareprocess.es:8080/cmput301w13t12/recipe/" + "_search");
+		List<Recipe> recipes = new ArrayList<Recipe>();
+		HttpPost searchRequest = new HttpPost("http://cmput301.softwareprocess.es:8080/cmput301w13t12/recipe/_search");
 		// String query = "{\"query\" : {\"query_string\" : " +
 		// "{\"default_field\" : \"ingredients\",\"query\" : \""
 		// + str + "\"}}}";
@@ -103,7 +104,7 @@ public class WebSearch extends WebController {
 
 		String query = "{\"query\":{\"filtered\":{\"query\":{\"query_string\":"
 				+ "{\"query\":\"" + searchTerm
-				+ "\"}},\"filter\":{\"term\":{\"ingredients\":"
+				+ "\"}},\"filter\":{\"term\":{\"name\":"
 				+ ingredientsString + "}}}}}";
 
 		StringEntity stringentity;

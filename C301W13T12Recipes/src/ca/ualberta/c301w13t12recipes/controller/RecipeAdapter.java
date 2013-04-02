@@ -39,7 +39,7 @@ public class RecipeAdapter {
 			ArrayList<Ingredient> ar) {
 		List<HashMap<String, Object>> fillMaps = new ArrayList<HashMap<String, Object>>();
 		List<Recipe> li = new ArrayList<Recipe>();
-		Log.v("Key", "" + type.compareTo("INGREDIENT_"));
+		// Log.v("Key", "" + type.compareTo("INGREDIENT_"));
 		if (type.compareTo("All") == 0) {
 			li = (new DatabaseController(ct)).getDB().getLocal_Recipe_List();
 		} else if (type.length() > 4) {
@@ -47,23 +47,25 @@ public class RecipeAdapter {
 				try {
 					// li = (new
 					// DatabaseController(ct)).getDB().getLocal_Recipe_List();
-					(new WebSearch()).searchRecipes(
+					li = (new WebSearch()).searchRecipes(
 							type.substring(4, type.length()), ct);
 					(new DatabaseController(ct)).postRemote(li);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
-			}
-		} else if (type.compareTo("INGREDIENT_") == 0) {
-			try {
-
-				li = (List<Recipe>) new GetTask().execute(convertTo(ar));
-				Log.v(">>>>>>>>>>>>>>", li.toString());
-
-				// li = (new
-				// WebSearch()).searchRecipesByIngredient("*",convertTo(ar));
-			} catch (Exception e) {
-				e.printStackTrace();
+			} else if (type.compareTo("INGREDIENT_") == 0) {
+				try {
+					Log.v(">>>>>>>>>>>>>>", li.size() + "");
+					List<String> name_list = convertTo(ar);
+					li = new WebSearch().searchRecipesByIngredient("*", name_list);
+					//li = (List<Recipe>) ((new GetTask()).execute(name_list));
+					Log.v("22222", "ar size:"+ar.size()+" return size:"+li.size() + "");
+					
+					// li = (new
+					// WebSearch()).searchRecipesByIngredient("*",convertTo(ar));
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 			}
 		} else {
 			li = (new DatabaseController(ct)).getDB().searchRecipebyKeyword(
@@ -90,8 +92,8 @@ public class RecipeAdapter {
 		return new SimpleAdapter(ct, fillMaps, R.layout.item_recipe, from, to);
 	}
 
-	private ArrayList<String> convertTo(ArrayList<Ingredient> in) {
-		ArrayList<String> out = new ArrayList<String>();
+	private List<String> convertTo(ArrayList<Ingredient> in) {
+		List<String> out = new ArrayList<String>();
 		for (Ingredient ing : in) {
 			out.add(ing.getName());
 		}
@@ -99,20 +101,15 @@ public class RecipeAdapter {
 	}
 }
 
-class GetTask extends AsyncTask<ArrayList<String>, Integer, ArrayList<Recipe>> {
+class GetTask extends AsyncTask<List<String>, Void, List<Recipe>> {
 	@Override
 	protected void onPreExecute() {
 		super.onPreExecute();
 	}
 
 	@Override
-	protected ArrayList<Recipe> doInBackground(ArrayList<String>... params) {
+	protected List<Recipe> doInBackground(List<String>... params) {
 		WebSearch search = new WebSearch();
 		return search.searchRecipesByIngredient("*", params[0]);
-	}
-
-	@Override
-	protected void onProgressUpdate(Integer... progress) {
-		super.onProgressUpdate(progress);
 	}
 }
