@@ -41,6 +41,7 @@ import ca.ualberta.c301w13t12recipes.model.Ingredient;
 import ca.ualberta.c301w13t12recipes.model.Recipe;
 
 /**
+ * Users are able to search recipes both online and offline 
  * @author YWUEI DUAN
  * 
  */

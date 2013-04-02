@@ -6,7 +6,11 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
 import android.widget.TextView;
-
+/**
+ * 
+ * This activity shows the help document
+ *
+ */
 public class HelpManualActivity extends Activity {
 	private TextView manualTextView;
 	/** Called when the activity is first created. */

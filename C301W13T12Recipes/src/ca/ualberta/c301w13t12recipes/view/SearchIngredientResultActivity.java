@@ -21,6 +21,7 @@ import ca.ualberta.c301w13t12recipes.model.StrResource;
 
 ;
 /**
+ * Shows the result of searching by only using ingredients
  * @author YUWEI DUAN
  * 
  */
