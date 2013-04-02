@@ -58,7 +58,7 @@ public class SearchActivity extends Activity {
 		//set thread policy
 		setUp();
 		prepareAutoCompleteText();
-		testWeb();
+		//testWeb();
 		
 		search_imagebutton.setOnClickListener(new OnClickListener() {
 			
@@ -91,6 +91,7 @@ public class SearchActivity extends Activity {
 					jumpToAddViewDetailRecipeActivity(pos, "");
 			}
 		});
+		/*
 		checkbox.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 			
 			@Override
@@ -107,7 +108,7 @@ public class SearchActivity extends Activity {
 						checkbox.setChecked(false);
 					}
 				}
-		}});
+		}});*/
 		
 	}
 
@@ -118,7 +119,7 @@ public class SearchActivity extends Activity {
 		keyword_edittext = (MultiAutoCompleteTextView) findViewById(R.id.keyword_autoCompleteTextView1);
 		result_listview = (ListView) findViewById(R.id.searchResult_listView);
 		search_imagebutton = (ImageButton) findViewById(R.id.search_imageButton1);
-		checkbox = (CheckBox)findViewById(R.id.search_web_recipe_checkbox);
+		//checkbox = (CheckBox)findViewById(R.id.search_web_recipe_checkbox);
 	}
 	/**
 	 * Jump to the class and send the recipe by intent
@@ -172,7 +173,7 @@ public class SearchActivity extends Activity {
 		result_listview.setAdapter(la);
 	}
 	private void testWeb(){
-		testButton = (Button)findViewById(R.id.testbutton);
+		//testButton = (Button)findViewById(R.id.testbutton);
 		testButton.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
