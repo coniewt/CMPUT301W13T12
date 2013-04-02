@@ -38,15 +38,9 @@ public class RecipeAdapter {
 	 *            it will return the recipe with keyword in type
 	 * @return ListAdapter
 	 */
-<<<<<<< HEAD
 	@SuppressWarnings("unchecked")
 	public ListAdapter getAdapter(Context ct, String type,ArrayList<Ingredient> ar) {
-		List<HashMap<String, String>> fillMaps = new ArrayList<HashMap<String, String>>();
-=======
-	public ListAdapter getAdapter(Context ct, String type,
-			ArrayList<Ingredient> ar) {
 		List<HashMap<String, Object>> fillMaps = new ArrayList<HashMap<String, Object>>();
->>>>>>> 4462160f896a03675a6346de0994259b8f9af0f1
 		List<Recipe> li = new ArrayList<Recipe>();
 		Log.v("Key", type);
 		if (type.compareTo("All") == 0) {
@@ -60,18 +54,14 @@ public class RecipeAdapter {
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
-<<<<<<< HEAD
 			}else if (type.compareTo("INGREDIENT_") == 0) {
 				try {
-					//Log.v(ar.get(0).getAmount(), ar.get(0).getName());
 					li= (List<Recipe>) new GetTask().execute(convertTo(ar));
 					Log.v(">>>>>>>>>>>>>>", li.toString());
-					//li = (new WebSearch()).searchRecipesByIngredient("*",convertTo(ar));
-=======
+
 			} else if ((type.substring(0, 11)).compareTo("INGREDIENT_") == 0) {
 				try {
-					// li = (new WebSearch()).searchRecipes();
->>>>>>> 4462160f896a03675a6346de0994259b8f9af0f1
+
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
