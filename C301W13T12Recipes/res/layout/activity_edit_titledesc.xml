@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" 
+    android:noHistory= "true" xmlns:tools="http://schemas.android.com/tools" tools:context=".view.EditTitleDescWizardActivity">
+
+    <ImageView
+        android:id="@+id/edit_imageView_navi_bar1"
+        android:layout_width="wrap_content"
+        android:layout_height="118dp"
+        android:src="@drawable/navi_step1" />
+
+    <TextView
+        android:id="@+id/edit_textView_recipe_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30px"
+        android:text="Recipe name:"
+        android:textSize="8pt" />
+
+    <EditText
+        android:id="@+id/edit_editText_recipe_name"
+        android:hint="Add a name "
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30px"
+        android:layout_marginRight="30px"
+        android:maxHeight="30dp"
+        android:minHeight="30dp"
+        android:singleLine="true"
+        android:ems="10" >
+
+        
+    </EditText>
+
+    <TextView
+        android:id="@+id/edit_textView_description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30px"
+        android:text="Description:"
+        android:textSize="8pt" />
+    <EditText
+        android:id="@+id/edit_editText_description"
+        android:hint="Tap to edit here"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10" 
+        android:inputType="textMultiLine"
+        android:maxHeight="80dp"
+        android:minHeight="80dp"
+        android:scrollbars="vertical"
+        android:layout_marginLeft="30px"
+        android:layout_marginRight="30px"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Password Switch"
+            android:textSize="8pt"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:layout_marginLeft="30px" />
+
+        <Switch
+            android:id="@+id/edit_switch_password"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="240px" />
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="wrap_content"
+        android:layout_height="214dp"
+        android:src="@drawable/add_step1_checklist" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <Button
+            android:id="@+id/edit_step1_Clear_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.42"
+            android:text="Cancel" />
+
+        <Button
+            android:id="@+id/edit_step1_next_button"
+            android:layout_width="142dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.18"
+            android:text="Next" />
+
+    </LinearLayout>
+
+</LinearLayout>

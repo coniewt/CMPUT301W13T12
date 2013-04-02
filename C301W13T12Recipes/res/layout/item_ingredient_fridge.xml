@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+     >
+
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="wrap_content"
+        android:layout_height="130px"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:src="@drawable/item_background_pane" />
+
+    <TextView
+        android:id="@+id/fridge_item_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="33dp"
+        android:layout_marginTop="11dp"
+        android:text="Medium Text"
+        android:textSize="10pt" />
+
+    <TextView
+        android:id="@+id/fridge_item_amount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/fridge_item_name"
+        android:layout_alignBottom="@+id/fridge_item_name"
+        android:layout_marginLeft="35dp"
+        android:layout_toRightOf="@+id/fridge_item_name"
+        android:text="Small Text"
+        android:textSize="8pt" />
+
+    <CheckBox
+        android:id="@+id/fridge_item_checkbox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/fridge_item_amount"
+        android:layout_alignBottom="@+id/fridge_item_amount"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="21dp" 
+        android:focusable="false"/>
+
+</RelativeLayout>
