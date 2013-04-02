@@ -7,9 +7,6 @@ package ca.ualberta.c301w13t12recipes.model;
 public class StrResource
 {
 	//constant strings outside of android scope
-	/**
-	 * 
-	 */
 	public static final String LOCAL_RECIPE_TABLE_NAME = "local_recipe_table";
 	public static final String LOCAL_INGREDIENT_TABLE_NAME = "local_ingredient_table";
 	//public static final String LOCAL_INGREDIENT_TABLE_NAME = "local_recipe_table";
